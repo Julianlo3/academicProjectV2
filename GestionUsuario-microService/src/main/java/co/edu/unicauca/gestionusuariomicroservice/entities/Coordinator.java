@@ -6,16 +6,34 @@ package  co.edu.unicauca.gestionusuariomicroservice.entities;
 
 import co.edu.unicauca.gestionusuariomicroservice.state.ICoordinatorState;
 import co.edu.unicauca.gestionusuariomicroservice.state.PendienteCoordi;
+import co.edu.unicauca.gestionusuariomicroservice.state.RechazadoCoordi;
+import co.edu.unicauca.gestionusuariomicroservice.state.VerificadoCoordi;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "COORDINATOR")
 public class Coordinator {
 
-    private String code, name, phone, email, programaAcademico, password;
+    @Id
+    private String code;
+    private String  name;
+    private String  phone;
+    private String  email;
+    private String  programaAcademico;
+    private String  password;
+    @Column(name = "estado")
+    private String estadoActual;
+    @Transient
     private ICoordinatorState estado;
 
-    public Coordinator() {
 
-    }
 
     public Coordinator(String code, String name, String phone, String email, String programaAcademico, String password) {
         this.code = code;
@@ -24,70 +42,25 @@ public class Coordinator {
         this.email = email;
         this.programaAcademico = programaAcademico;
         this.password = password;
-        this.estado = new PendienteCoordi(this);
+        this.estadoActual = "PENDIENTE";
     }
 
-    public ICoordinatorState getEstado() {
-        return estado;
-    }
-
-    public void setEstado(ICoordinatorState Nuevoestado) {
-        System.out.println("Cambiando estado a: " + Nuevoestado.toString());
-        this.estado = Nuevoestado;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getProgramaAcademico() {
-        return programaAcademico;
-    }
-
-    public void setProgramaAcademico(String programaAcademico) {
-        this.programaAcademico = programaAcademico;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void solicitarAcceso() {
-        System.out.println(estado.solicitarAcceso());
+    @PostLoad
+    public void cargarEstadoCoordinator() {
+        switch (estadoActual){
+            case "PENDIENTE":
+                this.estado = new PendienteCoordi(this);
+                break;
+            case "RECHAZADO":
+                this.estado = new RechazadoCoordi(this);
+                break;
+            case "VERIFICADO":
+                this.estado = new VerificadoCoordi(this);
+                break;
+            default:
+                System.out.println("El estado no existe");
+        }
 
     }
-
 
 }

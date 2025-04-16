@@ -16,7 +16,9 @@ public class VerificadoCoordi implements ICoordinatorState {
     private Coordinator coordi;
 
     public VerificadoCoordi(Coordinator coordi) {
+
         this.coordi = coordi;
+        this.coordi.setEstadoActual("VERIFICADO");
     }
 
     @Override

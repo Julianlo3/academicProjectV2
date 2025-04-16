@@ -16,6 +16,7 @@ public class RechazadoCoordi implements ICoordinatorState {
 
     public RechazadoCoordi(Coordinator coordi) {
         this.coordi = coordi;
+        this.coordi.setEstadoActual("RECHAZADO");
     }
 
     @Override

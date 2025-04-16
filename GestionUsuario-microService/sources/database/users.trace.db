@@ -172,3 +172,17 @@ Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection wa
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 47 more
+2025-04-15 21:14:24.800813-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'Sistemas' (COORDINATOR_COPY_3_0: ""PROGRAMA_ACADEMICO"" TINYINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COORDINATOR_COPY_3_0"("PROGRAMA_ACADEMICO", "PHONE", "PASSWORD", "NAME", "EMAIL", "CODE", "ESTADO") OVERRIDING SYSTEM VALUE SELECT "PROGRAMA_ACADEMICO", "PHONE", "PASSWORD", "NAME", "EMAIL", "CODE", "ESTADO" FROM "PUBLIC"."COORDINATOR" [22018-232]
+2025-04-15 21:17:37.955655-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "Sistemas" [22018-232]
+2025-04-15 21:17:59.272957-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "Sistemas" [22018-232]
+2025-04-15 21:18:05.114677-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "Sistemas" [22018-232]
+2025-04-15 21:21:24.071878-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'Sistemas' (COORDINATOR_COPY_3_0: ""PROGRAMA_ACADEMICO"" TINYINT NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."COORDINATOR_COPY_3_0"("PROGRAMA_ACADEMICO", "PHONE", "PASSWORD", "NAME", "EMAIL", "CODE", "ESTADO") OVERRIDING SYSTEM VALUE SELECT "PROGRAMA_ACADEMICO", "PHONE", "PASSWORD", "NAME", "EMAIL", "CODE", "ESTADO" FROM "PUBLIC"."COORDINATOR" [22018-232]
+2025-04-15 21:21:39.160705-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "Sistemas" [22018-232]
