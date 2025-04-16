@@ -10,12 +10,10 @@ import co.edu.unicauca.academicproject.state.coordinator.PendienteCoordi;
 
 public class Coordinator {
 
-    private String code, name, phone, email, programaAcademico, password;
-    private ICoordinatorState estado;
-
-    public Coordinator() {
-
-    }
+    private String code, name, phone, email, password;
+    private String programaAcademico;
+    private String estadoActual;
+    private transient ICoordinatorState estado;
 
     public Coordinator(String code, String name, String phone, String email, String programaAcademico, String password) {
         this.code = code;
@@ -24,48 +22,7 @@ public class Coordinator {
         this.email = email;
         this.programaAcademico = programaAcademico;
         this.password = password;
-        this.estado = new PendienteCoordi(this);
-    }
-
-    public ICoordinatorState getEstado() {
-        return estado;
-    }
-
-    public void setEstado(ICoordinatorState Nuevoestado) {
-        System.out.println("Cambiando estado a: " + Nuevoestado.toString());
-        this.estado = Nuevoestado;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+        this.estadoActual = "PENDIENTE";
     }
 
     public String getProgramaAcademico() {
@@ -76,6 +33,14 @@ public class Coordinator {
         this.programaAcademico = programaAcademico;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -84,10 +49,43 @@ public class Coordinator {
         this.password = password;
     }
 
-    public void solicitarAcceso() {
-        System.out.println(estado.solicitarAcceso());
-
+    public String getName() {
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public String getEstadoActual() {
+        return estadoActual;
+    }
+
+    public void setEstadoActual(String estadoActual) {
+        this.estadoActual = estadoActual;
+    }
+
+    public ICoordinatorState getEstado() {
+        return estado;
+    }
+
+    public void setEstado(ICoordinatorState estado) {
+        this.estado = estado;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }

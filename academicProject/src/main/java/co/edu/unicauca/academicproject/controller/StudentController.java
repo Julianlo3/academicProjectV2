@@ -2,6 +2,7 @@ package co.edu.unicauca.academicproject.controller;
 
 import co.edu.unicauca.academicproject.Service.StudentServiceClient;
 import co.edu.unicauca.academicproject.entities.Student;
+import co.edu.unicauca.academicproject.provider.appContextProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -25,7 +26,7 @@ public class StudentController {
     }
 
 
-    public void registerUser(String code, String name, String phone, String email, String password) {
+    public void registerStudent(String code, String name, String phone, String email, String password) {
         try {
             // Crea un objeto de tipo Student con los datos recibidos
             Student student = new Student(code, name, phone, email, password);

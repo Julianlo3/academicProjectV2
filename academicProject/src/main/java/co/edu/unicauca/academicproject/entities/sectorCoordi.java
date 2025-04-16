@@ -9,5 +9,5 @@ package co.edu.unicauca.academicproject.entities;
  * @author lopez
  */
 public enum sectorCoordi {
-    Sistemas,electronica,civil
+    SISTEMAS,ELECTRONICA,CIVIL
 }

@@ -4,10 +4,7 @@
  */
 package co.edu.unicauca.academicproject.entities;
 
-/**
- *
- * @author anvig
- */
+
 public class Student {
     
     private String code;

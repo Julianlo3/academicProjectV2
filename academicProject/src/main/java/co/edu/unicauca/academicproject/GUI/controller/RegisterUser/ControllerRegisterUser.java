@@ -7,7 +7,12 @@ package co.edu.unicauca.academicproject.GUI.controller.RegisterUser;
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithLog;
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
 import co.edu.unicauca.academicproject.GUI.GUIRegisteredUser;
+import co.edu.unicauca.academicproject.Service.CompanyServiceClient;
+import co.edu.unicauca.academicproject.Service.CoordinatorServiceClient;
 import co.edu.unicauca.academicproject.Service.StudentServiceClient;
+import co.edu.unicauca.academicproject.controller.CompanyController;
+import co.edu.unicauca.academicproject.controller.CoordinatorController;
+import co.edu.unicauca.academicproject.controller.StudentController;
 import co.edu.unicauca.academicproject.entities.SectorCompany;
 import co.edu.unicauca.academicproject.entities.Student;
 import co.edu.unicauca.academicproject.entities.sectorCoordi;
@@ -23,7 +28,10 @@ import javax.swing.JFrame;
 public class ControllerRegisterUser {
 
     private final GUIRegisteredUser vista;
-    StudentServiceClient studentServiceClient = appContextProvider.getBean(StudentServiceClient.class);
+    StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
+    CompanyController companyController = new CompanyController(appContextProvider.getBean(CompanyServiceClient.class));
+    CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
+
 
     CardLayout cardLayout;
 
@@ -37,6 +45,8 @@ public class ControllerRegisterUser {
         this.vista.getjRbtnCoordi().addActionListener(e -> cargarFormCoordi());
         this.vista.getjRbtnStudent().addActionListener(e -> cargarFormStudent());
         this.vista.getjBtnSaveStudent().addActionListener(e -> saveStudent());
+        this.vista.getjBtnSaveCompany().addActionListener(e -> saveCompany());
+        this.vista.getjBtnSaveCoordi().addActionListener(e -> saveCoordi());
     }
 
     private void volverHomeWithOuLog() {
@@ -115,7 +125,29 @@ public class ControllerRegisterUser {
         System.out.println(email);
         String pass = vista.getjFieldPassWordStudent().getText();
         System.out.println(pass);
-        Student estudiante = new Student(codigo, nombre, tel, email, pass);
-        studentServiceClient.CreateStudent(estudiante);
+        studentController.registerStudent(codigo, nombre, tel, email, pass);
+    }
+
+    private void saveCompany() {
+        String nit = vista.getjFieldNitCompany().getText();
+        String name = vista.getjFieldNameCompany().getText();
+        String phone = vista.getjFieldTelCompany().getText();
+        String email = vista.getjFieldEmailCompany().getText();
+        String pageWeb = vista.getjFieldWebCompany().getText();
+        SectorCompany sector = SectorCompany.valueOf(vista.getjCBSectorCompany().getSelectedItem().toString());
+        String pass = vista.getjFieldPassWordCompany().getText();
+        companyController.registerCompany(nit,name,phone,pageWeb,sector,email,pass);
+    }
+
+    private void saveCoordi() {
+        String codigo = vista.getjFieldCodeCoordi().getText();
+        String name = vista.getjFieldNameCoordi().getText();
+        String tel = vista.getjFieldTelCoordi().getText();
+        String email = vista.getjFieldEmailCoordi().getText();
+        String programa = vista.getjCBProgramCoordi().getSelectedItem().toString();
+        String pass = vista.getjFieldPassWordCoordi().getText();
+        System.out.println(codigo + " " + name + " " + tel + " " + email + " " + programa + " " + pass );
+
+        coordinatorController.registerCoordinator(codigo, name, tel, email, programa, pass);
     }
 }

@@ -99,10 +99,50 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
     public JTextField getjFieldTelStudent() {
         return jFieldTelStudent;
     }
-    
-    
-    
-    
+
+    public JTextField getjFieldNitCompany() {
+        return jFieldNitCompany;
+    }
+
+    public JTextField getjFieldNameCompany() {
+        return jFieldNameCompany;
+    }
+
+    public JPasswordField getjFieldPassWordCompany() {
+        return jFieldPassWordCompany;
+    }
+
+    public JTextField getjFieldTelCompany() {
+        return jFieldTelCompany;
+    }
+
+    public JTextField getjFieldWebCompany() {
+        return jFieldWebCompany;
+    }
+
+    public JTextField getjFieldEmailCompany() {
+        return jFieldEmailCompany;
+    }
+
+    public JTextField getjFieldCodeCoordi() {
+        return jFieldCodeCoordi;
+    }
+
+    public JTextField getjFieldEmailCoordi() {
+        return jFieldEmailCoordi;
+    }
+
+    public JTextField getjFieldNameCoordi() {
+        return jFieldNameCoordi;
+    }
+
+    public JPasswordField getjFieldPassWordCoordi() {
+        return jFieldPassWordCoordi;
+    }
+
+    public JTextField getjFieldTelCoordi() {
+        return jFieldTelCoordi;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

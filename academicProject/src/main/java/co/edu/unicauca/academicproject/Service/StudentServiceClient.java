@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 public class StudentServiceClient {
 
     @Autowired
-    private StudentFeignClient studentFeignClient;
+    private GestionUsuarioFeignClient FeignClient;
 
 
     public void CreateStudent(Student student) {
-        studentFeignClient.createStudent(student);
+        FeignClient.createStudent(student);
     }
 
 
