@@ -38,7 +38,6 @@ public class StudentService implements IStudentService{
 
             // 2. Crear y mapear el estudiante desde el DTO
             Student student = new Student();
-            student.setId(studentRequest.getId());
             student.setCode(studentRequest.getCode());
             student.setName(studentRequest.getName());
             student.setPhone(studentRequest.getPhone());
@@ -60,33 +59,28 @@ public class StudentService implements IStudentService{
 
     @Override
     @Transactional
-    public Student updateStudent(Long id, StudentRequest studentRequest) throws Exception {
+    public Student updateStudent(Long code, StudentRequest studentRequest) throws Exception {
         try {
-            // 1. Verificar que el id pasado coincida con el id del estudiante que se quiere actualizar
-            if (!Objects.equals(id, studentRequest.getId())) {
-                throw new IllegalAccessException("El id del estudiante que se quiere actualizar no coincide con el id pasado");
-            }
-
-            // 2. Verificar si el codigo fue pasado y si existe
-            if (studentRequest.getCode() != null) {
-                if (studentRepository.findByCode(studentRequest.getCode()).isEmpty()) {
-                    throw new IllegalAccessException("El estudiante con CODIGO " + studentRequest.getCode() + " no existe");
+            // 1. Verificar si el codigo fue pasado y si existe
+            if (code != null) {
+                if (studentRepository.findByCode(code).isEmpty()) {
+                    throw new IllegalAccessException("El estudiante con CODIGO " + code + " no existe");
                 }
             }
 
-            // 3. Crear y mapear el estudiante desde el DTO
+            // 2. Crear y mapear el estudiante desde el DTO
             Student student = new Student();
-            student.setId(studentRequest.getId());
+            student.setId(studentRepository.findByCode(code).get().getId());
             student.setCode(studentRequest.getCode());
             student.setName(studentRequest.getName());
             student.setPhone(studentRequest.getPhone());
             student.setEmail(studentRequest.getEmail());
             student.setPassword(studentRequest.getPassword());
 
-            // 4. Guardar el estudiante
+            // 3. Guardar el estudiante
             Student studentSaved = studentRepository.save(student);
 
-            // 5. Publicar en RabbitMQ
+            // 4. Publicar en RabbitMQ
             rabbitTemplate.convertAndSend(RabbitMQConfig.STUDENT_QUEUE, studentSaved);
 
             return studentSaved;
@@ -98,8 +92,8 @@ public class StudentService implements IStudentService{
 
     @Override
     @Transactional
-    public Optional<Student> findById(Long id) {
-        return studentRepository.findById(id);
+    public Optional<Student> findByCode(Long code) {
+        return studentRepository.findByCode(code);
     }
 
     @Override
@@ -113,17 +107,17 @@ public class StudentService implements IStudentService{
     }
 
     @Override
-    public Student deleteStudent(Long id) throws Exception {
+    public Student deleteStudent(Long code) throws Exception {
         try{
             // 1. Verificar si el codigo fue pasado y si existe
-            if (id != null) {
-                if (studentRepository.findById(id).isEmpty()) {
-                    throw new IllegalAccessException("El estudiante con ID " + id + " no existe");
+            if (code != null) {
+                if (studentRepository.findByCode(code).isEmpty()) {
+                    throw new IllegalAccessException("El estudiante con codigo " + code + " no existe");
                 }
             }
 
             // 2. Obtener el estudiante a eliminar
-            Student student = studentRepository.findById(id).get();
+            Student student = studentRepository.findByCode(code).get();
 
             // 3. Eliminar el estudiante
             studentRepository.delete(student);

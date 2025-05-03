@@ -27,21 +27,21 @@ public class StudentController {
                 return ResponseEntity.ok(students);
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error al recuperar datos de los estudiantes.\"}");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error al recuperar datos de los estudiantes, " + e.getMessage() + "\"}");
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable Long id) {
+    @GetMapping("/{code}")
+    public ResponseEntity<?> getStudentByCode(@PathVariable Long code) {
         try {
-            Optional<Student> student = studentService.findById(id);
+            Optional<Student> student = studentService.findByCode(code);
             if (student.isEmpty()) {
                 return ResponseEntity.notFound().build();
             } else {
                 return ResponseEntity.ok(student);
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error al recuperar datos del estudiante.\"}");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error al recuperar datos del estudiante, " + e.getMessage() + "\"}");
         }
     }
 
@@ -55,35 +55,35 @@ public class StudentController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al guardar datos del estudiante.\"}");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al guardar datos del estudiante, " + e.getMessage() + "\"}");
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateStudent(@PathVariable Long id, @RequestBody StudentRequest studentRequest) {
+    @PutMapping("/{code}")
+    public ResponseEntity<?> updateStudent(@PathVariable Long code, @RequestBody StudentRequest studentRequest) {
         try {
             try {
-                Student updatedStudent = studentService.updateStudent(id, studentRequest);
+                Student updatedStudent = studentService.updateStudent(code, studentRequest);
                 return ResponseEntity.ok(updatedStudent);
             } catch (IllegalAccessException e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al actualizar datos del estudiante.\"}");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al actualizar datos del estudiante, " + e.getMessage() + "\"}");
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteStudent(@PathVariable Long id){
+    @DeleteMapping("/{code}")
+    public ResponseEntity<?> deleteStudent(@PathVariable Long code){
         try {
             try {
-                Student deletedStudent = studentService.deleteStudent(id);
+                Student deletedStudent = studentService.deleteStudent(code);
                 return ResponseEntity.ok(deletedStudent);
             } catch (IllegalAccessException e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al eliminar datos del estudiante.\"}");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al eliminar datos del estudiante, " + e.getMessage() + "\"}");
         }
     }
 }

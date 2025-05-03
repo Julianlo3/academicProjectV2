@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Student {
     @Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Column(unique = true)
     private Long code;
@@ -14,8 +14,7 @@ public class Student {
     private String email;
     private String password;
 
-    public Student(Long id, Long code, String name, Long phone, String email, String password) {
-        this.id = id;
+    public Student(Long code, String name, Long phone, String email, String password) {
         this.code = code;
         this.name = name;
         this.phone = phone;

@@ -15,11 +15,11 @@ public interface IStudentService {
     public Student updateStudent(Long code, StudentRequest studentRequest) throws Exception;
 
     @Transactional
-    public Optional<Student> findById(Long id);
+    public Optional<Student> findByCode(Long code);
 
     @Transactional
     public List<Student> findAllStudents() throws Exception;
 
     @Transactional
-    public Student deleteStudent(Long id) throws Exception;
+    public Student deleteStudent(Long code) throws Exception;
 }
