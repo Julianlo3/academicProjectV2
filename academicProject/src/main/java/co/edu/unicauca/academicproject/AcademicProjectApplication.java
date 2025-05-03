@@ -23,7 +23,7 @@ public class AcademicProjectApplication {
         SwingUtilities.invokeLater(()-> {
             GUIHomeWithOutLog ventaPrincipal = new GUIHomeWithOutLog();
             ventaPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            ventaPrincipal.setVisible(true);
+            ventaPrincipal.setV isible(true);
             
         });
     }
