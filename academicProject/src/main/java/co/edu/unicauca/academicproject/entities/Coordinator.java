@@ -4,25 +4,24 @@
  */
 package co.edu.unicauca.academicproject.entities;
 
-import co.edu.unicauca.academicproject.state.coordinator.ICoordinatorState;
-import co.edu.unicauca.academicproject.state.coordinator.PendienteCoordi;
-
-
 public class Coordinator {
 
-    private String code, name, phone, email, password;
+    private Long id;
+    private String name, phone, email, password;
     private String programaAcademico;
     private String estadoActual;
-    private transient ICoordinatorState estado;
 
-    public Coordinator(String code, String name, String phone, String email, String programaAcademico, String password) {
-        this.code = code;
+    public Coordinator(long code, String name, String phone, String email, String programaAcademico, String password) {
+        this.id = code;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.programaAcademico = programaAcademico;
         this.password = password;
         this.estadoActual = "PENDIENTE";
+    }
+
+    public Coordinator() {
     }
 
     public String getProgramaAcademico() {
@@ -65,14 +64,6 @@ public class Coordinator {
         this.estadoActual = estadoActual;
     }
 
-    public ICoordinatorState getEstado() {
-        return estado;
-    }
-
-    public void setEstado(ICoordinatorState estado) {
-        this.estado = estado;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -81,11 +72,11 @@ public class Coordinator {
         this.email = email;
     }
 
-    public String getCode() {
-        return code;
+    public long getCode() {
+        return id;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCode(long code) {
+        this.id = code;
     }
 }

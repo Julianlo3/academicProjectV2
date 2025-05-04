@@ -73,7 +73,7 @@ public class GUIUsers extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableCompany = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPHead.setBackground(new java.awt.Color(236, 230, 240));
         jPHead.setLayout(new java.awt.GridBagLayout());

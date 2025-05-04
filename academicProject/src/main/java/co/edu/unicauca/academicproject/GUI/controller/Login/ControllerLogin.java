@@ -8,9 +8,12 @@ import co.edu.unicauca.academicproject.GUI.GUIHomeWithLog;
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
 import co.edu.unicauca.academicproject.GUI.GUILogin;
 import co.edu.unicauca.academicproject.GUI.GUIRegisteredUser;
+import co.edu.unicauca.academicproject.Service.Coordinator.CoordinatorServiceClient;
 import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
+import co.edu.unicauca.academicproject.controller.CoordinatorController;
 import co.edu.unicauca.academicproject.controller.StudentController;
 import co.edu.unicauca.academicproject.entities.Admin;
+import co.edu.unicauca.academicproject.entities.Coordinator;
 import co.edu.unicauca.academicproject.entities.Student;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
@@ -74,8 +77,21 @@ public class ControllerLogin {
                 String password = Admin.getInstance().getPassword();
                 System.out.println("Datos del admin:"+codigo + " " + password);
                 if (codigo.equals(userName.toString()) && password.equals(pass)) {
-                    GUIHomeWithLog adminStudent = new GUIHomeWithLog((long)(1),cargarRol());
-                    adminStudent.setVisible(true);
+                    GUIHomeWithLog homeAdmin = new GUIHomeWithLog((long)(1),cargarRol());
+                    homeAdmin.setVisible(true);
+                    vista.dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Error. Revisar clave");
+                }
+                break;
+
+            case "Coordinador":
+                CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
+                Coordinator coordinator = coordinatorController.checkCoordi(userName, pass);
+                if (coordinator != null) {
+                    GUIHomeWithLog homeCoordi = new GUIHomeWithLog(coordinator.getCode(),cargarRol());
+                    homeCoordi.setVisible(true);
                     vista.dispose();
                 }
                 else{

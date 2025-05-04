@@ -7,7 +7,9 @@ package co.edu.unicauca.academicproject.GUI.controller.RegisterUser;
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithLog;
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
 import co.edu.unicauca.academicproject.GUI.GUIRegisteredUser;
+import co.edu.unicauca.academicproject.Service.Coordinator.CoordinatorServiceClient;
 import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
+import co.edu.unicauca.academicproject.controller.CoordinatorController;
 import co.edu.unicauca.academicproject.controller.StudentController;
 import co.edu.unicauca.academicproject.entities.SectorCompany;
 import co.edu.unicauca.academicproject.entities.sectorCoordi;
@@ -25,7 +27,7 @@ public class ControllerRegisterUser {
     private final GUIRegisteredUser vista;
     StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
     //CompanyController companyController = new CompanyController(appContextProvider.getBean(CompanyServiceClient.class));
-    //CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
+    CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
 
 
     CardLayout cardLayout;
@@ -137,14 +139,12 @@ public class ControllerRegisterUser {
     }
 
     private void saveCoordi() {
-        String codigo = vista.getjFieldCodeCoordi().getText();
+        long codigo = Long.parseLong(vista.getjFieldCodeCoordi().getText());
         String name = vista.getjFieldNameCoordi().getText();
         String tel = vista.getjFieldTelCoordi().getText();
         String email = vista.getjFieldEmailCoordi().getText();
         String programa = vista.getjCBProgramCoordi().getSelectedItem().toString();
         String pass = vista.getjFieldPassWordCoordi().getText();
-        System.out.println(codigo + " " + name + " " + tel + " " + email + " " + programa + " " + pass );
-
-        //coordinatorController.registerCoordinator(codigo, name, tel, email, programa, pass);
+        coordinatorController.registerCoordinator(codigo, name, tel, email, programa, pass);
     }
 }

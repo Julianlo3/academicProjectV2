@@ -49,6 +49,7 @@ public class ControllerHomeWithLog {
         switch (rol) {
             case "Estudiante": cargarformStudent(); break;
             case "Admin": cargarFormAdmin(); break;
+            case "Coordinador": cargarFormCoordi(); break;
         }
         System.out.println("Rol:" + rol);
     }
@@ -65,6 +66,13 @@ public class ControllerHomeWithLog {
         System.out.println("Cargando opciones de administrador:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(),"Admin");
+        vista.getLbLogin().setText(Admin.getInstance().getNombre());
+    }
+
+    private void cargarFormCoordi(){
+        System.out.println("Cargando opciones de coordinador:");
+        cardLayout = (CardLayout) vista.getJPoptions().getLayout();
+        cardLayout.show(vista.getJPoptions(),"Coordi");
         vista.getLbLogin().setText(Admin.getInstance().getNombre());
     }
 

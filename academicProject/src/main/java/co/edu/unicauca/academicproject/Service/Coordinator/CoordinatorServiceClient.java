@@ -1,7 +1,11 @@
 package co.edu.unicauca.academicproject.Service.Coordinator;
 
 
+import co.edu.unicauca.academicproject.entities.Coordinator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author lopez
@@ -9,12 +13,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CoordinatorServiceClient {
-/*
-    private GestionUsuarioFeignClient feignClient;
+
+    @Autowired
+    private CoordinatorFeignClient FeignClient;
 
     public void createCoordinator(Coordinator coordinator) {
-        //feignClient.createCoordi(coordinator);
+        FeignClient.createCoordinator(coordinator);
    }
 
- */
+    public List<Coordinator> GetAllCoordinators(){
+        return FeignClient.getAllCoordinators();
+    }
+
+
+    public Coordinator getCoordinatorByCode(Long code){
+        return FeignClient.getSCoordinatorByCode(code);
+    }
+
+    public void updateStudent(Long code, Coordinator coordinatorRequest){
+        FeignClient.updateCoordinator(code, coordinatorRequest);
+    }
+
+    public void deleteCoordiantor(Long code){
+        FeignClient.deleteCoordinator(code);
+    }
+
 }
