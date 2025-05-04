@@ -17,7 +17,7 @@ public class CoordinatorDecisionDTO {
 
     private String adminEmail;
 
-   private String status;
+    private String status;
 
     private String reason;
 
@@ -27,4 +27,4 @@ public class CoordinatorDecisionDTO {
     private boolean isReasonValid() {
         return !"REJECTED".equals(status) || (reason != null && !reason.trim().isEmpty());
     }
-    }
+}

@@ -3,6 +3,8 @@ package co.edu.unicauca.adminmicroservice.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "admins")
 @Data
@@ -11,9 +13,12 @@ import lombok.*;
 @Builder
 public class Admin {
     @Id
-    @Column(name = "email") // Explicit column name mapping
     private String email;
 
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String department;
+
 }

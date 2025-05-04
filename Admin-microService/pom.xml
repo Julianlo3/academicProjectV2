@@ -18,7 +18,7 @@
     <description>Microservicio para gestión de administradores</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <spring-cloud.version>2024.0.1</spring-cloud.version>
         <springdoc.version>2.4.0</springdoc.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -137,6 +137,9 @@
                 <version>3.10.1</version>
                 <configuration>
                     <parameters>true</parameters>
+                    <source>21</source>
+                    <target>21</target>
+                    <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
         </plugins>
