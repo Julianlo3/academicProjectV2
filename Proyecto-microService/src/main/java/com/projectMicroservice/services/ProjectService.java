@@ -1,11 +1,14 @@
 package com.projectMicroservice.services;
 
 import com.projectMicroservice.entities.Project;
+import com.projectMicroservice.entities.ProjectStatus;
 import com.projectMicroservice.infra.ProjectRequestDTO;
 import com.projectMicroservice.infra.ProjectResponseDTO;
 import com.projectMicroservice.repositories.IProjectRepository;
 import org.springframework.stereotype.Service;
 import com.projectMicroservice.infra.ProjectMapper;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +42,24 @@ public class ProjectService implements IProjectService {
 
     @Override
     public List<ProjectResponseDTO> getProjectsByStatus(String status) {
-        List<Project> projects = projectRepository.findByStatus(status);
+
+        List<Project> projects;
+
+        switch (status) {
+            case "ACCEPTED":
+                projects = projectRepository.findByStatus(ProjectStatus.ACCEPTED);
+                break;
+            case "PENDING":
+                projects = projectRepository.findByStatus(ProjectStatus.PENDING);
+                break;
+            case "REJECTED":
+                projects = projectRepository.findByStatus(ProjectStatus.REJECTED);
+                break;
+            default:
+                projects = new ArrayList<>();
+
+        }
+
         return projects.stream().map(ProjectMapper::toResponseDTO).collect(Collectors.toList());
     }
 

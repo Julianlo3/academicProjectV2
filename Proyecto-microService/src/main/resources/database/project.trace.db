@@ -7,3 +7,20 @@ The object is already closed [90007-214]
 2025-05-04 00:48:25 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
 The object is already closed [90007-214]
+2025-05-04 14:02:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]
+2025-05-04 14:02:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]
+2025-05-04 14:04:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]
+2025-05-04 14:22:39 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]decribe proyectos"; se esperaba "DELETE, DROP, DECLARE, DEALLOCATE"
+Syntax error in SQL statement "[*]decribe proyectos"; expected "DELETE, DROP, DECLARE, DEALLOCATE"; SQL statement:
+decribe proyectos [42001-214]
+2025-05-04 14:22:55 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]DESCRIBE proyectos"; se esperaba "DELETE, DROP, DECLARE, DEALLOCATE"
+Syntax error in SQL statement "[*]DESCRIBE proyectos"; expected "DELETE, DROP, DECLARE, DEALLOCATE"; SQL statement:
+DESCRIBE proyectos [42001-214]

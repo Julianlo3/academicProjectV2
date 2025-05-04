@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/proyectos")
+@RequestMapping("/api/project")
 public class ProjectController {
     private final IProjectService projectService;
 
@@ -30,7 +30,7 @@ public class ProjectController {
     /**
      * Endpoint para obtener un proyecto por su id
      */
-    @GetMapping("/{projectId}")
+    @GetMapping("/{id}")
     public ResponseEntity<ProjectResponseDTO> getProjectById(@PathVariable("id") Long projectId) {
         ProjectResponseDTO project = projectService.getProjectById(projectId);
         return ResponseEntity.ok(project);
@@ -48,8 +48,8 @@ public class ProjectController {
     /**
      * Endpoint para obtener proyectos según su estado
      */
-    @GetMapping("/status/{status}")
-    public ResponseEntity<List<ProjectResponseDTO>> getProjectsByStatus(@PathVariable("status") String status) {
+    @GetMapping("/status/{statusToSearch}")
+    public ResponseEntity<List<ProjectResponseDTO>> getProjectsByStatus(@PathVariable("statusToSearch") String status) {
         List<ProjectResponseDTO> projects = projectService.getProjectsByStatus(status);
         return ResponseEntity.ok(projects);
     }
@@ -57,7 +57,7 @@ public class ProjectController {
     /**
      * Endpoint para actualizar un proyecto por su id
      */
-    @PutMapping("/{projectId}")
+    @PutMapping("/{id}")
     public ResponseEntity<ProjectResponseDTO> updateProject(@PathVariable("id") Long projectId, @RequestBody ProjectRequestDTO projectRequestDTO) {
         ProjectResponseDTO updatedProject = projectService.updateProject(projectId, projectRequestDTO);
         return ResponseEntity.ok(updatedProject);
@@ -66,7 +66,7 @@ public class ProjectController {
     /**
      * Endpoint para eliminar un proyecto por su id
      */
-    @DeleteMapping("/{projectId}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProject(@PathVariable("id") Long projectId) {
         projectService.deleteProject(projectId);
         return ResponseEntity.noContent().build();
