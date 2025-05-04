@@ -5,7 +5,8 @@
 package co.edu.unicauca.academicproject.GUI;
 
 import co.edu.unicauca.academicproject.GUI.controller.Login.ControllerLogin;
-import javax.swing.JButton;
+
+import javax.swing.*;
 
 /**
  *
@@ -27,6 +28,26 @@ public class GUILogin extends javax.swing.JFrame {
 
     public JButton getjBtnNewUser() {
         return jBtnNewUser;
+    }
+    
+    public JComboBox getCBRol(){
+        return jCBRol;
+    }
+    
+    public JButton getBtnLogin(){
+        return jBtnPassUser;
+    }
+
+    public JTextField getFieldUserName(){
+        return jFieldUserName;
+    }
+
+    public JPasswordField getPasswordUser(){
+        return jPasswordUser;
+    }
+
+    public JCheckBox getCheckSeePass(){
+        return jCheckSeePass;
     }
 
     

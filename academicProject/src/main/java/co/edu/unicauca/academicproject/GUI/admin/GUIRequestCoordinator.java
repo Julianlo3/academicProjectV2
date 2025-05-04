@@ -47,7 +47,7 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
         jRBtnRechazar = new javax.swing.JRadioButton();
         jBtnProcesarSoli = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPHead.setBackground(new java.awt.Color(236, 230, 240));
         jPHead.setLayout(new java.awt.GridBagLayout());

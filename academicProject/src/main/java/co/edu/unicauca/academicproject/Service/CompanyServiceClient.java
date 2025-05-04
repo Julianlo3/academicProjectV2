@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CompanyServiceClient {
+    /*
     @Autowired
     private GestionUsuarioFeignClient feignClient;
 
     public void createCompany(Company company) {
-        feignClient.createCompany(company);
+        //feignClient.createCompany(company);
     }
+     */
 }

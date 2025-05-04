@@ -4,6 +4,10 @@
  */
 package co.edu.unicauca.academicproject.GUI.admin;
 
+import co.edu.unicauca.academicproject.GUI.controller.Admin.ControllerUserSystem;
+
+import javax.swing.*;
+
 /**
  *
  * @author lopez
@@ -15,7 +19,30 @@ public class GUIUsers extends javax.swing.JFrame {
      */
     public GUIUsers() {
         initComponents();
+        ControllerUserSystem controllerUserSystem = new ControllerUserSystem(this);
+
     }
+
+    public JTable getjTableStudent() {
+        return jTableStudent;
+    }
+
+    public JTable getjTableCoordinator() {
+        return jTableCoordinator;
+    }
+
+    public JTable getjTableCompany() {
+        return jTableCompany;
+    }
+
+    public JButton getjBtnBackHomeWithLogin() {
+        return jBtnBackHomeWithLogin;
+    }
+
+    public void setjTableStudent(JTable jTableStudent) {
+        this.jTableStudent = jTableStudent;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

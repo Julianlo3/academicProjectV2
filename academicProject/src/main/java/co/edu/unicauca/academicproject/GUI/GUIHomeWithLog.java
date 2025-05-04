@@ -5,7 +5,8 @@
 package co.edu.unicauca.academicproject.GUI;
 
 import co.edu.unicauca.academicproject.GUI.controller.Home.ControllerHomeWithLog;
-import javax.swing.JButton;
+
+import javax.swing.*;
 
 /**
  *
@@ -16,9 +17,18 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
     /**
      * Creates new form GUIHineWithLog
      */
-    public GUIHomeWithLog() {
+
+    private String rol;
+    private long idUser;
+    public GUIHomeWithLog(Long idUser,String rol) {
         initComponents();
+        this.rol = rol;
+        this.idUser = idUser;
         ControllerHomeWithLog controller = new ControllerHomeWithLog(this);
+    }
+
+    public long getidUser() {
+        return idUser;
     }
 
     public JButton getjBtnAsignar() {
@@ -53,15 +63,30 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         return jBtnSolicitudes;
     }
 
-    public JButton getjBtnUsers() {
-        return jBtnUsers;
+    public JButton getjBtnUsersSistema() {
+        return jBtnUsersSistema;
     }
 
     public JButton getjButtonQuitF() {
         return jButtonQuitF;
     }
     
+    public String getRol() {
+        return rol;
+    }
+
+    public long getIdUser() {
+        return idUser;
+    }
     
+    public JPanel getJPoptions(){
+        return jPOptions;
+    }
+
+
+    public JLabel getLbLogin() {
+        return lbLogin;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,7 +119,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jBtnAsignar = new javax.swing.JButton();
         jPOpcionStudent = new javax.swing.JPanel();
         jPOpcionAdmin = new javax.swing.JPanel();
-        jBtnUsers = new javax.swing.JButton();
+        jBtnUsersSistema = new javax.swing.JButton();
         jBtnCoordiSoli = new javax.swing.JButton();
         jPPublis = new javax.swing.JPanel();
         jLTitleProjects = new javax.swing.JLabel();
@@ -104,7 +129,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jLTittleMenu = new javax.swing.JLabel();
         jBtnGetOut = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPHead.setBackground(new java.awt.Color(236, 230, 240));
         jPHead.setLayout(new javax.swing.BoxLayout(jPHead, javax.swing.BoxLayout.LINE_AXIS));
@@ -251,8 +276,8 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jPOpcionAdmin.setBackground(new java.awt.Color(255, 255, 255));
         jPOpcionAdmin.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 30));
 
-        jBtnUsers.setText("VER USUARIOS EN EL SISTEMA");
-        jPOpcionAdmin.add(jBtnUsers);
+        jBtnUsersSistema.setText("VER USUARIOS EN EL SISTEMA");
+        jPOpcionAdmin.add(jBtnUsersSistema);
 
         jBtnCoordiSoli.setText("GESTION DE COORDINADORES");
         jPOpcionAdmin.add(jBtnCoordiSoli);
@@ -359,7 +384,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
     private javax.swing.JButton jBtnNewPubli;
     private javax.swing.JButton jBtnSearch;
     private javax.swing.JButton jBtnSolicitudes;
-    private javax.swing.JButton jBtnUsers;
+    private javax.swing.JButton jBtnUsersSistema;
     private javax.swing.JButton jButtonQuitF;
     private javax.swing.JComboBox<String> jCBSelecFilter;
     private javax.swing.JTextField jFieldSearchProyect;

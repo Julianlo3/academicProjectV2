@@ -12,6 +12,7 @@ import javax.swing.*;
  * @date 15/04/2025
  */
 public class CompanyController {
+/*
     private final CompanyServiceClient companyServiceClient;
 
     public CompanyController(CompanyServiceClient companyServiceClient) {
@@ -29,4 +30,5 @@ public class CompanyController {
         }
 
     }
+ */
 }

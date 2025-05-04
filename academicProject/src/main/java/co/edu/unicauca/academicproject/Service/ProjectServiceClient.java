@@ -11,10 +11,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ProjectServiceClient {
+    /*
     @Autowired
     private GestionUsuarioFeignClient feignClient;
 
     public void createProject(Project project) {
     feignClient.createProject(project);
     }
+
+     */
 }

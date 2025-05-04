@@ -1,17 +1,12 @@
 package co.edu.unicauca.academicproject.controller;
 
 
-import co.edu.unicauca.academicproject.Service.CoordinatorServiceClient;
-import co.edu.unicauca.academicproject.entities.Coordinator;
-import co.edu.unicauca.academicproject.entities.sectorCoordi;
-
-import javax.swing.*;
-
 /**
  * @author lopez
  * @date 15/04/2025
  */
 public class CoordinatorController {
+    /*
     private final CoordinatorServiceClient coordinatorServiceClient;
 
     public CoordinatorController(CoordinatorServiceClient coordinatorServiceClient) {
@@ -28,4 +23,6 @@ public class CoordinatorController {
             System.out.println("Error al crear coordinador." + e.getMessage());
         }
     }
+
+     */
 }

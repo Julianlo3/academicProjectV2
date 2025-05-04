@@ -6,17 +6,17 @@ package co.edu.unicauca.academicproject.entities;
 
 
 public class Student {
-    
-    private String code;
+
+    private Long id;
+    private Long code;
     private String name;
-    private String phone;
+    private Long phone;
     private String email;
     private String password;
 
-    public Student() {
-    }
+    public Student() {}
 
-    public Student(String code, String name, String phone, String email, String password) {
+    public Student(Long code, String name, Long phone, String email, String password) {
         this.code = code;
         this.name = name;
         this.phone = phone;
@@ -24,11 +24,11 @@ public class Student {
         this.password = password;
     }
 
-    public String getCode() {
+    public long getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(long code) {
         this.code = code;
     }
 
@@ -40,11 +40,11 @@ public class Student {
         this.name = name;
     }
 
-    public String getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

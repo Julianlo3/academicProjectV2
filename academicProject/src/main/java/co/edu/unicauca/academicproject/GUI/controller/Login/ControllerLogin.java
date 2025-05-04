@@ -4,10 +4,17 @@
  */
 package co.edu.unicauca.academicproject.GUI.controller.Login;
 
+import co.edu.unicauca.academicproject.GUI.GUIHomeWithLog;
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
 import co.edu.unicauca.academicproject.GUI.GUILogin;
 import co.edu.unicauca.academicproject.GUI.GUIRegisteredUser;
-import javax.swing.JFrame;
+import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
+import co.edu.unicauca.academicproject.controller.StudentController;
+import co.edu.unicauca.academicproject.entities.Admin;
+import co.edu.unicauca.academicproject.entities.Student;
+import co.edu.unicauca.academicproject.provider.appContextProvider;
+
+import javax.swing.*;
 
 /**
  *
@@ -18,8 +25,11 @@ public class ControllerLogin {
     
     public ControllerLogin(GUILogin vista){
         this.vista = vista;
+        cargarRol();
         this.vista.getjBtnBackHomeWithLogin().addActionListener(e -> volverHome());
         this.vista.getjBtnNewUser().addActionListener(e -> abrirNewUser());
+        this.vista.getCBRol().addActionListener(e -> cargarRol());
+        this.vista.getBtnLogin().addActionListener(e -> checkUser());
     }
     
     private void volverHome(){
@@ -34,5 +44,47 @@ public class ControllerLogin {
         GUIRegisteredUser newUser = new GUIRegisteredUser();
         newUser.setExtendedState(JFrame.MAXIMIZED_BOTH);
         newUser.setVisible(true);
+    }
+    
+    private String cargarRol(){
+        String rol =vista.getCBRol().getSelectedItem().toString();
+        System.out.println("Rol seleccionado" + rol);
+        return rol;
+    }
+    
+    private void checkUser(){
+        Long userName = Long.valueOf(vista.getFieldUserName().getText());
+        String pass = vista.getPasswordUser().getText();
+        System.out.println("Datos del form:" +userName + " " + pass);
+        switch (cargarRol()) {
+            case "Estudiante":
+                StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
+                Student student = studentController.checkStudent(userName, pass);
+                if(student != null){
+                    GUIHomeWithLog homeStudent = new GUIHomeWithLog(student.getCode(),cargarRol());
+                    homeStudent.setVisible(true);
+                    vista.dispose();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Error. Revisar clave");
+                }
+                break;
+            case "Admin":
+                String codigo = Admin.getInstance().getCodigo();
+                String password = Admin.getInstance().getPassword();
+                System.out.println("Datos del admin:"+codigo + " " + password);
+                if (codigo.equals(userName.toString()) && password.equals(pass)) {
+                    GUIHomeWithLog adminStudent = new GUIHomeWithLog((long)(1),cargarRol());
+                    adminStudent.setVisible(true);
+                    vista.dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Error. Revisar clave");
+                }
+                break;
+
+            default:
+                throw new AssertionError();
+        }
     }
 }

@@ -1,6 +1,7 @@
 package co.edu.unicauca.academicproject;
 
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
+import co.edu.unicauca.academicproject.entities.Admin;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -15,6 +16,7 @@ public class AcademicProjectApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AcademicProjectApplication.class, args);
+        Admin.getInstance().setAdminData("Julian","123","123");
     }
 
     @EventListener(ApplicationReadyEvent.class)
@@ -23,7 +25,7 @@ public class AcademicProjectApplication {
         SwingUtilities.invokeLater(()-> {
             GUIHomeWithOutLog ventaPrincipal = new GUIHomeWithOutLog();
             ventaPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            ventaPrincipal.setV isible(true);
+            ventaPrincipal.setVisible(true);
             
         });
     }
