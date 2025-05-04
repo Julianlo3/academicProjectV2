@@ -3,7 +3,7 @@ package co.edu.unicauca.studentservice.service;
 import co.edu.unicauca.studentservice.entity.Student;
 import co.edu.unicauca.studentservice.infra.config.RabbitMQConfig;
 import co.edu.unicauca.studentservice.infra.dto.StudentRequest;
-import co.edu.unicauca.studentservice.repository.ProjectRepository;
+import co.edu.unicauca.studentservice.repository.AssignmentRepository;
 import co.edu.unicauca.studentservice.repository.StudentRepository;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -23,7 +22,7 @@ public class StudentService implements IStudentService{
     private StudentRepository studentRepository;
 
     @Autowired
-    private ProjectRepository projectRepository;
+    private AssignmentRepository assignmentRepository;
 
     @Override
     @Transactional

@@ -1,25 +1,14 @@
-package co.edu.unicauca.studentservice.entity;
-
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
+package co.edu.unicauca.studentservice.infra.dto;
 
 import java.util.Date;
 
-@Entity
-public class Assignment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+public class AssignmentRequest {
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    private Long student;
     private Long project;
-
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     private Date dateAssignment;
 
-    public Assignment(){}
+    public AssignmentRequest(){}
 
     public Long getId() {
         return id;
@@ -29,11 +18,11 @@ public class Assignment {
         this.id = id;
     }
 
-    public Student getStudent() {
+    public Long getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(Long student) {
         this.student = student;
     }
 
