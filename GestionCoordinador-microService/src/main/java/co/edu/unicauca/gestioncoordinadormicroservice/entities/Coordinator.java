@@ -25,7 +25,7 @@ import lombok.Setter;
 public class Coordinator {
 
     @Id
-    private String code;
+    private long code;
     private String  name;
     private String  phone;
     private String  email;
@@ -42,7 +42,7 @@ public class Coordinator {
         this.estadoActual = "PENDIENTE";
     }
 
-    public Coordinator(String code, String name, String phone, String email, String programaAcademico, String password) {
+    public Coordinator(long code, String name, String phone, String email, String programaAcademico, String password) {
         this.code = code;
         this.name = name;
         this.phone = phone;

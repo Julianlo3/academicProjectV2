@@ -31,25 +31,25 @@ public class CoordiController {
         return new ResponseEntity<>(coordi, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Coordinator> getCoordinatorById(@PathVariable String id) {
-        Optional<Coordinator> coordi = coordiService.getCoordinatorById(id);
+    @GetMapping("/{code}")
+    public ResponseEntity<Coordinator> getCoordinatorById(@PathVariable long code) {
+        Optional<Coordinator> coordi = coordiService.getCoordinatorById(String.valueOf(code));
         return coordi.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Coordinator> updateCoordinator(@PathVariable String id, @RequestBody Coordinator coordi) {
-        if (!coordiService.getCoordinatorById(id).isPresent()) {
+    @PutMapping("/{code}")
+    public ResponseEntity<Coordinator> updateCoordinator(@PathVariable long code, @RequestBody Coordinator coordi) {
+        if (!coordiService.getCoordinatorById(String.valueOf(code)).isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        coordi.setCode(id);
+        coordi.setCode(code);
         Coordinator updatedCoordi = coordiService.updateCoordinator(coordi);
         return new ResponseEntity<>(updatedCoordi, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCoordinator(@PathVariable String id) {
-        coordiService.deleteCoordinator(id);
+    @DeleteMapping("/{code}")
+    public ResponseEntity<Void> deleteCoordinator(@PathVariable long code) {
+        coordiService.deleteCoordinator(String.valueOf(code));
         return ResponseEntity.noContent().build();
     }
 }

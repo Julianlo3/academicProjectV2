@@ -72,7 +72,7 @@ public class ControllerHomeWithLog {
     private void cargarFormCoordi(){
         System.out.println("Cargando opciones de coordinador:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
-        cardLayout.show(vista.getJPoptions(),"Coordi");
+        cardLayout.show(vista.getJPoptions(),"Coordinador");
         vista.getLbLogin().setText(Admin.getInstance().getNombre());
     }
 
