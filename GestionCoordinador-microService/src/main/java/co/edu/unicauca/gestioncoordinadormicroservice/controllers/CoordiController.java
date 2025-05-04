@@ -1,7 +1,6 @@
 package co.edu.unicauca.gestioncoordinadormicroservice.controllers;
 
-
-import co.edu.unicauca.gestioncoordinadormicroservice.Service.CoordiService;
+import co.edu.unicauca.gestioncoordinadormicroservice.services.CoordiService;
 import co.edu.unicauca.gestioncoordinadormicroservice.entities.Coordinator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
-@RequestMapping("/coordinator")
+@RequestMapping("/api/coordinator")
 public class CoordiController {
 
     @Autowired
@@ -51,5 +49,14 @@ public class CoordiController {
     public ResponseEntity<Void> deleteCoordinator(@PathVariable long code) {
         coordiService.deleteCoordinator(String.valueOf(code));
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/project/approve/{id}")
+    public ResponseEntity<String> aprobarProyecto(@PathVariable Long id) {
+        boolean aprobado = coordiService.aprobarProyecto(id);
+        if (!aprobado) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok("Proyecto aprobado con éxito");
     }
 }
