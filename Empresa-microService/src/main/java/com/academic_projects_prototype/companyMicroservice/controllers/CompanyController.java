@@ -128,4 +128,34 @@ public class CompanyController {
         return projectServiceClient.getProjectById(projectId);
     }
 
+    // OPERACIONES POR NIT
+    @GetMapping("/search")
+    public ResponseEntity<Company> getCompanyByNit(@RequestParam("nit") Long nit) {
+        Optional<Company> company = companyService.findByNit(nit);
+        if (company.isPresent()) {
+            return ResponseEntity.ok(company.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/updateByNit/{nit}")
+    public ResponseEntity<?> updateCompanyByNit(@PathVariable Long nit, @RequestBody Company company) {
+        try {
+            Company updatedCompany = companyService.updateByNit(nit, company);
+            return ResponseEntity.ok(updatedCompany);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company with NIT " + nit + " not found.");
+        }
+    }
+
+    @DeleteMapping("/deleteByNit/{nit}")
+    public ResponseEntity<?> deleteCompanyByNit(@PathVariable Long nit) {
+        try {
+            companyService.deleteByNit(nit);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company with NIT " + nit + " not found.");
+        }
+    }
 }
