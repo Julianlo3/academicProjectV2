@@ -1,5 +1,9 @@
 package co.edu.unicauca.gestioncoordinadormicroservice.controllers;
 
+import co.edu.unicauca.gestioncoordinadormicroservice.command.AssignStudentCommand;
+import co.edu.unicauca.gestioncoordinadormicroservice.command.Command;
+import co.edu.unicauca.gestioncoordinadormicroservice.command.CommandInvoker;
+import co.edu.unicauca.gestioncoordinadormicroservice.services.AssignmentService;
 import co.edu.unicauca.gestioncoordinadormicroservice.services.CoordiService;
 import co.edu.unicauca.gestioncoordinadormicroservice.entities.Coordinator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,8 @@ public class CoordiController {
 
     @Autowired
     private CoordiService coordiService;
+    @Autowired
+    private AssignmentService assignmentService;
 
     @PostMapping
     public ResponseEntity<Coordinator> createCoordinator(@RequestBody Coordinator coordinator) {
@@ -59,4 +65,18 @@ public class CoordiController {
         }
         return ResponseEntity.ok("Proyecto aprobado con éxito");
     }
+
+    @PostMapping("/assign")
+    public ResponseEntity<String> assignStudentToProject(
+            @RequestParam Long studentCode,
+            @RequestParam Long projectCode) {
+
+        Command command = new AssignStudentCommand(assignmentService, studentCode, projectCode);
+        CommandInvoker invoker = new CommandInvoker();
+        invoker.addCommand(command);
+        invoker.executeCommands();
+
+        return ResponseEntity.ok("Asignación realizada correctamente");
+    }
+
 }

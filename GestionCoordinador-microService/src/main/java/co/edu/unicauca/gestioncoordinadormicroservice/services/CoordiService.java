@@ -1,6 +1,7 @@
 package co.edu.unicauca.gestioncoordinadormicroservice.services;
 
 
+import co.edu.unicauca.gestioncoordinadormicroservice.command.Command;
 import co.edu.unicauca.gestioncoordinadormicroservice.entities.Coordinator;
 import co.edu.unicauca.gestioncoordinadormicroservice.entities.ProjectToApprove;
 import co.edu.unicauca.gestioncoordinadormicroservice.repository.ICoordinatorRepository;
@@ -9,6 +10,7 @@ import co.edu.unicauca.gestioncoordinadormicroservice.dto.ProyectoAprobadoDTO;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,6 +48,9 @@ public class CoordiService {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     public boolean aprobarProyecto(Long id) {
         Optional<ProjectToApprove> optional = projectRepo.findById(id);
         if (optional.isEmpty()) {
@@ -68,5 +73,5 @@ public class CoordiService {
         return true;
     }
 
-
 }
+
