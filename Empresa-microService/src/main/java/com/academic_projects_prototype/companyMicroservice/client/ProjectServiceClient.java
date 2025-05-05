@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "project-service", url = "http://localhost:8085/proyectos") // Configuración del endpoint del microservicio de proyecto
+@FeignClient(name = "project-microservice", url = "http://localhost:8085/api/projects") // Configuración del endpoint del microservicio de proyecto
 
 public interface ProjectServiceClient {
     @PostMapping

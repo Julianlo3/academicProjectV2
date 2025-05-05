@@ -7,6 +7,7 @@ import com.academic_projects_prototype.companyMicroservice.entities.PublishProje
 import com.academic_projects_prototype.companyMicroservice.infra.dto.projectDTO.ProjectRequestDTO;
 import com.academic_projects_prototype.companyMicroservice.infra.dto.projectDTO.ProjectResponseDTO;
 import com.academic_projects_prototype.companyMicroservice.services.ICompanyService;
+import feign.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -14,9 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/empresas")
+@RequestMapping("/api/company")
 public class CompanyController {
     private final ICompanyService companyService;
     private final ProjectServiceClient projectServiceClient;
@@ -69,7 +71,7 @@ public class CompanyController {
     }
 
     // Publicar un proyecto
-    @PostMapping("/{companyId}/projects/pubish")
+    @PostMapping("/{companyId}/projects/publish")
     public ResponseEntity<?> publishProject(@PathVariable Long companyId, @RequestBody PublishProject project){
         try{
             PublishProject publishedProject = companyService.publishProject(companyId, project);
@@ -128,4 +130,33 @@ public class CompanyController {
         return projectServiceClient.getProjectById(projectId);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<Company> getCompanyByNit(@RequestParam("nit") Long nit) {
+        Optional<Company> company = companyService.findByNit(nit);
+        if (company.isPresent()) {
+            return ResponseEntity.ok(company.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/updateByNit/{nit}")
+    public ResponseEntity<?> updateCompanyByNit(@PathVariable Long nit, @RequestBody Company company) {
+        try {
+            Company updatedCompany = companyService.updateByNit(nit, company);
+            return ResponseEntity.ok(updatedCompany);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company with NIT " + nit + " not found.");
+        }
+    }
+
+    @DeleteMapping("/deleteByNit/{nit}")
+    public ResponseEntity<?> deleteCompanyByNit(@PathVariable Long nit) {
+        try {
+            companyService.deleteByNit(nit);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company with NIT " + nit + " not found.");
+        }
+    }
 }

@@ -16,7 +16,6 @@ import java.util.Optional;
 
 @Service
 public class CompanyService implements ICompanyService {
-
     private final CompanyRepository companyRepository;
     private final RestTemplate restTemplate;
     private final String projectServiceBaseUrl = "http://project-microservice/api/projects"; // URL base del microservicio de proyectos
@@ -106,5 +105,37 @@ public class CompanyService implements ICompanyService {
             throw new RuntimeException("El proyecto con id: " + projectId + " no existe");
         }
         return List.of(); // retornar las valoraciones
+    }
+
+    @Override
+    public Optional<Company> findByNit(Long nit) {
+        return companyRepository.findByNit(nit);
+    }
+
+    public Company updateByNit(Long nit, Company companyDetails) {
+        Optional<Company> companyOptional = companyRepository.findByNit(nit);
+
+        if (companyOptional.isPresent()) {
+            Company company = companyOptional.get();
+            company.setName(companyDetails.getName());
+            company.setPhone(companyDetails.getPhone());
+            company.setWebsite(companyDetails.getWebsite());
+            company.setIndustrialSector(companyDetails.getIndustrialSector());
+            company.setEmail(companyDetails.getEmail());
+            company.setPassword(companyDetails.getPassword());
+            return companyRepository.save(company);
+        } else {
+            throw new RuntimeException("Company with NIT " + nit + " not found.");
+        }
+    }
+
+    public void deleteByNit(Long nit) {
+        Optional<Company> companyOptional = companyRepository.findByNit(nit);
+
+        if (companyOptional.isPresent()) {
+            companyRepository.delete(companyOptional.get());
+        } else {
+            throw new RuntimeException("Company with NIT " + nit + " not found.");
+        }
     }
 }
