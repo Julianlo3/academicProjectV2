@@ -18,7 +18,7 @@ public class CoordinatorController {
 
     @PostMapping("/approve")
     public ResponseEntity<?> approveCoordinator(
-            @RequestBody CoordinatorDecisionDTO decisionDTO) {
+            @RequestBody CoordinatorDecisionDTO decisionDTO){
 
         decisionDTO.setStatus("APPROVED");
 
@@ -28,11 +28,8 @@ public class CoordinatorController {
 
     @PostMapping("/reject")
     public ResponseEntity<?> rejectCoordinator(
-            @Valid @RequestBody CoordinatorDecisionDTO decisionDTO,
-            @RequestHeader("X-Admin-Email") String adminEmail) {
+            @Valid @RequestBody CoordinatorDecisionDTO decisionDTO){
 
-        adminService.getAdminByEmail(adminEmail);
-        decisionDTO.setAdminEmail(adminEmail);
         decisionDTO.setStatus("REJECTED");
 
         CoordinatorDecisionDTO response = adminService.processDecision(decisionDTO);
