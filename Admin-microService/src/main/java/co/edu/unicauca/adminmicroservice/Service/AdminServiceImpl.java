@@ -50,22 +50,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional
     public CoordinatorDecisionDTO processDecision(CoordinatorDecisionDTO decisionDTO) {
-        // Validar que el admin existe
-        if (!adminRepo.existsByEmail(decisionDTO.getAdminEmail())) {
-            throw new AdminNotFoundException(decisionDTO.getAdminEmail());
-        }
 
         // Validar el estado
         if (!"APPROVED".equals(decisionDTO.getStatus()) && !"REJECTED".equals(decisionDTO.getStatus())) {
             throw new IllegalArgumentException("Estado inválido. Use APPROVED o REJECTED");
         }
-
-        // Validar razón para rechazo
-        if ("REJECTED".equals(decisionDTO.getStatus()) &&
-                (decisionDTO.getReason() == null || decisionDTO.getReason().trim().isEmpty())) {
-            throw new InvalidDecisionException("Razón obligatoria para rechazo");
-        }
-
         // Crear y guardar la decisión
         AdminDecision decision = AdminDecision.builder()
                 .coordinatorEmail(decisionDTO.getCoordinatorEmail())
@@ -84,7 +73,6 @@ public class AdminServiceImpl implements AdminService {
                     "ROLE_COORDINATOR"
             );
         }
-
         return mapToDTO(savedDecision);
     }
 
