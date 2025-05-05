@@ -24,3 +24,9 @@ decribe proyectos [42001-214]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]DESCRIBE proyectos"; se esperaba "DELETE, DROP, DECLARE, DEALLOCATE"
 Syntax error in SQL statement "[*]DESCRIBE proyectos"; expected "DELETE, DROP, DECLARE, DEALLOCATE"; SQL statement:
 DESCRIBE proyectos [42001-214]
+2025-05-04 19:04:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]
+2025-05-04 19:19:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]

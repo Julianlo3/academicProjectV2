@@ -1,5 +1,6 @@
 package co.edu.unicauca.studentservice.entity;
 
+import co.edu.unicauca.studentservice.infra.dto.ProjectResponseDTO;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -14,6 +15,8 @@ public class Assignment {
     @JoinColumn(name = "student_id")
     private Student student;
     private Long project;
+    @Transient
+    private ProjectResponseDTO projectEntity; // Esto no se guarda en BD, solo en tiempo de ejecuacion (aparece en el JSON)
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -51,5 +54,13 @@ public class Assignment {
 
     public void setDateAssignment(Date dateAssignment) {
         this.dateAssignment = dateAssignment;
+    }
+
+    public ProjectResponseDTO getProjectEntity() {
+        return projectEntity;
+    }
+
+    public void setProjectEntity(ProjectResponseDTO projectEntity) {
+        this.projectEntity = projectEntity;
     }
 }

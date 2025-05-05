@@ -18,6 +18,9 @@ public class AssignmentService implements IAssignmentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private ProjectServiceClient projectServiceClient;
+
     @Override
     public Assignment createAssignment(AssignmentRequest assignmentRequest) throws Exception {
         try {
@@ -32,6 +35,7 @@ public class AssignmentService implements IAssignmentService {
             Assignment assignment = new Assignment();
             assignment.setStudent(studentRepository.findByCode(assignmentRequest.getStudent()).get());
             assignment.setProject(assignmentRequest.getProject());
+            assignment.setProjectEntity(projectServiceClient.getProjectById(assignmentRequest.getProject()).getBody());
 
             // 3. Guardar y retornar la asignacion
 
@@ -52,7 +56,17 @@ public class AssignmentService implements IAssignmentService {
                 }
             }
 
-            return assignmentRepository.findByStudentCode(studentCode);
+            Optional<List<Assignment>> assignmentList = assignmentRepository.findByStudentCode(studentCode);
+
+            for (Assignment assignment : assignmentList.get()) {
+                try{
+                    assignment.setProjectEntity(projectServiceClient.getProjectById(assignment.getProject()).getBody());
+                }catch (Exception e){
+                    assignment.setProjectEntity(null);
+                }
+            }
+
+            return assignmentList;
 
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -62,7 +76,18 @@ public class AssignmentService implements IAssignmentService {
     @Override
     public List<Assignment> findAllAssignment() throws Exception {
         try {
-            return assignmentRepository.findAll();
+
+            List<Assignment> assignmentList = assignmentRepository.findAll();
+
+            for (Assignment assignment : assignmentList) {
+                try{
+                    assignment.setProjectEntity(projectServiceClient.getProjectById(assignment.getProject()).getBody());
+                }catch (Exception e){
+                    assignment.setProjectEntity(null);
+                }
+            }
+
+            return assignmentList;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
