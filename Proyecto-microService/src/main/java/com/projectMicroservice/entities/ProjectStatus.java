@@ -1,5 +1,5 @@
 package com.projectMicroservice.entities;
 
 public enum ProjectStatus {
-    PENDING, ACCEPTED, REJECTED
+    PENDING, APPROVED, REJECTED, ASSIGNED, COMPLETED
 }

@@ -1,5 +1,7 @@
 package com.projectMicroservice.entities;
 
+import com.projectMicroservice.state.IProjectState;
+import com.projectMicroservice.state.PendingState;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +17,14 @@ public class Project {
 
     @Enumerated(EnumType.STRING)
     private ProjectStatus status;
+
+    @Transient
+    private IProjectState state;
+
+    public Project() {
+        this.state = new PendingState();
+        this.status = ProjectStatus.PENDING;
+    }
 
     public Long getId() {
         return id;
@@ -46,5 +56,13 @@ public class Project {
 
     public void setStatus(ProjectStatus status) {
         this.status = status;
+    }
+
+    public IProjectState getState() {
+        return state;
+    }
+
+    public void setState(IProjectState state) {
+        this.state = state;
     }
 }

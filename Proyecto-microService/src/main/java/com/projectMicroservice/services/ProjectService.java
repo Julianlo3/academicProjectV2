@@ -46,14 +46,20 @@ public class ProjectService implements IProjectService {
         List<Project> projects;
 
         switch (status) {
-            case "ACCEPTED":
-                projects = projectRepository.findByStatus(ProjectStatus.ACCEPTED);
-                break;
             case "PENDING":
                 projects = projectRepository.findByStatus(ProjectStatus.PENDING);
                 break;
+            case "APPROVED":
+                projects = projectRepository.findByStatus(ProjectStatus.APPROVED);
+                break;
             case "REJECTED":
                 projects = projectRepository.findByStatus(ProjectStatus.REJECTED);
+                break;
+            case "ASSIGNED":
+                projects = projectRepository.findByStatus(ProjectStatus.ASSIGNED);
+                break;
+            case "COMPLETED":
+                projects = projectRepository.findByStatus(ProjectStatus.COMPLETED);
                 break;
             default:
                 projects = new ArrayList<>();
