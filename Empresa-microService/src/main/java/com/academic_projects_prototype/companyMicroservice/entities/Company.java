@@ -21,6 +21,20 @@ public class Company {
     private String email;
     private String password;
 
+    // CONSTRUCTORES
+    public Company() {}
+
+    public Company(Long id, Long nit, String name, String phone, String website, IndustrialSector industrialSector, String email, String password) {
+        this.id = id;
+        this.nit = nit;
+        this.name = name;
+        this.phone = phone;
+        this.website = website;
+        this.industrialSector = industrialSector;
+        this.email = email;
+        this.password = password;
+    }
+
     // GETTERS & SETTERS
 
     public Long getId() {return id;}
