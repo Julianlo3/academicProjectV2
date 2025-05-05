@@ -7,8 +7,10 @@ package co.edu.unicauca.academicproject.GUI.controller.RegisterUser;
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithLog;
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
 import co.edu.unicauca.academicproject.GUI.GUIRegisteredUser;
+import co.edu.unicauca.academicproject.Service.Company.CompanyServiceClient;
 import co.edu.unicauca.academicproject.Service.Coordinator.CoordinatorServiceClient;
 import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
+import co.edu.unicauca.academicproject.controller.CompanyController;
 import co.edu.unicauca.academicproject.controller.CoordinatorController;
 import co.edu.unicauca.academicproject.controller.StudentController;
 import co.edu.unicauca.academicproject.entities.SectorCompany;
@@ -26,7 +28,7 @@ public class ControllerRegisterUser {
 
     private final GUIRegisteredUser vista;
     StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
-    //CompanyController companyController = new CompanyController(appContextProvider.getBean(CompanyServiceClient.class));
+    CompanyController companyController = new CompanyController(appContextProvider.getBean(CompanyServiceClient.class));
     CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
 
 
@@ -128,14 +130,15 @@ public class ControllerRegisterUser {
     }
 
     private void saveCompany() {
-        String nit = vista.getjFieldNitCompany().getText();
+        long nit = Long.parseLong(vista.getjFieldNitCompany().getText());
         String name = vista.getjFieldNameCompany().getText();
         String phone = vista.getjFieldTelCompany().getText();
         String email = vista.getjFieldEmailCompany().getText();
         String pageWeb = vista.getjFieldWebCompany().getText();
-        SectorCompany sector = SectorCompany.valueOf(vista.getjCBSectorCompany().getSelectedItem().toString());
+        String sector = String.valueOf(SectorCompany.valueOf(vista.getjCBSectorCompany().getSelectedItem().toString()));
         String pass = vista.getjFieldPassWordCompany().getText();
-        //companyController.registerCompany(nit,name,phone,pageWeb,sector,email,pass);
+        System.out.println("Empresa"+ sector + pageWeb);
+        companyController.registerCompany(nit,name,phone,pageWeb,sector,email,pass);
     }
 
     private void saveCoordi() {

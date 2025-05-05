@@ -47,4 +47,8 @@ public class ControllerHomeWithOutLog {
         registerU.setVisible(true);
     }
 
+    private void cargarProyectos(){
+
+    }
+
 }

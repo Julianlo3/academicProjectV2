@@ -13,6 +13,7 @@ public class Admin {
     private String nombre;
     private String codigo;
     private String password;
+    private String correo;
 
     
     // -- Se usa singleton 
@@ -29,10 +30,11 @@ public class Admin {
     }
 
     // Métodos para inicializar los datos del administrador
-    public void setAdminData(String nombre, String codigo, String password) {
+    public void setAdminData(String nombre, String codigo, String password, String correo) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.password = password;
+        this.correo = correo;
     }
 
     // Métodos para obtener la información del admin

@@ -50,6 +50,7 @@ public class ControllerHomeWithLog {
             case "Estudiante": cargarformStudent(); break;
             case "Admin": cargarFormAdmin(); break;
             case "Coordinador": cargarFormCoordi(); break;
+            case "Empresa": cargarFormEmpresa(); break;
         }
         System.out.println("Rol:" + rol);
     }
@@ -73,6 +74,13 @@ public class ControllerHomeWithLog {
         System.out.println("Cargando opciones de coordinador:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(),"Coordinador");
+        vista.getLbLogin().setText(Admin.getInstance().getNombre());
+    }
+
+    private void cargarFormEmpresa(){
+        System.out.println("Cargando opciones de empresa:");
+        cardLayout = (CardLayout) vista.getJPoptions().getLayout();
+        cardLayout.show(vista.getJPoptions(),"Empresa");
         vista.getLbLogin().setText(Admin.getInstance().getNombre());
     }
 

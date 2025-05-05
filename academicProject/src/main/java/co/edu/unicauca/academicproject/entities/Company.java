@@ -6,33 +6,34 @@ package co.edu.unicauca.academicproject.entities;
 
 public class Company {
 
-    private String nit;
+    private long id;
+    private long nit;
     private String name;
     private String phone;
-    private String pageWeb;
-    private SectorCompany sector;
+    private String website;
+    private String industrialSector;
     private String email;
     private String password;
 
     public Company(){
         
     }
-    
-    public Company(String nit, String name, String phone, String pageWeb, SectorCompany sector, String email, String password) {
+
+    public Company(long nit, String name, String phone, String website, String industrialSector, String email, String password) {
         this.nit = nit;
         this.name = name;
         this.phone = phone;
-        this.pageWeb = pageWeb;
-        this.sector = sector;
+        this.website = website;
+        this.industrialSector = industrialSector;
         this.email = email;
         this.password = password;
     }
 
-    public String getNit() {
+    public long getNit() {
         return nit;
     }
 
-    public void setNit(String nit) {
+    public void setNit(long nit) {
         this.nit = nit;
     }
 
@@ -52,20 +53,20 @@ public class Company {
         this.phone = phone;
     }
 
-    public String getPageWeb() {
-        return pageWeb;
+    public String getwebsite() {
+        return website;
     }
 
-    public void setPageWeb(String pageWeb) {
-        this.pageWeb = pageWeb;
+    public void setwebsite(String website) {
+        this.website = website;
     }
 
-    public SectorCompany getSector() {
-        return sector;
+    public String getindustrialSector() {
+        return industrialSector;
     }
 
-    public void setSector(SectorCompany sector) {
-        this.sector = sector;
+    public void setindustrialSector(String  industrialSector) {
+        this.industrialSector = industrialSector;
     }
 
     public String getEmail() {

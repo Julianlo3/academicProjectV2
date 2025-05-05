@@ -8,11 +8,14 @@ import co.edu.unicauca.academicproject.GUI.GUIHomeWithLog;
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
 import co.edu.unicauca.academicproject.GUI.GUILogin;
 import co.edu.unicauca.academicproject.GUI.GUIRegisteredUser;
+import co.edu.unicauca.academicproject.Service.Company.CompanyServiceClient;
 import co.edu.unicauca.academicproject.Service.Coordinator.CoordinatorServiceClient;
 import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
+import co.edu.unicauca.academicproject.controller.CompanyController;
 import co.edu.unicauca.academicproject.controller.CoordinatorController;
 import co.edu.unicauca.academicproject.controller.StudentController;
 import co.edu.unicauca.academicproject.entities.Admin;
+import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Coordinator;
 import co.edu.unicauca.academicproject.entities.Student;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
@@ -96,6 +99,19 @@ public class ControllerLogin {
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Error. Revisar clave");
+                }
+                break;
+            case "Empresa":
+                CompanyController companyController = new CompanyController(appContextProvider.getBean(CompanyServiceClient.class));
+                Company company = companyController.checkCompany(userName, pass);
+                if (company != null) {
+                    GUIHomeWithLog homeCompany = new GUIHomeWithLog(company.getNit(),cargarRol());
+                    homeCompany.setVisible(true);
+                    vista.dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Error. Revisar clave");
+                    System.out.println("Error. Revisar clave");
                 }
                 break;
 

@@ -4,6 +4,10 @@
  */
 package co.edu.unicauca.academicproject.GUI.admin;
 
+import co.edu.unicauca.academicproject.GUI.controller.Admin.ControllerRequestCoordi;
+
+import javax.swing.*;
+
 /**
  *
  * @author lopez
@@ -15,8 +19,32 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
      */
     public GUIRequestCoordinator() {
         initComponents();
+        ControllerRequestCoordi controllerRequestCoordi = new ControllerRequestCoordi(this);
+    }
+    
+    public JLabel getLabelNameCoordi(){
+        return jLNombreCoordi;
     }
 
+    public JTable getTableHistoryCoordi() {
+        return jTableHistoryCoordi;
+    }
+
+    public JTable getTableSoliCoordi() {
+        return jTableSoliCoordi;
+    }
+
+    public JButton getBtnProcesarSoli(){
+        return jBtnProcesarSoli;
+    }
+
+    public JRadioButton getRBtnAceptar(){
+        return jRBtnAceptar;
+    }
+
+    public JButton getBtnBackHomeWithLogin(){
+        return jBtnBackHomeWithLogin;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,7 +72,6 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
         jLNombreCoordi = new javax.swing.JLabel();
         jPValidarCoordi = new javax.swing.JPanel();
         jRBtnAceptar = new javax.swing.JRadioButton();
-        jRBtnRechazar = new javax.swing.JRadioButton();
         jBtnProcesarSoli = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -175,9 +202,6 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
         jRBtnAceptar.setBackground(new java.awt.Color(204, 255, 204));
         jRBtnAceptar.setText("Aceptar solicitud");
 
-        jRBtnRechazar.setBackground(new java.awt.Color(255, 153, 153));
-        jRBtnRechazar.setText("Rechazar Solicitud");
-
         jBtnProcesarSoli.setText("ACEPTAR");
 
         javax.swing.GroupLayout jPValidarCoordiLayout = new javax.swing.GroupLayout(jPValidarCoordi);
@@ -185,23 +209,20 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
         jPValidarCoordiLayout.setHorizontalGroup(
             jPValidarCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPValidarCoordiLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jRBtnAceptar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(jRBtnRechazar)
-                .addGap(25, 25, 25))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPValidarCoordiLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnProcesarSoli)
-                .addGap(130, 130, 130))
+                .addContainerGap(119, Short.MAX_VALUE)
+                .addGroup(jPValidarCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPValidarCoordiLayout.createSequentialGroup()
+                        .addComponent(jBtnProcesarSoli)
+                        .addGap(130, 130, 130))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPValidarCoordiLayout.createSequentialGroup()
+                        .addComponent(jRBtnAceptar)
+                        .addGap(109, 109, 109))))
         );
         jPValidarCoordiLayout.setVerticalGroup(
             jPValidarCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPValidarCoordiLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPValidarCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRBtnAceptar)
-                    .addComponent(jRBtnRechazar))
+                .addComponent(jRBtnAceptar)
                 .addGap(18, 18, 18)
                 .addComponent(jBtnProcesarSoli)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -275,7 +296,6 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
     private javax.swing.JPanel jPHead;
     private javax.swing.JPanel jPValidarCoordi;
     private javax.swing.JRadioButton jRBtnAceptar;
-    private javax.swing.JRadioButton jRBtnRechazar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableHistoryCoordi;

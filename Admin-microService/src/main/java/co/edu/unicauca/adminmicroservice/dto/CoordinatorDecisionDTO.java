@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
 public class CoordinatorDecisionDTO {
     private Long decisionId;
 
-    @NotBlank(message = "El email del coordinador es obligatorio")
-    @Email(message = "El email del coordinador debe ser válido")
+
     private String coordinatorEmail;
 
     private String adminEmail;
