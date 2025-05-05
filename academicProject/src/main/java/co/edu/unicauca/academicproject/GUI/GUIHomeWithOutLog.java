@@ -39,6 +39,10 @@ public class GUIHomeWithOutLog extends javax.swing.JFrame {
         return lbNewUser;
     }
 
+    public JTable getjTableProjects() {
+        return jTableProjects;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

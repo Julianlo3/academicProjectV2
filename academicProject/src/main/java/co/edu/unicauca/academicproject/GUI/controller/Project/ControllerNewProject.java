@@ -9,6 +9,8 @@ import co.edu.unicauca.academicproject.controller.ProjectController;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
+import javax.swing.*;
+
 /**
  * @author lopez
  * @date 5/05/2025
@@ -28,8 +30,10 @@ public class ControllerNewProject {
         String company = String.valueOf(this.vista.getCompany().getNit());
         System.out.println("Datos del proyecto:" + title + descripcion + "nit"+ company);
         projectController.crearProyecto(title, descripcion, company);
+        JOptionPane.showMessageDialog(null, "Proyecto publicado con éxito.");
     }catch (Exception e){
         System.out.println("Error al publicar proyecto" + e.getMessage());
     }
     }
+
 }

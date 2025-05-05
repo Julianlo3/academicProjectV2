@@ -67,7 +67,7 @@ public class GUINewProject extends javax.swing.JFrame {
         jBtnLoginU = new javax.swing.JButton();
         lbLogin = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPContent.setBackground(new java.awt.Color(236, 230, 240));
         jPContent.setLayout(new java.awt.GridBagLayout());
