@@ -7,7 +7,7 @@ public class ProjectResponseDTO {
     private Long id;
     private String title;
     private String description;
-    private String companyId;
+    private String companyNit;
     private String status;
 
     public ProjectResponseDTO() {}
@@ -16,7 +16,7 @@ public class ProjectResponseDTO {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.companyId = companyId;
+        this.companyNit = companyId;
         this.status = status;
 
     }
@@ -45,12 +45,12 @@ public class ProjectResponseDTO {
         this.description = description;
     }
 
-    public String getCompanyId() {
-        return companyId;
+    public String getCompanyNit() {
+        return companyNit;
     }
 
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
+    public void setCompanyNit(String companyNit) {
+        this.companyNit = companyNit;
     }
 
     public String getStatus() {
