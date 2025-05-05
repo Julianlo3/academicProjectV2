@@ -13,6 +13,7 @@ public class ProjectMapper {
         Project project = new Project();
         project.setTitle(dto.getTitle());
         project.setDescription(dto.getDescription());
+        project.setCompanyNit(dto.getCompanyNit());
         return project;
     }
 
@@ -27,6 +28,7 @@ public class ProjectMapper {
                 project.getId(),
                 project.getTitle(),
                 project.getDescription(),
+                project.getCompanyNit(),
                 project.getStatus()!=null?project.getStatus().name():null // convirtiendo a string
         );
     }

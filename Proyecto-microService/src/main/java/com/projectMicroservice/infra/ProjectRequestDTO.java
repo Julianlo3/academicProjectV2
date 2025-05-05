@@ -15,6 +15,9 @@ public class ProjectRequestDTO {
     @NotEmpty(message = "La descripción no puede estar vacía.")
     private String description;
 
+    @NotEmpty(message = "El nit de la empresa no puede estar vacío.")
+    private String companyNit   ;
+
     @NotNull(message = "El estado no puede ser nulo.")
     private ProjectStatus status;
 
@@ -40,6 +43,14 @@ public class ProjectRequestDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCompanyNit() {
+        return companyNit;
+    }
+
+    public void setCompanyNit(String companyNit) {
+        this.companyNit = companyNit;
     }
 
     public ProjectStatus getStatus() {

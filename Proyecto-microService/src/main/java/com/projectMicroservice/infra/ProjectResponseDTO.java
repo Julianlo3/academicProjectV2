@@ -7,14 +7,16 @@ public class ProjectResponseDTO {
     private Long id;
     private String title;
     private String description;
+    private String companyId;
     private String status;
 
     public ProjectResponseDTO() {}
 
-    public ProjectResponseDTO(Long id, String title, String description, String status) {
+    public ProjectResponseDTO(Long id, String title, String description, String companyId, String status) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.companyId = companyId;
         this.status = status;
 
     }
@@ -41,6 +43,14 @@ public class ProjectResponseDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 
     public String getStatus() {

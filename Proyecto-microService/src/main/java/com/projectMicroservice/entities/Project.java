@@ -14,6 +14,7 @@ public class Project {
 
     private String title;
     private String description;
+    private String companyNit;
 
     @Enumerated(EnumType.STRING)
     private ProjectStatus status;
@@ -48,6 +49,14 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCompanyNit() {
+        return companyNit;
+    }
+
+    public void setCompanyNit(String companyNit) {
+        this.companyNit = companyNit;
     }
 
     public ProjectStatus getStatus() {
