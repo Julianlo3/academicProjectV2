@@ -1,8 +1,7 @@
-package com.projectMicroservice.presentation.controllers;
+package com.projectMicroservice.presentation.controller;
 
-import com.projectMicroservice.persistence.infra.ProjectRequestDTO;
-import com.projectMicroservice.persistence.infra.ProjectResponseDTO;
-import com.projectMicroservice.persistence.services.IProjectService;
+import com.projectMicroservice.infrastructure.persistence.services.IProjectService;
+import com.projectMicroservice.presentation.dto.ProjectDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +21,8 @@ public class ProjectController {
      * Endpoint para crear un proyecto
      */
     @PostMapping
-    public ResponseEntity<ProjectResponseDTO> createProject(@RequestBody ProjectRequestDTO projectRequestDTO) {
-        ProjectResponseDTO createdProject = projectService.createProject(projectRequestDTO);
+    public ResponseEntity<ProjectDto> createProject(@RequestBody ProjectDto projectDto) {
+        ProjectDto createdProject = projectService.createProject(projectDto);
         return new ResponseEntity<>(createdProject, HttpStatus.CREATED);
     }
 
@@ -31,8 +30,8 @@ public class ProjectController {
      * Endpoint para obtener un proyecto por su id
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ProjectResponseDTO> getProjectById(@PathVariable("id") Long projectId) {
-        ProjectResponseDTO project = projectService.getProjectById(projectId);
+    public ResponseEntity<ProjectDto> getProjectById(@PathVariable("id") Long projectId) {
+        ProjectDto project = projectService.getProjectById(projectId);
         return ResponseEntity.ok(project);
     }
 
@@ -40,8 +39,8 @@ public class ProjectController {
      * Endpoint para obtener todos los proyectos
      */
     @GetMapping
-    public ResponseEntity<List<ProjectResponseDTO>> getAllProjects() {
-        List<ProjectResponseDTO> projects = projectService.getAllProjects();
+    public ResponseEntity<List<ProjectDto>> getAllProjects() {
+        List<ProjectDto> projects = projectService.getAllProjects();
         return ResponseEntity.ok(projects);
     }
 
@@ -49,8 +48,8 @@ public class ProjectController {
      * Endpoint para obtener proyectos según su estado
      */
     @GetMapping("/status/{statusToSearch}")
-    public ResponseEntity<List<ProjectResponseDTO>> getProjectsByStatus(@PathVariable("statusToSearch") String status) {
-        List<ProjectResponseDTO> projects = projectService.getProjectsByStatus(status);
+    public ResponseEntity<List<ProjectDto>> getProjectsByStatus(@PathVariable("statusToSearch") String status) {
+        List<ProjectDto> projects = projectService.getProjectsByStatus(status);
         return ResponseEntity.ok(projects);
     }
 
@@ -58,8 +57,8 @@ public class ProjectController {
      * Endpoint para actualizar un proyecto por su id
      */
     @PutMapping("/{id}")
-    public ResponseEntity<ProjectResponseDTO> updateProject(@PathVariable("id") Long projectId, @RequestBody ProjectRequestDTO projectRequestDTO) {
-        ProjectResponseDTO updatedProject = projectService.updateProject(projectId, projectRequestDTO);
+    public ResponseEntity<ProjectDto> updateProject(@PathVariable("id") Long projectId, @RequestBody ProjectDto projectDto) {
+        ProjectDto updatedProject = projectService.updateProject(projectId, projectDto);
         return ResponseEntity.ok(updatedProject);
     }
 

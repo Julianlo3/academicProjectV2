@@ -9,10 +9,10 @@ public class ProjectRequirements {
 
     public ProjectRequirements(int minimumSemester, String requiredSkills) {
         if (minimumSemester <= 0) {
-            throw new IllegalArgumentException("El semestre mínimo debe ser mayor que cero.");
+            throw new IllegalArgumentException("The minimum semester must be greater than zero.");
         }
         if (requiredSkills == null || requiredSkills.isBlank()) {
-            throw new IllegalArgumentException("Debe especificar habilidades requeridas.");
+            throw new IllegalArgumentException("You must specify required skills.");
         }
 
         this.minimumSemester = minimumSemester;

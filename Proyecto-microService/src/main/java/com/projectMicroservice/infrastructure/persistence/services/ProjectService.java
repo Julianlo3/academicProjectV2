@@ -1,11 +1,11 @@
-package com.projectMicroservice.persistence.services;
+package com.projectMicroservice.infrastructure.persistence.services;
 
 import com.projectMicroservice.domain.model.Project;
-import com.projectMicroservice.persistence.infra.ProjectRequestDTO;
-import com.projectMicroservice.persistence.infra.ProjectResponseDTO;
-import com.projectMicroservice.persistence.repositories.IProjectRepository;
+import com.projectMicroservice.infrastructure.persistence.entity.ProjectStatus;
+import com.projectMicroservice.infrastructure.persistence.repositories.IProjectRepository;
+import com.projectMicroservice.presentation.dto.ProjectDto;
 import org.springframework.stereotype.Service;
-import com.projectMicroservice.persistence.infra.ProjectMapper;
+import com.projectMicroservice.presentation.dto.ProjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,26 +21,26 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
-    public ProjectResponseDTO createProject(ProjectRequestDTO projectRequestDTO) {
-        Project project = ProjectMapper.toEntity(projectRequestDTO);
+    public ProjectDto createProject(ProjectDto projectDto) {
+        Project project = ProjectMapper.toEntity(projectDto);
         Project savedProject = projectRepository.save(project);
-        return ProjectMapper.toResponseDTO(savedProject);
+        return ProjectMapper.toDto(savedProject);
     }
 
     @Override
-    public ProjectResponseDTO getProjectById(Long projectId) {
+    public ProjectDto getProjectById(Long projectId) {
         Project project = projectRepository.findById(projectId).orElseThrow(()-> new RuntimeException("Proyecto no encontrado"));
-        return ProjectMapper.toResponseDTO(project);
+        return ProjectMapper.toDto(project);
     }
 
     @Override
-    public List<ProjectResponseDTO> getAllProjects() {
+    public List<ProjectDto> getAllProjects() {
         List<Project> projects = projectRepository.findAll();
-        return projects.stream().map(ProjectMapper::toResponseDTO).toList();
+        return projects.stream().map(ProjectMapper::toDto).toList();
     }
 
     @Override
-    public List<ProjectResponseDTO> getProjectsByStatus(String status) {
+    public List<ProjectDto> getProjectsByStatus(String status) {
 
         List<Project> projects;
 
@@ -65,24 +65,25 @@ public class ProjectService implements IProjectService {
 
         }
 
-        return projects.stream().map(ProjectMapper::toResponseDTO).collect(Collectors.toList());
+        return projects.stream().map(ProjectMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
-    public ProjectResponseDTO updateProject(Long projectId, ProjectRequestDTO projectRequestDTO) {
+    public ProjectDto updateProject(Long projectId, ProjectDto projectDto) {
         Project project = projectRepository.findById(projectId).orElseThrow(()-> new RuntimeException("Proyecto no encontrado"));
-        project.setTitle(projectRequestDTO.getTitle());
-        project.setDescription(projectRequestDTO.getDescription());
-        project.setStatus(projectRequestDTO.getStatus());
+        project.setTitle(projectDto.getTitle());
+        project.setDescription(projectDto.getDescription());
+        project.setStatus(projectDto.getStatus());
         Project updatedProject = projectRepository.save(project);
-        return ProjectMapper.toResponseDTO(updatedProject);
+        return ProjectMapper.toDto(updatedProject);
     }
 
     @Override
-    public void deleteProject(Long projectId) {
+    public ProjectDto deleteProject(Long projectId) {
         if (!projectRepository.existsById(projectId)) {
             throw new RuntimeException("Project not found");
         }
+
         projectRepository.deleteById(projectId);
     }
 }

@@ -9,7 +9,7 @@ public class AcademicPeriod {
 
     public AcademicPeriod(int year, int term) {
         if (term < 1 || term > 2) {
-            throw new IllegalArgumentException("El término debe ser 1 o 2.");
+            throw new IllegalArgumentException("The term must be 1 or 2.");
         }
         this.year = year;
         this.term = term;

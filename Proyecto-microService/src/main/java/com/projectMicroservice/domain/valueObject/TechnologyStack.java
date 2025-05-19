@@ -12,7 +12,7 @@ public class TechnologyStack {
 
     public TechnologyStack(List<String> technologies) {
         if (technologies == null || technologies.isEmpty()) {
-            throw new IllegalArgumentException("Debe incluir al menos una tecnología.");
+            throw new IllegalArgumentException("It must include at least one technology.");
         }
         this.technologies = List.copyOf(technologies);
     }
