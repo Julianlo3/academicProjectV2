@@ -15,15 +15,16 @@ public class AdminDecision {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "COORDINATOR_EMAIL", nullable = true)
     private String coordinatorEmail;
 
-    @Column(nullable = false)
+    @Column(name = "admin_email", nullable = true)
     private String adminEmail;
 
     @Column(nullable = false)
     private String status;  // "APPROVED" o "REJECTED"
 
+    @Column(nullable = true)
     private String reason;
 
     @Column(nullable = false)

@@ -9,6 +9,7 @@ import co.edu.unicauca.academicproject.controller.CoordinatorController;
 import co.edu.unicauca.academicproject.entities.Coordinator;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -94,6 +95,7 @@ public class ControllerRequestCoordi {
             Coordinator coordinator = coordinatorController.getCoordinatortByCode(id);
             System.out.println(coordinator.getName() + coordinator.getCode() + coordinator.getEmail() + coordinator.getPhone() + coordinator.getEstadoActual() + coordinator.getProgramaAcademico());
             adminController.aceptarCoordi(coordinator);
+            JOptionPane.showMessageDialog(null, "Coordinador aceptado con éxito.");
         }
     }
 }

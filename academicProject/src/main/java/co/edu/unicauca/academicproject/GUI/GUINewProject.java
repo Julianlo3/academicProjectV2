@@ -4,6 +4,12 @@
  */
 package co.edu.unicauca.academicproject.GUI;
 
+import co.edu.unicauca.academicproject.GUI.controller.Project.ControllerNewProject;
+import co.edu.unicauca.academicproject.entities.Company;
+import co.edu.unicauca.academicproject.entities.Project;
+
+import javax.swing.*;
+
 /**
  *
  * @author lopez
@@ -13,10 +19,29 @@ public class GUINewProject extends javax.swing.JFrame {
     /**
      * Creates new form GUINewProject
      */
-    public GUINewProject() {
+
+    private final Company company;
+    public GUINewProject(Company company) {
         initComponents();
+        ControllerNewProject controller = new ControllerNewProject(this);
+        this.company = company;
     }
 
+    public String getTitleProject() {
+        return jFieldTitleProject.getText();
+    }
+
+    public String getDescriptionProject() {
+        return jTextAreaDescripProject.getText();
+    }
+
+   public JButton getjBtnPubliProject() {
+        return jBtnPubliProject;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +67,7 @@ public class GUINewProject extends javax.swing.JFrame {
         jBtnLoginU = new javax.swing.JButton();
         lbLogin = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPContent.setBackground(new java.awt.Color(236, 230, 240));
         jPContent.setLayout(new java.awt.GridBagLayout());

@@ -1,5 +1,6 @@
 package co.edu.unicauca.adminmicroservice.dto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 public class CoordinatorDecisionDTO {
     private Long decisionId;
 
-
+    @Column(nullable = true)
     private String coordinatorEmail;
 
     private String adminEmail;
@@ -22,8 +23,4 @@ public class CoordinatorDecisionDTO {
 
     private LocalDateTime decisionDate;
 
-    @AssertTrue(message = "La razón es obligatoria cuando se rechaza")
-    private boolean isReasonValid() {
-        return !"REJECTED".equals(status) || (reason != null && !reason.trim().isEmpty());
-    }
 }

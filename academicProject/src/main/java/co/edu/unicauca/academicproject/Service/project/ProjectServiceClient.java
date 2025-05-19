@@ -1,9 +1,11 @@
-package co.edu.unicauca.academicproject.Service;
+package co.edu.unicauca.academicproject.Service.project;
 
 
 import co.edu.unicauca.academicproject.entities.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author lopez
@@ -11,13 +13,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ProjectServiceClient {
-    /*
+
     @Autowired
-    private GestionUsuarioFeignClient feignClient;
+    private ProjectFeingClient FeignClient;
 
     public void createProject(Project project) {
-    feignClient.createProject(project);
+    FeignClient.createProject(project);
     }
 
-     */
+    public List<Project> getAllProjects(){
+        return FeignClient.getAllProjects();
+    }
 }
