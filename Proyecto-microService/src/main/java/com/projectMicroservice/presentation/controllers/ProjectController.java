@@ -1,8 +1,8 @@
-package com.projectMicroservice.controllers;
+package com.projectMicroservice.presentation.controllers;
 
-import com.projectMicroservice.infra.ProjectRequestDTO;
-import com.projectMicroservice.infra.ProjectResponseDTO;
-import com.projectMicroservice.services.IProjectService;
+import com.projectMicroservice.persistence.infra.ProjectRequestDTO;
+import com.projectMicroservice.persistence.infra.ProjectResponseDTO;
+import com.projectMicroservice.persistence.services.IProjectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

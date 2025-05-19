@@ -1,30 +1,24 @@
-package com.projectMicroservice.entities;
+package com.projectMicroservice.persistence.infra;
 
-import com.projectMicroservice.state.IProjectState;
-import com.projectMicroservice.state.PendingState;
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "proyectos")
-public class Project {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+/**
+ * DTO para ofrecer información cuando otros micros necesiten detalles de un proyecto
+ */
+public class ProjectResponseDTO {
     private Long id;
-
     private String title;
     private String description;
     private String companyNit;
+    private String status;
 
-    @Enumerated(EnumType.STRING)
-    private ProjectStatus status;
+    public ProjectResponseDTO() {}
 
-    @Transient
-    private IProjectState state;
+    public ProjectResponseDTO(Long id, String title, String description, String companyId, String status) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.companyNit = companyId;
+        this.status = status;
 
-    public Project() {
-        this.state = new PendingState();
-        this.status = ProjectStatus.PENDING;
     }
 
     public Long getId() {
@@ -59,19 +53,11 @@ public class Project {
         this.companyNit = companyNit;
     }
 
-    public ProjectStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(ProjectStatus status) {
+    public void setStatus(String status) {
         this.status = status;
-    }
-
-    public IProjectState getState() {
-        return state;
-    }
-
-    public void setState(IProjectState state) {
-        this.state = state;
     }
 }

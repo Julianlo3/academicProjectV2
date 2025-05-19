@@ -1,24 +1,24 @@
-package com.projectMicroservice.infra;
+package com.projectMicroservice.persistence.entity;
 
-/**
- * DTO para ofrecer información cuando otros micros necesiten detalles de un proyecto
- */
-public class ProjectResponseDTO {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "proyectos")
+public class Project {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
     private String description;
     private String companyNit;
-    private String status;
 
-    public ProjectResponseDTO() {}
+    @Enumerated(EnumType.STRING)
+    private ProjectStatus status;
 
-    public ProjectResponseDTO(Long id, String title, String description, String companyId, String status) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.companyNit = companyId;
-        this.status = status;
-
+    public Project() {
+        this.status = ProjectStatus.PENDING;
     }
 
     public Long getId() {
@@ -53,11 +53,11 @@ public class ProjectResponseDTO {
         this.companyNit = companyNit;
     }
 
-    public String getStatus() {
+    public ProjectStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ProjectStatus status) {
         this.status = status;
     }
 }

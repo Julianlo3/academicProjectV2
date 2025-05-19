@@ -1,6 +1,6 @@
-package com.projectMicroservice.infra;
+package com.projectMicroservice.persistence.infra;
 
-import com.projectMicroservice.entities.Project;
+import com.projectMicroservice.domain.model.Project;
 
 public class ProjectMapper {
     /**
@@ -28,8 +28,7 @@ public class ProjectMapper {
                 project.getId(),
                 project.getTitle(),
                 project.getDescription(),
-                project.getCompanyNit(),
-                project.getStatus()!=null?project.getStatus().name():null // convirtiendo a string
+                project.getCompanyNit()
         );
     }
 

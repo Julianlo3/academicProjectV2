@@ -1,12 +1,11 @@
-package com.projectMicroservice.services;
+package com.projectMicroservice.persistence.services;
 
-import com.projectMicroservice.entities.Project;
-import com.projectMicroservice.entities.ProjectStatus;
-import com.projectMicroservice.infra.ProjectRequestDTO;
-import com.projectMicroservice.infra.ProjectResponseDTO;
-import com.projectMicroservice.repositories.IProjectRepository;
+import com.projectMicroservice.domain.model.Project;
+import com.projectMicroservice.persistence.infra.ProjectRequestDTO;
+import com.projectMicroservice.persistence.infra.ProjectResponseDTO;
+import com.projectMicroservice.persistence.repositories.IProjectRepository;
 import org.springframework.stereotype.Service;
-import com.projectMicroservice.infra.ProjectMapper;
+import com.projectMicroservice.persistence.infra.ProjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.projectMicroservice.services;
+package com.projectMicroservice.persistence.services;
 
-import com.projectMicroservice.infra.ProjectRequestDTO;
-import com.projectMicroservice.infra.ProjectResponseDTO;
+import com.projectMicroservice.persistence.infra.ProjectRequestDTO;
+import com.projectMicroservice.persistence.infra.ProjectResponseDTO;
 import java.util.List;
 
 public interface IProjectService {

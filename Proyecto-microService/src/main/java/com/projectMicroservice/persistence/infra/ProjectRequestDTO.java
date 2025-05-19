@@ -1,6 +1,5 @@
-package com.projectMicroservice.infra;
+package com.projectMicroservice.persistence.infra;
 
-import com.projectMicroservice.entities.ProjectStatus;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
