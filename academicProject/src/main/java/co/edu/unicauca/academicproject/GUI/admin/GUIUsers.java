@@ -55,7 +55,6 @@ public class GUIUsers extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPHead = new javax.swing.JPanel();
-        iconLoginUser = new javax.swing.JLabel();
         jLTitittleLogin = new javax.swing.JLabel();
         jPButtom = new javax.swing.JPanel();
         jBtnBackHomeWithLogin = new javax.swing.JButton();
@@ -74,20 +73,15 @@ public class GUIUsers extends javax.swing.JFrame {
         jTableCompany = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1540, 690));
 
-        jPHead.setBackground(new java.awt.Color(236, 230, 240));
+        jPHead.setBackground(new java.awt.Color(15, 32, 65));
+        jPHead.setForeground(new java.awt.Color(255, 255, 255));
+        jPHead.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         jPHead.setLayout(new java.awt.GridBagLayout());
 
-        iconLoginUser.setBackground(new java.awt.Color(101, 85, 153));
-        iconLoginUser.setForeground(new java.awt.Color(101, 85, 153));
-        iconLoginUser.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPHead.add(iconLoginUser, gridBagConstraints);
-
-        jLTitittleLogin.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jLTitittleLogin.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        jLTitittleLogin.setForeground(new java.awt.Color(255, 255, 255));
         jLTitittleLogin.setText("Listado usuarios - Sistema proyectos");
         jLTitittleLogin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLTitittleLogin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -96,20 +90,22 @@ public class GUIUsers extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPHead.add(jLTitittleLogin, gridBagConstraints);
 
-        jPButtom.setBackground(new java.awt.Color(236, 230, 240));
+        jPButtom.setBackground(new java.awt.Color(15, 32, 65));
+        jPButtom.setForeground(new java.awt.Color(255, 255, 255));
         jPButtom.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jBtnBackHomeWithLogin.setBackground(new java.awt.Color(236, 230, 240));
-        jBtnBackHomeWithLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
+        jBtnBackHomeWithLogin.setBackground(new java.awt.Color(15, 32, 65));
+        jBtnBackHomeWithLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/anterior (1).png"))); // NOI18N
         jBtnBackHomeWithLogin.setBorderPainted(false);
         jPButtom.add(jBtnBackHomeWithLogin);
 
-        jPContent.setBackground(new java.awt.Color(236, 230, 240));
-        jPContent.setLayout(new javax.swing.BoxLayout(jPContent, javax.swing.BoxLayout.LINE_AXIS));
+        jPContent.setBackground(new java.awt.Color(15, 32, 65));
 
-        jPCoordi.setBackground(new java.awt.Color(255, 255, 255));
+        jPCoordi.setBackground(new java.awt.Color(15, 32, 65));
+        jPCoordi.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        jLCoordinator.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLCoordinator.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLCoordinator.setForeground(new java.awt.Color(255, 255, 255));
         jLCoordinator.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLCoordinator.setText("Coordinadores");
 
@@ -125,34 +121,37 @@ public class GUIUsers extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableCoordinator.setShowGrid(true);
         jScrollPane1.setViewportView(jTableCoordinator);
 
         javax.swing.GroupLayout jPCoordiLayout = new javax.swing.GroupLayout(jPCoordi);
         jPCoordi.setLayout(jPCoordiLayout);
         jPCoordiLayout.setHorizontalGroup(
             jPCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCoordiLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLCoordinator, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(148, 148, 148))
+            .addGroup(jPCoordiLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPCoordiLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                        .addGap(20, 20, 20))
+                    .addComponent(jLCoordinator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPCoordiLayout.setVerticalGroup(
             jPCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPCoordiLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLCoordinator)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(38, 38, 38))
         );
 
-        jPContent.add(jPCoordi);
+        jPSudent.setBackground(new java.awt.Color(15, 32, 65));
+        jPSudent.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        jPSudent.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLStudent1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLStudent1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLStudent1.setForeground(new java.awt.Color(255, 255, 255));
         jLStudent1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLStudent1.setText("Estudiantes");
 
@@ -168,6 +167,7 @@ public class GUIUsers extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableStudent.setShowGrid(true);
         jScrollPane2.setViewportView(jTableStudent);
 
         javax.swing.GroupLayout jPSudentLayout = new javax.swing.GroupLayout(jPSudent);
@@ -175,11 +175,11 @@ public class GUIUsers extends javax.swing.JFrame {
         jPSudentLayout.setHorizontalGroup(
             jPSudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPSudentLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPSudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLStudent1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(148, 148, 148))
+                .addContainerGap()
+                .addGroup(jPSudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                    .addComponent(jLStudent1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPSudentLayout.setVerticalGroup(
             jPSudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,15 +187,14 @@ public class GUIUsers extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jLStudent1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
-        jPContent.add(jPSudent);
+        jPCompany.setBackground(new java.awt.Color(15, 32, 65));
 
-        jPCompany.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLCompany1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLCompany1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLCompany1.setForeground(new java.awt.Color(255, 255, 255));
         jLCompany1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLCompany1.setText("Empresas");
 
@@ -211,30 +210,55 @@ public class GUIUsers extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableCompany.setShowGrid(true);
         jScrollPane3.setViewportView(jTableCompany);
 
         javax.swing.GroupLayout jPCompanyLayout = new javax.swing.GroupLayout(jPCompany);
         jPCompany.setLayout(jPCompanyLayout);
         jPCompanyLayout.setHorizontalGroup(
             jPCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCompanyLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLCompany1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(148, 148, 148))
+            .addGroup(jPCompanyLayout.createSequentialGroup()
+                .addGroup(jPCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPCompanyLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
+                    .addGroup(jPCompanyLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLCompany1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPCompanyLayout.setVerticalGroup(
             jPCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPCompanyLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLCompany1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jPContent.add(jPCompany);
+        javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
+        jPContent.setLayout(jPContentLayout);
+        jPContentLayout.setHorizontalGroup(
+            jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPContentLayout.createSequentialGroup()
+                .addComponent(jPCoordi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jPSudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jPCompany, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(33, 33, 33))
+        );
+        jPContentLayout.setVerticalGroup(
+            jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPCoordi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPContentLayout.createSequentialGroup()
+                .addComponent(jPSudent, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
+            .addGroup(jPContentLayout.createSequentialGroup()
+                .addComponent(jPCompany, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(17, 17, 17))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -247,19 +271,18 @@ public class GUIUsers extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPHead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPHead, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel iconLoginUser;
     private javax.swing.JButton jBtnBackHomeWithLogin;
     private javax.swing.JLabel jLCompany1;
     private javax.swing.JLabel jLCoordinator;

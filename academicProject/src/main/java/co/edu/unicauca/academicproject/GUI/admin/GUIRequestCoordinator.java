@@ -75,8 +75,11 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
         jBtnProcesarSoli = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Solicitudes coordinadores");
+        setMinimumSize(new java.awt.Dimension(1020, 700));
 
-        jPHead.setBackground(new java.awt.Color(236, 230, 240));
+        jPHead.setBackground(new java.awt.Color(15, 32, 65));
+        jPHead.setForeground(new java.awt.Color(255, 255, 255));
         jPHead.setLayout(new java.awt.GridBagLayout());
 
         iconLoginUser.setBackground(new java.awt.Color(101, 85, 153));
@@ -88,7 +91,8 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPHead.add(iconLoginUser, gridBagConstraints);
 
-        jLTitittleLogin.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jLTitittleLogin.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        jLTitittleLogin.setForeground(new java.awt.Color(255, 255, 255));
         jLTitittleLogin.setText("Solicitudes de coordinadores - Sistema proyectos");
         jLTitittleLogin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLTitittleLogin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -97,21 +101,24 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         jPHead.add(jLTitittleLogin, gridBagConstraints);
 
-        jPButtom.setBackground(new java.awt.Color(236, 230, 240));
+        jPButtom.setBackground(new java.awt.Color(15, 32, 65));
+        jPButtom.setForeground(new java.awt.Color(255, 255, 255));
         jPButtom.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jBtnBackHomeWithLogin.setBackground(new java.awt.Color(236, 230, 240));
-        jBtnBackHomeWithLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
+        jBtnBackHomeWithLogin.setBackground(new java.awt.Color(15, 32, 65));
+        jBtnBackHomeWithLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/anterior (1).png"))); // NOI18N
         jBtnBackHomeWithLogin.setBorderPainted(false);
         jPButtom.add(jBtnBackHomeWithLogin);
 
-        jPContent.setBackground(new java.awt.Color(236, 230, 240));
+        jPContent.setBackground(new java.awt.Color(15, 32, 65));
+        jPContent.setForeground(new java.awt.Color(255, 255, 255));
 
         jPCoordi.setBackground(new java.awt.Color(255, 255, 255));
 
         jLCoordinator.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLCoordinator.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLCoordinator.setText("Historial de solicitudes de coordinarores:");
+        jLCoordinator.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jTableHistoryCoordi.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jTableHistoryCoordi.setModel(new javax.swing.table.DefaultTableModel(
@@ -125,35 +132,34 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableHistoryCoordi.setShowGrid(true);
         jScrollPane1.setViewportView(jTableHistoryCoordi);
 
         javax.swing.GroupLayout jPCoordiLayout = new javax.swing.GroupLayout(jPCoordi);
         jPCoordi.setLayout(jPCoordiLayout);
         jPCoordiLayout.setHorizontalGroup(
             jPCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLCoordinator, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCoordiLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-            .addGroup(jPCoordiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLCoordinator, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1)
+                .addGap(10, 10, 10))
         );
         jPCoordiLayout.setVerticalGroup(
             jPCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPCoordiLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLCoordinator)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPCoordiSinEstado.setBackground(new java.awt.Color(255, 255, 255));
 
         jLSolisSinAtender.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLSolisSinAtender.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLSolisSinAtender.setText("Solicitudes ");
+        jLSolisSinAtender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -169,6 +175,7 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableSoliCoordi.setShowGrid(true);
         jScrollPane2.setViewportView(jTableSoliCoordi);
 
         javax.swing.GroupLayout jPCoordiSinEstadoLayout = new javax.swing.GroupLayout(jPCoordiSinEstado);
@@ -176,13 +183,11 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
         jPCoordiSinEstadoLayout.setHorizontalGroup(
             jPCoordiSinEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPCoordiSinEstadoLayout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(jLSolisSinAtender)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCoordiSinEstadoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(237, 237, 237))
+                .addContainerGap()
+                .addGroup(jPCoordiSinEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jLSolisSinAtender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPCoordiSinEstadoLayout.setVerticalGroup(
             jPCoordiSinEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,39 +199,28 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
                 .addGap(131, 131, 131))
         );
 
-        jLNombreCoordi.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLNombreCoordi.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLNombreCoordi.setForeground(new java.awt.Color(255, 255, 255));
+        jLNombreCoordi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLNombreCoordi.setText("NOMBRE COORDI");
 
-        jPValidarCoordi.setBackground(new java.awt.Color(255, 255, 255));
+        jPValidarCoordi.setBackground(new java.awt.Color(15, 32, 65));
+        jPValidarCoordi.setLayout(new java.awt.GridLayout(2, 1, 10, 20));
 
         jRBtnAceptar.setBackground(new java.awt.Color(204, 255, 204));
+        jRBtnAceptar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jRBtnAceptar.setText("Aceptar solicitud");
+        jRBtnAceptar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRBtnAceptar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jRBtnAceptar.setIconTextGap(10);
+        jPValidarCoordi.add(jRBtnAceptar);
 
+        jBtnProcesarSoli.setBackground(new java.awt.Color(172, 0, 0));
+        jBtnProcesarSoli.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jBtnProcesarSoli.setForeground(new java.awt.Color(255, 255, 255));
         jBtnProcesarSoli.setText("ACEPTAR");
-
-        javax.swing.GroupLayout jPValidarCoordiLayout = new javax.swing.GroupLayout(jPValidarCoordi);
-        jPValidarCoordi.setLayout(jPValidarCoordiLayout);
-        jPValidarCoordiLayout.setHorizontalGroup(
-            jPValidarCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPValidarCoordiLayout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
-                .addGroup(jPValidarCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPValidarCoordiLayout.createSequentialGroup()
-                        .addComponent(jBtnProcesarSoli)
-                        .addGap(130, 130, 130))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPValidarCoordiLayout.createSequentialGroup()
-                        .addComponent(jRBtnAceptar)
-                        .addGap(109, 109, 109))))
-        );
-        jPValidarCoordiLayout.setVerticalGroup(
-            jPValidarCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPValidarCoordiLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jRBtnAceptar)
-                .addGap(18, 18, 18)
-                .addComponent(jBtnProcesarSoli)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
+        jBtnProcesarSoli.setMinimumSize(new java.awt.Dimension(50, 50));
+        jPValidarCoordi.add(jBtnProcesarSoli);
 
         javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
         jPContent.setLayout(jPContentLayout);
@@ -234,48 +228,46 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
             jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPContentLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jPCoordi, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPCoordi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPCoordiSinEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPContentLayout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(jLNombreCoordi))
-                    .addGroup(jPContentLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jPValidarCoordi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPCoordiSinEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPValidarCoordi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLNombreCoordi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
         jPContentLayout.setVerticalGroup(
             jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPContentLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPCoordi, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPCoordi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPContentLayout.createSequentialGroup()
                         .addComponent(jPCoordiSinEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addGap(18, 18, 18)
                         .addComponent(jLNombreCoordi)
-                        .addGap(11, 11, 11)
-                        .addComponent(jPValidarCoordi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPValidarCoordi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(1, 1, 1))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPHead, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPHead, javax.swing.GroupLayout.DEFAULT_SIZE, 1021, Short.MAX_VALUE)
             .addComponent(jPContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPHead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPHead, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
