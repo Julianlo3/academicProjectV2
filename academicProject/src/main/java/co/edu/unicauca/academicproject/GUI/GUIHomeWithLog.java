@@ -84,10 +84,6 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
     }
 
 
-    public JLabel getLbLogin() {
-        return lbLogin;
-    }
-
     public JTable getjTableProjects() {
         return jTableProjects;
     }
@@ -106,13 +102,11 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         lbTitleProyect = new java.awt.Label();
         jPOpcLogin = new javax.swing.JPanel();
         jBtnLoginU = new javax.swing.JButton();
-        lbLogin = new javax.swing.JLabel();
         jPSearchBar = new javax.swing.JPanel();
         jCBSelecFilter = new javax.swing.JComboBox<>();
         jFieldSearchProyect = new javax.swing.JTextField();
         jBtnSearch = new javax.swing.JButton();
         jButtonQuitF = new javax.swing.JButton();
-        jSeparator = new javax.swing.JSeparator();
         jPContent = new javax.swing.JPanel();
         jPOptions = new javax.swing.JPanel();
         jPOpcionCompany = new javax.swing.JPanel();
@@ -134,19 +128,26 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jBtnGetOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Home");
+        setMinimumSize(new java.awt.Dimension(900, 500));
 
         jPHead.setBackground(new java.awt.Color(236, 230, 240));
         jPHead.setLayout(new javax.swing.BoxLayout(jPHead, javax.swing.BoxLayout.LINE_AXIS));
 
-        lbTitleProyect.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        lbTitleProyect.setBackground(new java.awt.Color(15, 32, 65));
+        lbTitleProyect.setFont(new java.awt.Font("SansSerif", 1, 26)); // NOI18N
+        lbTitleProyect.setForeground(new java.awt.Color(255, 255, 255));
         lbTitleProyect.setText("Sistema gestor de proyectos academicos");
         jPHead.add(lbTitleProyect);
 
         jPOpcLogin.setBackground(new java.awt.Color(236, 230, 240));
-        jPOpcLogin.setLayout(new java.awt.GridLayout(2, 2, 10, 0));
+        jPOpcLogin.setLayout(new java.awt.GridLayout(1, 1));
 
-        jBtnLoginU.setBackground(new java.awt.Color(236, 230, 240));
-        jBtnLoginU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LoginUser2.png"))); // NOI18N
+        jBtnLoginU.setBackground(new java.awt.Color(175, 0, 0));
+        jBtnLoginU.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jBtnLoginU.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnLoginU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/usuario.png"))); // NOI18N
+        jBtnLoginU.setText("Mi user");
         jBtnLoginU.setBorder(null);
         jBtnLoginU.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jBtnLoginU.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -155,26 +156,18 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jBtnLoginU.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPOpcLogin.add(jBtnLoginU);
 
-        lbLogin.setBackground(new java.awt.Color(101, 85, 153));
-        lbLogin.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        lbLogin.setForeground(new java.awt.Color(255, 255, 255));
-        lbLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbLogin.setText("Mi User");
-        lbLogin.setOpaque(true);
-        jPOpcLogin.add(lbLogin);
-
         jPHead.add(jPOpcLogin);
 
-        jPSearchBar.setBackground(new java.awt.Color(236, 230, 240));
+        jPSearchBar.setBackground(new java.awt.Color(15, 32, 65));
         jPSearchBar.setLayout(new java.awt.GridBagLayout());
 
-        jCBSelecFilter.setBackground(new java.awt.Color(236, 230, 240));
+        jCBSelecFilter.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jCBSelecFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por Nombre", "Por Compañia", "Por Estudiante" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPSearchBar.add(jCBSelecFilter, gridBagConstraints);
 
-        jFieldSearchProyect.setBackground(new java.awt.Color(236, 230, 240));
+        jFieldSearchProyect.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jFieldSearchProyect.setText("Ingrese un proyecto a buscar...");
         jFieldSearchProyect.setMaximumSize(new java.awt.Dimension(200, 2147483647));
         jFieldSearchProyect.setMinimumSize(new java.awt.Dimension(100, 22));
@@ -183,8 +176,8 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 300;
         jPSearchBar.add(jFieldSearchProyect, gridBagConstraints);
 
-        jBtnSearch.setBackground(new java.awt.Color(236, 230, 240));
-        jBtnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
+        jBtnSearch.setBackground(new java.awt.Color(15, 32, 65));
+        jBtnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/buscar.png"))); // NOI18N
         jBtnSearch.setBorderPainted(false);
         jPSearchBar.add(jBtnSearch, new java.awt.GridBagConstraints());
 
@@ -192,17 +185,14 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jPSearchBar.add(jButtonQuitF, new java.awt.GridBagConstraints());
         jButtonQuitF.setVisible(false);
 
-        jSeparator.setBackground(new java.awt.Color(236, 230, 240));
-        jSeparator.setForeground(new java.awt.Color(204, 204, 204));
-
         jPContent.setBackground(new java.awt.Color(236, 230, 240));
 
         jPOptions.setBackground(new java.awt.Color(236, 230, 240));
         jPOptions.setLayout(new java.awt.CardLayout());
 
-        jPOpcionCompany.setBackground(new java.awt.Color(236, 230, 240));
+        jPOpcionCompany.setBackground(new java.awt.Color(251, 219, 147));
 
-        jBtnNewPubli.setBackground(new java.awt.Color(101, 85, 153));
+        jBtnNewPubli.setBackground(new java.awt.Color(175, 0, 0));
         jBtnNewPubli.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jBtnNewPubli.setForeground(new java.awt.Color(255, 255, 255));
         jBtnNewPubli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/newPubli.png"))); // NOI18N
@@ -211,7 +201,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jBtnNewPubli.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPOpcionCompany.add(jBtnNewPubli);
 
-        jBtnMyPubli.setBackground(new java.awt.Color(101, 85, 153));
+        jBtnMyPubli.setBackground(new java.awt.Color(175, 0, 0));
         jBtnMyPubli.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jBtnMyPubli.setForeground(new java.awt.Color(255, 255, 255));
         jBtnMyPubli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MyPubli.png"))); // NOI18N
@@ -223,18 +213,20 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
 
         jPOptions.add(jPOpcionCompany, "Empresa");
 
-        jPOpcionCoordi.setBackground(new java.awt.Color(236, 230, 240));
+        jPOpcionCoordi.setBackground(new java.awt.Color(190, 91, 80));
 
-        jBtnSolicitudes.setBackground(new java.awt.Color(101, 85, 153));
+        jBtnSolicitudes.setBackground(new java.awt.Color(172, 0, 0));
         jBtnSolicitudes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jBtnSolicitudes.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnSolicitudes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/notificacion.png"))); // NOI18N
         jBtnSolicitudes.setText("Solicitudes");
         jBtnSolicitudes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnSolicitudes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jBtnAsignar.setBackground(new java.awt.Color(101, 85, 153));
+        jBtnAsignar.setBackground(new java.awt.Color(172, 0, 0));
         jBtnAsignar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jBtnAsignar.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/derecha.png"))); // NOI18N
         jBtnAsignar.setText("Asignar Proyecto");
         jBtnAsignar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnAsignar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -248,7 +240,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
                 .addComponent(jBtnSolicitudes)
                 .addGap(54, 54, 54)
                 .addComponent(jBtnAsignar)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         jPOpcionCoordiLayout.setVerticalGroup(
             jPOpcionCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +249,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
                 .addGroup(jPOpcionCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jBtnSolicitudes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtnAsignar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPOptions.add(jPOpcionCoordi, "Coordinador");
@@ -268,7 +260,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jPOpcionStudent.setLayout(jPOpcionStudentLayout);
         jPOpcionStudentLayout.setHorizontalGroup(
             jPOpcionStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 707, Short.MAX_VALUE)
+            .addGap(0, 753, Short.MAX_VALUE)
         );
         jPOpcionStudentLayout.setVerticalGroup(
             jPOpcionStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,23 +270,34 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jPOptions.add(jPOpcionStudent, "Estudiante");
 
         jPOpcionAdmin.setBackground(new java.awt.Color(255, 255, 255));
-        jPOpcionAdmin.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 30));
+        jPOpcionAdmin.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 10));
 
+        jBtnUsersSistema.setBackground(new java.awt.Color(172, 0, 0));
+        jBtnUsersSistema.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jBtnUsersSistema.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnUsersSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/audiencia.png"))); // NOI18N
         jBtnUsersSistema.setText("VER USUARIOS EN EL SISTEMA");
+        jBtnUsersSistema.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnUsersSistema.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPOpcionAdmin.add(jBtnUsersSistema);
 
+        jBtnCoordiSoli.setBackground(new java.awt.Color(172, 0, 0));
+        jBtnCoordiSoli.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jBtnCoordiSoli.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnCoordiSoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/coordi.png"))); // NOI18N
         jBtnCoordiSoli.setText("GESTION DE COORDINADORES");
+        jBtnCoordiSoli.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnCoordiSoli.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPOpcionAdmin.add(jBtnCoordiSoli);
 
         jPOptions.add(jPOpcionAdmin, "Admin");
 
-        jPPublis.setBackground(new java.awt.Color(236, 230, 240));
-        jPPublis.setLayout(new javax.swing.BoxLayout(jPPublis, javax.swing.BoxLayout.Y_AXIS));
+        jPPublis.setBackground(new java.awt.Color(15, 32, 65));
 
-        jLTitleProjects.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLTitleProjects.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        jLTitleProjects.setForeground(new java.awt.Color(255, 255, 255));
         jLTitleProjects.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLTitleProjects.setText("Proyectos disponibles");
-        jPPublis.add(jLTitleProjects);
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -311,28 +314,49 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableProjects);
 
-        jPPublis.add(jScrollPane1);
+        javax.swing.GroupLayout jPPublisLayout = new javax.swing.GroupLayout(jPPublis);
+        jPPublis.setLayout(jPPublisLayout);
+        jPPublisLayout.setHorizontalGroup(
+            jPPublisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPPublisLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLTitleProjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPPublisLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+        jPPublisLayout.setVerticalGroup(
+            jPPublisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPPublisLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLTitleProjects)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
         jPContent.setLayout(jPContentLayout);
         jPContentLayout.setHorizontalGroup(
             jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPPublis, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPPublis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPContentLayout.setVerticalGroup(
             jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPContentLayout.createSequentialGroup()
                 .addComponent(jPOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPPublis, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jPPublis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPSideMenu.setBackground(new java.awt.Color(255, 255, 255));
         jPSideMenu.setLayout(new java.awt.GridBagLayout());
 
         jLTittleMenu.setBackground(new java.awt.Color(0, 0, 0));
-        jLTittleMenu.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLTittleMenu.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLTittleMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLTittleMenu.setText("Menú");
         jLTittleMenu.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -341,10 +365,14 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         jPSideMenu.add(jLTittleMenu, gridBagConstraints);
 
-        jBtnGetOut.setBackground(new java.awt.Color(101, 85, 153));
-        jBtnGetOut.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jBtnGetOut.setBackground(new java.awt.Color(175, 0, 0));
+        jBtnGetOut.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jBtnGetOut.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnGetOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Get out.png"))); // NOI18N
+        jBtnGetOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/salir.png"))); // NOI18N
+        jBtnGetOut.setText("Salir");
+        jBtnGetOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnGetOut.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jBtnGetOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 100, 0);
@@ -356,23 +384,20 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPHead, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPSearchBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPSideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPHead, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(jPSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
+                .addComponent(jPSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPSideMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(jPSideMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -406,9 +431,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
     private javax.swing.JPanel jPSearchBar;
     private javax.swing.JPanel jPSideMenu;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator;
     private javax.swing.JTable jTableProjects;
-    private javax.swing.JLabel lbLogin;
     private java.awt.Label lbTitleProyect;
     // End of variables declaration//GEN-END:variables
 }

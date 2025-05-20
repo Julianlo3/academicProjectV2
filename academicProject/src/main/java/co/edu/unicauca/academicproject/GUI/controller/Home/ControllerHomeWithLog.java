@@ -73,28 +73,29 @@ public class ControllerHomeWithLog {
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(),"Estudiante");
         Student student = studentController.getStudentByCode(Long.valueOf(code));
-        vista.getLbLogin().setText(student.getName());
+        vista.getJPoptions().setSize(0, 0);
+        vista.getjBtnLoginU().setText(student.getName());
     }
 
     private void cargarFormAdmin(){
         System.out.println("Cargando opciones de administrador:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(),"Admin");
-        vista.getLbLogin().setText(Admin.getInstance().getNombre());
+        vista.getjBtnLoginU().setText(Admin.getInstance().getNombre());
     }
 
     private void cargarFormCoordi(){
         System.out.println("Cargando opciones de coordinador:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(),"Coordinador");
-        vista.getLbLogin().setText(Admin.getInstance().getNombre());
+        vista.getjBtnLoginU().setText(Admin.getInstance().getNombre());
     }
 
     private void cargarFormEmpresa(){
         System.out.println("Cargando opciones de empresa:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(),"Empresa");
-        vista.getLbLogin().setText(Admin.getInstance().getNombre());
+        vista.getjBtnLoginU().setText(Admin.getInstance().getNombre());
     }
 
     private void cargarSolicitudesCoordi(){

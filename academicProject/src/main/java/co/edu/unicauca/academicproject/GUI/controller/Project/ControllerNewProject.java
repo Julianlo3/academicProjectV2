@@ -6,6 +6,7 @@ import co.edu.unicauca.academicproject.Service.Company.CompanyServiceClient;
 import co.edu.unicauca.academicproject.Service.project.ProjectServiceClient;
 import co.edu.unicauca.academicproject.controller.CompanyController;
 import co.edu.unicauca.academicproject.controller.ProjectController;
+import co.edu.unicauca.academicproject.entities.AcademicTerm;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
@@ -21,6 +22,7 @@ public class ControllerNewProject {
     public ControllerNewProject(GUINewProject vista) {
         this.vista = vista;
         this.vista.getjBtnPubliProject().addActionListener(e -> publicar());
+        loadAcademidTerms();
     }
 
     private void publicar(){
@@ -34,6 +36,13 @@ public class ControllerNewProject {
     }catch (Exception e){
         System.out.println("Error al publicar proyecto" + e.getMessage());
     }
+    }
+
+    private void loadAcademidTerms(){
+        this.vista.getAcademicTerm().removeAllItems();
+        for (AcademicTerm term : AcademicTerm.values() ) {
+            vista.getAcademicTerm().addItem(term.toString());
+        }
     }
 
 }

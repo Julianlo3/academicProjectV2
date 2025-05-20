@@ -27,18 +27,6 @@ public class ControllerHomeWithOutLog {
         this.vista = vista;
         this.vista.getjBtnLoginU().addActionListener(e -> abrirLogin());
         this.vista.getjBtnNewUser().addActionListener(e -> abrirRegistroU());
-        this.vista.getLbLogin().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                abrirLogin();
-            }
-        });
-        this.vista.getLbNewUser().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                abrirRegistroU();
-            }
-        });
         cargarProyectos();
     }
 

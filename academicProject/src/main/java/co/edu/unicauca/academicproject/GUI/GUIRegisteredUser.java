@@ -228,17 +228,20 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
         lbTitleProyect = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Nuevo registro");
+        setMinimumSize(new java.awt.Dimension(820, 650));
 
         jPTittleNewUser.setBackground(new java.awt.Color(255, 255, 255));
 
         jLTittleNewUser.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLTittleNewUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLTittleNewUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/NewUser.png"))); // NOI18N
+        jLTittleNewUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/usuario.png"))); // NOI18N
         jLTittleNewUser.setText("Nuevo Registro ");
         jLTittleNewUser.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPTittleNewUser.add(jLTittleNewUser);
 
-        jPContent.setBackground(new java.awt.Color(236, 230, 240));
+        jPContent.setBackground(new java.awt.Color(15, 32, 65));
+        jPContent.setForeground(new java.awt.Color(255, 255, 255));
         jPContent.setLayout(new java.awt.GridBagLayout());
 
         jPSelecRol.setBackground(new java.awt.Color(255, 255, 255));
@@ -445,13 +448,15 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
         jPCoordiRegister.setName("CoordiRegister"); // NOI18N
         jPCoordiRegister.setLayout(new java.awt.GridBagLayout());
 
-        jBtnSaveCoordi.setBackground(new java.awt.Color(0, 0, 0));
+        jBtnSaveCoordi.setBackground(new java.awt.Color(172, 0, 0));
         jBtnSaveCoordi.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jBtnSaveCoordi.setForeground(new java.awt.Color(255, 255, 255));
         jBtnSaveCoordi.setText("GUARDAR");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 108, 35, 0);
         jPCoordiRegister.add(jBtnSaveCoordi, gridBagConstraints);
@@ -771,14 +776,17 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 99, 0, 0);
         jPStudentRegister.add(jFieldPassWordStudent, gridBagConstraints);
 
-        jBtnSaveStudent.setBackground(new java.awt.Color(0, 0, 0));
+        jBtnSaveStudent.setBackground(new java.awt.Color(172, 0, 0));
         jBtnSaveStudent.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jBtnSaveStudent.setForeground(new java.awt.Color(255, 255, 255));
         jBtnSaveStudent.setText("GUARDAR");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
         gridBagConstraints.insets = new java.awt.Insets(10, 108, 53, 0);
         jPStudentRegister.add(jBtnSaveStudent, gridBagConstraints);
 
@@ -988,13 +996,16 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 100);
         jPCompanyRegister.add(jCheckSeePassCompany, gridBagConstraints);
 
-        jBtnSaveCompany.setBackground(new java.awt.Color(0, 0, 0));
+        jBtnSaveCompany.setBackground(new java.awt.Color(172, 0, 0));
         jBtnSaveCompany.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jBtnSaveCompany.setForeground(new java.awt.Color(255, 255, 255));
         jBtnSaveCompany.setText("GUARDAR");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 108, 5, 0);
         jPCompanyRegister.add(jBtnSaveCompany, gridBagConstraints);
@@ -1011,11 +1022,12 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 7, 9);
         jPContent.add(jPRegisterUser, gridBagConstraints);
 
-        jPButtom.setBackground(new java.awt.Color(236, 230, 240));
+        jPButtom.setBackground(new java.awt.Color(15, 32, 65));
+        jPButtom.setForeground(new java.awt.Color(255, 255, 255));
         jPButtom.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jBtnBackSelectUser.setBackground(new java.awt.Color(236, 230, 240));
-        jBtnBackSelectUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
+        jBtnBackSelectUser.setBackground(new java.awt.Color(15, 32, 65));
+        jBtnBackSelectUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/anterior (1).png"))); // NOI18N
         jBtnBackSelectUser.setBorderPainted(false);
         jPButtom.add(jBtnBackSelectUser);
 
@@ -1023,7 +1035,9 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
         jPHead.setLayout(new javax.swing.BoxLayout(jPHead, javax.swing.BoxLayout.LINE_AXIS));
 
         lbTitleProyect.setAlignment(java.awt.Label.CENTER);
+        lbTitleProyect.setBackground(new java.awt.Color(15, 32, 65));
         lbTitleProyect.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        lbTitleProyect.setForeground(new java.awt.Color(255, 255, 255));
         lbTitleProyect.setText("Sistema gestor de proyectos academicos");
         jPHead.add(lbTitleProyect);
 
@@ -1040,13 +1054,13 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPHead, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPTittleNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();

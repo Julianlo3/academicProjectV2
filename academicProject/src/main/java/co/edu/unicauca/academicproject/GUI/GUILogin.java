@@ -77,26 +77,31 @@ public class GUILogin extends javax.swing.JFrame {
         jLTitleRol = new javax.swing.JLabel();
         jCBRol = new javax.swing.JComboBox<>();
         jCheckSeePass = new javax.swing.JCheckBox();
+        jPanel1 = new javax.swing.JPanel();
+        jLFondoLogin = new javax.swing.JLabel();
         jPHead = new javax.swing.JPanel();
+        lbTitleProyect1 = new java.awt.Label();
         iconLoginUser = new javax.swing.JLabel();
-        jLTitittleLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
+        setBackground(new java.awt.Color(15, 32, 65));
+        setMinimumSize(new java.awt.Dimension(1300, 700));
 
-        jPButtom.setBackground(new java.awt.Color(236, 230, 240));
+        jPButtom.setBackground(new java.awt.Color(15, 32, 65));
         jPButtom.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jBtnBackHomeWithLogin.setBackground(new java.awt.Color(236, 230, 240));
-        jBtnBackHomeWithLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
+        jBtnBackHomeWithLogin.setBackground(new java.awt.Color(12, 32, 65));
+        jBtnBackHomeWithLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/anterior (1).png"))); // NOI18N
         jBtnBackHomeWithLogin.setBorderPainted(false);
         jPButtom.add(jBtnBackHomeWithLogin);
 
-        jPContent.setBackground(new java.awt.Color(236, 230, 240));
+        jPContent.setBackground(new java.awt.Color(15, 32, 65));
 
         jPFormUser.setBackground(new java.awt.Color(255, 255, 255));
         jPFormUser.setLayout(new java.awt.GridBagLayout());
 
-        jLUser.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLUser.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLUser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLUser.setText("Codigo de usuario:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -107,7 +112,7 @@ public class GUILogin extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 10, 10, 10);
         jPFormUser.add(jLUser, gridBagConstraints);
 
-        jFieldUserName.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jFieldUserName.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jFieldUserName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jFieldUserName.setText("104621....");
         jFieldUserName.setMaximumSize(new java.awt.Dimension(100, 100));
@@ -119,7 +124,7 @@ public class GUILogin extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         jPFormUser.add(jFieldUserName, gridBagConstraints);
 
-        jLPassWord.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLPassWord.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLPassWord.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLPassWord.setText("Clave:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -130,7 +135,7 @@ public class GUILogin extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
         jPFormUser.add(jLPassWord, gridBagConstraints);
 
-        jPasswordUser.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jPasswordUser.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jPasswordUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPasswordUser.setText("jPasswordField1");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -142,7 +147,7 @@ public class GUILogin extends javax.swing.JFrame {
         jPFormUser.add(jPasswordUser, gridBagConstraints);
 
         jBtnPassUser.setBackground(new java.awt.Color(0, 0, 0));
-        jBtnPassUser.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jBtnPassUser.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jBtnPassUser.setForeground(new java.awt.Color(255, 255, 255));
         jBtnPassUser.setText("INGRESAR");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -153,7 +158,7 @@ public class GUILogin extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPFormUser.add(jBtnPassUser, gridBagConstraints);
 
-        jBtnPasswordForget.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jBtnPasswordForget.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jBtnPasswordForget.setText("¿Olvidaste la contraseña?");
         jBtnPasswordForget.setBorderPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -162,7 +167,7 @@ public class GUILogin extends javax.swing.JFrame {
         jPFormUser.add(jBtnPasswordForget, gridBagConstraints);
 
         jBtnNewUser.setBackground(new java.awt.Color(236, 230, 240));
-        jBtnNewUser.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jBtnNewUser.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jBtnNewUser.setText("¿No tienes cuenta?");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -173,14 +178,14 @@ public class GUILogin extends javax.swing.JFrame {
         jPRol.setBackground(new java.awt.Color(255, 255, 255));
         jPRol.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
-        jLTitleRol.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLTitleRol.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLTitleRol.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLTitleRol.setText("Soy un:");
         jLTitleRol.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jLTitleRol.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jPRol.add(jLTitleRol);
 
-        jCBRol.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jCBRol.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jCBRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Empresa", "Coordinador", "Admin" }));
         jCBRol.setPreferredSize(new java.awt.Dimension(150, 22));
         jPRol.add(jCBRol);
@@ -194,54 +199,116 @@ public class GUILogin extends javax.swing.JFrame {
         jPFormUser.add(jPRol, gridBagConstraints);
 
         jCheckSeePass.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckSeePass.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jCheckSeePass.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jCheckSeePass.setText("Ver clave");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 6;
         jPFormUser.add(jCheckSeePass, gridBagConstraints);
 
-        jPContent.add(jPFormUser);
+        jPanel1.setBackground(new java.awt.Color(12, 35, 65));
 
-        jPHead.setBackground(new java.awt.Color(236, 230, 240));
-        jPHead.setLayout(new java.awt.GridBagLayout());
+        jLFondoLogin.setBackground(new java.awt.Color(15, 32, 65));
+        jLFondoLogin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLFondoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FIC150.jpg"))); // NOI18N
+        jLFondoLogin.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLFondoLogin.setMaximumSize(new java.awt.Dimension(978, 1000));
 
-        iconLoginUser.setBackground(new java.awt.Color(101, 85, 153));
-        iconLoginUser.setForeground(new java.awt.Color(101, 85, 153));
-        iconLoginUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LoginUser3.png"))); // NOI18N
-        iconLoginUser.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPHead.add(iconLoginUser, gridBagConstraints);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 730, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLFondoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 718, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 507, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLFondoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
 
-        jLTitittleLogin.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        jLTitittleLogin.setText("Inicio de Sesion - Sistema proyectos");
-        jLTitittleLogin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLTitittleLogin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        jPHead.add(jLTitittleLogin, gridBagConstraints);
+        javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
+        jPContent.setLayout(jPContentLayout);
+        jPContentLayout.setHorizontalGroup(
+            jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(jPFormUser, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
+        );
+        jPContentLayout.setVerticalGroup(
+            jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPContentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPFormUser, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
+        );
+
+        jPHead.setBackground(new java.awt.Color(15, 32, 65));
+
+        lbTitleProyect1.setBackground(new java.awt.Color(15, 32, 65));
+        lbTitleProyect1.setFont(new java.awt.Font("SansSerif", 1, 26)); // NOI18N
+        lbTitleProyect1.setForeground(new java.awt.Color(255, 255, 255));
+        lbTitleProyect1.setText("Sistema gestor de proyectos academicos");
+
+        iconLoginUser.setBackground(new java.awt.Color(172, 0, 0));
+        iconLoginUser.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        iconLoginUser.setForeground(new java.awt.Color(255, 255, 255));
+        iconLoginUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iconLoginUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/usuario.png"))); // NOI18N
+        iconLoginUser.setText("Inicio de sesion");
+        iconLoginUser.setOpaque(true);
+
+        javax.swing.GroupLayout jPHeadLayout = new javax.swing.GroupLayout(jPHead);
+        jPHead.setLayout(jPHeadLayout);
+        jPHeadLayout.setHorizontalGroup(
+            jPHeadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPHeadLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbTitleProyect1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(458, 458, 458)
+                .addComponent(iconLoginUser, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPHeadLayout.setVerticalGroup(
+            jPHeadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPHeadLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbTitleProyect1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
+            .addComponent(iconLoginUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPHead, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
             .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPHead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
+                .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -256,8 +323,8 @@ public class GUILogin extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCBRol;
     private javax.swing.JCheckBox jCheckSeePass;
     private javax.swing.JTextField jFieldUserName;
+    private javax.swing.JLabel jLFondoLogin;
     private javax.swing.JLabel jLPassWord;
-    private javax.swing.JLabel jLTitittleLogin;
     private javax.swing.JLabel jLTitleRol;
     private javax.swing.JLabel jLUser;
     private javax.swing.JPanel jPButtom;
@@ -265,6 +332,8 @@ public class GUILogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPFormUser;
     private javax.swing.JPanel jPHead;
     private javax.swing.JPanel jPRol;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordUser;
+    private java.awt.Label lbTitleProyect1;
     // End of variables declaration//GEN-END:variables
 }
