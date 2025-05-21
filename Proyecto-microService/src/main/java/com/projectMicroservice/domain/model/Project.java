@@ -1,7 +1,6 @@
 package com.projectMicroservice.domain.model;
 
 import com.projectMicroservice.domain.state.IProjectState;
-import com.projectMicroservice.domain.state.PendingState;
 import com.projectMicroservice.domain.valueObject.*;
 
 import java.util.Objects;
@@ -23,7 +22,8 @@ public class Project {
                     ProjectDetails details,
                     AcademicPeriod academicPeriod,
                     TechnologyStack technologyStack,
-                    ProjectRequirements requirements) {
+                    ProjectRequirements requirements,
+                    IProjectState state) {
 
         this.projectId = projectId;
         this.companyNit = companyNit;
@@ -31,7 +31,7 @@ public class Project {
         this.academicPeriod = academicPeriod;
         this.technologyStack = technologyStack;
         this.requirements = requirements;
-        this.state = new PendingState();
+        this.state = state;
     }
 
     // Fábrica estática
@@ -40,8 +40,9 @@ public class Project {
                                  ProjectDetails details,
                                  AcademicPeriod academicPeriod,
                                  TechnologyStack technologyStack,
-                                 ProjectRequirements requirements) {
-        return new Project(projectId, companyNit, details, academicPeriod, technologyStack, requirements);
+                                 ProjectRequirements requirements,
+                                 IProjectState state) {
+        return new Project(projectId, companyNit, details, academicPeriod, technologyStack, requirements, state);
     }
 
     // Delegación al estado actual
@@ -84,7 +85,7 @@ public class Project {
         return projectId;
     }
 
-    public Long getCompanyId() {
+    public Long getCompanyNit() {
         return companyNit;
     }
 

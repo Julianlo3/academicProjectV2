@@ -2,7 +2,7 @@ package com.projectMicroservice.presentation.dto;
 
 import java.util.List;
 
-public class ProjectDto {
+public class ProjectDTO {
     private Long projectId;
     private Long companyNit;
 

@@ -1,11 +1,15 @@
 package com.projectMicroservice.infrastructure.persistence.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class AcademicPeriodEmbeddable {
 
+    @Column(name = "academic_year")
     private int year;
+
+    @Column(name = "academic_term")
     private int term;
 
     public AcademicPeriodEmbeddable(int year, int term) {

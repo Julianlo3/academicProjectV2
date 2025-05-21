@@ -6,41 +6,41 @@ import com.projectMicroservice.domain.valueObject.ProjectDetails;
 import com.projectMicroservice.domain.valueObject.ProjectRequirements;
 import com.projectMicroservice.domain.valueObject.TechnologyStack;
 
-public class ApprovedState implements IProjectState {
+public class Assigned implements IProjectState {
 
     @Override
-    public void approve(Project project)  throws Exception{
-        throw new IllegalAccessException("The project has already been \"Approved\"");
+    public void approve(Project project) throws Exception{
+        throw new IllegalAccessException("The project cannot change to \"Approved\" from \"Assigned\"");
     }
 
     @Override
     public void reject(Project project) throws Exception{
-        throw new IllegalAccessException("The project cannot change to \"Rejected\" from \"Approved\"");
+        throw new IllegalAccessException("The project cannot change to \"Rejected\" from \"Assigned\"");
     }
 
     @Override
     public void assign(Project project) throws Exception{
-        project.changeState(new AssignedState());
+        throw new IllegalAccessException("The project has already been \"Assigned\"");
     }
 
     @Override
     public void complete(Project project) throws Exception{
-        throw new IllegalAccessException("The project cannot change to \"Completed\" from \"Approved\"");
+        project.changeState(new Completed());
     }
 
     @Override
     public void editDetails(Project project, ProjectDetails newDetails) throws Exception {
-        project.applyDetailsChange(newDetails);
+        throw new IllegalAccessException("Details cannot be changed if the project is \"Assigned\".");
     }
 
     @Override
     public void updateRequirements(Project project, ProjectRequirements newRequirements) throws Exception {
-        project.applyRequirementsChange(newRequirements);
+        throw new IllegalAccessException("Requirements cannot be changed if the project is \"Assigned\".");
     }
 
     @Override
     public void updateTechnologyStack(Project project, TechnologyStack newStack) throws Exception {
-        project.applyTechnologyStackChange(newStack);
+        throw new IllegalAccessException("Technologies cannot be changed if the project is \"Assigned\".");
     }
 
 }

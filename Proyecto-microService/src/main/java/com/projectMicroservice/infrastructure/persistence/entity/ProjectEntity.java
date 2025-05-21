@@ -22,7 +22,7 @@ public class ProjectEntity {
     @Embedded
     private ProjectRequirementsEmbeddable requirements;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "project_technologies", joinColumns = @JoinColumn(name = "project_id"))
     @Column(name = "technology")
     private List<String> technologyStack;
