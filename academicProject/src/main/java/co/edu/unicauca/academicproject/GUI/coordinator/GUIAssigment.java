@@ -40,22 +40,29 @@ public class GUIAssigment extends javax.swing.JFrame {
         jBtnSaveProject = new javax.swing.JButton();
         jLabelNameProject = new javax.swing.JLabel();
         jLStudent = new javax.swing.JLabel();
+        jBtnQuitar = new javax.swing.JButton();
+        jBtnAtras = new javax.swing.JButton();
         jPTittleNewUser = new javax.swing.JPanel();
         jLTittleNewUser = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gestion nueva asignacion");
+        setMinimumSize(new java.awt.Dimension(1080, 970));
 
         jPHead.setBackground(new java.awt.Color(236, 230, 240));
         jPHead.setLayout(new javax.swing.BoxLayout(jPHead, javax.swing.BoxLayout.LINE_AXIS));
 
         lbTitleProyect.setAlignment(java.awt.Label.CENTER);
-        lbTitleProyect.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        lbTitleProyect.setBackground(new java.awt.Color(12, 32, 65));
+        lbTitleProyect.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        lbTitleProyect.setForeground(new java.awt.Color(255, 255, 255));
         lbTitleProyect.setText("Sistema gestor de proyectos academicos");
         jPHead.add(lbTitleProyect);
 
-        jPContent.setBackground(new java.awt.Color(236, 230, 240));
+        jPContent.setBackground(new java.awt.Color(12, 32, 65));
+        jPContent.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPStudent.setBackground(new java.awt.Color(204, 204, 255));
+        jPStudent.setBackground(new java.awt.Color(15, 32, 65));
 
         jTableStudent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,7 +77,9 @@ public class GUIAssigment extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTableStudent);
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Seleccione un estudiante");
 
         javax.swing.GroupLayout jPStudentLayout = new javax.swing.GroupLayout(jPStudent);
@@ -78,25 +87,25 @@ public class GUIAssigment extends javax.swing.JFrame {
         jPStudentLayout.setHorizontalGroup(
             jPStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPStudentLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane2)
+                .addGap(24, 24, 24))
             .addGroup(jPStudentLayout.createSequentialGroup()
-                .addGap(211, 211, 211)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPStudentLayout.setVerticalGroup(
             jPStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPStudentLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(60, 60, 60))
         );
 
-        jPProjects.setBackground(new java.awt.Color(204, 204, 255));
+        jPProjects.setBackground(new java.awt.Color(15, 32, 65));
 
         jTableProjects.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,21 +120,24 @@ public class GUIAssigment extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableProjects);
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Seleccione un proyecto");
 
         javax.swing.GroupLayout jPProjectsLayout = new javax.swing.GroupLayout(jPProjects);
         jPProjects.setLayout(jPProjectsLayout);
         jPProjectsLayout.setHorizontalGroup(
             jPProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPProjectsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPProjectsLayout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPProjectsLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)
+                        .addGap(18, 18, 18))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPProjectsLayout.setVerticalGroup(
             jPProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,21 +145,36 @@ public class GUIAssigment extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addGap(53, 53, 53)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addGap(57, 57, 57))
         );
 
-        jBtnSaveProject.setBackground(new java.awt.Color(0, 0, 0));
-        jBtnSaveProject.setFont(new java.awt.Font("Sans Serif Collection", 1, 24)); // NOI18N
+        jBtnSaveProject.setBackground(new java.awt.Color(153, 255, 153));
+        jBtnSaveProject.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jBtnSaveProject.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnSaveProject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/cheque.png"))); // NOI18N
         jBtnSaveProject.setText("ASIGNAR");
         jBtnSaveProject.setToolTipText("");
+        jBtnSaveProject.setBorderPainted(false);
 
-        jLabelNameProject.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabelNameProject.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabelNameProject.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNameProject.setText("PROYECTO SELECCIONADO");
 
-        jLStudent.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLStudent.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLStudent.setForeground(new java.awt.Color(255, 255, 255));
         jLStudent.setText("ESTUDIANTE SELECCIONADO");
+
+        jBtnQuitar.setBackground(new java.awt.Color(172, 0, 0));
+        jBtnQuitar.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jBtnQuitar.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/cancelar.png"))); // NOI18N
+        jBtnQuitar.setText("QUITAR DE PROYECTO");
+        jBtnQuitar.setBorderPainted(false);
+
+        jBtnAtras.setBackground(new java.awt.Color(15, 32, 65));
+        jBtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/anterior (1).png"))); // NOI18N
+        jBtnAtras.setBorderPainted(false);
 
         javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
         jPContent.setLayout(jPContentLayout);
@@ -155,40 +182,54 @@ public class GUIAssigment extends javax.swing.JFrame {
             jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jPProjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPProjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(37, 37, 37))
             .addGroup(jPContentLayout.createSequentialGroup()
-                .addGap(417, 417, 417)
-                .addComponent(jBtnSaveProject, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPContentLayout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(jLabelNameProject)
+                .addGap(135, 135, 135)
+                .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnSaveProject, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNameProject))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLStudent)
-                .addGap(187, 187, 187))
+                .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
+                        .addComponent(jLStudent)
+                        .addGap(95, 95, 95))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
+                        .addComponent(jBtnQuitar)
+                        .addGap(126, 126, 126))))
+            .addGroup(jPContentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBtnAtras)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPContentLayout.setVerticalGroup(
             jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPProjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(jPProjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNameProject)
                     .addComponent(jLStudent))
-                .addGap(48, 48, 48)
-                .addComponent(jBtnSaveProject)
-                .addGap(28, 28, 28))
+                .addGap(58, 58, 58)
+                .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnSaveProject, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnQuitar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnAtras)
+                .addGap(22, 22, 22))
         );
 
-        jPTittleNewUser.setBackground(new java.awt.Color(255, 255, 255));
+        jPTittleNewUser.setBackground(new java.awt.Color(172, 0, 0));
+        jPTittleNewUser.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLTittleNewUser.setBackground(new java.awt.Color(172, 0, 0));
         jLTittleNewUser.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLTittleNewUser.setForeground(new java.awt.Color(255, 255, 255));
         jLTittleNewUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLTittleNewUser.setText("Nueva asignación");
         jLTittleNewUser.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -198,9 +239,8 @@ public class GUIAssigment extends javax.swing.JFrame {
         jPTittleNewUserLayout.setHorizontalGroup(
             jPTittleNewUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPTittleNewUserLayout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addComponent(jLTittleNewUser)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLTittleNewUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPTittleNewUserLayout.setVerticalGroup(
             jPTittleNewUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,17 +262,19 @@ public class GUIAssigment extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPHead, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPTittleNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnAtras;
+    private javax.swing.JButton jBtnQuitar;
     private javax.swing.JButton jBtnSaveProject;
     private javax.swing.JLabel jLStudent;
     private javax.swing.JLabel jLTittleNewUser;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(name = "ProjectService",url = "http://localhost:8085")
+@FeignClient(name = "ProjectService",url = "http://localhost:8081")
 public interface ProjectFeingClient {
 
     @PostMapping("/api/project")

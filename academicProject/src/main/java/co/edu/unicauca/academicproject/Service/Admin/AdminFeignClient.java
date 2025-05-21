@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(name = "Admin-microservice",url = "http://localhost:8083")
+@FeignClient(name = "Admin-microservice",url = "http://localhost:8081")
 public interface AdminFeignClient {
 
     @PostMapping("/api/admin/coordinators/approve")

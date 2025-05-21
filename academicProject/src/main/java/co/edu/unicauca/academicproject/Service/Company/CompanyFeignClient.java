@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "Empresa-microservice",url = "http://localhost:8084")
+@FeignClient(name = "Empresa-microservice",url = "http://localhost:8081")
 public interface CompanyFeignClient {
 
     @PostMapping("/api/company")

@@ -6,7 +6,7 @@ package co.edu.unicauca.academicproject.GUI.controller.Home;
 
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithLog;
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
-import co.edu.unicauca.academicproject.GUI.GUINewProject;
+import co.edu.unicauca.academicproject.GUI.company.GUINewProject;
 import co.edu.unicauca.academicproject.GUI.admin.GUIRequestCoordinator;
 import co.edu.unicauca.academicproject.GUI.admin.GUIUsers;
 import co.edu.unicauca.academicproject.Service.Company.CompanyServiceClient;

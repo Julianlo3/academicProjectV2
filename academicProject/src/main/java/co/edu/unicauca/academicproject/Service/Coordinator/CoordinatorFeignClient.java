@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "GestionCoordinator-microservice",url = "http://localhost:8080")
+@FeignClient(name = "GestionCoordinator-microservice",url = "http://localhost:8081")
 public interface CoordinatorFeignClient {
 
     @PostMapping("/api/coordinator")

@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package co.edu.unicauca.academicproject.GUI;
+package co.edu.unicauca.academicproject.GUI.student;
 
+import co.edu.unicauca.academicproject.GUI.*;
 import co.edu.unicauca.academicproject.GUI.controller.Project.ControllerNewProject;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Project;
@@ -14,16 +15,16 @@ import javax.swing.*;
  *
  * @author lopez
  */
-public class GUINewProject extends javax.swing.JFrame {
+public class GUINominationProject extends javax.swing.JFrame {
 
     /**
      * Creates new form GUINewProject
      */
 
     private final Company company;
-    public GUINewProject(Company company) {
+    public GUINominationProject(Company company) {
         initComponents();
-        ControllerNewProject controller = new ControllerNewProject(this);
+       
         this.company = company;
     }
 
@@ -72,11 +73,12 @@ public class GUINewProject extends javax.swing.JFrame {
         jPOpcLogin = new javax.swing.JPanel();
         jBtnLoginU = new javax.swing.JButton();
         jPButtom = new javax.swing.JPanel();
+        jBtnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Nueva publicacion");
+        setTitle("Publicación");
         setBackground(new java.awt.Color(15, 32, 65));
-        setMinimumSize(new java.awt.Dimension(700, 550));
+        setMinimumSize(new java.awt.Dimension(700, 650));
 
         jPContent.setBackground(new java.awt.Color(15, 32, 65));
         jPContent.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,10 +118,11 @@ public class GUINewProject extends javax.swing.JFrame {
         jPContent.add(jScrollPane1, gridBagConstraints);
 
         jBtnPubliProject.setBackground(new java.awt.Color(172, 0, 0));
-        jBtnPubliProject.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jBtnPubliProject.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jBtnPubliProject.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnPubliProject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/publicar.png"))); // NOI18N
-        jBtnPubliProject.setText("PUBLICAR ");
+        jBtnPubliProject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/solicitar.png"))); // NOI18N
+        jBtnPubliProject.setText("Solicitar");
+        jBtnPubliProject.setBorderPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -149,8 +152,8 @@ public class GUINewProject extends javax.swing.JFrame {
         jBtnNewPubli.setBackground(new java.awt.Color(172, 0, 0));
         jBtnNewPubli.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jBtnNewPubli.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnNewPubli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/newPubli.png"))); // NOI18N
-        jBtnNewPubli.setText("Nueva publicación");
+        jBtnNewPubli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/publi.png"))); // NOI18N
+        jBtnNewPubli.setText("Publicación");
         jBtnNewPubli.setBorderPainted(false);
         jBtnNewPubli.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnNewPubli.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -185,15 +188,25 @@ public class GUINewProject extends javax.swing.JFrame {
 
         jPButtom.setBackground(new java.awt.Color(15, 32, 65));
 
+        jBtnSalir.setBackground(new java.awt.Color(15, 32, 65));
+        jBtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/anterior (1).png"))); // NOI18N
+        jBtnSalir.setBorderPainted(false);
+
         javax.swing.GroupLayout jPButtomLayout = new javax.swing.GroupLayout(jPButtom);
         jPButtom.setLayout(jPButtomLayout);
         jPButtomLayout.setHorizontalGroup(
             jPButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 696, Short.MAX_VALUE)
+            .addGroup(jPButtomLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jBtnSalir)
+                .addContainerGap(594, Short.MAX_VALUE))
         );
         jPButtomLayout.setVerticalGroup(
             jPButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 53, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPButtomLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jBtnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,13 +226,13 @@ public class GUINewProject extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPTitleNewProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 48, Short.MAX_VALUE))
+                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(495, 495, 495)
+                    .addGap(509, 509, 509)
                     .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(0, 0, 0)))
+                    .addContainerGap()))
         );
 
         pack();
@@ -229,6 +242,7 @@ public class GUINewProject extends javax.swing.JFrame {
     private javax.swing.JButton jBtnLoginU;
     private javax.swing.JButton jBtnNewPubli;
     private javax.swing.JButton jBtnPubliProject;
+    private javax.swing.JButton jBtnSalir;
     private javax.swing.JComboBox<String> jCBAcademicTerm;
     private javax.swing.JTextField jFieldTitleProject;
     private javax.swing.JLabel jLDescriptionProject;

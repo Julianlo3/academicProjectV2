@@ -1,7 +1,7 @@
 package co.edu.unicauca.academicproject.GUI.controller.Project;
 
 
-import co.edu.unicauca.academicproject.GUI.GUINewProject;
+import co.edu.unicauca.academicproject.GUI.company.GUINewProject;
 import co.edu.unicauca.academicproject.Service.Company.CompanyServiceClient;
 import co.edu.unicauca.academicproject.Service.project.ProjectServiceClient;
 import co.edu.unicauca.academicproject.controller.CompanyController;
