@@ -5,21 +5,19 @@ import jakarta.persistence.*;
 @Entity
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
     private Long code;
     private String name;
     private Long phone;
     private String email;
-    private String password;
 
-    public Student(Long code, String name, Long phone, String email, String password) {
+    public Student(Long code, String name, Long phone, String email) {
         this.code = code;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.password = password;
     }
 
     public Student() {
@@ -65,11 +63,4 @@ public class Student {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

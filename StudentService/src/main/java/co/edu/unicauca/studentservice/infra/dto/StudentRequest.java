@@ -6,7 +6,6 @@ public class StudentRequest {
     private String name;
     private Long phone;
     private String email;
-    private String password;
 
     public Long getId() {
         return id;
@@ -47,14 +46,5 @@ public class StudentRequest {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 
 }

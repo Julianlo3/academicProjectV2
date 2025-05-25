@@ -3,7 +3,7 @@ package co.edu.unicauca.studentservice.service;
 import co.edu.unicauca.studentservice.entity.Student;
 import co.edu.unicauca.studentservice.infra.config.RabbitMQConfig;
 import co.edu.unicauca.studentservice.infra.dto.StudentRequest;
-import co.edu.unicauca.studentservice.repository.AssignmentRepository;
+import co.edu.unicauca.studentservice.infra.mapper.StudentMapper;
 import co.edu.unicauca.studentservice.repository.StudentRepository;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class StudentService implements IStudentService{
     private StudentRepository studentRepository;
 
     @Autowired
-    private AssignmentRepository assignmentRepository;
+    private StudentMapper studentMapper;
 
     @Override
     @Transactional
@@ -36,12 +36,7 @@ public class StudentService implements IStudentService{
             }
 
             // 2. Crear y mapear el estudiante desde el DTO
-            Student student = new Student();
-            student.setCode(studentRequest.getCode());
-            student.setName(studentRequest.getName());
-            student.setPhone(studentRequest.getPhone());
-            student.setEmail(studentRequest.getEmail());
-            student.setPassword(studentRequest.getPassword());
+            Student student = studentMapper.toEntity(studentRequest);
 
             // 3. Guardar el estudiante
             Student studentSaved = studentRepository.save(student);
@@ -68,13 +63,7 @@ public class StudentService implements IStudentService{
             }
 
             // 2. Crear y mapear el estudiante desde el DTO
-            Student student = new Student();
-            student.setId(studentRepository.findByCode(code).get().getId());
-            student.setCode(studentRequest.getCode());
-            student.setName(studentRequest.getName());
-            student.setPhone(studentRequest.getPhone());
-            student.setEmail(studentRequest.getEmail());
-            student.setPassword(studentRequest.getPassword());
+            Student student = studentMapper.toEntity(studentRequest);
 
             // 3. Guardar el estudiante
             Student studentSaved = studentRepository.save(student);

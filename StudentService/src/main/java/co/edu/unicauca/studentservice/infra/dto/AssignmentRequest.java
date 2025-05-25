@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class AssignmentRequest {
     private Long id;
-    private Long student;
-    private Long project;
+    private Long studentCode;
+    private Long projectId;
     private Date dateAssignment;
 
     public AssignmentRequest(){}
@@ -18,20 +18,20 @@ public class AssignmentRequest {
         this.id = id;
     }
 
-    public Long getStudent() {
-        return student;
+    public Long getStudentCode() {
+        return studentCode;
     }
 
-    public void setStudent(Long student) {
-        this.student = student;
+    public void setStudentCode(Long studentCode) {
+        this.studentCode = studentCode;
     }
 
-    public Long getProject() {
-        return project;
+    public Long getProjectId() {
+        return projectId;
     }
 
-    public void setProject(Long project) {
-        this.project = project;
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
     }
 
     public Date getDateAssignment() {

@@ -9,6 +9,7 @@ import co.edu.unicauca.studentservice.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,12 +20,11 @@ import java.util.Optional;
 public class StudentController {
     @Autowired
     private StudentService studentService;
-    @Autowired
-    private AssignmentService assignmentService;
 
     //CRUDs para estudiante
 
     @GetMapping
+    @PreAuthorize("permitAll()")
     public ResponseEntity<?> getAllStudents() {
         try {
             List<Student> students = studentService.findAllStudents();
@@ -39,6 +39,7 @@ public class StudentController {
     }
 
     @GetMapping("/{code}")
+    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
     public ResponseEntity<?> getStudentByCode(@PathVariable Long code) {
         try {
             Optional<Student> student = studentService.findByCode(code);
@@ -53,6 +54,7 @@ public class StudentController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> createStudent(@RequestBody StudentRequest studentRequest) {
         try {
             try {
@@ -67,6 +69,7 @@ public class StudentController {
     }
 
     @PutMapping("/{code}")
+    @PreAuthorize("hasAnyRole('admin', 'student')")
     public ResponseEntity<?> updateStudent(@PathVariable Long code, @RequestBody StudentRequest studentRequest) {
         try {
             try {
@@ -81,6 +84,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/{code}")
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> deleteStudent(@PathVariable Long code){
         try {
             try {
@@ -94,61 +98,5 @@ public class StudentController {
         }
     }
 
-    //CRUDs para asignacion
 
-    @GetMapping("/assignment")
-    public ResponseEntity<?> getAllAssignment() {
-        try {
-            List<Assignment> assignments = assignmentService.findAllAssignment();
-            if (assignments == null) {
-                return ResponseEntity.notFound().build();
-            } else {
-                return ResponseEntity.ok(assignments);
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error al recuperar datos de las asignaciones, " + e.getMessage() + "\"}");
-        }
-    }
-
-    @GetMapping("/assignment/{code}")
-    public ResponseEntity<?> getAssignmentByStudentCode(@PathVariable Long code) {
-        try {
-            Optional<List<Assignment>> assignments = assignmentService.findAssignmentByStudentCode(code);
-            if (assignments.isEmpty()) {
-                return ResponseEntity.notFound().build();
-            } else {
-                return ResponseEntity.ok(assignments);
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al obtener las asignaciones del estudiante, " + e.getMessage() + "\"}");
-        }
-    }
-
-    @PostMapping("/assignment")
-    public ResponseEntity<?> createAssignment(@RequestBody AssignmentRequest assignmentRequest) {
-        try {
-            try {
-                Assignment savedAssignment = assignmentService.createAssignment(assignmentRequest);
-                return ResponseEntity.ok(savedAssignment);
-            } catch (IllegalAccessException e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al crear la asignacion, " + e.getMessage() + "\"}");
-        }
-    }
-
-    @DeleteMapping("/assignment/{id}")
-    public ResponseEntity<?> deleteAssignment(@PathVariable Long id) {
-        try {
-            try {
-                Assignment deletedAssignment = assignmentService.deleteAssignment(id);
-                return ResponseEntity.ok(deletedAssignment);
-            } catch (IllegalAccessException e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al eliminar datos de la asignacion, " + e.getMessage() + "\"}");
-        }
-    }
 }

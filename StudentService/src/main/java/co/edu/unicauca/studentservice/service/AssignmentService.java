@@ -1,7 +1,9 @@
 package co.edu.unicauca.studentservice.service;
 
 import co.edu.unicauca.studentservice.entity.Assignment;
+import co.edu.unicauca.studentservice.entity.Student;
 import co.edu.unicauca.studentservice.infra.dto.AssignmentRequest;
+import co.edu.unicauca.studentservice.infra.mapper.AssignmentMapper;
 import co.edu.unicauca.studentservice.repository.AssignmentRepository;
 import co.edu.unicauca.studentservice.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +21,21 @@ public class AssignmentService implements IAssignmentService {
     private StudentRepository studentRepository;
 
     @Autowired
-    private ProjectServiceClient projectServiceClient;
+    private AssignmentMapper assignmentMapper;
 
     @Override
     public Assignment createAssignment(AssignmentRequest assignmentRequest) throws Exception {
         try {
             // 1. Verificar si el codigo de estudiante fue pasado y si el estudiante existe
-            if (assignmentRequest.getStudent() != null) {
-                if (studentRepository.findByCode(assignmentRequest.getStudent()).isEmpty()) {
-                    throw new IllegalAccessException("El estudiante con CODIGO " + assignmentRequest.getStudent() + " no existe");
+            if (assignmentRequest.getStudentCode() != null) {
+                if (studentRepository.findByCode(assignmentRequest.getStudentCode()).isEmpty()) {
+                    throw new IllegalAccessException("El estudiante con CODIGO " + assignmentRequest.getStudentCode() + " no existe");
                 }
             }
 
             // 2. Crear y mapear la signacion desde el DTO
-            Assignment assignment = new Assignment();
-            assignment.setStudent(studentRepository.findByCode(assignmentRequest.getStudent()).get());
-            assignment.setProject(assignmentRequest.getProject());
-            assignment.setProjectEntity(projectServiceClient.getProjectById(assignmentRequest.getProject()).getBody());
+            Student student = studentRepository.findByCode(assignmentRequest.getStudentCode()).get();
+            Assignment assignment = assignmentMapper.toEntity(assignmentRequest, student);
 
             // 3. Guardar y retornar la asignacion
 
@@ -56,17 +56,7 @@ public class AssignmentService implements IAssignmentService {
                 }
             }
 
-            Optional<List<Assignment>> assignmentList = assignmentRepository.findByStudentCode(studentCode);
-
-            for (Assignment assignment : assignmentList.get()) {
-                try{
-                    assignment.setProjectEntity(projectServiceClient.getProjectById(assignment.getProject()).getBody());
-                }catch (Exception e){
-                    assignment.setProjectEntity(null);
-                }
-            }
-
-            return assignmentList;
+            return assignmentRepository.findByStudentCode(studentCode);
 
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -76,18 +66,7 @@ public class AssignmentService implements IAssignmentService {
     @Override
     public List<Assignment> findAllAssignment() throws Exception {
         try {
-
-            List<Assignment> assignmentList = assignmentRepository.findAll();
-
-            for (Assignment assignment : assignmentList) {
-                try{
-                    assignment.setProjectEntity(projectServiceClient.getProjectById(assignment.getProject()).getBody());
-                }catch (Exception e){
-                    assignment.setProjectEntity(null);
-                }
-            }
-
-            return assignmentList;
+            return assignmentRepository.findAll();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
