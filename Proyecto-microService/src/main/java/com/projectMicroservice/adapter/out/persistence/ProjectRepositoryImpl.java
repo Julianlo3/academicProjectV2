@@ -41,4 +41,20 @@ public class ProjectRepositoryImpl implements ProjectRepositoryPort {
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Project> findByTitleContaining(String title) {
+        List<ProjectEntity> entities = projectRepository.findByDetails_TitleContainingIgnoreCase(title);
+        return entities.stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Project> findByCompanyNit(Long companyNit) {
+        List<ProjectEntity> entities = projectRepository.findByCompanyNit(companyNit);
+        return entities.stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
+    }
 }

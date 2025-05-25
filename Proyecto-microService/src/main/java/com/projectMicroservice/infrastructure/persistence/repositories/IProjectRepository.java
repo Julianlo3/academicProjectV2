@@ -7,5 +7,7 @@ import java.util.List;
 
 @Repository
 public interface IProjectRepository extends JpaRepository<ProjectEntity, Long> {
-
+    // Buscar proyectos cuyo título contenga la cadena ignorando mayúsculas/minúsculas
+    List<ProjectEntity> findByDetails_TitleContainingIgnoreCase(String title);
+    List<ProjectEntity> findByCompanyNit(Long companyNit);
 }
