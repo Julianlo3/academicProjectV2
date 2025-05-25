@@ -32,7 +32,7 @@ public class StudentController {
             JOptionPane.showMessageDialog(null, "Estudiante creado con éxito.");
             System.out.println("Estudiante creado: " + student.getName() + student.getCode() + student.getEmail());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al crear estudiante.");
+            JOptionPane.showMessageDialog(null, "Error al crear estudiante." + e.getMessage());
         }
     }
 
