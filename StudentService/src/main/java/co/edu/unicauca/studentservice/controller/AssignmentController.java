@@ -22,6 +22,7 @@ public class AssignmentController {
     //CRUDs para asignacion
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
     public ResponseEntity<?> getAllAssignment() {
         try {
             List<Assignment> assignments = assignmentService.findAllAssignment();
@@ -36,6 +37,7 @@ public class AssignmentController {
     }
 
     @GetMapping("/{code}")
+    @PreAuthorize("hasAnyRole('admin', 'coordinator','student')")
     public ResponseEntity<?> getAssignmentByStudentCode(@PathVariable Long code) {
         try {
             Optional<List<Assignment>> assignments = assignmentService.findAssignmentByStudentCode(code);

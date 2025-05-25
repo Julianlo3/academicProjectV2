@@ -22,7 +22,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
                         // Permitir solo los GETs públicos
-                        .requestMatchers(HttpMethod.GET, "/api/student").permitAll()
+                        //.requestMatchers(HttpMethod.GET, "/api/student").permitAll()
                         // Todos los demás métodos en esa ruta requieren autenticación
                         .anyRequest().authenticated()
                         )

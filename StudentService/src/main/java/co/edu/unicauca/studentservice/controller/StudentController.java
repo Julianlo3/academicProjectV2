@@ -1,10 +1,7 @@
 package co.edu.unicauca.studentservice.controller;
 
-import co.edu.unicauca.studentservice.entity.Assignment;
 import co.edu.unicauca.studentservice.entity.Student;
-import co.edu.unicauca.studentservice.infra.dto.AssignmentRequest;
 import co.edu.unicauca.studentservice.infra.dto.StudentRequest;
-import co.edu.unicauca.studentservice.service.AssignmentService;
 import co.edu.unicauca.studentservice.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +21,7 @@ public class StudentController {
     //CRUDs para estudiante
 
     @GetMapping
-    @PreAuthorize("permitAll()")
+    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
     public ResponseEntity<?> getAllStudents() {
         try {
             List<Student> students = studentService.findAllStudents();
