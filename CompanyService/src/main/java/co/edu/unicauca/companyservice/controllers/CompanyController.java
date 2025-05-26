@@ -20,7 +20,7 @@ public class CompanyController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
     public ResponseEntity<CompanyDTO> createCompany(@RequestBody CompanyDTO dto) {
         CompanyDTO created = companyService.createCompany(dto);
         return ResponseEntity.ok(created);
@@ -48,7 +48,7 @@ public class CompanyController {
     }
 
     @DeleteMapping("/{nit}")
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
     public ResponseEntity<Void> deleteCompany(@PathVariable Long nit) {
         companyService.deleteCompanyByNit(nit);
         return ResponseEntity.noContent().build();

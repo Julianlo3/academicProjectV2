@@ -20,9 +20,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                        // Permitir solo los GETs públicos
-                        //.requestMatchers(HttpMethod.GET, "/api/student").permitAll()
-                        // Todos los demás métodos en esa ruta requieren autenticación
                         .anyRequest().authenticated()
                         )
                 .oauth2ResourceServer(oauth2 -> oauth2
