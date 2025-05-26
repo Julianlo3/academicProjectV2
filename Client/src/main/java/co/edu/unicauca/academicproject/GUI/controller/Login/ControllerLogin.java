@@ -63,18 +63,7 @@ public class ControllerLogin {
         String pass = vista.getPasswordUser().getText();
         System.out.println("Datos del form:" +userName + " " + pass);
         switch (cargarRol()) {
-            case "Estudiante":
-                StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
-                Student student = studentController.checkStudent(userName, pass);
-                if(student != null){
-                    GUIHomeWithLog homeStudent = new GUIHomeWithLog(student.getCode(),cargarRol());
-                    homeStudent.setVisible(true);
-                    vista.dispose();
-                }
-                else {
-                    JOptionPane.showMessageDialog(null, "Error. Revisar clave");
-                }
-                break;
+
             case "Admin":
                 String codigo = Admin.getInstance().getCodigo();
                 String password = Admin.getInstance().getPassword();
