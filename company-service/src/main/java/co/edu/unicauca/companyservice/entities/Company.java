@@ -3,9 +3,7 @@ package co.edu.unicauca.companyservice.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "company")
 public class Company {
-    // ATRIBUTOS
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,7 +17,6 @@ public class Company {
     private IndustrialSector industrialSector;
 
     private String email;
-    private String password;
 
     // GETTERS & SETTERS
 
@@ -51,7 +48,4 @@ public class Company {
 
     public void setEmail(String email) {this.email = email;}
 
-    public String getPassword() {return password;}
-
-    public void setPassword(String password) {this.password = password;}
 }

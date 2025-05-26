@@ -1,158 +1,48 @@
 package co.edu.unicauca.companyservice.controllers;
 
-import co.edu.unicauca.companyservice.client.ProjectServiceClient;
-import co.edu.unicauca.companyservice.entities.Company;
-import co.edu.unicauca.companyservice.entities.ProjectValuation;
-import co.edu.unicauca.companyservice.entities.PublishProject;
-import co.edu.unicauca.companyservice.infra.dto.projectDTO.ProjectRequestDTO;
-import co.edu.unicauca.companyservice.infra.dto.projectDTO.ProjectResponseDTO;
-import co.edu.unicauca.companyservice.services.ICompanyService;
+import co.edu.unicauca.companyservice.infra.dto.CompanyDTO;
+import co.edu.unicauca.companyservice.services.CompanyService;
+import jakarta.persistence.Access;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/company")
 public class CompanyController {
-    @Autowired
-    private ICompanyService companyService;
 
     @Autowired
-    private ProjectServiceClient projectServiceClient;
+    private CompanyService companyService;
 
-    // Obtener una empresa por ID
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getCompanyById(@PathVariable Long id) {
-        try{
-            Company company = companyService.getCompanyById(id);
-            return ResponseEntity.ok(company);
-        }catch(RuntimeException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
-
-    // Crear una nueva empresa
     @PostMapping
-    public ResponseEntity<?> createCompany(@RequestBody Company company) {
-        Company createdCompany = companyService.createCompany(company);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdCompany);
+    public ResponseEntity<CompanyDTO> createCompany(@RequestBody CompanyDTO dto) {
+        CompanyDTO created = companyService.createCompany(dto);
+        return ResponseEntity.ok(created);
     }
 
-    // Actualizar una empresa existente
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateCompany(@PathVariable Long id, @RequestBody Company company){
-        try{
-            company.setId(id); // asegurar que el id coincida
-            Company updatedCompany = companyService.updateCompany(company);
-            return ResponseEntity.ok(updatedCompany);
-        }catch(RuntimeException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+    @GetMapping("/{nit}")
+    public ResponseEntity<CompanyDTO> getCompanyByNit(@PathVariable Long nit) {
+        CompanyDTO company = companyService.getCompanyByNit(nit);
+        return ResponseEntity.ok(company);
     }
 
-    // Eliminar una empresa
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCompany(@PathVariable Long id){
-        try{
-            companyService.deleteCompany(id);
-            return ResponseEntity.noContent().build();
-        }catch(RuntimeException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    @GetMapping
+    public ResponseEntity<List<CompanyDTO>> getAllCompanies() {
+        List<CompanyDTO> companies = companyService.getAllCompanies();
+        return ResponseEntity.ok(companies);
     }
 
-    // Publicar un proyecto
-    @PostMapping("/{companyId}/projects/publish")
-    public ResponseEntity<?> publishProject(@PathVariable Long companyId, @RequestBody PublishProject project){
-        try{
-            PublishProject publishedProject = companyService.publishProject(companyId, project);
-            return ResponseEntity.status(HttpStatus.CREATED).body(publishedProject);
-        }catch(RuntimeException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+    @PutMapping("/{nit}")
+    public ResponseEntity<CompanyDTO> updateCompany(@PathVariable Long nit, @RequestBody CompanyDTO dto) {
+        CompanyDTO updated = companyService.updateCompanyByNit(nit, dto);
+        return ResponseEntity.ok(updated);
     }
 
-    // Obtener todos los proyectos de una empresa
-    @GetMapping("/{companyId}/projects")
-    public ResponseEntity<?> getProjectsByCompany(@PathVariable Long companyId){
-        try{
-            List<PublishProject> projects = companyService.getProjectsByCompany(companyId);
-            return ResponseEntity.ok(projects);
-        }catch (RuntimeException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
-
-    // Agregar una valoración de proyecto
-    @PostMapping("/{projectId}/valuations")
-    public ResponseEntity<?> addProjectValuation(@PathVariable Long projectId, @RequestBody ProjectValuation valuation){
-        try{
-            ProjectValuation addedValuation = companyService.addProjectValuation(projectId, valuation);
-            return ResponseEntity.status(HttpStatus.CREATED).body(addedValuation);
-        }catch (RuntimeException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
-    }
-
-    // Obtener valoraciones de un proyecto
-    @GetMapping("/{projectId}/valuations")
-    public ResponseEntity<List<ProjectValuation>> getValuationsByProject(@PathVariable Long projectId){
-        try{
-            List<ProjectValuation> valuations = companyService.getValuationsByProject(projectId);
-            return ResponseEntity.ok(valuations);
-        }catch (RuntimeException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
-
-    /**
-     * Endpoint para crear un nuevo proyecto llamando al microservicio de proyecto
-     */
-    @PostMapping("/proyectos")
-    public ResponseEntity<ProjectResponseDTO> createProject(@RequestBody ProjectRequestDTO projectRequestDTO) {
-        return projectServiceClient.createProject(projectRequestDTO);
-    }
-
-    /**
-     * Endpoint para obtener un proyecto por ID llamando al microservicio de proyecto
-     */
-    @GetMapping("/proyectos/{projectId}")
-    public ResponseEntity<ProjectResponseDTO> getProjectById(@PathVariable Long projectId) {
-        return projectServiceClient.getProjectById(projectId);
-    }
-
-    // OPERACIONES POR NIT
-    @GetMapping("/search")
-    public ResponseEntity<Company> getCompanyByNit(@RequestParam("nit") Long nit) {
-        Optional<Company> company = companyService.findByNit(nit);
-        if (company.isPresent()) {
-            return ResponseEntity.ok(company.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @PutMapping("/updateByNit/{nit}")
-    public ResponseEntity<?> updateCompanyByNit(@PathVariable Long nit, @RequestBody Company company) {
-        try {
-            Company updatedCompany = companyService.updateByNit(nit, company);
-            return ResponseEntity.ok(updatedCompany);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company with NIT " + nit + " not found.");
-        }
-    }
-
-    @DeleteMapping("/deleteByNit/{nit}")
-    public ResponseEntity<?> deleteCompanyByNit(@PathVariable Long nit) {
-        try {
-            companyService.deleteByNit(nit);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company with NIT " + nit + " not found.");
-        }
+    @DeleteMapping("/{nit}")
+    public ResponseEntity<Void> deleteCompany(@PathVariable Long nit) {
+        companyService.deleteCompanyByNit(nit);
+        return ResponseEntity.noContent().build();
     }
 }

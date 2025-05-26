@@ -14,7 +14,7 @@ public class SecurityConfig {
         http
                 .authorizeExchange(exchanges -> exchanges
                         // Permitir solo los GETs públicos
-                        .pathMatchers(HttpMethod.GET, "/api/student").permitAll()
+                        //.pathMatchers(HttpMethod.GET, "/api/student").permitAll()
                         // Todos los demás métodos en esa ruta requieren autenticación
                         .anyExchange().authenticated()
                 )

@@ -2,30 +2,16 @@ package co.edu.unicauca.companyservice.infra.dto;
 
 import co.edu.unicauca.companyservice.entities.IndustrialSector;
 
-/**
- * DTO que expone únicamente los datos necesarios para mostrar información pública de una empresa
- */
-public class ResponseCompanyDTO {
-    // Atributos expuestos
-    private Long id; // Id de la empresa
-    private Long nit; // NIT (número de identificación tributaria)
-    private String name; // Nombre de la empresa
-    private String phone; // Teléfono de contacto
-    private String website; // Página web de la empresa
-    private IndustrialSector industrialSector; // Sector industrial
+public class CompanyDTO {
 
-    // Constructores
-    public ResponseCompanyDTO() {}
-    public ResponseCompanyDTO(Long id, Long nit, String name, String phone, String website, IndustrialSector industrialSector) {
-        this.id = id;
-        this.nit = nit;
-        this.name = name;
-        this.phone = phone;
-        this.website = website;
-        this.industrialSector = industrialSector;
-    }
+    private Long id;
+    private Long nit;
+    private String name;
+    private String phone;
+    private String website;
+    private String email;
+    private IndustrialSector industrialSector;
 
-    // Getters&Setters
     // Getters y Setters
     public Long getId() {
         return id;
@@ -67,6 +53,14 @@ public class ResponseCompanyDTO {
         this.website = website;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public IndustrialSector getIndustrialSector() {
         return industrialSector;
     }
@@ -74,5 +68,4 @@ public class ResponseCompanyDTO {
     public void setIndustrialSector(IndustrialSector industrialSector) {
         this.industrialSector = industrialSector;
     }
-
 }
