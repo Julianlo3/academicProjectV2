@@ -2,8 +2,6 @@ package com.projectMicroservice.domain.state;
 
 import com.projectMicroservice.domain.model.Project;
 import com.projectMicroservice.domain.valueObject.ProjectDetails;
-import com.projectMicroservice.domain.valueObject.ProjectRequirements;
-import com.projectMicroservice.domain.valueObject.TechnologyStack;
 
 public class Pending implements IProjectState {
 
