@@ -20,7 +20,7 @@ public class CompanyController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
+    @PreAuthorize("hasAnyRole('admin', 'gestionador')")
     public ResponseEntity<CompanyDTO> createCompany(@RequestBody CompanyDTO dto) {
         CompanyDTO created = companyService.createCompany(dto);
         return ResponseEntity.ok(created);
