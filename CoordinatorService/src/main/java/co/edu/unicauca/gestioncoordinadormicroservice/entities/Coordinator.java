@@ -1,9 +1,9 @@
 package  co.edu.unicauca.gestioncoordinadormicroservice.entities;
 
-import co.edu.unicauca.gestioncoordinadormicroservice.state.ICoordinatorState;
-import co.edu.unicauca.gestioncoordinadormicroservice.state.PendienteCoordi;
-import co.edu.unicauca.gestioncoordinadormicroservice.state.RechazadoCoordi;
-import co.edu.unicauca.gestioncoordinadormicroservice.state.VerificadoCoordi;
+import co.edu.unicauca.gestioncoordinadormicroservice.entities.state.ICoordinatorState;
+import co.edu.unicauca.gestioncoordinadormicroservice.entities.state.Pending;
+import co.edu.unicauca.gestioncoordinadormicroservice.entities.state.Rejected;
+import co.edu.unicauca.gestioncoordinadormicroservice.entities.state.Verified;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -42,9 +42,9 @@ public class Coordinator {
         }
 
         switch (estadoActual) {
-            case "PENDIENTE" -> this.estado = new PendienteCoordi(this);
-            case "RECHAZADO" -> this.estado = new RechazadoCoordi(this);
-            case "VERIFICADO" -> this.estado = new VerificadoCoordi(this);
+            case "PENDIENTE" -> this.estado = new Pending(this);
+            case "RECHAZADO" -> this.estado = new Rejected(this);
+            case "VERIFICADO" -> this.estado = new Verified(this);
             default -> System.out.println("El estado no existe");
         }
     }

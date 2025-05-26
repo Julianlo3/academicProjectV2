@@ -14,10 +14,13 @@ import java.util.stream.Collectors;
 @Service
 public class CompanyService implements ICompanyService {
 
-    @Autowired
-    private CompanyRepository companyRepository;
-    @Autowired
-    private CompanyMapper companyMapper;
+    private final CompanyRepository companyRepository;
+    private final CompanyMapper companyMapper;
+
+    public CompanyService(CompanyRepository companyRepository, CompanyMapper companyMapper) {
+        this.companyRepository = companyRepository;
+        this.companyMapper = companyMapper;
+    }
 
     @Override
     public CompanyDTO createCompany(CompanyDTO dto) {
@@ -52,8 +55,11 @@ public class CompanyService implements ICompanyService {
         // Actualizar campos
         existing.setName(dto.getName());
         existing.setEmail(dto.getEmail());
-        existing.setPhone(dto.getPhone());
         existing.setWebsite(dto.getWebsite());
+        existing.setContactPhone(dto.getContactPhone());
+        existing.setContactName(dto.getContactName());
+        existing.setContactLastName(dto.getContactLastName());
+        existing.setContactPost(dto.getContactPost());
         existing.setIndustrialSector(dto.getIndustrialSector());
 
         Company updated = companyRepository.save(existing);

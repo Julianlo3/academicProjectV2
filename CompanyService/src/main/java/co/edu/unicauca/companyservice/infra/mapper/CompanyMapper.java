@@ -12,9 +12,12 @@ public class CompanyMapper {
         dto.setId(company.getId());
         dto.setNit(company.getNit());
         dto.setName(company.getName());
-        dto.setPhone(company.getPhone());
         dto.setWebsite(company.getWebsite());
         dto.setEmail(company.getEmail());
+        dto.setContactPhone(company.getContactPhone());
+        dto.setContactName(company.getContactName());
+        dto.setContactLastName(company.getContactLastName());
+        dto.setContactPost(company.getContactPost());
         dto.setIndustrialSector(company.getIndustrialSector());
         return dto;
     }
@@ -24,9 +27,12 @@ public class CompanyMapper {
         company.setId(dto.getId());
         company.setNit(dto.getNit());
         company.setName(dto.getName());
-        company.setPhone(dto.getPhone());
         company.setWebsite(dto.getWebsite());
         company.setEmail(dto.getEmail());
+        company.setContactPhone(dto.getContactPhone());
+        company.setContactName(dto.getContactName());
+        company.setContactLastName(dto.getContactLastName());
+        company.setContactPost(dto.getContactPost());
         company.setIndustrialSector(dto.getIndustrialSector());
         return company;
     }

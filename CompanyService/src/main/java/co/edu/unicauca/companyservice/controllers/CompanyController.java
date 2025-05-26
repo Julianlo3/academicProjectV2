@@ -13,8 +13,11 @@ import java.util.List;
 @RequestMapping("/api/company")
 public class CompanyController {
 
-    @Autowired
-    private CompanyService companyService;
+    private final CompanyService companyService;
+
+    public CompanyController(CompanyService companyService) {
+        this.companyService = companyService;
+    }
 
     @PostMapping
     @PreAuthorize("hasRole('admin')")

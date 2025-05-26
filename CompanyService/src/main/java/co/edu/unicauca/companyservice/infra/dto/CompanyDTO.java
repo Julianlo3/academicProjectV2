@@ -7,12 +7,16 @@ public class CompanyDTO {
     private Long id;
     private Long nit;
     private String name;
-    private String phone;
     private String website;
     private String email;
+    private String contactPhone;
+    private String contactName;
+    private String contactLastName;
+    private String contactPost;
     private IndustrialSector industrialSector;
 
     // Getters y Setters
+
     public Long getId() {
         return id;
     }
@@ -37,14 +41,6 @@ public class CompanyDTO {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getWebsite() {
         return website;
     }
@@ -59,6 +55,38 @@ public class CompanyDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getContactLastName() {
+        return contactLastName;
+    }
+
+    public void setContactLastName(String contactLastName) {
+        this.contactLastName = contactLastName;
+    }
+
+    public String getContactPost() {
+        return contactPost;
+    }
+
+    public void setContactPost(String contactPost) {
+        this.contactPost = contactPost;
     }
 
     public IndustrialSector getIndustrialSector() {
