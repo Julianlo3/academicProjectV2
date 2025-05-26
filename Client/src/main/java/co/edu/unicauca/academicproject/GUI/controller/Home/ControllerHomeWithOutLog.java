@@ -2,15 +2,15 @@ package co.edu.unicauca.academicproject.GUI.controller.Home;
 
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
 import co.edu.unicauca.academicproject.GUI.GUILogin;
+
 import co.edu.unicauca.academicproject.GUI.GUIRegisteredUser;
 import co.edu.unicauca.academicproject.Service.project.ProjectServiceClient;
 import co.edu.unicauca.academicproject.controller.ProjectController;
-import co.edu.unicauca.academicproject.entities.Coordinator;
 import co.edu.unicauca.academicproject.entities.Project;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
+
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;

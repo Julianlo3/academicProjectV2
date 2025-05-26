@@ -11,8 +11,8 @@ public class StudentServiceClient {
     @Autowired
     private StudentFeingClient FeignClient;
 
-    public void CreateStudent(Student student) {
-        FeignClient.createStudent(student);
+    public void CreateStudent(Student student,String token) {
+        FeignClient.createStudent(student, token);
     }
 
     public List<Student> GetAllStudents(){

@@ -139,7 +139,8 @@ public class ControllerRegisterUser {
         try {
             String token = users.obtenerTokenGestionador("creador", "123");
             users.crearUsuarioKeycloak(token, String.valueOf(codigo), pass,"student");
-            studentController.registerStudent(codigo, nombre, tel, email, pass);
+            String token2 = "Bearer " + users.obtenerTokenGestionador("creador", "123");
+            studentController.registerStudent(codigo, nombre, tel, email,token2);
             return true;
         } catch (Exception ex) {
             System.err.println("Error inesperado: " + ex.getMessage());
