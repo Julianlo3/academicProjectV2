@@ -1,4 +1,4 @@
-package co.edu.unicauca.studentservice.security;
+package co.edu.unicauca.companyservice.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,11 +20,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                        // Permitir solo los GETs públicos
-                        //.requestMatchers(HttpMethod.GET, "/api/student").permitAll()
-                        // Todos los demás métodos en esa ruta requieren autenticación
+                        // Todos los métodos en esa ruta requieren autenticación
                         .anyRequest().authenticated()
-                        )
+                )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
                 );
