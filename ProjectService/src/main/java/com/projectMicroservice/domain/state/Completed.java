@@ -2,8 +2,9 @@ package com.projectMicroservice.domain.state;
 
 import com.projectMicroservice.domain.model.Project;
 import com.projectMicroservice.domain.valueObject.ProjectDetails;
-import com.projectMicroservice.domain.valueObject.ProjectRequirements;
-import com.projectMicroservice.domain.valueObject.TechnologyStack;
+import com.projectMicroservice.domain.valueObject.ProjectTimeline;
+
+import java.math.BigDecimal;
 
 public class Completed implements IProjectState {
 
@@ -33,13 +34,13 @@ public class Completed implements IProjectState {
     }
 
     @Override
-    public void updateRequirements(Project project, ProjectRequirements newRequirements) throws Exception {
-        throw new IllegalAccessException("Requirements cannot be changed if the project is \"Completed\".");
+    public void editTimeline(Project project, ProjectTimeline newTimeline) throws Exception {
+        throw new IllegalAccessException("Timeline cannot be changed if the project is \"Completed\".");
     }
 
     @Override
-    public void updateTechnologyStack(Project project, TechnologyStack newStack) throws Exception {
-        throw new IllegalAccessException("Technologies cannot be changed if the project is \"Completed\".");
+    public void editBudget(Project project, BigDecimal newBudget) throws Exception {
+        throw new IllegalAccessException("Budget cannot be changed if the project is \"Completed\".");
     }
 
 }

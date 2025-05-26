@@ -3,34 +3,35 @@ package com.projectMicroservice.domain.model;
 import com.projectMicroservice.domain.state.IProjectState;
 import com.projectMicroservice.domain.valueObject.*;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Project {
+
     private final Long projectId;
     private final Long companyNit;
 
-    private ProjectDetails details;
-    private AcademicPeriod academicPeriod;
-    private TechnologyStack technologyStack;
-    private ProjectRequirements requirements;
+    private ProjectDetails details;           // name, summary, objectives, description
+    private ProjectTimeline timeline;         // max duration, date
+    private AcademicPeriod academicPeriod;    // periodo academico
+    private BigDecimal budget;                // presupuesto
 
     private IProjectState state;
 
-    // Constructor privado: usar fábrica si deseas control centralizado
     private Project(Long projectId,
                     Long companyNit,
                     ProjectDetails details,
+                    ProjectTimeline timeline,
+                    BigDecimal budget,
                     AcademicPeriod academicPeriod,
-                    TechnologyStack technologyStack,
-                    ProjectRequirements requirements,
                     IProjectState state) {
 
         this.projectId = projectId;
         this.companyNit = companyNit;
         this.details = details;
+        this.timeline = timeline;
+        this.budget = budget;
         this.academicPeriod = academicPeriod;
-        this.technologyStack = technologyStack;
-        this.requirements = requirements;
         this.state = state;
     }
 
@@ -38,11 +39,11 @@ public class Project {
     public static Project create(Long projectId,
                                  Long companyNit,
                                  ProjectDetails details,
+                                 ProjectTimeline timeline,
+                                 BigDecimal budget,
                                  AcademicPeriod academicPeriod,
-                                 TechnologyStack technologyStack,
-                                 ProjectRequirements requirements,
-                                 IProjectState state) {
-        return new Project(projectId, companyNit, details, academicPeriod, technologyStack, requirements, state);
+                                 IProjectState initialState) {
+        return new Project(projectId, companyNit, details, timeline, budget, academicPeriod, initialState);
     }
 
     // Delegación al estado actual
@@ -62,20 +63,32 @@ public class Project {
         this.state.complete(this);
     }
 
-    // Modificadores de atributos
+    // Modificaciones permitidas a través del estado
     public void editDetails(ProjectDetails newDetails) throws Exception {
-        this.state.editDetails(this, newDetails);
+        state.editDetails(this, newDetails);
     }
 
-    public void updateRequirements(ProjectRequirements newRequirements) throws Exception {
-        this.state.updateRequirements(this, newRequirements);
+    public void editTimeline(ProjectTimeline newTimeline) throws Exception {
+        state.editTimeline(this, newTimeline);
     }
 
-    public void updateTechnologyStack(TechnologyStack newStack) throws Exception {
-        this.state.updateTechnologyStack(this, newStack);
+    public void editBudget(BigDecimal newBudget) throws Exception {
+        state.editBudget(this, newBudget);
     }
 
-    // Setter de estado (solo accesible por estados)
+    // Métodos usados por los estados para aplicar cambios
+    public void applyDetailsChange(ProjectDetails details) {
+        this.details = Objects.requireNonNull(details);
+    }
+
+    public void applyTimelineChange(ProjectTimeline timeline) {
+        this.timeline = Objects.requireNonNull(timeline);
+    }
+
+    public void applyBudgetChange(BigDecimal budget) {
+        this.budget = Objects.requireNonNull(budget);
+    }
+
     public void changeState(IProjectState newState) {
         this.state = newState;
     }
@@ -93,32 +106,19 @@ public class Project {
         return details;
     }
 
+    public ProjectTimeline getTimeline() {
+        return timeline;
+    }
+
+    public BigDecimal getBudget() {
+        return budget;
+    }
+
     public AcademicPeriod getAcademicPeriod() {
         return academicPeriod;
     }
 
-    public TechnologyStack getTechnologyStack() {
-        return technologyStack;
-    }
-
-    public ProjectRequirements getRequirements() {
-        return requirements;
-    }
-
     public IProjectState getState() {
         return state;
-    }
-
-    // Métodos usados por los estados
-    public void applyDetailsChange(ProjectDetails details) {
-        this.details = Objects.requireNonNull(details);
-    }
-
-    public void applyRequirementsChange(ProjectRequirements requirements) {
-        this.requirements = Objects.requireNonNull(requirements);
-    }
-
-    public void applyTechnologyStackChange(TechnologyStack technologyStack) {
-        this.technologyStack = Objects.requireNonNull(technologyStack);
     }
 }

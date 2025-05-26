@@ -5,14 +5,16 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class ProjectDetailsEmbeddable {
 
-    private String title;
+    private String name;
+    private String summary;
+    private String objectives;
     private String description;
-    private int estimatedDurationWeeks;
 
-    public ProjectDetailsEmbeddable(String title, String description, int estimatedDurationWeeks) {
-        this.title = title;
+    public ProjectDetailsEmbeddable(String name, String summary, String objectives, String description) {
+        this.name = name;
+        this.summary = summary;
+        this.objectives = objectives;
         this.description = description;
-        this.estimatedDurationWeeks = estimatedDurationWeeks;
     }
 
     public ProjectDetailsEmbeddable() {
@@ -20,12 +22,28 @@ public class ProjectDetailsEmbeddable {
     }
 
     // Getters y setters
-    public String getTitle() {
-         return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getObjectives() {
+        return objectives;
+    }
+
+    public void setObjectives(String objectives) {
+        this.objectives = objectives;
     }
 
     public String getDescription() {
@@ -34,13 +52,5 @@ public class ProjectDetailsEmbeddable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getEstimatedDurationWeeks() {
-        return estimatedDurationWeeks;
-    }
-
-    public void setEstimatedDurationWeeks(int estimatedDurationWeeks) {
-        this.estimatedDurationWeeks = estimatedDurationWeeks;
     }
 }

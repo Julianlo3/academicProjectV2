@@ -3,8 +3,9 @@ package com.projectMicroservice.domain.state;
 
 import com.projectMicroservice.domain.model.Project;
 import com.projectMicroservice.domain.valueObject.ProjectDetails;
-import com.projectMicroservice.domain.valueObject.ProjectRequirements;
-import com.projectMicroservice.domain.valueObject.TechnologyStack;
+import com.projectMicroservice.domain.valueObject.ProjectTimeline;
+
+import java.math.BigDecimal;
 
 public class Approved implements IProjectState {
 
@@ -34,13 +35,13 @@ public class Approved implements IProjectState {
     }
 
     @Override
-    public void updateRequirements(Project project, ProjectRequirements newRequirements) throws Exception {
-        project.applyRequirementsChange(newRequirements);
+    public void editTimeline(Project project, ProjectTimeline newTimeline) throws Exception {
+        project.applyTimelineChange(newTimeline);
     }
 
     @Override
-    public void updateTechnologyStack(Project project, TechnologyStack newStack) throws Exception {
-        project.applyTechnologyStackChange(newStack);
+    public void editBudget(Project project, BigDecimal newBudget) throws Exception {
+        project.applyBudgetChange(newBudget);
     }
 
 }

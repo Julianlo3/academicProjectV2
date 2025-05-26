@@ -43,8 +43,8 @@ public class ProjectRepositoryImpl implements ProjectRepositoryPort {
     }
 
     @Override
-    public List<Project> findByTitleContaining(String title) {
-        List<ProjectEntity> entities = projectRepository.findByDetails_TitleContainingIgnoreCase(title);
+    public List<Project> findByNameContaining(String name) {
+        List<ProjectEntity> entities = projectRepository.findByDetails_NameContainingIgnoreCase(name);
         return entities.stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());

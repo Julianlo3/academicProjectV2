@@ -2,8 +2,11 @@ package com.projectMicroservice.domain.state;
 
 import com.projectMicroservice.domain.model.Project;
 import com.projectMicroservice.domain.valueObject.ProjectDetails;
+import com.projectMicroservice.domain.valueObject.ProjectTimeline;
 
-public class Pending implements IProjectState {
+import java.math.BigDecimal;
+
+public class Received implements IProjectState {
 
     private Project project;
 
@@ -19,12 +22,12 @@ public class Pending implements IProjectState {
 
     @Override
     public void assign(Project project) throws Exception{
-        throw new IllegalAccessException("The project cannot change to \"Assigned\" from \"Pending\"");
+        throw new IllegalAccessException("The project cannot change to \"Assigned\" from \"Received\"");
     }
 
     @Override
     public void complete(Project project) throws Exception{
-        throw new IllegalAccessException("The project cannot change to \"Completed\" from \"Pending\"");
+        throw new IllegalAccessException("The project cannot change to \"Completed\" from \"Received\"");
     }
 
     @Override
@@ -33,13 +36,14 @@ public class Pending implements IProjectState {
     }
 
     @Override
-    public void updateRequirements(Project project, ProjectRequirements newRequirements) throws Exception {
-        project.applyRequirementsChange(newRequirements);
+    public void editTimeline(Project project, ProjectTimeline newTimeline) throws Exception {
+        project.applyTimelineChange(newTimeline);
     }
 
     @Override
-    public void updateTechnologyStack(Project project, TechnologyStack newStack) throws Exception {
-        project.applyTechnologyStackChange(newStack);
+    public void editBudget(Project project, BigDecimal newBudget) throws Exception {
+        project.applyBudgetChange(newBudget);
     }
+
 
 }

@@ -9,6 +9,6 @@ public interface ProjectRepositoryPort {
     Project save(Project project);
     Optional<Project> findById(Long id);
     List<Project> findAll();
-    List<Project> findByTitleContaining(String title);
+    List<Project> findByNameContaining(String name);
     List<Project> findByCompanyNit(Long companyNit);
 }

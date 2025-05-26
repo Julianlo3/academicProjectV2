@@ -1,23 +1,41 @@
 package com.projectMicroservice.presentation.dto;
 
 import com.projectMicroservice.domain.model.Project;
+import com.projectMicroservice.domain.state.Received;
+import com.projectMicroservice.domain.state.Rejected;
 import com.projectMicroservice.domain.valueObject.*;
-import com.projectMicroservice.domain.state.Pending;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProjectDtoMapper {
+public class ProjectDTOMapper {
 
     public Project toDomain(ProjectDTO dto) {
+        ProjectDetails details = new ProjectDetails(
+                dto.getName(),
+                dto.getSummary(),
+                dto.getObjectives(),
+                dto.getDescription()
+        );
+
+        ProjectTimeline timeline = new ProjectTimeline(
+                dto.getMaxDurationInMonths(),
+                dto.getStartDate()
+        );
+
+        AcademicPeriod academicPeriod = new AcademicPeriod(
+                dto.getAcademicYear(),
+                dto.getAcademicTerm()
+        );
+
         return Project.create(
                 dto.getProjectId(),
                 dto.getCompanyNit(),
-                new ProjectDetails(dto.getTitle(), dto.getDescription(), dto.getDurationWeeks()),
-                new AcademicPeriod(dto.getAcademicYear(), dto.getAcademicTerm()),
-                new TechnologyStack(dto.getTechnologyStack()),
-                new ProjectRequirements(dto.getMinimumSemester(), dto.getRequiredSkills()),
-                new Pending() // Al crear, el estado es Pending
+                details,
+                timeline,
+                dto.getBudget(),
+                academicPeriod,
+                new Received() // Estado inicial
         );
     }
 
@@ -25,15 +43,23 @@ public class ProjectDtoMapper {
         ProjectDTO dto = new ProjectDTO();
         dto.setProjectId(project.getProjectId());
         dto.setCompanyNit(project.getCompanyNit());
-        dto.setTitle(project.getDetails().getTitle());
+
+        dto.setName(project.getDetails().getName());
+        dto.setSummary(project.getDetails().getSummary());
+        dto.setObjectives(project.getDetails().getObjectives());
         dto.setDescription(project.getDetails().getDescription());
-        dto.setDurationWeeks(project.getDetails().getEstimatedDurationWeeks());
+
+        dto.setMaxDurationInMonths(project.getTimeline().getMaxDurationInMonths());
+        dto.setStartDate(project.getTimeline().getStartDate());
+
+        dto.setBudget(project.getBudget());
+
         dto.setAcademicYear(project.getAcademicPeriod().getYear());
         dto.setAcademicTerm(project.getAcademicPeriod().getTerm());
-        dto.setTechnologyStack(project.getTechnologyStack().getTechnologies());
-        dto.setMinimumSemester(project.getRequirements().getMinimumSemester());
-        dto.setRequiredSkills(project.getRequirements().getRequiredSkills());
-        dto.setCurrentState(project.getState().getClass().getSimpleName());
+
+        dto.setState(project.getState().getClass().getSimpleName());
+
         return dto;
     }
 }
+

@@ -3,6 +3,8 @@ package com.projectMicroservice.domain.state;
 import com.projectMicroservice.domain.model.Project;
 import com.projectMicroservice.domain.valueObject.*;
 
+import java.math.BigDecimal;
+
 /**
  *
  * Interface que maneja el ciclo de vida del proyecto
@@ -19,7 +21,7 @@ public interface IProjectState {
 
     void editDetails(Project project, ProjectDetails newDetails) throws Exception;
 
-    void updateRequirements(Project project, ProjectRequirements newRequirements) throws Exception;
+    void editTimeline(Project project, ProjectTimeline newTimeline) throws Exception;
 
-    void updateTechnologyStack(Project project, TechnologyStack newStack) throws Exception;
+    void editBudget(Project project, BigDecimal newBudget) throws Exception;
 }

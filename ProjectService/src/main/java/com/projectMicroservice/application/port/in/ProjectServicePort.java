@@ -1,6 +1,11 @@
 package com.projectMicroservice.application.port.in;
 
 import com.projectMicroservice.domain.model.Project;
+import com.projectMicroservice.domain.valueObject.ProjectDetails;
+import com.projectMicroservice.domain.valueObject.ProjectTimeline;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public interface ProjectServicePort {
 
@@ -10,7 +15,7 @@ public interface ProjectServicePort {
     void assignProject(Long projectId) throws Exception;
     void completeProject(Long projectId) throws Exception;
 
-    void editProjectDetails(Long projectId, String title, String description, int durationWeeks) throws Exception;
-    void updateRequirements(Long projectId, int semester, String skills) throws Exception;
-    void updateTechnologyStack(Long projectId, java.util.List<String> stack) throws Exception;
+    void editProjectDetails(Long projectId, String name, String summary, String objectives, String description) throws Exception;
+    void editProjectTimeline(Long projectId, int maxDurationInMonths, LocalDate startDate) throws Exception;
+    void editProjectBudget(Long projectId, BigDecimal newBudget) throws Exception;
 }

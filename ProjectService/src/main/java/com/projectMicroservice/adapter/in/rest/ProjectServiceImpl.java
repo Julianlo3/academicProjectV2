@@ -4,11 +4,11 @@ import com.projectMicroservice.application.port.in.ProjectServicePort;
 import com.projectMicroservice.application.port.out.ProjectRepositoryPort;
 import com.projectMicroservice.domain.model.Project;
 import com.projectMicroservice.domain.valueObject.ProjectDetails;
-import com.projectMicroservice.domain.valueObject.ProjectRequirements;
-import com.projectMicroservice.domain.valueObject.TechnologyStack;
+import com.projectMicroservice.domain.valueObject.ProjectTimeline;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Service
 public class ProjectServiceImpl implements ProjectServicePort {
@@ -53,27 +53,23 @@ public class ProjectServiceImpl implements ProjectServicePort {
     }
 
     @Override
-    public void editProjectDetails(Long projectId, String title, String description, int durationWeeks) throws Exception {
+    public void editProjectDetails(Long projectId, String name, String summary, String objectives, String description) throws Exception {
         Project project = getProjectOrThrow(projectId);
-        ProjectDetails details = new ProjectDetails(title, description, durationWeeks);
-        project.editDetails(details);
+        project.editDetails(new ProjectDetails(name, summary, objectives, description));
         repository.save(project);
     }
 
     @Override
-    public void updateRequirements(Long projectId, int semester, String skills) throws Exception {
+    public void editProjectTimeline(Long projectId, int maxDurationInMonths, LocalDate startDate) throws Exception {
         Project project = getProjectOrThrow(projectId);
-        ProjectRequirements requirements = new ProjectRequirements(semester, skills);
-        project.updateRequirements(requirements);
+        project.editTimeline(new ProjectTimeline(maxDurationInMonths, startDate));
         repository.save(project);
     }
 
     @Override
-    public void updateTechnologyStack(Long projectId, List<String> stack) throws Exception {
+    public void editProjectBudget(Long projectId, BigDecimal newBudget) throws Exception {
         Project project = getProjectOrThrow(projectId);
-        TechnologyStack techStack = new TechnologyStack(stack);
-        project.updateTechnologyStack(techStack);
-        repository.save(project);
+        project.editBudget(newBudget);
     }
 
     // Utilidad privada para validar existencia

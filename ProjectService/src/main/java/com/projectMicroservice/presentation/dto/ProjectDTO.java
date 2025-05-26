@@ -1,25 +1,29 @@
 package com.projectMicroservice.presentation.dto;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class ProjectDTO {
     private Long projectId;
     private Long companyNit;
 
-    private String title;
+    private String name;
+    private String summary;
+    private String objectives;
     private String description;
-    private int durationWeeks;
+
+    private int maxDurationInMonths;
+    private LocalDate startDate;
+
+    private BigDecimal budget;
 
     private int academicYear;
     private int academicTerm;
 
-    private List<String> technologyStack;
-    private int minimumSemester;
-    private String requiredSkills;
-
-    private String currentState;
+    private String state;
 
     // Getters y Setters
+
     public Long getProjectId() {
         return projectId;
     }
@@ -36,12 +40,28 @@ public class ProjectDTO {
         this.companyNit = companyNit;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getObjectives() {
+        return objectives;
+    }
+
+    public void setObjectives(String objectives) {
+        this.objectives = objectives;
     }
 
     public String getDescription() {
@@ -52,12 +72,28 @@ public class ProjectDTO {
         this.description = description;
     }
 
-    public int getDurationWeeks() {
-        return durationWeeks;
+    public int getMaxDurationInMonths() {
+        return maxDurationInMonths;
     }
 
-    public void setDurationWeeks(int durationWeeks) {
-        this.durationWeeks = durationWeeks;
+    public void setMaxDurationInMonths(int maxDurationInMonths) {
+        this.maxDurationInMonths = maxDurationInMonths;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public BigDecimal getBudget() {
+        return budget;
+    }
+
+    public void setBudget(BigDecimal budget) {
+        this.budget = budget;
     }
 
     public int getAcademicYear() {
@@ -76,35 +112,11 @@ public class ProjectDTO {
         this.academicTerm = academicTerm;
     }
 
-    public List<String> getTechnologyStack() {
-        return technologyStack;
+    public String getState() {
+        return state;
     }
 
-    public void setTechnologyStack(List<String> technologyStack) {
-        this.technologyStack = technologyStack;
-    }
-
-    public int getMinimumSemester() {
-        return minimumSemester;
-    }
-
-    public void setMinimumSemester(int minimumSemester) {
-        this.minimumSemester = minimumSemester;
-    }
-
-    public String getRequiredSkills() {
-        return requiredSkills;
-    }
-
-    public void setRequiredSkills(String requiredSkills) {
-        this.requiredSkills = requiredSkills;
-    }
-
-    public String getCurrentState() {
-        return currentState;
-    }
-
-    public void setCurrentState(String currentState) {
-        this.currentState = currentState;
+    public void setState(String state) {
+        this.state = state;
     }
 }

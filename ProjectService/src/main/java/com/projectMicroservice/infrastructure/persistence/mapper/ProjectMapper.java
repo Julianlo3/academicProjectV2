@@ -13,12 +13,12 @@ public class ProjectMapper {
         ProjectEntity entity = new ProjectEntity();
         entity.setProjectId(project.getProjectId());
         entity.setCompanyNit(project.getCompanyNit());
+        entity.setBudget(project.getBudget());
 
         // Value Objects → Embeddables
         entity.setDetails(toDetailsEmbeddable(project.getDetails()));
         entity.setAcademicPeriod(toAcademicPeriodEmbeddable(project.getAcademicPeriod()));
-        entity.setRequirements(toRequirementsEmbeddable(project.getRequirements()));
-        entity.setTechnologyStack(project.getTechnologyStack().getTechnologies());
+        entity.setTimeline(toTimelineEmbeddable(project.getTimeline()));
 
         // Estado como String
         entity.setCurrentState(project.getState().getClass().getSimpleName());
@@ -31,9 +31,9 @@ public class ProjectMapper {
                 entity.getProjectId(),
                 entity.getCompanyNit(),
                 toDetailsValueObject(entity.getDetails()),
+                toTimelineValueObject(entity.getTimeline()),
+                entity.getBudget(),
                 toAcademicPeriodValueObject(entity.getAcademicPeriod()),
-                new TechnologyStack(entity.getTechnologyStack()),
-                toRequirementsValueObject(entity.getRequirements()),
                 resolveStateFromString(entity.getCurrentState())
         );
     }
@@ -42,14 +42,20 @@ public class ProjectMapper {
 
     private ProjectDetailsEmbeddable toDetailsEmbeddable(ProjectDetails details) {
         ProjectDetailsEmbeddable emb = new ProjectDetailsEmbeddable();
-        emb.setTitle(details.getTitle());
+        emb.setName(details.getName());
+        emb.setSummary(details.getSummary());
+        emb.setObjectives(details.getObjectives());
         emb.setDescription(details.getDescription());
-        emb.setEstimatedDurationWeeks(details.getEstimatedDurationWeeks());
         return emb;
     }
 
     private ProjectDetails toDetailsValueObject(ProjectDetailsEmbeddable emb) {
-        return new ProjectDetails(emb.getTitle(), emb.getDescription(), emb.getEstimatedDurationWeeks());
+        return new ProjectDetails(
+                emb.getName(),
+                emb.getSummary(),
+                emb.getObjectives(),
+                emb.getDescription()
+        );
     }
 
     private AcademicPeriodEmbeddable toAcademicPeriodEmbeddable(AcademicPeriod period) {
@@ -63,20 +69,20 @@ public class ProjectMapper {
         return new AcademicPeriod(emb.getYear(), emb.getTerm());
     }
 
-    private ProjectRequirementsEmbeddable toRequirementsEmbeddable(ProjectRequirements req) {
-        ProjectRequirementsEmbeddable emb = new ProjectRequirementsEmbeddable();
-        emb.setMinimumSemester(req.getMinimumSemester());
-        emb.setRequiredSkills(req.getRequiredSkills());
+    private ProjectTimelineEmbeddable toTimelineEmbeddable(ProjectTimeline timeline) {
+        ProjectTimelineEmbeddable emb = new ProjectTimelineEmbeddable();
+        emb.setMaxDurationInMonths(timeline.getMaxDurationInMonths());
+        emb.setStartDate(timeline.getStartDate());
         return emb;
     }
 
-    private ProjectRequirements toRequirementsValueObject(ProjectRequirementsEmbeddable emb) {
-        return new ProjectRequirements(emb.getMinimumSemester(), emb.getRequiredSkills());
+    private ProjectTimeline toTimelineValueObject(ProjectTimelineEmbeddable emb) {
+        return new ProjectTimeline(emb.getMaxDurationInMonths(), emb.getStartDate());
     }
 
     private IProjectState resolveStateFromString(String stateName) {
         return switch (stateName) {
-            case "Pending" -> new Pending();
+            case "Received" -> new Received();
             case "Approved" -> new Approved();
             case "Rejected" -> new Rejected();
             case "Assigned" -> new Assigned();

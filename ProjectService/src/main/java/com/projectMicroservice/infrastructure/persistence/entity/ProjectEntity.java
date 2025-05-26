@@ -1,7 +1,8 @@
 package com.projectMicroservice.infrastructure.persistence.entity;
 
 import jakarta.persistence.*;
-import java.util.List;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "project")
@@ -13,6 +14,8 @@ public class ProjectEntity {
 
     private Long companyNit;
 
+    private BigDecimal budget;
+
     @Embedded
     private ProjectDetailsEmbeddable details;
 
@@ -20,12 +23,7 @@ public class ProjectEntity {
     private AcademicPeriodEmbeddable academicPeriod;
 
     @Embedded
-    private ProjectRequirementsEmbeddable requirements;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "project_technologies", joinColumns = @JoinColumn(name = "project_id"))
-    @Column(name = "technology")
-    private List<String> technologyStack;
+    private ProjectTimelineEmbeddable timeline;
 
     @Column(name = "state")
     private String currentState; // Guarda el nombre del estado, ej: "Pending", "Approved"
@@ -63,20 +61,12 @@ public class ProjectEntity {
         this.academicPeriod = academicPeriod;
     }
 
-    public ProjectRequirementsEmbeddable getRequirements() {
-        return requirements;
+    public ProjectTimelineEmbeddable getTimeline() {
+        return timeline;
     }
 
-    public void setRequirements(ProjectRequirementsEmbeddable requirements) {
-        this.requirements = requirements;
-    }
-
-    public List<String> getTechnologyStack() {
-        return technologyStack;
-    }
-
-    public void setTechnologyStack(List<String> technologyStack) {
-        this.technologyStack = technologyStack;
+    public void setTimeline(ProjectTimelineEmbeddable timeline) {
+        this.timeline = timeline;
     }
 
     public String getCurrentState() {
@@ -85,5 +75,13 @@ public class ProjectEntity {
 
     public void setCurrentState(String currentState) {
         this.currentState = currentState;
+    }
+
+    public BigDecimal getBudget() {
+        return budget;
+    }
+
+    public void setBudget(BigDecimal budget) {
+        this.budget = budget;
     }
 }
