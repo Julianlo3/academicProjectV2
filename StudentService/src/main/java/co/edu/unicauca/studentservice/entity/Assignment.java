@@ -21,7 +21,15 @@ public class Assignment {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAssignment;
 
-    public Assignment(){}
+    public Assignment(Long id, Student student, Long projectId) {
+        this.id = id;
+        this.student = student;
+        this.projectId = projectId;
+    }
+
+    public Assignment() {
+
+    }
 
     public Long getId() {
         return id;

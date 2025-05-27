@@ -13,7 +13,8 @@ public class Student {
     private Long phone;
     private String email;
 
-    public Student(Long code, String name, Long phone, String email) {
+    public Student(Long id, Long code, String name, Long phone, String email) {
+        this.id = id;
         this.code = code;
         this.name = name;
         this.phone = phone;
@@ -21,6 +22,7 @@ public class Student {
     }
 
     public Student() {
+
     }
 
     public Long getId() {

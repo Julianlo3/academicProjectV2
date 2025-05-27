@@ -1,7 +1,7 @@
 package co.edu.unicauca.studentservice.controller;
 
 import co.edu.unicauca.studentservice.entity.Assignment;
-import co.edu.unicauca.studentservice.infra.dto.AssignmentRequest;
+import co.edu.unicauca.studentservice.infra.dto.AssignmentDTO;
 import co.edu.unicauca.studentservice.service.AssignmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,10 +53,10 @@ public class AssignmentController {
 
     @PostMapping
     @PreAuthorize("hasAnyRole('admin', 'coordinator')")
-    public ResponseEntity<?> createAssignment(@RequestBody AssignmentRequest assignmentRequest) {
+    public ResponseEntity<?> createAssignment(@RequestBody AssignmentDTO assignmentDTO) {
         try {
             try {
-                Assignment savedAssignment = assignmentService.createAssignment(assignmentRequest);
+                Assignment savedAssignment = assignmentService.createAssignment(assignmentDTO);
                 return ResponseEntity.ok(savedAssignment);
             } catch (IllegalAccessException e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

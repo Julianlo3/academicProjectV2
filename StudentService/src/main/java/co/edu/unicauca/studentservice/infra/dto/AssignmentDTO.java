@@ -2,13 +2,18 @@ package co.edu.unicauca.studentservice.infra.dto;
 
 import java.util.Date;
 
-public class AssignmentRequest {
+public class AssignmentDTO {
     private Long id;
     private Long studentCode;
     private Long projectId;
     private Date dateAssignment;
 
-    public AssignmentRequest(){}
+    public AssignmentDTO(Long id, Long studentCode, Long projectId, Date dateAssignment){
+        this.id = id;
+        this.studentCode = studentCode;
+        this.projectId = projectId;
+        this.dateAssignment = dateAssignment;
+    }
 
     public Long getId() {
         return id;

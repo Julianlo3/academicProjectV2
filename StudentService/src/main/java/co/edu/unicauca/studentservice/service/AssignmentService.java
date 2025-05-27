@@ -2,7 +2,7 @@ package co.edu.unicauca.studentservice.service;
 
 import co.edu.unicauca.studentservice.entity.Assignment;
 import co.edu.unicauca.studentservice.entity.Student;
-import co.edu.unicauca.studentservice.infra.dto.AssignmentRequest;
+import co.edu.unicauca.studentservice.infra.dto.AssignmentDTO;
 import co.edu.unicauca.studentservice.infra.mapper.AssignmentMapper;
 import co.edu.unicauca.studentservice.repository.AssignmentRepository;
 import co.edu.unicauca.studentservice.repository.StudentRepository;
@@ -24,18 +24,18 @@ public class AssignmentService implements IAssignmentService {
     private AssignmentMapper assignmentMapper;
 
     @Override
-    public Assignment createAssignment(AssignmentRequest assignmentRequest) throws Exception {
+    public Assignment createAssignment(AssignmentDTO assignmentDTO) throws Exception {
         try {
             // 1. Verificar si el codigo de estudiante fue pasado y si el estudiante existe
-            if (assignmentRequest.getStudentCode() != null) {
-                if (studentRepository.findByCode(assignmentRequest.getStudentCode()).isEmpty()) {
-                    throw new IllegalAccessException("El estudiante con CODIGO " + assignmentRequest.getStudentCode() + " no existe");
+            if (assignmentDTO.getStudentCode() != null) {
+                if (studentRepository.findByCode(assignmentDTO.getStudentCode()).isEmpty()) {
+                    throw new IllegalAccessException("El estudiante con CODIGO " + assignmentDTO.getStudentCode() + " no existe");
                 }
             }
 
             // 2. Crear y mapear la signacion desde el DTO
-            Student student = studentRepository.findByCode(assignmentRequest.getStudentCode()).get();
-            Assignment assignment = assignmentMapper.toEntity(assignmentRequest, student);
+            Student student = studentRepository.findByCode(assignmentDTO.getStudentCode()).get();
+            Assignment assignment = assignmentMapper.toEntity(assignmentDTO, student);
 
             // 3. Guardar y retornar la asignacion
 

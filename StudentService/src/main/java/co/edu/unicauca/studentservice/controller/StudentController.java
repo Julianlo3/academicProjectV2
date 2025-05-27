@@ -1,7 +1,7 @@
 package co.edu.unicauca.studentservice.controller;
 
 import co.edu.unicauca.studentservice.entity.Student;
-import co.edu.unicauca.studentservice.infra.dto.StudentRequest;
+import co.edu.unicauca.studentservice.infra.dto.StudentDTO;
 import co.edu.unicauca.studentservice.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,10 +52,10 @@ public class StudentController {
 
     @PostMapping
     @PreAuthorize("hasAnyRole('admin', 'gestionador')")
-    public ResponseEntity<?> createStudent(@RequestBody StudentRequest studentRequest) {
+    public ResponseEntity<?> createStudent(@RequestBody StudentDTO studentDTO) {
         try {
             try {
-                Student savedStudent = studentService.createStudent(studentRequest);
+                Student savedStudent = studentService.createStudent(studentDTO);
                 return ResponseEntity.ok(savedStudent);
             } catch (IllegalAccessException e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -67,10 +67,10 @@ public class StudentController {
 
     @PutMapping("/{code}")
     @PreAuthorize("hasAnyRole('admin', 'student')")
-    public ResponseEntity<?> updateStudent(@PathVariable Long code, @RequestBody StudentRequest studentRequest) {
+    public ResponseEntity<?> updateStudent(@PathVariable Long code, @RequestBody StudentDTO studentDTO) {
         try {
             try {
-                Student updatedStudent = studentService.updateStudent(code, studentRequest);
+                Student updatedStudent = studentService.updateStudent(code, studentDTO);
                 return ResponseEntity.ok(updatedStudent);
             } catch (IllegalAccessException e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

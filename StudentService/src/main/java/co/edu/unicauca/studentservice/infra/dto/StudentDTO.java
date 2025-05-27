@@ -1,11 +1,19 @@
 package co.edu.unicauca.studentservice.infra.dto;
 
-public class StudentRequest {
+public class StudentDTO {
     private Long id;
     private Long code;
     private String name;
     private Long phone;
     private String email;
+
+    public StudentDTO(Long id, Long code, String name, Long phone, String email) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+    }
 
     public Long getId() {
         return id;
