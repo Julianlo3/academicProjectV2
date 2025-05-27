@@ -34,28 +34,28 @@ public class ProjectController {
                 .body(dtoMapper.toDto(created));
     }
 
-    @PostMapping("/{id}/approve")
+    @PutMapping("/{id}/approve")
     @PreAuthorize("hasRole('coordinator')")
     public ResponseEntity<Void> approveProject(@PathVariable Long id) throws Exception {
         projectService.approveProject(id);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{id}/reject")
+    @PutMapping("/{id}/reject")
     @PreAuthorize("hasRole('coordinator')")
     public ResponseEntity<Void> rejectProject(@PathVariable Long id) throws Exception {
         projectService.rejectProject(id);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{id}/assign")
+    @PutMapping("/{id}/assign")
     @PreAuthorize("hasRole('coordinator')")
     public ResponseEntity<Void> assignProject(@PathVariable Long id) throws Exception {
         projectService.assignProject(id);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{id}/complete")
+    @PutMapping("/{id}/complete")
     @PreAuthorize("hasRole('coordinator')")
     public ResponseEntity<Void> completeProject(@PathVariable Long id) throws Exception {
         projectService.completeProject(id);
