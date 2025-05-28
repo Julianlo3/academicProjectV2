@@ -26,7 +26,7 @@ public class ProjectController {
     private ProjectDTOMapper dtoMapper;
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('company', 'coordinator')")
+    @PreAuthorize("hasRole('company')")
     public ResponseEntity<ProjectDTO> createProject(@RequestBody ProjectDTO dto) {
         Project created = projectService.createProject(dtoMapper.toDomain(dto));
         return ResponseEntity
@@ -63,28 +63,28 @@ public class ProjectController {
     }
 
     @PutMapping("/{id}/details")
-    @PreAuthorize("hasAnyRole('company', 'coordinator')")
+    @PreAuthorize("hasAnyRole('company')")
     public ResponseEntity<Void> editDetails(@PathVariable Long id, @RequestBody ProjectDTO dto) throws Exception {
         projectService.editProjectDetails(id, dto.getName(), dto.getSummary(), dto.getObjectives(), dto.getDescription());
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}/timeline")
-    @PreAuthorize("hasAnyRole('company', 'coordinator')")
+    @PreAuthorize("hasAnyRole('company')")
     public ResponseEntity<Void> editTimeline(@PathVariable Long id, @RequestBody ProjectDTO dto) throws Exception {
         projectService.editProjectTimeline(id, dto.getMaxDurationInMonths(), dto.getStartDate());
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}/budget")
-    @PreAuthorize("hasAnyRole('company', 'coordinator')")
+    @PreAuthorize("hasAnyRole('company')")
     public ResponseEntity<Void> editBudget(@PathVariable Long id, @RequestBody ProjectDTO dto) throws Exception {
         projectService.editProjectBudget(id, dto.getBudget());
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('company', 'coordinator')")
+    @PreAuthorize("hasAnyRole('student', 'coordinator', 'guest')")
     public ResponseEntity<List<ProjectDTO>> getAllProjects() {
         List<Project> projects = projectRepository.findAll();
         List<ProjectDTO> result = projects.stream()
@@ -114,9 +114,9 @@ public class ProjectController {
         return ResponseEntity.ok(projectDTOs);
     }
 
-    //Ejemplo endpoint: GET http://localhost:8081/api/project/search?title=gestión
+    //Ejemplo endpoint: GET http://localhost:8081/api/project/search?name=gestión
     @GetMapping("/search")
-    @PreAuthorize("hasAnyRole('company', 'coordinator')")
+    @PreAuthorize("hasAnyRole('company', 'coordinator', 'guest')")
     public ResponseEntity<List<ProjectDTO>> searchByName(@RequestParam String name) {
         List<Project> projects = projectRepository.findByNameContaining(name);
         List<ProjectDTO> dtos = projects.stream()

@@ -51,7 +51,7 @@ public class StudentController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('admin', 'gestionador')")
+    @PreAuthorize("hasRole('gestionador')")
     public ResponseEntity<?> createStudent(@RequestBody StudentDTO studentDTO) {
         try {
             try {

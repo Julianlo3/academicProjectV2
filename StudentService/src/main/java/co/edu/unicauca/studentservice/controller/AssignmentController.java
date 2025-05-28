@@ -22,7 +22,7 @@ public class AssignmentController {
     //CRUDs para asignacion
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
+    @PreAuthorize("hasAnyRole('coordinator')")
     public ResponseEntity<?> getAllAssignment() {
         try {
             List<Assignment> assignments = assignmentService.findAllAssignment();
@@ -37,7 +37,7 @@ public class AssignmentController {
     }
 
     @GetMapping("/{code}")
-    @PreAuthorize("hasAnyRole('admin', 'coordinator','student')")
+    @PreAuthorize("hasAnyRole('coordinator','student')")
     public ResponseEntity<?> getAssignmentByStudentCode(@PathVariable Long code) {
         try {
             Optional<List<Assignment>> assignments = assignmentService.findAssignmentByStudentCode(code);
@@ -52,7 +52,7 @@ public class AssignmentController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
+    @PreAuthorize("hasAnyRole('coordinator')")
     public ResponseEntity<?> createAssignment(@RequestBody AssignmentDTO assignmentDTO) {
         try {
             try {
@@ -67,7 +67,7 @@ public class AssignmentController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
+    @PreAuthorize("hasAnyRole('coordinator')")
     public ResponseEntity<?> deleteAssignment(@PathVariable Long id) {
         try {
             try {

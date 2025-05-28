@@ -6,6 +6,7 @@ import co.edu.unicauca.coordinatorservice.infra.dto.CoordinatorResponse;
 import co.edu.unicauca.coordinatorservice.services.ICoordinatorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class CoordinatorController {
 
     // GETs
     @GetMapping
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> getAllCoordinators() {
         try {
             List<Coordinator> coordinators = coordinatorService.getAllCoordinators();
@@ -37,6 +39,7 @@ public class CoordinatorController {
     }
 
     @GetMapping("/{code}")
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> getCoordinatorByCode(@PathVariable long code) {
         try {
             Optional<Coordinator> coordinator = coordinatorService.getCoordinatorByCode(code);
@@ -52,6 +55,7 @@ public class CoordinatorController {
 
     // POSTs
     @PostMapping
+    @PreAuthorize("hasRole('gestionador')")
     public ResponseEntity<?> createCoordinator(@RequestBody CoordinatorRequest coordinator) {
         try {
             try {
@@ -67,6 +71,7 @@ public class CoordinatorController {
 
     // PUTs
     @PutMapping("/{code}")
+    @PreAuthorize("hasRole('coordinator')")
     public ResponseEntity<?> updateCoordinator(@PathVariable long code, @RequestBody CoordinatorRequest coordinator) {
         try {
             try {
@@ -81,6 +86,7 @@ public class CoordinatorController {
     }
 
     @PutMapping("/{code}/verify")
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> verifyCoordinator(@PathVariable long code) {
         try {
             try {
@@ -95,6 +101,7 @@ public class CoordinatorController {
     }
 
     @PutMapping("/{code}/reject")
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> rejectCoordinator(@PathVariable long code) {
         try {
             try {
@@ -110,6 +117,7 @@ public class CoordinatorController {
 
     // DELETEs
     @DeleteMapping("/{code}")
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> deleteCoordinator(@PathVariable long code) {
         try {
             try {
