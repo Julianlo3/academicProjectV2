@@ -11,7 +11,7 @@ import java.util.List;
 public interface CompanyFeignClient {
 
     @PostMapping("/api/company")
-    void createCompany(@RequestBody Company company);
+    void createCompany(@RequestBody Company company,@RequestHeader("Authorization") String token);
 
     @GetMapping("/api/company")
     List<Company> getAllCompanies();

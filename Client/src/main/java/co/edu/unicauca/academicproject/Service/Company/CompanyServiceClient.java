@@ -17,8 +17,8 @@ public class CompanyServiceClient {
     @Autowired
     private CompanyFeignClient FeignClient;
 
-    public void createCompany(Company company) {
-        FeignClient.createCompany(company);
+    public void createCompany(Company company,String token) {
+        FeignClient.createCompany(company,token);
     }
 
     public List<Company> GetAllCompanys(){

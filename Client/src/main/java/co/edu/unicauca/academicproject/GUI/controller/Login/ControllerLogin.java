@@ -79,30 +79,8 @@ public class ControllerLogin {
                 break;
 
             case "Coordinador":
-                CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
-                Coordinator coordinator = coordinatorController.checkCoordi(userName, pass);
-                if (coordinator != null) {
-                    GUIHomeWithLog homeCoordi = new GUIHomeWithLog(coordinator.getCode(),cargarRol());
-                    homeCoordi.setVisible(true);
-                    vista.dispose();
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Error. Revisar clave");
-                }
-                break;
+
             case "Empresa":
-                CompanyController companyController = new CompanyController(appContextProvider.getBean(CompanyServiceClient.class));
-                Company company = companyController.checkCompany(userName, pass);
-                if (company != null) {
-                    GUIHomeWithLog homeCompany = new GUIHomeWithLog(company.getNit(),cargarRol());
-                    homeCompany.setVisible(true);
-                    vista.dispose();
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Error. Revisar clave");
-                    System.out.println("Error. Revisar clave");
-                }
-                break;
 
             default:
                 throw new AssertionError();

@@ -21,10 +21,10 @@ public class CompanyController {
 
     }
 
-    public void registerCompany(long nit, String name, String phone, String pageWeb, String sector, String email, String password) {
+    public void registerCompany(long nit, String name, String phone, String pageWeb, String sector, String email,String token) {
         try{
-            Company company = new Company(nit,  name,  phone,  pageWeb,  sector,  email, password);
-            companyServiceClient.createCompany(company);
+            Company company = new Company(nit,  name,  phone,  pageWeb,  sector,  email);
+            companyServiceClient.createCompany(company,token);
             JOptionPane.showMessageDialog(null, "Empresa creada con éxito.");
             System.out.println("Empresa creada" + company.getNit() + company.getName() + company.getEmail() + company.getindustrialSector() + company.getPhone() + company.getwebsite());
         } catch (Exception e) {
@@ -34,14 +34,7 @@ public class CompanyController {
     }
 
 
-    public Company checkCompany(Long code, String password){
-        Company company = companyServiceClient.getCompanyByCode(code);
-        if (company.getPassword().equals(password)) {
-            return company;
-        } else {
-            return null;
-        }
-    }
+
 
     public List<Company> getAllCompanies(){
         return companyServiceClient.GetAllCompanys();

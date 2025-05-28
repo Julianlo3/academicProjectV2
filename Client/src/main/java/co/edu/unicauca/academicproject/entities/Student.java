@@ -7,7 +7,6 @@ package co.edu.unicauca.academicproject.entities;
 
 public class Student {
 
-    private Long id;
     private Long code;
     private String name;
     private Long phone;
@@ -21,6 +20,7 @@ public class Student {
         this.phone = phone;
         this.email = email;
     }
+
 
     public long getCode() {
         return code;

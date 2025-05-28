@@ -11,7 +11,7 @@ import java.util.List;
 public interface StudentFeingClient {
 
     @PostMapping("/api/student")
-    void createStudent(@RequestBody Student studen , @RequestHeader("Authorization") String token);
+    void createStudent(@RequestBody Student student, @RequestHeader("Authorization") String token);
 
     @GetMapping("/api/student")
     List<Student> getAllUser();

@@ -135,11 +135,12 @@ public class ControllerRegisterUser {
         long tel = Long.parseLong(vista.getjFieldTelStudent().getText());
         String email = vista.getjFieldEmailStudent().getText();
         String pass = vista.getjFieldPassWordStudent().getText();
-
+        System.out.println("Estudiante"+ codigo + nombre + tel + email);
         try {
             String token = users.obtenerTokenGestionador("creador", "123");
             users.crearUsuarioKeycloak(token, String.valueOf(codigo), pass,"student");
             String token2 = "Bearer " + users.obtenerTokenGestionador("creador", "123");
+
             studentController.registerStudent(codigo, nombre, tel, email,token2);
             return true;
         } catch (Exception ex) {
@@ -161,7 +162,8 @@ public class ControllerRegisterUser {
         try {
             String token = users.obtenerTokenGestionador("creador", "123");
             users.crearUsuarioKeycloak(token, String.valueOf(nit), pass,"company");
-            companyController.registerCompany(nit,name,phone,pageWeb,sector,email,pass);
+            String token2 = "Bearer " + users.obtenerTokenGestionador("creador", "123");
+            companyController.registerCompany(nit,name,phone,pageWeb,sector,email,token2);
             return true;
         } catch (Exception ex) {
             System.err.println("Error inesperado: " + ex.getMessage());
@@ -180,7 +182,8 @@ public class ControllerRegisterUser {
         try {
             String token = users.obtenerTokenGestionador("creador", "123");
             users.crearUsuarioKeycloak(token, String.valueOf(codigo), pass,"coordinator");
-            coordinatorController.registerCoordinator(codigo, name, tel, email, programa, pass);
+            String token2 = "Bearer " + users.obtenerTokenGestionador("creador", "123");
+            coordinatorController.registerCoordinator(codigo, name, tel, email, programa, token2);
             return true;
         } catch (Exception ex) {
             System.err.println("Error inesperado: " + ex.getMessage());
