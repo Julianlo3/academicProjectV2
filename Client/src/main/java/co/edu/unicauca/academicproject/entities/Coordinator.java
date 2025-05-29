@@ -7,17 +7,16 @@ package co.edu.unicauca.academicproject.entities;
 public class Coordinator {
 
     private Long id;
-    private String name, phone, email, password;
+    private String name, phone, email;
     private String programaAcademico;
     private String estadoActual;
 
-    public Coordinator(long code, String name, String phone, String email, String programaAcademico, String password) {
+    public Coordinator(long code, String name, String phone, String email, String programaAcademico) {
         this.id = code;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.programaAcademico = programaAcademico;
-        this.password = password;
         this.estadoActual = "PENDIENTE";
     }
 
@@ -40,13 +39,6 @@ public class Coordinator {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getName() {
         return name;

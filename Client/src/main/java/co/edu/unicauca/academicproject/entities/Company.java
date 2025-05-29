@@ -13,20 +13,18 @@ public class Company {
     private String website;
     private String industrialSector;
     private String email;
-    private String password;
 
     public Company(){
         
     }
 
-    public Company(long nit, String name, String phone, String website, String industrialSector, String email, String password) {
+    public Company(long nit, String name, String phone, String website, String industrialSector, String email) {
         this.nit = nit;
         this.name = name;
         this.phone = phone;
         this.website = website;
         this.industrialSector = industrialSector;
         this.email = email;
-        this.password = password;
     }
 
     public long getNit() {
@@ -75,14 +73,6 @@ public class Company {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
 }

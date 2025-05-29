@@ -10,7 +10,7 @@ import java.util.List;
 public interface CoordinatorFeignClient {
 
     @PostMapping("/api/coordinator")
-    void createCoordinator(@RequestBody Coordinator coordinator);
+    void createCoordinator(@RequestBody Coordinator coordinator,@RequestHeader("Authorization") String token);
 
     @GetMapping("/api/coordinator")
     List<Coordinator> getAllCoordinators();

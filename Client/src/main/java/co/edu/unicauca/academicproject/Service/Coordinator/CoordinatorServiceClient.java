@@ -17,8 +17,8 @@ public class CoordinatorServiceClient {
     @Autowired
     private CoordinatorFeignClient FeignClient;
 
-    public void createCoordinator(Coordinator coordinator) {
-        FeignClient.createCoordinator(coordinator);
+    public void createCoordinator(Coordinator coordinator,String token) {
+        FeignClient.createCoordinator(coordinator, token);
    }
 
     public List<Coordinator> GetAllCoordinators(){
