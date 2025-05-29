@@ -36,7 +36,7 @@ public class StudentController {
     }
 
     @GetMapping("/{code}")
-    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
+    @PreAuthorize("hasAnyRole('admin', 'coordinator', 'student')")
     public ResponseEntity<?> getStudentByCode(@PathVariable Long code) {
         try {
             Optional<Student> student = studentService.findByCode(code);
@@ -81,7 +81,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/{code}")
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasAnyRole('admin', 'student')")
     public ResponseEntity<?> deleteStudent(@PathVariable Long code){
         try {
             try {

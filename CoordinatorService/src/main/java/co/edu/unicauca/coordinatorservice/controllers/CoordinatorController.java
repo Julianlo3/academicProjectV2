@@ -39,7 +39,7 @@ public class CoordinatorController {
     }
 
     @GetMapping("/{code}")
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
     public ResponseEntity<?> getCoordinatorByCode(@PathVariable long code) {
         try {
             Optional<Coordinator> coordinator = coordinatorService.getCoordinatorByCode(code);
