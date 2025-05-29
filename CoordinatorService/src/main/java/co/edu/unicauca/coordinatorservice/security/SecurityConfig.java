@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -25,13 +26,14 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/h2-console/**").permitAll() // permite H2 sin autenticación
+                        // Usa AntPathRequestMatcher para rutas tipo consola H2
+                        .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
                 )
-                .headers(headers -> headers.frameOptions().sameOrigin()); // necesario para que se renderice la consola H2 en iframe
+                .headers(headers -> headers.frameOptions().sameOrigin()); // necesario para H2 en iframe
 
         return http.build();
     }
