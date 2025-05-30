@@ -124,4 +124,15 @@ public class ProjectController {
                 .collect(Collectors.toList());
         return ResponseEntity.ok(dtos);
     }
+
+    @GetMapping("/name/{name}")
+    @PreAuthorize("hasAnyRole('company', 'coordinator', 'guest')")
+    public ResponseEntity<ProjectDTO> getProjectByName(@PathVariable String name) {
+        Project project = projectRepository.findByName(name);
+        if(project == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(dtoMapper.toDto(project));
+    }
+
+
 }

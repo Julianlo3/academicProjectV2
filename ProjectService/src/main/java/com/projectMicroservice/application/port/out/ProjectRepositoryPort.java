@@ -11,4 +11,5 @@ public interface ProjectRepositoryPort {
     List<Project> findAll();
     List<Project> findByNameContaining(String name);
     List<Project> findByCompanyNit(Long companyNit);
+    Project findByName(String name);
 }

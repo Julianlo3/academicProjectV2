@@ -57,4 +57,10 @@ public class ProjectRepositoryImpl implements ProjectRepositoryPort {
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Project findByName(String name){
+        ProjectEntity entity = projectRepository.findByDetails_Name(name);
+        return mapper.toDomain(entity);
+    }
 }
