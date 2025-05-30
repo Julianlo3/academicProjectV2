@@ -41,15 +41,6 @@ public class Users {
         return json.getString("access_token");
     }
 
-
-    public String llamarServicio(String token, String url) throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).header("Authorization", "Bearer " + token).GET().build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return response.body();
-    }
-
-
     public String obtenerUserIdPorUsername(String tokenAdmin, String username) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
 
@@ -240,7 +231,53 @@ public class Users {
     }
 
 
+    public boolean validarTokenRegis(String username, String password) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        String body = "grant_type=password"
+                + "&client_id=sistema-desktop"
+                + "&username=" + username
+                + "&password=" + password;
 
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/realms/sistema/protocol/openid-connect/token"))
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .POST(HttpRequest.BodyPublishers.ofString(body))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() == 200) {
+            System.out.println("Login exitoso. Código: " + response.statusCode());
+            return true;
+        } else {
+            System.out.println("Login fallido. Código: " + response.statusCode());
+            return false;
+        }
+    }
+
+    public String obtenerTokenRegis(String username, String password) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        String body = "grant_type=password"
+                + "&client_id=sistema-desktop"
+                + "&username=" + username
+                + "&password=" + password;
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/realms/sistema/protocol/openid-connect/token"))
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .POST(HttpRequest.BodyPublishers.ofString(body))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() == 200) {
+            JSONObject json = new JSONObject(response.body());
+            return json.getString("access_token");
+        } else {
+            System.out.println("Login fallido. Código: " + response.statusCode());
+            return null;
+        }
+    }
 
 
 }

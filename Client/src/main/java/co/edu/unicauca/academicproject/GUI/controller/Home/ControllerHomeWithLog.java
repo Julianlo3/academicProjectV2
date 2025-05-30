@@ -20,6 +20,7 @@ import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Student;
 import co.edu.unicauca.academicproject.entities.Project;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
+import co.edu.unicauca.academicproject.security.Users;
 
 import java.awt.CardLayout;
 import java.util.List;
@@ -38,9 +39,12 @@ public class ControllerHomeWithLog {
     ProjectController projectController = new ProjectController(appContextProvider.getBean(ProjectServiceClient.class));
     private final GUIHomeWithLog vista;
     private String rol;
-    private long code;
-    public ControllerHomeWithLog(GUIHomeWithLog vista){
+    private String code;
+    private String token;
+    Users user = new Users();
+    public ControllerHomeWithLog(GUIHomeWithLog vista,String token){
         this.vista = vista;
+        this.token = token;
         this.rol = vista.getRol();
         this.code = vista.getidUser();
         cargarFormRol();
@@ -63,7 +67,7 @@ public class ControllerHomeWithLog {
             case "Estudiante": cargarformStudent(); break;
             case "Admin": cargarFormAdmin(); break;
             case "Coordinador": cargarFormCoordi(); break;
-            case "Empresa": cargarFormEmpresa(); break;
+            case "company": cargarFormEmpresa(); break;
         }
         System.out.println("Rol:" + rol);
     }
@@ -72,8 +76,10 @@ public class ControllerHomeWithLog {
         System.out.println("Cargando opciones de estudiante:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(),"Estudiante");
-        Student student = studentController.getStudentByCode(Long.valueOf(code));
-        vista.getJPoptions().setSize(0, 0);
+        System.out.println("token pasado" + token);
+        System.out.println("code pasado " + code);
+        Student student = studentController.getStudentByCode(Long.valueOf(code),"Bearer " + token);
+        vista.getJPoptions().setVisible(false);
         vista.getjBtnLoginU().setText(student.getName());
     }
 
@@ -110,10 +116,12 @@ public class ControllerHomeWithLog {
     }
 
     private void newProject(){
-        Company company = companyController.getCompanyByNit(code);
+        System.out.println("Cargando opciones de empresa:" + "con token" + token);
+        Company company = companyController.getCompanyByNit(Long.valueOf(code),"Bearer " +token);
+        System.out.println("Empresa encontrada" + company.getNit());
         if (company != null) {
             System.out.println("Datos de la empresa" + company.getNit() + company.getName());
-            GUINewProject newProject = new GUINewProject(company);
+            GUINewProject newProject = new GUINewProject(company,token);
             newProject.setVisible(true);
         }
         else {
@@ -122,16 +130,24 @@ public class ControllerHomeWithLog {
     }
 
     private void cargarProyectos(){
-        DefaultTableModel modeloProject = new DefaultTableModel(new String[]{"Titulo", "Descripcion", "CompanyNit"}, 0);
+        String token="";
         try {
-            List<Project> projects = projectController.getAllProjects();
+            token = user.obtenerTokenRegis("guest","123");
+        } catch (Exception e) {
+            System.out.println("Error al obtener token de invitado" + e.getMessage());
+            throw new RuntimeException(e);
+        }
+
+        DefaultTableModel modeloProject = new DefaultTableModel(new String[]{"#","Fecha inicio", "Nombre empresa", "Titulo proyecto","Resumen"}, 0);
+        try {
+            List<Project> projects = projectController.getAllProjects("Bearer " + token);
             if (projects != null) {
                 modeloProject.setRowCount(0);
 
                 for (Project project : projects) {
 
-                    if (project.getCompanyNit() != null && project.getTitle() != null) {
-                        modeloProject.addRow(new Object[]{project.getTitle(), project.getDescription(), project.getCompanyNit()});
+                    if (project.getCompanyNit() != 0.0 && project.getName() != null) {
+                        modeloProject.addRow(new Object[]{project.getName(), project.getDescription(), project.getCompanyNit()});
                     }
 
                 }

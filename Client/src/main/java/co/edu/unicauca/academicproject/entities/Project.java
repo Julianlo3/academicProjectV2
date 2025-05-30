@@ -4,32 +4,80 @@
  */
 package co.edu.unicauca.academicproject.entities;
 
+
+
+import com.toedter.calendar.JDateChooser;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 /**
  *
  * @author anvig
  */
 public class Project {
 
-    private Long id;
-    private String title;
-    private String description;
-    private String companyNit;
-    private String status; // "PROPUESTO", "ASIGNADO", "FINALIZADO"
-
-    public Project(String title, String description, String companyNit) {
-        this.title = title;
-        this.description = description;
-        this.companyNit = companyNit;
-    }
+     private long companyNit;
+     private String name,summary,objectives,description;
+     private int maxDurationInMonths;
+     private LocalDate startDate;
+     private BigDecimal budget;
+     private int academicYear;
+     private int academicTerm;
 
     public Project(){}
 
-    public String getCompanyNit() {
-        return companyNit;
+    public Project(long companyNit, String name, String summary, String objectives, String description, int maxDurationInMonths, LocalDate startDate, BigDecimal budget, int academicYear, int academicTerm) {
+        this.companyNit = companyNit;
+        this.name = name;
+        this.summary = summary;
+        this.objectives = objectives;
+        this.description = description;
+        this.maxDurationInMonths = maxDurationInMonths;
+        this.startDate = startDate;
+        this.budget = budget;
+        this.academicYear = academicYear;
+        this.academicTerm = academicTerm;
     }
 
-    public void setCompanyNit(String companyNit) {
-        this.companyNit = companyNit;
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getObjectives() {
+        return objectives;
+    }
+
+    public void setObjectives(String objectives) {
+        this.objectives = objectives;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getMaxDurationInMonths() {
+        return maxDurationInMonths;
+    }
+
+    public void setMaxDurationInMonths(int maxDurationInMonths) {
+        this.maxDurationInMonths = maxDurationInMonths;
     }
 
     public String getDescription() {
@@ -40,19 +88,35 @@ public class Project {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
+    public long getCompanyNit() {
+        return companyNit;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCompanyNit(long companyNit) {
+        this.companyNit = companyNit;
     }
 
-    public String getTitle() {
-        return title;
+    public BigDecimal getBudget() {
+        return budget;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBudget(BigDecimal budget) {
+        this.budget = budget;
+    }
+
+    public int getAcademicYear() {
+        return academicYear;
+    }
+
+    public void setAcademicYear(int academicYear) {
+        this.academicYear = academicYear;
+    }
+
+    public int getAcademicTerm() {
+        return academicTerm;
+    }
+
+    public void setAcademicTerm(int academicTerm) {
+        this.academicTerm = academicTerm;
     }
 }

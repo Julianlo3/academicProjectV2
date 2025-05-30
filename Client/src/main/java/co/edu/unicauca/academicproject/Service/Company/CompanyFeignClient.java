@@ -16,8 +16,8 @@ public interface CompanyFeignClient {
     @GetMapping("/api/company")
     List<Company> getAllCompanies();
 
-    @GetMapping("/api/company/search")
-    Company getCompanyByNit(@RequestParam Long nit);
+    @GetMapping("/api/company/{nit}")
+    Company getCompanyByNit(@RequestParam Long nit,@RequestHeader("Authorization") String token);
 
     @PutMapping("api/company/{id}")
     void updateCompany(@PathVariable Long id, @RequestBody Company CompanyRequest);

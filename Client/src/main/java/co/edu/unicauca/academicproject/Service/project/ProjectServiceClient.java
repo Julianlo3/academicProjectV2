@@ -17,11 +17,15 @@ public class ProjectServiceClient {
     @Autowired
     private ProjectFeingClient FeignClient;
 
-    public void createProject(Project project) {
-    FeignClient.createProject(project);
+    public void createProject(Project project, String token) {
+    FeignClient.createProject(project, token);
     }
 
-    public List<Project> getAllProjects(){
-        return FeignClient.getAllProjects();
+    public List<Project> getAllProjects(String token){
+        return FeignClient.getAllProjects(token);
+    }
+
+    public Project getProjectByName(String name, String token){
+        return FeignClient.getProjectByName(name, token);
     }
 }

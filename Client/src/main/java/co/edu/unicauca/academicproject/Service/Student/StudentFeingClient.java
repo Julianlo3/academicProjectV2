@@ -17,7 +17,7 @@ public interface StudentFeingClient {
     List<Student> getAllUser();
 
     @GetMapping("/api/student/{code}")
-    Student getStudentByCode(@PathVariable Long code);
+    Student getStudentByCode(@PathVariable Long code,@RequestHeader("Authorization") String token);
 
     @PutMapping("api/student/{code}")
     void updateStudent(@PathVariable Long code, @RequestBody Student studentRequest);

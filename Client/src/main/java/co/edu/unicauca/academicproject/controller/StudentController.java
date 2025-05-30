@@ -41,8 +41,8 @@ public class StudentController {
         return studentServiceClient.GetAllStudents();
     }
 
-    public Student getStudentByCode(Long code){
-        return studentServiceClient.getStudentByCode(code);
+    public Student getStudentByCode(Long code,String token){
+        return studentServiceClient.getStudentByCode(code, token);
     }
 }
 

@@ -4,10 +4,17 @@
  */
 package co.edu.unicauca.academicproject.GUI.student;
 
-import co.edu.unicauca.academicproject.GUI.*;
+import co.edu.unicauca.academicproject.GUI.company.*;
+import co.edu.unicauca.academicproject.GUI.controller.Project.ControllerGuestNomination;
 import co.edu.unicauca.academicproject.GUI.controller.Project.ControllerNewProject;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Project;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JYearChooser;
+import com.toedter.components.JSpinField;
+import java.awt.Label;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 
@@ -21,32 +28,114 @@ public class GUINominationProject extends javax.swing.JFrame {
      * Creates new form GUINewProject
      */
 
-    private final Company company;
-    public GUINominationProject(Company company) {
+    private final Project project;
+    private String token;
+    public GUINominationProject(Project project,String token) {
         initComponents();
-       
-        this.company = company;
+        this.project = project;
+        ControllerGuestNomination controller = new ControllerGuestNomination(this);
+        this.token = token;
     }
 
-    public String getTitleProject() {
-        return jFieldTitleProject.getText();
+    public JButton getjBtnLoginU() {
+        return jBtnLoginU;
     }
 
-    public String getDescriptionProject() {
-        return jTextAreaDescripProject.getText();
+
+    public JButton getjBtnSolicitar() {
+        return jBtnSolicitar;
     }
 
-   public JButton getjBtnPubliProject() {
-        return jBtnPubliProject;
+    public String getToken() {
+        return token;
     }
 
-    public Company getCompany() {
-        return company;
+    public void setToken(String token) {
+        this.token = token;
     }
+
+    public JDateChooser getjDateChFechaInicio() {
+        return jDateChFechaInicio;
+    }
+
+    public void setjDateChFechaInicio(String jDateChFechaInicio) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        this.jDateChFechaInicio.setDate(format.parse(jDateChFechaInicio)); ;
+    }
+
+    public JTextField getjFieldPresupuesto() {
+        return jFieldPresupuesto;
+    }
+
+    public void setjFieldPresupuesto(String jFieldPresupuesto) {
+        this.jFieldPresupuesto.setText(jFieldPresupuesto);
+    }
+
+    public JTextField getjFieldTitleProject() {
+        return jFieldTitleProject;
+    }
+
+    public void setjFieldTitleProject(String jFieldTitleProject) {
+        this.jFieldTitleProject.setText(jFieldTitleProject);
+    }
+
+    public JSpinField getjSpinDuracionMes() {
+        return jSpinDuracionMes;
+    }
+
+    public void setjSpinDuracionMes(int jSpinDuracionMes) {
+        this.jSpinDuracionMes.setValue(jSpinDuracionMes);
+    }
+
+    public JSpinField getjSpinTerm() {
+        return jSpinTerm;
+    }
+
+    public void setjSpinTerm(int jSpinTerm) {
+        this.jSpinTerm.setValue(jSpinTerm);
+    }
+
+    public JTextArea getjTextAreaDescripProject() {
+        return jTextAreaDescripProject;
+    }
+
+    public void setjTextAreaDescripProject(String jTextAreaDescripProject) {
+        this.jTextAreaDescripProject.setText(jTextAreaDescripProject);
+    }
+
+    public JTextField getjTextAreaObjetivos() {
+        return jTextAreaObjetivos;
+    }
+
+    public void setjTextAreaObjetivos(String jTextAreaObjetivos) {
+        this.jTextAreaObjetivos.setText(jTextAreaObjetivos);
+    }
+
+    public JTextField getjTextAreaResumen() {
+        return jTextAreaResumen;
+    }
+
+    public void setjTextAreaResumen(String jTextAreaResumen) {
+        this.jTextAreaResumen.setText(jTextAreaResumen);
+    }
+
+    public JYearChooser getjYearProyecto() {
+        return jYearProyecto;
+    }
+
+    public void setjYearProyecto(int jYearProyecto) {
+        this.jYearProyecto.setValue(jYearProyecto);
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+  
     
-    public JComboBox getAcademicTerm(){
-        return jCBAcademicTerm;
-    }
+
+   
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,25 +152,36 @@ public class GUINominationProject extends javax.swing.JFrame {
         jLDescriptionProject = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDescripProject = new javax.swing.JTextArea();
-        jBtnPubliProject = new javax.swing.JButton();
-        jCBAcademicTerm = new javax.swing.JComboBox<>();
+        jBtnSolicitar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLResumen = new javax.swing.JLabel();
+        jTextAreaResumen = new javax.swing.JTextField();
+        jLObjetivos = new javax.swing.JLabel();
+        jTextAreaObjetivos = new javax.swing.JTextField();
+        jLDuracionMeses = new javax.swing.JLabel();
+        jLFechaInicioProyecto = new javax.swing.JLabel();
+        jDateChFechaInicio = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        jYearProyecto = new com.toedter.calendar.JYearChooser();
+        jSpinTerm = new com.toedter.components.JSpinField();
+        jSpinDuracionMes = new com.toedter.components.JSpinField();
+        jFieldPresupuesto = new javax.swing.JTextField();
         jPTitleNewProject = new javax.swing.JPanel();
-        jBtnNewPubli = new javax.swing.JButton();
         jPHead = new javax.swing.JPanel();
         lbTitleProyect = new java.awt.Label();
         jPOpcLogin = new javax.swing.JPanel();
         jBtnLoginU = new javax.swing.JButton();
         jPButtom = new javax.swing.JPanel();
-        jBtnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Publicación");
+        setTitle("Nueva publicacion");
         setBackground(new java.awt.Color(15, 32, 65));
-        setMinimumSize(new java.awt.Dimension(700, 650));
+        setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        setForeground(new java.awt.Color(0, 0, 0));
+        setMinimumSize(new java.awt.Dimension(700, 550));
 
         jPContent.setBackground(new java.awt.Color(15, 32, 65));
-        jPContent.setForeground(new java.awt.Color(255, 255, 255));
+        jPContent.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPContent.setLayout(new java.awt.GridBagLayout());
 
         jLTitleProject.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -91,6 +191,8 @@ public class GUINominationProject extends javax.swing.JFrame {
 
         jFieldTitleProject.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jFieldTitleProject.setText("Mi proyecto");
+        jFieldTitleProject.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jFieldTitleProject.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -109,55 +211,154 @@ public class GUINominationProject extends javax.swing.JFrame {
         jTextAreaDescripProject.setLineWrap(true);
         jTextAreaDescripProject.setRows(5);
         jTextAreaDescripProject.setText("Proyecto enfocado en los sitemas gestores academicos\n");
+        jTextAreaDescripProject.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextAreaDescripProject.setEnabled(false);
         jScrollPane1.setViewportView(jTextAreaDescripProject);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPContent.add(jScrollPane1, gridBagConstraints);
 
-        jBtnPubliProject.setBackground(new java.awt.Color(172, 0, 0));
-        jBtnPubliProject.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jBtnPubliProject.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnPubliProject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/solicitar.png"))); // NOI18N
-        jBtnPubliProject.setText("Solicitar");
-        jBtnPubliProject.setBorderPainted(false);
+        jBtnSolicitar.setBackground(new java.awt.Color(172, 0, 0));
+        jBtnSolicitar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jBtnSolicitar.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnSolicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/solicitar.png"))); // NOI18N
+        jBtnSolicitar.setText("Enviar solicitud");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
-        jPContent.add(jBtnPubliProject, gridBagConstraints);
-
-        jCBAcademicTerm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
-        jPContent.add(jCBAcademicTerm, gridBagConstraints);
+        jPContent.add(jBtnSolicitar, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Periodo academico:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
         jPContent.add(jLabel1, gridBagConstraints);
 
+        jLResumen.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLResumen.setForeground(new java.awt.Color(255, 255, 255));
+        jLResumen.setText("Resumen:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
+        jPContent.add(jLResumen, gridBagConstraints);
+
+        jTextAreaResumen.setText("jTextField1");
+        jTextAreaResumen.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextAreaResumen.setEnabled(false);
+        jTextAreaResumen.setMaximumSize(new java.awt.Dimension(250, 30));
+        jTextAreaResumen.setMinimumSize(new java.awt.Dimension(200, 30));
+        jTextAreaResumen.setPreferredSize(new java.awt.Dimension(200, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPContent.add(jTextAreaResumen, gridBagConstraints);
+
+        jLObjetivos.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLObjetivos.setForeground(new java.awt.Color(255, 255, 255));
+        jLObjetivos.setText("Objetivos:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
+        jPContent.add(jLObjetivos, gridBagConstraints);
+
+        jTextAreaObjetivos.setText("jTextField2");
+        jTextAreaObjetivos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextAreaObjetivos.setEnabled(false);
+        jTextAreaObjetivos.setMaximumSize(new java.awt.Dimension(250, 30));
+        jTextAreaObjetivos.setMinimumSize(new java.awt.Dimension(200, 30));
+        jTextAreaObjetivos.setPreferredSize(new java.awt.Dimension(200, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        jPContent.add(jTextAreaObjetivos, gridBagConstraints);
+
+        jLDuracionMeses.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLDuracionMeses.setForeground(new java.awt.Color(255, 255, 255));
+        jLDuracionMeses.setText("Duracion del proyecto(meses):");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
+        jPContent.add(jLDuracionMeses, gridBagConstraints);
+
+        jLFechaInicioProyecto.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLFechaInicioProyecto.setForeground(new java.awt.Color(255, 255, 255));
+        jLFechaInicioProyecto.setText("Fecha inicio:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        jPContent.add(jLFechaInicioProyecto, gridBagConstraints);
+
+        jDateChFechaInicio.setDateFormatString("y-MM-d");
+        jDateChFechaInicio.setEnabled(false);
+        jDateChFechaInicio.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPContent.add(jDateChFechaInicio, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Presupuesto:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        jPContent.add(jLabel2, gridBagConstraints);
+
+        jYearProyecto.setEnabled(false);
+        jYearProyecto.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
+        jPContent.add(jYearProyecto, gridBagConstraints);
+
+        jSpinTerm.setEnabled(false);
+        jSpinTerm.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jSpinTerm.setMaximum(2);
+        jSpinTerm.setMinimum(1);
+        jSpinTerm.setValue(1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(30, 100, 0, 0);
+        jPContent.add(jSpinTerm, gridBagConstraints);
+
+        jSpinDuracionMes.setEnabled(false);
+        jSpinDuracionMes.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jSpinDuracionMes.setMaximum(12);
+        jSpinDuracionMes.setMinimum(1);
+        jSpinDuracionMes.setValue(1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPContent.add(jSpinDuracionMes, gridBagConstraints);
+
+        jFieldPresupuesto.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jFieldPresupuesto.setText("1");
+        jFieldPresupuesto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jFieldPresupuesto.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPContent.add(jFieldPresupuesto, gridBagConstraints);
+
         jPTitleNewProject.setBackground(new java.awt.Color(15, 32, 65));
         jPTitleNewProject.setForeground(new java.awt.Color(255, 255, 255));
-
-        jBtnNewPubli.setBackground(new java.awt.Color(172, 0, 0));
-        jBtnNewPubli.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jBtnNewPubli.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnNewPubli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/publi.png"))); // NOI18N
-        jBtnNewPubli.setText("Publicación");
-        jBtnNewPubli.setBorderPainted(false);
-        jBtnNewPubli.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBtnNewPubli.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPTitleNewProject.add(jBtnNewPubli);
 
         jPHead.setBackground(new java.awt.Color(15, 32, 65));
         jPHead.setLayout(new javax.swing.BoxLayout(jPHead, javax.swing.BoxLayout.LINE_AXIS));
@@ -175,7 +376,7 @@ public class GUINominationProject extends javax.swing.JFrame {
         jBtnLoginU.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jBtnLoginU.setForeground(new java.awt.Color(255, 255, 255));
         jBtnLoginU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/usuario.png"))); // NOI18N
-        jBtnLoginU.setText("My User");
+        jBtnLoginU.setText("Invitado");
         jBtnLoginU.setBorder(null);
         jBtnLoginU.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jBtnLoginU.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -188,32 +389,22 @@ public class GUINominationProject extends javax.swing.JFrame {
 
         jPButtom.setBackground(new java.awt.Color(15, 32, 65));
 
-        jBtnSalir.setBackground(new java.awt.Color(15, 32, 65));
-        jBtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/anterior (1).png"))); // NOI18N
-        jBtnSalir.setBorderPainted(false);
-
         javax.swing.GroupLayout jPButtomLayout = new javax.swing.GroupLayout(jPButtom);
         jPButtom.setLayout(jPButtomLayout);
         jPButtomLayout.setHorizontalGroup(
             jPButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPButtomLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jBtnSalir)
-                .addContainerGap(594, Short.MAX_VALUE))
+            .addGap(0, 1066, Short.MAX_VALUE)
         );
         jPButtomLayout.setVerticalGroup(
             jPButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPButtomLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jBtnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
+            .addGap(0, 53, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPHead, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+            .addComponent(jPHead, javax.swing.GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE)
             .addComponent(jPContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPTitleNewProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,13 +417,13 @@ public class GUINominationProject extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPTitleNewProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 43, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(509, 509, 509)
+                    .addGap(495, 495, 495)
                     .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addGap(0, 0, 0)))
         );
 
         pack();
@@ -240,21 +431,30 @@ public class GUINominationProject extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnLoginU;
-    private javax.swing.JButton jBtnNewPubli;
-    private javax.swing.JButton jBtnPubliProject;
-    private javax.swing.JButton jBtnSalir;
-    private javax.swing.JComboBox<String> jCBAcademicTerm;
+    private javax.swing.JButton jBtnSolicitar;
+    private com.toedter.calendar.JDateChooser jDateChFechaInicio;
+    private javax.swing.JTextField jFieldPresupuesto;
     private javax.swing.JTextField jFieldTitleProject;
     private javax.swing.JLabel jLDescriptionProject;
+    private javax.swing.JLabel jLDuracionMeses;
+    private javax.swing.JLabel jLFechaInicioProyecto;
+    private javax.swing.JLabel jLObjetivos;
+    private javax.swing.JLabel jLResumen;
     private javax.swing.JLabel jLTitleProject;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPButtom;
     private javax.swing.JPanel jPContent;
     private javax.swing.JPanel jPHead;
     private javax.swing.JPanel jPOpcLogin;
     private javax.swing.JPanel jPTitleNewProject;
     private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.components.JSpinField jSpinDuracionMes;
+    private com.toedter.components.JSpinField jSpinTerm;
     private javax.swing.JTextArea jTextAreaDescripProject;
+    private javax.swing.JTextField jTextAreaObjetivos;
+    private javax.swing.JTextField jTextAreaResumen;
+    private com.toedter.calendar.JYearChooser jYearProyecto;
     private java.awt.Label lbTitleProyect;
     // End of variables declaration//GEN-END:variables
 }

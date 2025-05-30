@@ -2,9 +2,7 @@ package co.edu.unicauca.academicproject.Service.project;
 
 import co.edu.unicauca.academicproject.entities.Project;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,8 +10,11 @@ import java.util.List;
 public interface ProjectFeingClient {
 
     @PostMapping("/api/project")
-    void createProject(@RequestBody Project project);
+    void createProject(@RequestBody Project project,@RequestHeader("Authorization") String token);
 
     @GetMapping("/api/project")
-    List<Project> getAllProjects();
+    List<Project> getAllProjects(@RequestHeader("Authorization") String token);
+
+    @GetMapping("/api/project/name/{name}")
+    Project getProjectByName(@PathVariable("name") String name, @RequestHeader("Authorization") String token);
 }

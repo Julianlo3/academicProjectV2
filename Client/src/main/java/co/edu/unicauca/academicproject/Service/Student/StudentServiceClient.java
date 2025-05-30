@@ -20,8 +20,8 @@ public class StudentServiceClient {
     }
 
 
-    public Student getStudentByCode(Long code){
-        return FeignClient.getStudentByCode(code);
+    public Student getStudentByCode(Long code,String token){
+        return FeignClient.getStudentByCode(code, token);
     }
 
     public void updateStudent(Long code, Student studentRequest){

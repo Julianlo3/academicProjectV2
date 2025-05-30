@@ -59,37 +59,48 @@ public class ControllerRegisterUser {
     }
 
     private void abrirHomeStudent() {
-        if (saveStudent()) {
-            Messages.showMessageDialog("Estudiante registrado", "Registro exitoso");
-            Long id = Long.parseLong(vista.getjFieldCodeStudent().getText());
-            GUIHomeWithLog homeStudent = new GUIHomeWithLog(id,"student");
-            vista.dispose();
-            homeStudent.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            homeStudent.setVisible(true);
+        try {
+            if (saveStudent()) {
+                Messages.showMessageDialog("Estudiante registrado", "Registro exitoso");
+                String id = vista.getjFieldCodeStudent().getText();
+                GUIHomeWithLog homeStudent = new GUIHomeWithLog(id,"student", String.valueOf(users.obtenerTokenRegis(vista.getjFieldCodeStudent().getText(), (vista.getjFieldPassWordStudent().getText()))));
+                vista.dispose();
+                homeStudent.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                homeStudent.setVisible(true);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+
     }
 
     private void abrirHomeCoordi() {
-        if (saveCoordi()) {
-            Messages.showMessageDialog("Coordinador registrado", "Registro exitoso");
-            Long id = Long.parseLong(vista.getjFieldCodeCoordi().getText());
-            GUIHomeWithLog homeCoordi = new GUIHomeWithLog(id,"coordinator");
-            vista.dispose();
-            homeCoordi.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            homeCoordi.setVisible(true);
+        try{
+            if (saveCoordi()) {
+                Messages.showMessageDialog("Coordinador registrado", "Registro exitoso");
+                String id = vista.getjFieldCodeCoordi().getText();
+                GUIHomeWithLog homeCoordi = new GUIHomeWithLog(id,"coordinator",String.valueOf(users.obtenerTokenRegis(vista.getjFieldCodeCoordi().getText(), (vista.getjFieldPassWordCoordi().getText()))));
+                vista.dispose();
+                homeCoordi.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                homeCoordi.setVisible(true);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-
     }
 
-    private void abrirHomeCompany() {
-        if (saveCompany()) {
-            Messages.showMessageDialog("Empresa registrada", "Registro exitoso");
-            Long id = Long.parseLong(vista.getjFieldNitCompany().getText());
-            GUIHomeWithLog homeCompany = new GUIHomeWithLog(id,"company");
-            homeCompany.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            homeCompany.setVisible(true);
-        }
-
+    private void abrirHomeCompany(){
+       try {
+           if (saveCompany()) {
+               Messages.showMessageDialog("Empresa registrada", "Registro exitoso");
+               String id = vista.getjFieldNitCompany().getText();
+               GUIHomeWithLog homeCompany = new GUIHomeWithLog(id,"company",String.valueOf(users.obtenerTokenRegis(vista.getjFieldNitCompany().getText(), (vista.getjFieldPassWordCompany().getText()))));
+               homeCompany.setExtendedState(JFrame.MAXIMIZED_BOTH);
+               homeCompany.setVisible(true);
+           }
+       } catch (Exception e) {
+           throw new RuntimeException(e);
+       }
     }
 
     private void cargarFormStudent() {

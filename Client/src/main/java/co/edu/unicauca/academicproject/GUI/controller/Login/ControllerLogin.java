@@ -19,6 +19,7 @@ import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Coordinator;
 import co.edu.unicauca.academicproject.entities.Student;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
+import co.edu.unicauca.academicproject.security.Users;
 
 import javax.swing.*;
 
@@ -28,7 +29,7 @@ import javax.swing.*;
  */
 public class ControllerLogin {
     private final GUILogin vista;
-    
+    Users user = new Users();
     public ControllerLogin(GUILogin vista){
         this.vista = vista;
         cargarRol();
@@ -59,31 +60,19 @@ public class ControllerLogin {
     }
     
     private void checkUser(){
-        Long userName = Long.valueOf(vista.getFieldUserName().getText());
+        String userName = vista.getFieldUserName().getText();
         String pass = vista.getPasswordUser().getText();
         System.out.println("Datos del form:" +userName + " " + pass);
-        switch (cargarRol()) {
-
-            case "Admin":
-                String codigo = Admin.getInstance().getCodigo();
-                String password = Admin.getInstance().getPassword();
-                System.out.println("Datos del admin:"+codigo + " " + password);
-                if (codigo.equals(userName.toString()) && password.equals(pass)) {
-                    GUIHomeWithLog homeAdmin = new GUIHomeWithLog((long)(1),cargarRol());
-                    homeAdmin.setVisible(true);
-                    vista.dispose();
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Error. Revisar clave");
-                }
-                break;
-
-            case "Coordinador":
-
-            case "Empresa":
-
-            default:
-                throw new AssertionError();
+        try {
+            if(user.validarTokenRegis(userName, pass)){
+                System.out.println("Usuario registrado");
+                vista.dispose();
+                GUIHomeWithLog home = new GUIHomeWithLog(userName,cargarRol(),user.obtenerTokenRegis(userName, pass));
+                home.setVisible(true);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al obtener token de usuario registrado" + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 }

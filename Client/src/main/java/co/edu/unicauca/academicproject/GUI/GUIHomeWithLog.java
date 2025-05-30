@@ -19,15 +19,15 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
      */
 
     private String rol;
-    private long idUser;
-    public GUIHomeWithLog(Long idUser,String rol) {
+    private String idUser;
+    public GUIHomeWithLog(String idUser,String rol,String token) {
         initComponents();
         this.rol = rol;
         this.idUser = idUser;
-        ControllerHomeWithLog controller = new ControllerHomeWithLog(this);
+        ControllerHomeWithLog controller = new ControllerHomeWithLog(this,token);
     }
 
-    public long getidUser() {
+    public String getidUser() {
         return idUser;
     }
 
@@ -75,7 +75,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         return rol;
     }
 
-    public long getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
     
@@ -86,6 +86,10 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
 
     public JTable getjTableProjects() {
         return jTableProjects;
+    }
+    
+    public JPanel getJPanelStudent(){
+        return jPOpcionStudent;
     }
 
     /**
@@ -149,6 +153,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jBtnLoginU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/usuario.png"))); // NOI18N
         jBtnLoginU.setText("Mi user");
         jBtnLoginU.setBorder(null);
+        jBtnLoginU.setBorderPainted(false);
         jBtnLoginU.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jBtnLoginU.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnLoginU.setIconTextGap(5);

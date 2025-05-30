@@ -26,8 +26,8 @@ public class CompanyServiceClient {
     }
 
 
-    public Company getCompanyByCode(Long nit){
-        return FeignClient.getCompanyByNit(nit);
+    public Company getCompanyByCode(Long nit,String token){
+        return FeignClient.getCompanyByNit(nit,token);
     }
 
     public void updateCompany(Long nit, Company CompanyRequest){

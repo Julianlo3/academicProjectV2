@@ -4,13 +4,15 @@ import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
 import co.edu.unicauca.academicproject.GUI.GUILogin;
 
 import co.edu.unicauca.academicproject.GUI.GUIRegisteredUser;
+import co.edu.unicauca.academicproject.GUI.student.GUINominationProject;
 import co.edu.unicauca.academicproject.Service.project.ProjectServiceClient;
 import co.edu.unicauca.academicproject.controller.ProjectController;
 import co.edu.unicauca.academicproject.entities.Project;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
+import co.edu.unicauca.academicproject.security.Users;
 
-
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -23,11 +25,39 @@ public class ControllerHomeWithOutLog {
 
     private final GUIHomeWithOutLog vista;
     ProjectController projectController = new ProjectController(appContextProvider.getBean(ProjectServiceClient.class));
+    Users user = new Users();
+
     public ControllerHomeWithOutLog(GUIHomeWithOutLog vista) {
         this.vista = vista;
+        cargarProyectos();
         this.vista.getjBtnLoginU().addActionListener(e -> abrirLogin());
         this.vista.getjBtnNewUser().addActionListener(e -> abrirRegistroU());
-        cargarProyectos();
+        this.vista.getjTableProjects().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                abrirProyecto();
+            }
+        });
+    }
+
+    private void abrirProyecto() {
+        int fila = vista.getjTableProjects().getSelectedRow();
+        System.out.println("Fila seleccionada: " + fila);
+        if (fila >= 0) {
+            String name = vista.getjTableProjects().getValueAt(fila, 3).toString(); // columna 0 es
+            System.out.println("Proyecto seleccionado: " + name);
+            try {
+                String token = user.obtenerTokenRegis("guest", "123");
+                System.out.println("Token: " + token);
+                Project project = projectController.getProjectByName(name, "Bearer " + token);
+                System.out.println("Proyecto encontrado: " + project.getName() + project.getDescription() + project.getStartDate());
+                GUINominationProject newNomination = new GUINominationProject(project, token);
+                newNomination.setVisible(true);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
     }
 
     private void abrirLogin() {
@@ -44,26 +74,33 @@ public class ControllerHomeWithOutLog {
         registerU.setVisible(true);
     }
 
-    private void cargarProyectos(){
-        DefaultTableModel modeloProject = new DefaultTableModel(new String[]{"Titulo", "Descripcion", "CompanyNit"}, 0);
+    private void cargarProyectos() {
+        String token = "";
         try {
-            List<Project> projects = projectController.getAllProjects();
+            token = user.obtenerTokenRegis("guest", "123");
+            System.out.println("Token: " + token);
+        } catch (Exception e) {
+            System.out.println("Error al obtener token de invitado" + e.getMessage());
+            throw new RuntimeException(e);
+        }
+
+        DefaultTableModel modeloProject = new DefaultTableModel(new String[]{"#", "Fecha inicio", "Nombre empresa", "Titulo proyecto", "Resumen"}, 0);
+        try {
+            List<Project> projects = projectController.getAllProjects("Bearer " + token);
+            System.out.println("Proyectos encontrados: " + projects.size());
             if (projects != null) {
                 modeloProject.setRowCount(0);
-
+                int numero = 0;
                 for (Project project : projects) {
 
-                    if (project.getCompanyNit() != null && project.getTitle() != null) {
-                        modeloProject.addRow(new Object[]{project.getTitle(), project.getDescription(), project.getCompanyNit()});
+                    if (project.getCompanyNit() != 0.0 && project.getName() != null) {
+                        modeloProject.addRow(new Object[]{numero++, project.getStartDate(), project.getCompanyNit(), project.getName(), project.getSummary()});
                     }
-
                 }
             }
         } catch (Exception e) {
-            System.out.println("Servicio de coordinador no disponible" + e.getMessage());
+            System.out.println("Servicio de proyecto no disponible" + e.getMessage());
         }
         vista.getjTableProjects().setModel(modeloProject);
     }
-    }
-
-
+}

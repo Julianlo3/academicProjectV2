@@ -90,6 +90,7 @@ public class GUIHomeWithOutLog extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableProjects.setCellSelectionEnabled(true);
         jTableProjects.setIntercellSpacing(new java.awt.Dimension(5, 5));
         jTableProjects.setShowGrid(true);
         jScrollPane1.setViewportView(jTableProjects);

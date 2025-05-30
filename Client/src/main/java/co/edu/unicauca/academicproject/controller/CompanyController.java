@@ -40,8 +40,8 @@ public class CompanyController {
         return companyServiceClient.GetAllCompanys();
     }
 
-    public Company getCompanyByNit(Long nit){
-        return companyServiceClient.getCompanyByCode(nit);
+    public Company getCompanyByNit(Long nit,String token){
+        return companyServiceClient.getCompanyByCode(nit,token);
     }
 
     public void updateCompany(Long nit, Company CompanyRequest){
