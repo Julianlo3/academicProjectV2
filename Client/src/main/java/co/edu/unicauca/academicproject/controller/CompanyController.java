@@ -21,12 +21,12 @@ public class CompanyController {
 
     }
 
-    public void registerCompany(long nit, String name, String phone, String pageWeb, String sector, String email,String token) {
+    public void registerCompany(Long nit, String name, String website, String email, String contactPhone, String contactName, String contactLastName, String contactPost, String industrialSector,String token) {
         try{
-            Company company = new Company(nit,  name,  phone,  pageWeb,  sector,  email);
+            Company company = new Company(nit,  name,  website,  email,  contactPhone,  contactName,  contactLastName,  contactPost,  industrialSector);
             companyServiceClient.createCompany(company,token);
             JOptionPane.showMessageDialog(null, "Empresa creada con éxito.");
-            System.out.println("Empresa creada" + company.getNit() + company.getName() + company.getEmail() + company.getindustrialSector() + company.getPhone() + company.getwebsite());
+            System.out.println("Empresa creada" + company.getNit() + company.getName() + company.getEmail() + company.getContactPhone() + company.getContactName() + company.getContactLastName() + company.getContactPost() + company.getIndustrialSector() + company.getWebsite());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al crear empresa.");
             System.out.println("Error al crear empresa." + e.getMessage());

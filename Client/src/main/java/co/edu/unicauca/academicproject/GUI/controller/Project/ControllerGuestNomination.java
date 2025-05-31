@@ -3,6 +3,7 @@ package co.edu.unicauca.academicproject.GUI.controller.Project;
 
 import co.edu.unicauca.academicproject.GUI.student.GUINominationProject;
 import co.edu.unicauca.academicproject.entities.Project;
+import co.edu.unicauca.academicproject.infra.Messages;
 
 import java.awt.*;
 
@@ -13,10 +14,14 @@ import java.awt.*;
 public class ControllerGuestNomination {
     private final GUINominationProject vista;
 
+    String rol ="";
     public ControllerGuestNomination(GUINominationProject vista){
         this.vista = vista;
+        rol = vista.getRol();
+        System.out.println("Rol en nominacion: " + rol);
         cargarInfoProject();
-        cambiarColor();
+        cargarOpciones();
+        this.vista.getjBtnSolicitar().addActionListener(e -> mensajeRegistro());
     }
 
     private void cargarInfoProject(){
@@ -39,9 +44,24 @@ public class ControllerGuestNomination {
         vista.setjFieldPresupuesto(project.getBudget().toString());
     }
 
-    public void cambiarColor(){
-        vista.getjSpinTerm().setForeground(Color.black);
-        vista.getjSpinDuracionMes().setForeground(Color.black);
-        vista.getjYearProyecto().setForeground(Color.black);
+    private void mensajeRegistro(){
+        if(rol.equals("guest")) {
+            Messages.showMessageDialog("Necesita estar registrado para enviar solicitudes","No registrado.");
+        }
+        else if (rol.equals("student")){
+            Messages.showMessageDialog("Tu solicitud fue enviada","Enviado.");
+        }
     }
+
+    private void cargarOpciones(){
+
+        if(rol.equals("guest")) {
+            vista.getjBtnSolicitar().setBackground(Color.gray);
+        }
+        else if (rol.equals("student")){
+            vista.getjBtnSolicitar().setBackground(Color.red);
+            }
+
+        }
+
 }

@@ -42,6 +42,7 @@ public class ControllerRegisterUser {
 
     public ControllerRegisterUser(GUIRegisteredUser vista) {
         this.vista = vista;
+        this.vista.getjRbtnStudent().setSelected(true);
         this.vista.getjBtnBackSelectUser().addActionListener(e -> volverHomeWithOuLog());
         this.vista.getjBtnSaveStudent().addActionListener(e -> abrirHomeStudent());
         this.vista.getjBtnSaveCompany().addActionListener(e -> abrirHomeCompany());
@@ -169,12 +170,15 @@ public class ControllerRegisterUser {
         String pageWeb = vista.getjFieldWebCompany().getText();
         String sector = String.valueOf(SectorCompany.valueOf(vista.getjCBSectorCompany().getSelectedItem().toString()));
         String pass = vista.getjFieldPassWordCompany().getText();
+        String nombreAse = vista.getjFieldNombreAse().getText();
+        String apellidoAse = vista.getjFieldApellidoAse().getText();
+        String puesto = vista.getjFielPuestoAse().getText();
         System.out.println("Empresa"+ sector + pageWeb);
         try {
             String token = users.obtenerTokenGestionador("creador", "123");
             users.crearUsuarioKeycloak(token, String.valueOf(nit), pass,"company");
             String token2 = "Bearer " + users.obtenerTokenGestionador("creador", "123");
-            companyController.registerCompany(nit,name,phone,pageWeb,sector,email,token2);
+            companyController.registerCompany(nit,name,pageWeb,email,phone,nombreAse,apellidoAse,puesto,sector,token2);
             return true;
         } catch (Exception ex) {
             System.err.println("Error inesperado: " + ex.getMessage());

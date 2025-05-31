@@ -30,10 +30,8 @@ public class GUILogin extends javax.swing.JFrame {
         return jBtnNewUser;
     }
     
-    public JComboBox getCBRol(){
-        return jCBRol;
-    }
-    
+  
+  
     public JButton getBtnLogin(){
         return jBtnPassUser;
     }
@@ -73,9 +71,6 @@ public class GUILogin extends javax.swing.JFrame {
         jBtnPassUser = new javax.swing.JButton();
         jBtnPasswordForget = new javax.swing.JButton();
         jBtnNewUser = new javax.swing.JButton();
-        jPRol = new javax.swing.JPanel();
-        jLTitleRol = new javax.swing.JLabel();
-        jCBRol = new javax.swing.JComboBox<>();
         jCheckSeePass = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jLFondoLogin = new javax.swing.JLabel();
@@ -174,29 +169,6 @@ public class GUILogin extends javax.swing.JFrame {
         gridBagConstraints.gridy = 8;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPFormUser.add(jBtnNewUser, gridBagConstraints);
-
-        jPRol.setBackground(new java.awt.Color(255, 255, 255));
-        jPRol.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
-
-        jLTitleRol.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLTitleRol.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLTitleRol.setText("Soy un:");
-        jLTitleRol.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jLTitleRol.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        jPRol.add(jLTitleRol);
-
-        jCBRol.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jCBRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Empresa", "Coordinador", "Admin" }));
-        jCBRol.setPreferredSize(new java.awt.Dimension(150, 22));
-        jPRol.add(jCBRol);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(15, 10, 0, 10);
-        jPFormUser.add(jPRol, gridBagConstraints);
 
         jCheckSeePass.setBackground(new java.awt.Color(255, 255, 255));
         jCheckSeePass.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -320,18 +292,15 @@ public class GUILogin extends javax.swing.JFrame {
     private javax.swing.JButton jBtnNewUser;
     private javax.swing.JButton jBtnPassUser;
     private javax.swing.JButton jBtnPasswordForget;
-    private javax.swing.JComboBox<String> jCBRol;
     private javax.swing.JCheckBox jCheckSeePass;
     private javax.swing.JTextField jFieldUserName;
     private javax.swing.JLabel jLFondoLogin;
     private javax.swing.JLabel jLPassWord;
-    private javax.swing.JLabel jLTitleRol;
     private javax.swing.JLabel jLUser;
     private javax.swing.JPanel jPButtom;
     private javax.swing.JPanel jPContent;
     private javax.swing.JPanel jPFormUser;
     private javax.swing.JPanel jPHead;
-    private javax.swing.JPanel jPRol;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordUser;
     private java.awt.Label lbTitleProyect1;

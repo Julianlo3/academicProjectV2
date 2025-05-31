@@ -84,7 +84,7 @@ public class ControllerUserSystem {
                 modeloEmpresa.setRowCount(0);
 
                 for (Company company : companies) {
-                    modeloEmpresa.addRow(new Object[]{company.getNit(),company.getName(),company.getindustrialSector(),company.getEmail(),company.getPhone(),company.getwebsite()});
+                    modeloEmpresa.addRow(new Object[]{company.getNit(),company.getName(),company.getIndustrialSector(),company.getEmail(),company.getContactPhone(),company.getWebsite()});
                 }
             }
         } catch (Exception e) {

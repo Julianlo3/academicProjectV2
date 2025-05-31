@@ -6,32 +6,36 @@ package co.edu.unicauca.academicproject.entities;
 
 public class Company {
 
-    private long id;
-    private long nit;
+    private Long nit;
     private String name;
-    private String phone;
     private String website;
-    private String industrialSector;
     private String email;
+    private String contactPhone;
+    private String contactName;
+    private String contactLastName;
+    private String contactPost;
+    private String industrialSector;
 
-    public Company(){
-        
+    public Company() {
     }
 
-    public Company(long nit, String name, String phone, String website, String industrialSector, String email) {
+    public Company(Long nit, String name, String website, String email, String contactPhone, String contactName, String contactLastName, String contactPost, String industrialSector) {
         this.nit = nit;
         this.name = name;
-        this.phone = phone;
         this.website = website;
-        this.industrialSector = industrialSector;
         this.email = email;
+        this.contactPhone = contactPhone;
+        this.contactName = contactName;
+        this.contactLastName = contactLastName;
+        this.contactPost = contactPost;
+        this.industrialSector = industrialSector;
     }
 
-    public long getNit() {
+    public Long getNit() {
         return nit;
     }
 
-    public void setNit(long nit) {
+    public void setNit(Long nit) {
         this.nit = nit;
     }
 
@@ -43,28 +47,12 @@ public class Company {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getwebsite() {
+    public String getWebsite() {
         return website;
     }
 
-    public void setwebsite(String website) {
+    public void setWebsite(String website) {
         this.website = website;
-    }
-
-    public String getindustrialSector() {
-        return industrialSector;
-    }
-
-    public void setindustrialSector(String  industrialSector) {
-        this.industrialSector = industrialSector;
     }
 
     public String getEmail() {
@@ -75,4 +63,43 @@ public class Company {
         this.email = email;
     }
 
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getContactLastName() {
+        return contactLastName;
+    }
+
+    public void setContactLastName(String contactLastName) {
+        this.contactLastName = contactLastName;
+    }
+
+    public String getContactPost() {
+        return contactPost;
+    }
+
+    public void setContactPost(String contactPost) {
+        this.contactPost = contactPost;
+    }
+
+    public String getIndustrialSector() {
+        return industrialSector;
+    }
+
+    public void setIndustrialSector(String industrialSector) {
+        this.industrialSector = industrialSector;
+    }
 }

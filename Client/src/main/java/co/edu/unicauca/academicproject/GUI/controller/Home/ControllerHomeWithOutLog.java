@@ -51,7 +51,7 @@ public class ControllerHomeWithOutLog {
                 System.out.println("Token: " + token);
                 Project project = projectController.getProjectByName(name, "Bearer " + token);
                 System.out.println("Proyecto encontrado: " + project.getName() + project.getDescription() + project.getStartDate());
-                GUINominationProject newNomination = new GUINominationProject(project, token);
+                GUINominationProject newNomination = new GUINominationProject(project, token,"guest");
                 newNomination.setVisible(true);
             } catch (Exception e) {
                 System.out.println(e.getMessage());

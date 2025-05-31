@@ -8,6 +8,7 @@ import co.edu.unicauca.academicproject.GUI.controller.RegisterUser.ControllerReg
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -144,6 +145,32 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
         return jFieldTelCoordi;
     }
 
+    public JCheckBox getjCheckSeePassCompany() {
+        return jCheckSeePassCompany;
+    }
+
+    public JCheckBox getjCheckSeePassCoordi() {
+        return jCheckSeePassCoordi;
+    }
+
+    public JCheckBox getjCheckSeePassStudent() {
+        return jCheckSeePassStudent;
+    }
+
+    public JTextField getjFielPuestoAse() {
+        return jFielPuestoAse;
+    }
+
+    public JTextField getjFieldApellidoAse() {
+        return jFieldApellidoAse;
+    }
+
+    public JTextField getjFieldNombreAse() {
+        return jFieldNombreAse;
+    }
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -222,6 +249,13 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
         jFieldPassWordCompany = new javax.swing.JPasswordField();
         jCheckSeePassCompany = new javax.swing.JCheckBox();
         jBtnSaveCompany = new javax.swing.JButton();
+        jLDatosContacto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jFieldNombreAse = new javax.swing.JTextField();
+        jLApellidoAse = new javax.swing.JLabel();
+        jFieldApellidoAse = new javax.swing.JTextField();
+        jLPuestoAse = new javax.swing.JLabel();
+        jFielPuestoAse = new javax.swing.JTextField();
         jPButtom = new javax.swing.JPanel();
         jBtnBackSelectUser = new javax.swing.JButton();
         jPHead = new javax.swing.JPanel();
@@ -794,7 +828,9 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
 
         jPCompanyRegister.setBackground(new java.awt.Color(255, 255, 255));
         jPCompanyRegister.setForeground(new java.awt.Color(255, 255, 255));
+        jPCompanyRegister.setMinimumSize(new java.awt.Dimension(700, 381));
         jPCompanyRegister.setName("CompanyRegister"); // NOI18N
+        jPCompanyRegister.setPreferredSize(new java.awt.Dimension(700, 381));
         jPCompanyRegister.setLayout(new java.awt.GridBagLayout());
 
         jLNitCompany.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1010,6 +1046,54 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 108, 5, 0);
         jPCompanyRegister.add(jBtnSaveCompany, gridBagConstraints);
 
+        jLDatosContacto.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLDatosContacto.setText("Datos de contacto encargado");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        jPCompanyRegister.add(jLDatosContacto, gridBagConstraints);
+
+        jLabel1.setText("Nombre:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        jPCompanyRegister.add(jLabel1, gridBagConstraints);
+
+        jFieldNombreAse.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jFieldNombreAse.setText("Pepe");
+        jFieldNombreAse.setMinimumSize(new java.awt.Dimension(100, 22));
+        jFieldNombreAse.setPreferredSize(new java.awt.Dimension(100, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPCompanyRegister.add(jFieldNombreAse, gridBagConstraints);
+
+        jLApellidoAse.setText("Apellido:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        jPCompanyRegister.add(jLApellidoAse, gridBagConstraints);
+
+        jFieldApellidoAse.setText("Lopez");
+        jFieldApellidoAse.setMinimumSize(new java.awt.Dimension(100, 22));
+        jFieldApellidoAse.setPreferredSize(new java.awt.Dimension(100, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        jPCompanyRegister.add(jFieldApellidoAse, gridBagConstraints);
+
+        jLPuestoAse.setText("Cargo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        jPCompanyRegister.add(jLPuestoAse, gridBagConstraints);
+
+        jFielPuestoAse.setText("Gerente");
+        jFielPuestoAse.setMinimumSize(new java.awt.Dimension(100, 22));
+        jFielPuestoAse.setPreferredSize(new java.awt.Dimension(100, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        jPCompanyRegister.add(jFielPuestoAse, gridBagConstraints);
+
         jPRegisterUser.add(jPCompanyRegister, "Empresa");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1046,9 +1130,9 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPTittleNewUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPHead, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
+            .addComponent(jPHead, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
             .addComponent(jPButtom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
+            .addComponent(jPContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1057,7 +1141,7 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPTittleNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
@@ -1077,6 +1161,8 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckSeePassCompany;
     private javax.swing.JCheckBox jCheckSeePassCoordi;
     private javax.swing.JCheckBox jCheckSeePassStudent;
+    private javax.swing.JTextField jFielPuestoAse;
+    private javax.swing.JTextField jFieldApellidoAse;
     private javax.swing.JTextField jFieldCodeCoordi;
     private javax.swing.JTextField jFieldCodeStudent;
     private javax.swing.JTextField jFieldEmailCompany;
@@ -1086,6 +1172,7 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
     private javax.swing.JTextField jFieldNameCoordi;
     private javax.swing.JTextField jFieldNameStudent;
     private javax.swing.JTextField jFieldNitCompany;
+    private javax.swing.JTextField jFieldNombreAse;
     private javax.swing.JPasswordField jFieldPassWordCompany;
     private javax.swing.JPasswordField jFieldPassWordCoordi;
     private javax.swing.JPasswordField jFieldPassWordStudent;
@@ -1093,8 +1180,10 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
     private javax.swing.JTextField jFieldTelCoordi;
     private javax.swing.JTextField jFieldTelStudent;
     private javax.swing.JTextField jFieldWebCompany;
+    private javax.swing.JLabel jLApellidoAse;
     private javax.swing.JLabel jLCodeCoordi;
     private javax.swing.JLabel jLCodeStudent;
+    private javax.swing.JLabel jLDatosContacto;
     private javax.swing.JLabel jLEmailCompany;
     private javax.swing.JLabel jLEmailCoordi;
     private javax.swing.JLabel jLEmailStudent;
@@ -1106,6 +1195,7 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLPasswordCoordi;
     private javax.swing.JLabel jLPasswordStudent;
     private javax.swing.JLabel jLProgramCoordi;
+    private javax.swing.JLabel jLPuestoAse;
     private javax.swing.JLabel jLSectorCompany;
     private javax.swing.JLabel jLSelectRol;
     private javax.swing.JLabel jLTelCompany;
@@ -1116,6 +1206,7 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLTittleNewStudent;
     private javax.swing.JLabel jLTittleNewUser;
     private javax.swing.JLabel jLWebCompany;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPButtom;
     private javax.swing.JPanel jPCompanyInformation;
     private javax.swing.JPanel jPCompanyRegister;

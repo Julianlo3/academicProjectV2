@@ -13,6 +13,12 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 /**
  * @author lopez
@@ -278,6 +284,22 @@ public class Users {
             return null;
         }
     }
+
+    public List<String> mostrarRoles(String token) {
+        DecodedJWT jwt = JWT.decode(token.replace("Bearer ", ""));
+        Map<String, Object> resourceAccess = jwt.getClaim("resource_access").asMap();
+
+        if (resourceAccess.containsKey("sistema-desktop")) {
+            Map<String, Object> client = (Map<String, Object>) resourceAccess.get("sistema-desktop");
+            List<String> clientRoles = (List<String>) client.get("roles");
+            System.out.println("Roles del cliente (" + "sistema-desktop" + "): " + clientRoles);
+            return clientRoles;
+        } else {
+            System.out.println("No se encontraron roles para el cliente: " + "sistema-desktop");
+            return Collections.emptyList();
+        }
+    }
+
 
 
 }

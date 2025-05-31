@@ -22,6 +22,7 @@ import co.edu.unicauca.academicproject.provider.appContextProvider;
 import co.edu.unicauca.academicproject.security.Users;
 
 import javax.swing.*;
+import java.util.List;
 
 /**
  *
@@ -32,10 +33,8 @@ public class ControllerLogin {
     Users user = new Users();
     public ControllerLogin(GUILogin vista){
         this.vista = vista;
-        cargarRol();
         this.vista.getjBtnBackHomeWithLogin().addActionListener(e -> volverHome());
         this.vista.getjBtnNewUser().addActionListener(e -> abrirNewUser());
-        this.vista.getCBRol().addActionListener(e -> cargarRol());
         this.vista.getBtnLogin().addActionListener(e -> checkUser());
     }
     
@@ -53,11 +52,18 @@ public class ControllerLogin {
         newUser.setVisible(true);
     }
     
-    private String cargarRol(){
-        String rol =vista.getCBRol().getSelectedItem().toString();
-        System.out.println("Rol seleccionado" + rol);
-        return rol;
-    }
+    private String cargarRol(String token){
+        List<String> roles = user.mostrarRoles(token);
+
+        if (roles.contains("coordinator")) {
+            return "coordinator";
+        } else if (roles.contains("company")) {
+            return "company";
+        } else if (roles.contains("student")){
+            return "student";
+        }
+        return "no hay";
+        }
     
     private void checkUser(){
         String userName = vista.getFieldUserName().getText();
@@ -65,9 +71,10 @@ public class ControllerLogin {
         System.out.println("Datos del form:" +userName + " " + pass);
         try {
             if(user.validarTokenRegis(userName, pass)){
+                String token = user.obtenerTokenRegis(userName, pass);
                 System.out.println("Usuario registrado");
                 vista.dispose();
-                GUIHomeWithLog home = new GUIHomeWithLog(userName,cargarRol(),user.obtenerTokenRegis(userName, pass));
+                GUIHomeWithLog home = new GUIHomeWithLog(userName,cargarRol(token),user.obtenerTokenRegis(userName, pass));
                 home.setVisible(true);
             }
         } catch (Exception e) {
