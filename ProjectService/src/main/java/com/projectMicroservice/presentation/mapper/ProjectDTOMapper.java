@@ -1,10 +1,10 @@
-package com.projectMicroservice.presentation.dto;
+package com.projectMicroservice.presentation.mapper;
 
 import com.projectMicroservice.domain.model.Project;
 import com.projectMicroservice.domain.state.Received;
-import com.projectMicroservice.domain.state.Rejected;
 import com.projectMicroservice.domain.valueObject.*;
 
+import com.projectMicroservice.presentation.DTO.ProjectDTO;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,4 +1,4 @@
-package com.projectMicroservice.presentation.dto;
+package com.projectMicroservice.presentation.DTO;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
