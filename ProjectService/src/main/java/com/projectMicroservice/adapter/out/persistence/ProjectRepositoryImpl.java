@@ -2,6 +2,7 @@ package com.projectMicroservice.adapter.out.persistence;
 
 import com.projectMicroservice.application.port.out.ProjectRepositoryPort;
 import com.projectMicroservice.domain.model.Project;
+import com.projectMicroservice.infrastructure.persistence.entity.AcademicPeriodEmbeddable;
 import com.projectMicroservice.infrastructure.persistence.mapper.ProjectMapper;
 import com.projectMicroservice.infrastructure.persistence.entity.ProjectEntity;
 
@@ -62,5 +63,21 @@ public class ProjectRepositoryImpl implements ProjectRepositoryPort {
     public Project findByName(String name){
         ProjectEntity entity = projectRepository.findByDetails_Name(name);
         return mapper.toDomain(entity);
+    }
+
+    @Override
+    public List<Project> findByCurrentState(String state) {
+        List<ProjectEntity> entities = projectRepository.findByCurrentState(state);
+        return entities.stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Project> findByCurrentStateAndAcademicPeriod(String state, int year, int term) {
+        List<ProjectEntity> entities = projectRepository.findByCurrentStateAndAcademicPeriod_YearAndAcademicPeriod_Term(state, year, term);
+        return entities.stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
     }
 }

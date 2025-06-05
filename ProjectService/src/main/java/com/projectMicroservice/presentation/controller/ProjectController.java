@@ -41,7 +41,6 @@ public class ProjectController {
         this.projectCommentDTOMapper = projectCommentDTOMapper;
     }
 
-
     @PostMapping
     @PreAuthorize("hasRole('company')")
     public ResponseEntity<ProjectDTO> createProject(@RequestBody ProjectDTO dto) {
@@ -151,7 +150,7 @@ public class ProjectController {
         return ResponseEntity.ok(projectDTOMapper.toDto(project));
     }
 
-    @GetMapping("comments/{id}")
+    @GetMapping("/comments/{id}")
     @PreAuthorize("hasAnyRole('company', 'coordinator')")
     public ResponseEntity<List<ProjectCommentDTO>> getProjectComments(@PathVariable Long id) {
         List<ProjectComment> projectsComments = projectCommentRepository.findByProjectId(id);
@@ -161,5 +160,25 @@ public class ProjectController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/state/{state}")
+    @PreAuthorize("hasAnyRole('company', 'coordinator')")
+    public ResponseEntity<List<ProjectDTO>> getProjectsByState(@PathVariable String state) {
+        List<Project> projects = projectRepository.findByCurrentState(state);
+        List<ProjectDTO> projectDTOs = projects.stream()
+                .map(projectDTOMapper::toDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(projectDTOs);
+    }
+
+    //Ejemplo endpoint: GET http://localhost:8081/api/project/stateAndPeriod/Received?year=2024&term=2
+    @GetMapping("/stateAndPeriod/{state}")
+    @PreAuthorize("hasAnyRole('company', 'coordinator')")
+    public ResponseEntity<List<ProjectDTO>> getProjectsByStateAndPeriod(@PathVariable String state, @RequestParam Integer year, @RequestParam Integer term) {
+        List<Project> projects = projectRepository.findByCurrentStateAndAcademicPeriod(state, year, term);
+        List<ProjectDTO> projectDTOs = projects.stream()
+                .map(projectDTOMapper::toDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(projectDTOs);
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.projectMicroservice.infrastructure.persistence.repositories;
 
+import com.projectMicroservice.infrastructure.persistence.entity.AcademicPeriodEmbeddable;
 import com.projectMicroservice.infrastructure.persistence.entity.ProjectEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,4 +12,6 @@ public interface IProjectRepository extends JpaRepository<ProjectEntity, Long> {
     List<ProjectEntity> findByDetails_NameContainingIgnoreCase(String name);
     List<ProjectEntity> findByCompanyNit(Long companyNit);
     ProjectEntity findByDetails_Name(String name);
+    List<ProjectEntity> findByCurrentState(String state);
+    List<ProjectEntity> findByCurrentStateAndAcademicPeriod_YearAndAcademicPeriod_Term(String state, int year, int term);
 }

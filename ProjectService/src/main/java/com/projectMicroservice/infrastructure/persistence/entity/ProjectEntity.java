@@ -11,20 +11,14 @@ public class ProjectEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long projectId;
-
     private Long companyNit;
-
     private BigDecimal budget;
-
     @Embedded
     private ProjectDetailsEmbeddable details;
-
     @Embedded
     private AcademicPeriodEmbeddable academicPeriod;
-
     @Embedded
     private ProjectTimelineEmbeddable timeline;
-
     @Column(name = "state")
     private String currentState; // Guarda el nombre del estado, ej: "Pending", "Approved"
 
