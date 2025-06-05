@@ -24,6 +24,7 @@ public class Project {
      private BigDecimal budget;
      private int academicYear;
      private int academicTerm;
+     private String state;
 
     public Project(){}
 
@@ -38,6 +39,14 @@ public class Project {
         this.budget = budget;
         this.academicYear = academicYear;
         this.academicTerm = academicTerm;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getSummary() {

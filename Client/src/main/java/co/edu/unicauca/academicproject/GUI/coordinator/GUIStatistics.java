@@ -40,10 +40,6 @@ public class GUIStatistics extends javax.swing.JFrame {
         return JBtnFiltrar;
     }
 
-    public JComboBox<String> getjCBEstado() {
-        return jCBEstado;
-    }
-
     public JYearChooser getjYear() {
         return jYear;
     }
@@ -77,7 +73,6 @@ public class GUIStatistics extends javax.swing.JFrame {
         jPDatosGraficos = new javax.swing.JPanel();
         jYear = new com.toedter.calendar.JYearChooser();
         jSpinPeriodo = new com.toedter.components.JSpinField();
-        jCBEstado = new javax.swing.JComboBox<>();
         JBtnFiltrar = new javax.swing.JButton();
         jPTitleNewProject = new javax.swing.JPanel();
         jBtnEstadistica = new javax.swing.JButton();
@@ -146,35 +141,13 @@ public class GUIStatistics extends javax.swing.JFrame {
         jLDatos.setForeground(new java.awt.Color(255, 255, 255));
         jLDatos.setText("Datos para estadísticas:");
 
+        jPDatosGraficos.setLayout(new java.awt.GridLayout(1, 0, 10, 40));
+        jPDatosGraficos.add(jYear);
+
         jSpinPeriodo.setMaximum(2);
         jSpinPeriodo.setMinimum(1);
         jSpinPeriodo.setValue(1);
-
-        jCBEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "postulados", "aprobados", "rechazados", "terminados" }));
-
-        javax.swing.GroupLayout jPDatosGraficosLayout = new javax.swing.GroupLayout(jPDatosGraficos);
-        jPDatosGraficos.setLayout(jPDatosGraficosLayout);
-        jPDatosGraficosLayout.setHorizontalGroup(
-            jPDatosGraficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPDatosGraficosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
-        jPDatosGraficosLayout.setVerticalGroup(
-            jPDatosGraficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPDatosGraficosLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPDatosGraficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
+        jPDatosGraficos.add(jSpinPeriodo);
 
         JBtnFiltrar.setText("Filtrar");
 
@@ -188,9 +161,9 @@ public class GUIStatistics extends javax.swing.JFrame {
                     .addComponent(jPGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPContentLayout.createSequentialGroup()
                         .addComponent(jLDatos)
-                        .addGap(32, 32, 32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPDatosGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JBtnFiltrar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -200,16 +173,11 @@ public class GUIStatistics extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPGraficos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
-                        .addComponent(jLDatos)
-                        .addGap(52, 52, 52))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
-                        .addComponent(JBtnFiltrar)
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
-                        .addComponent(jPDatosGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPDatosGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLDatos)
+                    .addComponent(JBtnFiltrar))
+                .addGap(52, 52, 52))
         );
 
         jPTitleNewProject.setBackground(new java.awt.Color(15, 32, 65));
@@ -283,7 +251,7 @@ public class GUIStatistics extends javax.swing.JFrame {
                 .addComponent(jPTitleNewProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 126, Short.MAX_VALUE))
+                .addGap(0, 139, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(634, 634, 634)
@@ -298,7 +266,6 @@ public class GUIStatistics extends javax.swing.JFrame {
     private javax.swing.JButton JBtnFiltrar;
     private javax.swing.JButton jBtnEstadistica;
     private javax.swing.JButton jBtnLoginU;
-    private javax.swing.JComboBox<String> jCBEstado;
     private javax.swing.JLabel jLDatos;
     private javax.swing.JPanel jPButtom;
     private javax.swing.JPanel jPContent;

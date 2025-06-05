@@ -19,6 +19,6 @@ public interface ProjectFeingClient {
     @GetMapping("/api/project/name/{name}")
     Project getProjectByName(@PathVariable("name") String name, @RequestHeader("Authorization") String token);
 
-    @GetMapping("/stateAndPeriod/{state}")
-    List<Project> getProjectsByStateAndPeriod(@PathVariable String state, @RequestParam Integer year, @RequestParam Integer term,@RequestHeader("Authorization") String token);
+    @GetMapping("api/project/stateAndPeriod/{state}")
+    List<Project> getProjectsByStateAndPeriod(@PathVariable("state") String state, @RequestParam Integer year, @RequestParam Integer term,@RequestHeader("Authorization") String token);
 }
