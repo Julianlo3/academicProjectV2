@@ -36,7 +36,7 @@ public class ControllerUserSystem {
     private void cargarEstudiantes() {
         DefaultTableModel modeloStudent = new DefaultTableModel(new String[]{"Codigo", "Nombre", "Telefono", "Email"}, 0);
         try {
-            List<Student> students = studentController.getAllStudents();
+            List<Student> students = studentController.getAllStudents("bearer " + vista.getToken());
             if (students != null) {
                 modeloStudent.setRowCount(0);
 
@@ -58,14 +58,14 @@ public class ControllerUserSystem {
     private void cargarCoordinadores() {
         DefaultTableModel modeloCoordi = new DefaultTableModel(new String[]{"Codigo", "Nombre", "Telefono", "Email", "Estado", "Programa"}, 0);
         try {
-            List<Coordinator> coordinators = coordinatorController.getAllCoordinators();
+            List<Coordinator> coordinators = coordinatorController.getAllCoordinators("bearer " + vista.getToken());
             if (coordinators != null) {
                 modeloCoordi.setRowCount(0);
 
                 for (Coordinator coordinator : coordinators) {
 
                     if (coordinator.getName() != null && coordinator.getCode() != 0) {
-                        modeloCoordi.addRow(new Object[]{coordinator.getCode(), coordinator.getName(), coordinator.getPhone(), coordinator.getEmail(), coordinator.getEstadoActual(), coordinator.getProgramaAcademico()});
+                        modeloCoordi.addRow(new Object[]{coordinator.getCode(), coordinator.getName(), coordinator.getPhone(), coordinator.getEmail(), coordinator.getStatus(), coordinator.getDegreeProgram()});
                     }
 
                 }
@@ -79,7 +79,7 @@ public class ControllerUserSystem {
     private void cargarEmpresas(){
         DefaultTableModel modeloEmpresa = new DefaultTableModel(new String[]{"nit","nombre","sector","email", "phone","website"}, 0);
         try {
-            List<Company> companies = companyController.getAllCompanies();
+            List<Company> companies = companyController.getAllCompanies("bearer " + vista.getToken());
             if (companies != null) {
                 modeloEmpresa.setRowCount(0);
 

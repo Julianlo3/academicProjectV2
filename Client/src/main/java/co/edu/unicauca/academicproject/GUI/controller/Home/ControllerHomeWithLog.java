@@ -9,6 +9,8 @@ import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
 import co.edu.unicauca.academicproject.GUI.company.GUINewProject;
 import co.edu.unicauca.academicproject.GUI.admin.GUIRequestCoordinator;
 import co.edu.unicauca.academicproject.GUI.admin.GUIUsers;
+import co.edu.unicauca.academicproject.GUI.coordinator.GUIAssigment;
+import co.edu.unicauca.academicproject.GUI.coordinator.GUIStatistics;
 import co.edu.unicauca.academicproject.GUI.student.GUINominationProject;
 import co.edu.unicauca.academicproject.Service.Company.CompanyServiceClient;
 import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
@@ -27,7 +29,7 @@ import java.awt.CardLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import javax.swing.JFrame;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -62,7 +64,19 @@ public class ControllerHomeWithLog {
                 abrirProyecto();
             }
         });
+        this.vista.getjBtnAsignar().addActionListener(e -> abrirAsignar());
+        this.vista.getJBtnEstadisticas().addActionListener(e -> abrirEstadisticas());
         cargarProyectos();
+    }
+
+    private void abrirEstadisticas(){
+        GUIStatistics estadisticas = new GUIStatistics(token);
+        estadisticas.setVisible(true);
+    }
+
+    private void abrirAsignar() {
+        GUIAssigment asignar = new GUIAssigment(token);
+        asignar.setVisible(true);
     }
 
     private void cerrarSeccion() {
@@ -77,7 +91,7 @@ public class ControllerHomeWithLog {
             case "student":
                 cargarformStudent();
                 break;
-            case "Admin":
+            case "admin":
                 cargarFormAdmin();
                 break;
             case "coordinator":
@@ -91,6 +105,7 @@ public class ControllerHomeWithLog {
     }
 
     private void cargarformStudent() {
+        vista.getjBtnLoginU().setIcon(new ImageIcon(getClass().getResource("/icon2.0/estudianteBig.png")));
         System.out.println("Cargando opciones de estudiante:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(), "Estudiante");
@@ -102,6 +117,7 @@ public class ControllerHomeWithLog {
     }
 
     private void cargarFormAdmin() {
+        vista.getjBtnLoginU().setIcon(new ImageIcon(getClass().getResource("/icon2.0/adminBig.png")));
         System.out.println("Cargando opciones de administrador:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(), "Admin");
@@ -109,6 +125,7 @@ public class ControllerHomeWithLog {
     }
 
     private void cargarFormCoordi() {
+        vista.getjBtnLoginU().setIcon(new ImageIcon(getClass().getResource("/icon2.0/coordiBig.png")));
         System.out.println("Cargando opciones de coordinador:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(), "Coordinador");
@@ -116,6 +133,7 @@ public class ControllerHomeWithLog {
     }
 
     private void cargarFormEmpresa() {
+        vista.getjBtnLoginU().setIcon(new ImageIcon(getClass().getResource("/icon2.0/companyBig.png")));
         System.out.println("Cargando opciones de empresa:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(), "Empresa");
@@ -123,13 +141,13 @@ public class ControllerHomeWithLog {
     }
 
     private void cargarSolicitudesCoordi() {
-        GUIRequestCoordinator requestCoordinator = new GUIRequestCoordinator();
+        GUIRequestCoordinator requestCoordinator = new GUIRequestCoordinator(token);
         requestCoordinator.setVisible(true);
 
     }
 
     private void cargarUsuariosSistema() {
-        GUIUsers usuariosSistema = new GUIUsers();
+        GUIUsers usuariosSistema = new GUIUsers(token);
         usuariosSistema.setVisible(true);
     }
 

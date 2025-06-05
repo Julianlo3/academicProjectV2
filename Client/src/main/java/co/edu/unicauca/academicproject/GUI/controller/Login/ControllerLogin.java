@@ -36,6 +36,7 @@ public class ControllerLogin {
         this.vista.getjBtnBackHomeWithLogin().addActionListener(e -> volverHome());
         this.vista.getjBtnNewUser().addActionListener(e -> abrirNewUser());
         this.vista.getBtnLogin().addActionListener(e -> checkUser());
+        this.vista.getCheckSeePass().addActionListener(e -> verClave());
     }
     
     private void volverHome(){
@@ -61,6 +62,8 @@ public class ControllerLogin {
             return "company";
         } else if (roles.contains("student")){
             return "student";
+        } else if (roles.contains("admin")){
+            return "admin";
         }
         return "no hay";
         }
@@ -80,6 +83,14 @@ public class ControllerLogin {
         } catch (Exception e) {
             System.out.println("Error al obtener token de usuario registrado" + e.getMessage());
             throw new RuntimeException(e);
+        }
+    }
+
+    private void verClave(){
+        if(vista.getCheckSeePass().isSelected()){
+            vista.getPasswordUser().setEchoChar((char)0);
+        }else{
+            vista.getPasswordUser().setEchoChar('*');
         }
     }
 }

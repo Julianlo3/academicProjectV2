@@ -15,8 +15,8 @@ public class StudentServiceClient {
         FeignClient.createStudent(student, token);
     }
 
-    public List<Student> GetAllStudents(){
-        return FeignClient.getAllUser();
+    public List<Student> GetAllStudents(String token){
+        return FeignClient.getAllUser(token);
     }
 
 

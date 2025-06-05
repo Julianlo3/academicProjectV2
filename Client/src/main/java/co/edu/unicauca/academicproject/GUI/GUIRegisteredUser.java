@@ -6,14 +6,7 @@ package co.edu.unicauca.academicproject.GUI;
 
 import co.edu.unicauca.academicproject.GUI.controller.RegisterUser.ControllerRegisterUser;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -29,9 +22,15 @@ public class GUIRegisteredUser extends javax.swing.JFrame {
         ControllerRegisterUser controller = new ControllerRegisterUser(this);
     }
 
+    public JLabel getjLTittleNewUser() {
+        return jLTittleNewUser;
+    }
+
     public JButton getjBtnBackSelectUser() {
         return jBtnBackSelectUser;
     }
+
+
 
     public JButton getjBtnSaveCompany() {
         return jBtnSaveCompany;

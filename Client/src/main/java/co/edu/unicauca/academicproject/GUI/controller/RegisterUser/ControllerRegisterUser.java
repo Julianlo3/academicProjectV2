@@ -42,6 +42,7 @@ public class ControllerRegisterUser {
 
     public ControllerRegisterUser(GUIRegisteredUser vista) {
         this.vista = vista;
+        cargarFormStudent();
         this.vista.getjRbtnStudent().setSelected(true);
         this.vista.getjBtnBackSelectUser().addActionListener(e -> volverHomeWithOuLog());
         this.vista.getjBtnSaveStudent().addActionListener(e -> abrirHomeStudent());
@@ -50,6 +51,9 @@ public class ControllerRegisterUser {
         this.vista.getjRbtnCompany().addActionListener(e -> cargarFormCompany());
         this.vista.getjRbtnCoordi().addActionListener(e -> cargarFormCoordi());
         this.vista.getjRbtnStudent().addActionListener(e -> cargarFormStudent());
+        this.vista.getjCheckSeePassCompany().addActionListener(e -> verClaveCompany());
+        this.vista.getjCheckSeePassCoordi().addActionListener(e -> verClaveCoordi());
+        this.vista.getjCheckSeePassStudent().addActionListener(e -> verClaveStudent());
     }
 
     private void volverHomeWithOuLog() {
@@ -57,6 +61,29 @@ public class ControllerRegisterUser {
         GUIHomeWithOutLog homeOutLog = new GUIHomeWithOutLog();
         homeOutLog.setExtendedState(JFrame.MAXIMIZED_BOTH);
         homeOutLog.setVisible(true);
+    }
+
+    private void verClaveCompany(){
+        if(vista.getjCheckSeePassCompany().isSelected()){
+            vista.getjFieldPassWordCompany().setEchoChar((char)0);
+        }else{
+            vista.getjFieldPassWordCompany().setEchoChar('*');
+        }
+    }
+
+    private void verClaveCoordi(){
+        if(vista.getjCheckSeePassCoordi().isSelected()){
+            vista.getjFieldPassWordCoordi().setEchoChar((char)0);
+        }else{
+            vista.getjFieldPassWordCoordi().setEchoChar('*');
+        }
+    }
+    private void verClaveStudent(){
+        if(vista.getjCheckSeePassStudent().isSelected()){
+            vista.getjFieldPassWordStudent().setEchoChar((char)0);
+        }else{
+            vista.getjFieldPassWordStudent().setEchoChar('*');
+        }
     }
 
     private void abrirHomeStudent() {
@@ -105,6 +132,9 @@ public class ControllerRegisterUser {
     }
 
     private void cargarFormStudent() {
+        vista.getjCheckSeePassStudent().setSelected(false);
+        verClaveStudent();
+        vista.getjLTittleNewUser().setIcon(new ImageIcon(getClass().getResource("/icon2.0/estudianteBig.png")));
         cardLayout = (CardLayout) vista.getjPRolInformation().getLayout();
         cardLayout.show(vista.getjPRolInformation(), "Estudiante");
         cardLayout = (CardLayout) vista.getjPRegisterUser().getLayout();
@@ -112,6 +142,9 @@ public class ControllerRegisterUser {
     }
 
     private void cargarFormCompany() {
+        vista.getjCheckSeePassCompany().setSelected(false);
+        verClaveCompany();
+        vista.getjLTittleNewUser().setIcon(new ImageIcon(getClass().getResource("/icon2.0/companyBig.png")));
         cardLayout = (CardLayout) vista.getjPRolInformation().getLayout();
         cardLayout.show(vista.getjPRolInformation(), "Empresa");
         cardLayout = (CardLayout) vista.getjPRegisterUser().getLayout();
@@ -120,6 +153,9 @@ public class ControllerRegisterUser {
     }
 
     private void cargarFormCoordi() {
+        vista.getjCheckSeePassCoordi().setSelected(false);
+        verClaveCoordi();
+        vista.getjLTittleNewUser().setIcon(new ImageIcon(getClass().getResource("/icon2.0/coordiBig.png")));
         cardLayout = (CardLayout) vista.getjPRolInformation().getLayout();
         cardLayout.show(vista.getjPRolInformation(), "Coordi");
         cardLayout = (CardLayout) vista.getjPRegisterUser().getLayout();

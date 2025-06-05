@@ -36,8 +36,8 @@ public class CompanyController {
 
 
 
-    public List<Company> getAllCompanies(){
-        return companyServiceClient.GetAllCompanys();
+    public List<Company> getAllCompanies(String token){
+        return companyServiceClient.GetAllCompanys(token);
     }
 
     public Company getCompanyByNit(Long nit,String token){

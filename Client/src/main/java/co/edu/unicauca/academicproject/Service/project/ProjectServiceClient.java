@@ -28,4 +28,8 @@ public class ProjectServiceClient {
     public Project getProjectByName(String name, String token){
         return FeignClient.getProjectByName(name, token);
     }
+
+    public List<Project> getProjectsFilter(String state,int year,int term,String token){
+        return FeignClient.getProjectsByStateAndPeriod(state,year,term,token);
+    }
 }

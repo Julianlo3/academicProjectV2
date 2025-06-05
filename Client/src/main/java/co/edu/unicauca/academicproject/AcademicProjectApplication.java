@@ -16,7 +16,7 @@ public class AcademicProjectApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AcademicProjectApplication.class, args);
-        Admin.getInstance().setAdminData("Julian","123","123","admin@unicauca.edu.co");
+        Admin.getInstance().setAdminData("admin","123","123","admin@unicauca.edu.co");
     }
 
     @EventListener(ApplicationReadyEvent.class)

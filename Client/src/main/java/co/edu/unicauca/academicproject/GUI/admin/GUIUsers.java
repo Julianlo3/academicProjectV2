@@ -17,12 +17,17 @@ public class GUIUsers extends javax.swing.JFrame {
     /**
      * Creates new form GUIUsers
      */
-    public GUIUsers() {
+    private String token;
+    public GUIUsers(String token) {
         initComponents();
+        this.token = token;
         ControllerUserSystem controllerUserSystem = new ControllerUserSystem(this);
 
     }
 
+    public String getToken() {
+        return token;
+    }
     public JTable getjTableStudent() {
         return jTableStudent;
     }

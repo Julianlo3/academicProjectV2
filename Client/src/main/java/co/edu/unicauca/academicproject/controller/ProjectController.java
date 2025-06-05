@@ -45,4 +45,9 @@ public class ProjectController {
         System.out.println("Buscando proyecto por nombre: " + name);
         return projectServiceClient.getProjectByName(name, token);
     }
+
+    public List<Project> getProjectsFilter(String state,int year,int term,String token){
+        System.out.println("Obteniendo datos del proyecto por estado: " + state + year + term);
+        return projectServiceClient.getProjectsFilter(state, year, term, token);
+    }
 }

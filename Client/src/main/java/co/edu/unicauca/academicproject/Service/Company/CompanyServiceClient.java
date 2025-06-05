@@ -21,8 +21,8 @@ public class CompanyServiceClient {
         FeignClient.createCompany(company,token);
     }
 
-    public List<Company> GetAllCompanys(){
-        return FeignClient.getAllCompanies();
+    public List<Company> GetAllCompanys(String token){
+        return FeignClient.getAllCompanies(token);
     }
 
 

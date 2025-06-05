@@ -21,8 +21,8 @@ public class CoordinatorServiceClient {
         FeignClient.createCoordinator(coordinator, token);
    }
 
-    public List<Coordinator> GetAllCoordinators(){
-        return FeignClient.getAllCoordinators();
+    public List<Coordinator> GetAllCoordinators(String token){
+        return FeignClient.getAllCoordinators(token);
     }
 
 

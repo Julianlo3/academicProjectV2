@@ -92,6 +92,12 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         return jPOpcionStudent;
     }
 
+    public JButton getJBtnEstadisticas() {
+        return JBtnEstadisticas;
+    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,7 +125,9 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jPOpcionCoordi = new javax.swing.JPanel();
         jBtnSolicitudes = new javax.swing.JButton();
         jBtnAsignar = new javax.swing.JButton();
+        JBtnEstadisticas = new javax.swing.JButton();
         jPOpcionStudent = new javax.swing.JPanel();
+        jBtnSoliEstudiante = new javax.swing.JButton();
         jPOpcionAdmin = new javax.swing.JPanel();
         jBtnUsersSistema = new javax.swing.JButton();
         jBtnCoordiSoli = new javax.swing.JButton();
@@ -155,6 +163,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jBtnLoginU.setBorder(null);
         jBtnLoginU.setBorderPainted(false);
         jBtnLoginU.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBtnLoginU.setFocusPainted(false);
         jBtnLoginU.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnLoginU.setIconTextGap(5);
         jBtnLoginU.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -196,6 +205,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jPOptions.setLayout(new java.awt.CardLayout());
 
         jPOpcionCompany.setBackground(new java.awt.Color(251, 219, 147));
+        jPOpcionCompany.setLayout(new java.awt.GridLayout());
 
         jBtnNewPubli.setBackground(new java.awt.Color(175, 0, 0));
         jBtnNewPubli.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -219,6 +229,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jPOptions.add(jPOpcionCompany, "Empresa");
 
         jPOpcionCoordi.setBackground(new java.awt.Color(190, 91, 80));
+        jPOpcionCoordi.setLayout(new java.awt.GridLayout());
 
         jBtnSolicitudes.setBackground(new java.awt.Color(172, 0, 0));
         jBtnSolicitudes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -227,6 +238,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jBtnSolicitudes.setText("Solicitudes");
         jBtnSolicitudes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnSolicitudes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPOpcionCoordi.add(jBtnSolicitudes);
 
         jBtnAsignar.setBackground(new java.awt.Color(172, 0, 0));
         jBtnAsignar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -235,47 +247,32 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jBtnAsignar.setText("Asignar Proyecto");
         jBtnAsignar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnAsignar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPOpcionCoordi.add(jBtnAsignar);
 
-        javax.swing.GroupLayout jPOpcionCoordiLayout = new javax.swing.GroupLayout(jPOpcionCoordi);
-        jPOpcionCoordi.setLayout(jPOpcionCoordiLayout);
-        jPOpcionCoordiLayout.setHorizontalGroup(
-            jPOpcionCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPOpcionCoordiLayout.createSequentialGroup()
-                .addGap(271, 271, 271)
-                .addComponent(jBtnSolicitudes)
-                .addGap(54, 54, 54)
-                .addComponent(jBtnAsignar)
-                .addContainerGap(171, Short.MAX_VALUE))
-        );
-        jPOpcionCoordiLayout.setVerticalGroup(
-            jPOpcionCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPOpcionCoordiLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPOpcionCoordiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBtnSolicitudes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBtnAsignar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
+        JBtnEstadisticas.setBackground(new java.awt.Color(172, 0, 0));
+        JBtnEstadisticas.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        JBtnEstadisticas.setForeground(new java.awt.Color(255, 255, 255));
+        JBtnEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/estadisticas.png"))); // NOI18N
+        JBtnEstadisticas.setText("Estadísticas");
+        JBtnEstadisticas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        JBtnEstadisticas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPOpcionCoordi.add(JBtnEstadisticas);
 
         jPOptions.add(jPOpcionCoordi, "Coordinador");
 
         jPOpcionStudent.setBackground(new java.awt.Color(236, 230, 240));
+        jPOpcionStudent.setLayout(new java.awt.GridLayout());
 
-        javax.swing.GroupLayout jPOpcionStudentLayout = new javax.swing.GroupLayout(jPOpcionStudent);
-        jPOpcionStudent.setLayout(jPOpcionStudentLayout);
-        jPOpcionStudentLayout.setHorizontalGroup(
-            jPOpcionStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 753, Short.MAX_VALUE)
-        );
-        jPOpcionStudentLayout.setVerticalGroup(
-            jPOpcionStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
-        );
+        jBtnSoliEstudiante.setBackground(new java.awt.Color(172, 0, 0));
+        jBtnSoliEstudiante.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jBtnSoliEstudiante.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnSoliEstudiante.setText("Mis solicitudes");
+        jPOpcionStudent.add(jBtnSoliEstudiante);
 
         jPOptions.add(jPOpcionStudent, "Estudiante");
 
         jPOpcionAdmin.setBackground(new java.awt.Color(255, 255, 255));
-        jPOpcionAdmin.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 10));
+        jPOpcionAdmin.setLayout(new java.awt.GridLayout());
 
         jBtnUsersSistema.setBackground(new java.awt.Color(172, 0, 0));
         jBtnUsersSistema.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -329,8 +326,8 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPPublisLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addGap(12, 12, 12))
         );
         jPPublisLayout.setVerticalGroup(
             jPPublisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,8 +335,8 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLTitleProjects)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
@@ -410,6 +407,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBtnEstadisticas;
     private javax.swing.JButton jBtnAsignar;
     private javax.swing.JButton jBtnCoordiSoli;
     private javax.swing.JButton jBtnGetOut;
@@ -417,6 +415,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
     private javax.swing.JButton jBtnMyPubli;
     private javax.swing.JButton jBtnNewPubli;
     private javax.swing.JButton jBtnSearch;
+    private javax.swing.JButton jBtnSoliEstudiante;
     private javax.swing.JButton jBtnSolicitudes;
     private javax.swing.JButton jBtnUsersSistema;
     private javax.swing.JButton jButtonQuitF;

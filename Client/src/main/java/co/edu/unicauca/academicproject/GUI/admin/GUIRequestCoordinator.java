@@ -17,11 +17,17 @@ public class GUIRequestCoordinator extends javax.swing.JFrame {
     /**
      * Creates new form GUIRequestCoordinator
      */
-    public GUIRequestCoordinator() {
+    String token;
+    public GUIRequestCoordinator(String token) {
         initComponents();
+        this.token = token;
         ControllerRequestCoordi controllerRequestCoordi = new ControllerRequestCoordi(this);
     }
-    
+
+    public String getToken(){
+        return token;
+    }
+
     public JLabel getLabelNameCoordi(){
         return jLNombreCoordi;
     }

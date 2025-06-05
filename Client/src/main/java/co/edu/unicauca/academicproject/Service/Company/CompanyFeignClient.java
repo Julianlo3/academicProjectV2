@@ -14,7 +14,7 @@ public interface CompanyFeignClient {
     void createCompany(@RequestBody Company company,@RequestHeader("Authorization") String token);
 
     @GetMapping("/api/company")
-    List<Company> getAllCompanies();
+    List<Company> getAllCompanies(@RequestHeader("Authorization") String token);
 
     @GetMapping("/api/company/{nit}")
     Company getCompanyByNit(@RequestParam Long nit,@RequestHeader("Authorization") String token);

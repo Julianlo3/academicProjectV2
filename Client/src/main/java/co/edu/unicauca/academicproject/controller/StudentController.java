@@ -37,8 +37,8 @@ public class StudentController {
     }
 
 
-    public List<Student> getAllStudents(){
-        return studentServiceClient.GetAllStudents();
+    public List<Student> getAllStudents(String token){
+        return studentServiceClient.GetAllStudents(token);
     }
 
     public Student getStudentByCode(Long code,String token){

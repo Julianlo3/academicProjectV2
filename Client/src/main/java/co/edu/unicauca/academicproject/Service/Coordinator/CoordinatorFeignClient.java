@@ -13,7 +13,7 @@ public interface CoordinatorFeignClient {
     void createCoordinator(@RequestBody Coordinator coordinator,@RequestHeader("Authorization") String token);
 
     @GetMapping("/api/coordinator")
-    List<Coordinator> getAllCoordinators();
+    List<Coordinator> getAllCoordinators(@RequestHeader("Authorization") String token);
 
     @GetMapping("/api/coordinator/{code}")
     Coordinator getSCoordinatorByCode(@PathVariable Long code);

@@ -32,8 +32,8 @@ public class CoordinatorController {
         }
     }
 
-    public List<Coordinator> getAllCoordinators(){
-        return coordinatorServiceClient.GetAllCoordinators();
+    public List<Coordinator> getAllCoordinators(String token){
+        return coordinatorServiceClient.GetAllCoordinators(token);
     }
 
     public Coordinator getCoordinatortByCode(Long code){

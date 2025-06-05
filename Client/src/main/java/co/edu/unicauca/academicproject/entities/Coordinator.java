@@ -6,29 +6,37 @@ package co.edu.unicauca.academicproject.entities;
 
 public class Coordinator {
 
-    private Long id;
+    private Long code;
     private String name, phone, email;
-    private String programaAcademico;
-    private String estadoActual;
+    private String degreeProgram;
+    private String status;
 
-    public Coordinator(long code, String name, String phone, String email, String programaAcademico) {
-        this.id = code;
+    public Coordinator(long code, String name, String phone, String email, String degreeProgram) {
+        this.code = code;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.programaAcademico = programaAcademico;
-        this.estadoActual = "PENDIENTE";
+        this.degreeProgram = degreeProgram;
+        this.status = "PENDING";
     }
 
     public Coordinator() {
     }
 
-    public String getProgramaAcademico() {
-        return programaAcademico;
+    public void setCode(Long code) {
+        this.code = code;
     }
 
-    public void setProgramaAcademico(String programaAcademico) {
-        this.programaAcademico = programaAcademico;
+    public Long getCode() {
+        return code;
+    }
+
+    public String getDegreeProgram() {
+        return degreeProgram;
+    }
+
+    public void setDegreeProgram(String degreeProgram) {
+        this.degreeProgram = degreeProgram;
     }
 
     public String getPhone() {
@@ -48,12 +56,12 @@ public class Coordinator {
         this.name = name;
     }
 
-    public String getEstadoActual() {
-        return estadoActual;
+    public String getStatus() {
+        return status;
     }
 
-    public void setEstadoActual(String estadoActual) {
-        this.estadoActual = estadoActual;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getEmail() {
@@ -64,11 +72,4 @@ public class Coordinator {
         this.email = email;
     }
 
-    public long getCode() {
-        return id;
-    }
-
-    public void setCode(long code) {
-        this.id = code;
-    }
 }

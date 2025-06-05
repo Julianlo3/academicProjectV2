@@ -30,8 +30,6 @@ public class GUILogin extends javax.swing.JFrame {
         return jBtnNewUser;
     }
     
-  
-  
     public JButton getBtnLogin(){
         return jBtnPassUser;
     }
@@ -48,7 +46,9 @@ public class GUILogin extends javax.swing.JFrame {
         return jCheckSeePass;
     }
 
-    
+    public JCheckBox getJCheckPass(){
+        return jCheckSeePass;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,7 +69,6 @@ public class GUILogin extends javax.swing.JFrame {
         jLPassWord = new javax.swing.JLabel();
         jPasswordUser = new javax.swing.JPasswordField();
         jBtnPassUser = new javax.swing.JButton();
-        jBtnPasswordForget = new javax.swing.JButton();
         jBtnNewUser = new javax.swing.JButton();
         jCheckSeePass = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
@@ -152,14 +151,6 @@ public class GUILogin extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPFormUser.add(jBtnPassUser, gridBagConstraints);
-
-        jBtnPasswordForget.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jBtnPasswordForget.setText("¿Olvidaste la contraseña?");
-        jBtnPasswordForget.setBorderPainted(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        jPFormUser.add(jBtnPasswordForget, gridBagConstraints);
 
         jBtnNewUser.setBackground(new java.awt.Color(236, 230, 240));
         jBtnNewUser.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -291,7 +282,6 @@ public class GUILogin extends javax.swing.JFrame {
     private javax.swing.JButton jBtnBackHomeWithLogin;
     private javax.swing.JButton jBtnNewUser;
     private javax.swing.JButton jBtnPassUser;
-    private javax.swing.JButton jBtnPasswordForget;
     private javax.swing.JCheckBox jCheckSeePass;
     private javax.swing.JTextField jFieldUserName;
     private javax.swing.JLabel jLFondoLogin;

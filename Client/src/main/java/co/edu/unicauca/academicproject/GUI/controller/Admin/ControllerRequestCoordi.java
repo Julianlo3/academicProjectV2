@@ -51,16 +51,15 @@ public class ControllerRequestCoordi {
     private void cargarHistorialCoordinadores() {
         DefaultTableModel modeloCoordi = new DefaultTableModel(new String[]{"Codigo", "Nombre", "Telefono", "Email", "Estado", "Programa"}, 0);
         try {
-            List<Coordinator> coordinators = coordinatorController.getAllCoordinators();
+            List<Coordinator> coordinators = coordinatorController.getAllCoordinators("bearer " + vista.getToken());
             if (coordinators != null ) {
                 modeloCoordi.setRowCount(0);
 
                 for (Coordinator coordinator : coordinators) {
 
-                    if (coordinator.getName() != null && coordinator.getCode() != 0 && !coordinator.getEstadoActual().equals("PENDIENTE")) {
-                        modeloCoordi.addRow(new Object[]{coordinator.getCode(), coordinator.getName(), coordinator.getPhone(), coordinator.getEmail(), coordinator.getEstadoActual(), coordinator.getProgramaAcademico()});
+                    if (coordinator.getName() != null && coordinator.getCode() != 0 && !coordinator.getStatus().equals("PENDING")) {
+                        modeloCoordi.addRow(new Object[]{coordinator.getCode(), coordinator.getName(), coordinator.getPhone(), coordinator.getEmail(), coordinator.getStatus(), coordinator.getDegreeProgram()});
                     }
-
                 }
             }
         } catch (Exception e) {
@@ -72,14 +71,14 @@ public class ControllerRequestCoordi {
     private void cargarSolicitudesCoordinadores() {
         DefaultTableModel modeloCoordi = new DefaultTableModel(new String[]{"Codigo", "Nombre", "Telefono", "Email", "Estado", "Programa"}, 0);
         try {
-            List<Coordinator> coordinators = coordinatorController.getAllCoordinators();
+            List<Coordinator> coordinators = coordinatorController.getAllCoordinators("bearer " + vista.getToken());
             if (coordinators != null ) {
                 modeloCoordi.setRowCount(0);
 
                 for (Coordinator coordinator : coordinators) {
 
-                    if (coordinator.getName() != null && coordinator.getCode() != 0 && coordinator.getEstadoActual().equals("PENDIENTE")) {
-                        modeloCoordi.addRow(new Object[]{coordinator.getCode(), coordinator.getName(), coordinator.getPhone(), coordinator.getEmail(), coordinator.getEstadoActual(), coordinator.getProgramaAcademico()});
+                    if (coordinator.getName() != null && coordinator.getCode() != 0 && coordinator.getStatus().equals("PENDING")) {
+                        modeloCoordi.addRow(new Object[]{coordinator.getCode(), coordinator.getName(), coordinator.getPhone(), coordinator.getEmail(), coordinator.getStatus(), coordinator.getDegreeProgram()});
                     }
 
                 }
@@ -93,7 +92,7 @@ public class ControllerRequestCoordi {
     public void procesarSoli(){
         if(this.vista.getRBtnAceptar().isSelected()){
             Coordinator coordinator = coordinatorController.getCoordinatortByCode(id);
-            System.out.println(coordinator.getName() + coordinator.getCode() + coordinator.getEmail() + coordinator.getPhone() + coordinator.getEstadoActual() + coordinator.getProgramaAcademico());
+            System.out.println(coordinator.getName() + coordinator.getCode() + coordinator.getEmail() + coordinator.getPhone() + coordinator.getStatus() + coordinator.getDegreeProgram());
             adminController.aceptarCoordi(coordinator);
             JOptionPane.showMessageDialog(null, "Coordinador aceptado con éxito.");
         }
