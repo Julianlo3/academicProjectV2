@@ -4,6 +4,11 @@ public class CreateProjectCommentDTO {
     private Long coordinatorCode;
     private String comment;
 
+    public CreateProjectCommentDTO(Long coordinatorCode, String comment) {
+        this.coordinatorCode = coordinatorCode;
+        this.comment = comment;
+    }
+
     // Getters y setters
     public Long getCoordinatorCode() {
         return coordinatorCode;

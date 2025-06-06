@@ -50,23 +50,17 @@ public class ProjectServiceImpl implements ProjectServicePort {
     }
 
     @Override
-    public void assignProject(Long projectId, ProjectComment projectComment) throws Exception {
+    public void assignProject(Long projectId) throws Exception {
         Project project = getProjectOrThrow(projectId);
         project.assign();
         projectRepositoryPort.save(project);
-
-        projectComment.changeStatus("Assigned");
-        projectCommentRepositoryPort.saveComment(projectComment);
     }
 
     @Override
-    public void completeProject(Long projectId, ProjectComment projectComment) throws Exception {
+    public void completeProject(Long projectId) throws Exception {
         Project project = getProjectOrThrow(projectId);
         project.complete();
         projectRepositoryPort.save(project);
-
-        projectComment.changeStatus("Completed");
-        projectCommentRepositoryPort.saveComment(projectComment);
     }
 
     @Override

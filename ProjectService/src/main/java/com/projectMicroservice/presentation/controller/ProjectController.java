@@ -66,15 +66,15 @@ public class ProjectController {
 
     @PutMapping("/{id}/assign")
     @PreAuthorize("hasRole('coordinator')")
-    public ResponseEntity<Void> assignProject(@PathVariable Long id, @RequestBody CreateProjectCommentDTO dto) throws Exception {
-        projectService.assignProject(id, projectCommentDTOMapper.toDomain(id, dto));
+    public ResponseEntity<Void> assignProject(@PathVariable Long id) throws Exception {
+        projectService.assignProject(id);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}/complete")
     @PreAuthorize("hasRole('coordinator')")
-    public ResponseEntity<Void> completeProject(@PathVariable Long id, @RequestBody CreateProjectCommentDTO dto) throws Exception {
-        projectService.completeProject(id, projectCommentDTOMapper.toDomain(id, dto));
+    public ResponseEntity<Void> completeProject(@PathVariable Long id) throws Exception {
+        projectService.completeProject(id);
         return ResponseEntity.ok().build();
     }
 

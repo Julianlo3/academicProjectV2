@@ -2,40 +2,43 @@ package co.edu.unicauca.studentservice.service;
 
 import co.edu.unicauca.studentservice.entity.Assignment;
 import co.edu.unicauca.studentservice.entity.Student;
-import co.edu.unicauca.studentservice.infra.dto.AssignmentDTO;
+import co.edu.unicauca.studentservice.infra.dto.AssignmentRequestDTO;
 import co.edu.unicauca.studentservice.infra.mapper.AssignmentMapper;
 import co.edu.unicauca.studentservice.repository.AssignmentRepository;
 import co.edu.unicauca.studentservice.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class AssignmentService implements IAssignmentService {
-    @Autowired
-    private AssignmentRepository assignmentRepository;
 
-    @Autowired
-    private StudentRepository studentRepository;
+    private final AssignmentRepository assignmentRepository;
+    private final StudentRepository studentRepository;
+    private final AssignmentMapper assignmentMapper;
 
-    @Autowired
-    private AssignmentMapper assignmentMapper;
+    public AssignmentService(AssignmentRepository assignmentRepository, StudentRepository studentRepository, AssignmentMapper assignmentMapper) {
+        this.assignmentRepository = assignmentRepository;
+        this.studentRepository = studentRepository;
+        this.assignmentMapper = assignmentMapper;
+    }
 
     @Override
-    public Assignment createAssignment(AssignmentDTO assignmentDTO) throws Exception {
+    @Transactional
+    public Assignment createAssignment(AssignmentRequestDTO assignmentRequestDTO) throws Exception {
         try {
             // 1. Verificar si el codigo de estudiante fue pasado y si el estudiante existe
-            if (assignmentDTO.getStudentCode() != null) {
-                if (studentRepository.findByCode(assignmentDTO.getStudentCode()).isEmpty()) {
-                    throw new IllegalAccessException("El estudiante con CODIGO " + assignmentDTO.getStudentCode() + " no existe");
+            if (assignmentRequestDTO.getStudentCode() != null) {
+                if (studentRepository.findByCode(assignmentRequestDTO.getStudentCode()).isEmpty()) {
+                    throw new IllegalAccessException("El estudiante con CODIGO " + assignmentRequestDTO.getStudentCode() + " no existe");
                 }
             }
 
             // 2. Crear y mapear la signacion desde el DTO
-            Student student = studentRepository.findByCode(assignmentDTO.getStudentCode()).get();
-            Assignment assignment = assignmentMapper.toEntity(assignmentDTO, student);
+            Student student = studentRepository.findByCode(assignmentRequestDTO.getStudentCode()).get();
+            Assignment assignment = assignmentMapper.toEntity(assignmentRequestDTO, student);
 
             // 3. Guardar y retornar la asignacion
 
@@ -47,6 +50,7 @@ public class AssignmentService implements IAssignmentService {
     }
 
     @Override
+    @Transactional
     public Optional<List<Assignment>> findAssignmentByStudentCode(Long studentCode) throws Exception {
         try{
             // 1. Verificar si el codigo de estudiante fue pasado y si el estudiante existe
@@ -64,6 +68,7 @@ public class AssignmentService implements IAssignmentService {
     }
 
     @Override
+    @Transactional
     public List<Assignment> findAllAssignment() throws Exception {
         try {
             return assignmentRepository.findAll();
@@ -73,6 +78,7 @@ public class AssignmentService implements IAssignmentService {
     }
 
     @Override
+    @Transactional
     public Assignment deleteAssignment(Long id) throws Exception {
         try{
             // 1. Verificar si el id fue pasado y si existe

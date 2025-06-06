@@ -4,7 +4,7 @@ import co.edu.unicauca.coordinatorservice.entities.Coordinator;
 import co.edu.unicauca.coordinatorservice.entities.state.*;
 import co.edu.unicauca.coordinatorservice.infra.dto.CoordinatorRequest;
 import co.edu.unicauca.coordinatorservice.infra.mapper.CoordinatorMapper;
-import co.edu.unicauca.coordinatorservice.repository.ICoordinatorRepository;
+import co.edu.unicauca.coordinatorservice.repository.CoordinatorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +13,10 @@ import java.util.Optional;
 @Service
 public class CoordinatorService implements ICoordinatorService{
 
-    private final ICoordinatorRepository coordinatorRepository;
+    private final CoordinatorRepository coordinatorRepository;
     private final CoordinatorMapper coordinatorMapper;
 
-    public CoordinatorService(ICoordinatorRepository coordinatorRepository, CoordinatorMapper coordinatorMapper) {
+    public CoordinatorService(CoordinatorRepository coordinatorRepository, CoordinatorMapper coordinatorMapper) {
         this.coordinatorRepository = coordinatorRepository;
         this.coordinatorMapper = coordinatorMapper;
     }

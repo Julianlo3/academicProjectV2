@@ -3,7 +3,7 @@ package co.edu.unicauca.studentservice.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 public class Assignment {
@@ -19,7 +19,7 @@ public class Assignment {
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateAssignment;
+    private LocalDateTime dateAssignment;
 
     public Assignment(Long id, Student student, Long projectId) {
         this.id = id;
@@ -47,11 +47,11 @@ public class Assignment {
         this.student = student;
     }
 
-    public Date getDateAssignment() {
+    public LocalDateTime getDateAssignment() {
         return dateAssignment;
     }
 
-    public void setDateAssignment(Date dateAssignment) {
+    public void setDateAssignment(LocalDateTime dateAssignment) {
         this.dateAssignment = dateAssignment;
     }
 

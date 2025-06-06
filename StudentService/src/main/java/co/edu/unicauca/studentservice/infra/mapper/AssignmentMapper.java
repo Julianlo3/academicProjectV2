@@ -2,14 +2,15 @@ package co.edu.unicauca.studentservice.infra.mapper;
 
 import co.edu.unicauca.studentservice.entity.Assignment;
 import co.edu.unicauca.studentservice.entity.Student;
-import co.edu.unicauca.studentservice.infra.dto.AssignmentDTO;
+import co.edu.unicauca.studentservice.infra.dto.AssignmentRequestDTO;
+import co.edu.unicauca.studentservice.infra.dto.AssignmentResponseDTO;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AssignmentMapper {
 
-    public AssignmentDTO toDto(Assignment assignment) {
-        return new AssignmentDTO(
+    public AssignmentResponseDTO toDto(Assignment assignment) {
+        return new AssignmentResponseDTO(
                 assignment.getId(),
                 assignment.getStudent().getCode(),
                 assignment.getProjectId(),
@@ -17,9 +18,9 @@ public class AssignmentMapper {
         );
     }
 
-    public Assignment toEntity(AssignmentDTO dto, Student student) {
+    public Assignment toEntity(AssignmentRequestDTO dto, Student student) {
         return new Assignment(
-                dto.getId(),
+                null,
                 student,
                 dto.getProjectId()
         );

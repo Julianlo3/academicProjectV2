@@ -1,14 +1,14 @@
 package co.edu.unicauca.studentservice.infra.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-public class AssignmentDTO {
+public class AssignmentResponseDTO {
     private Long id;
     private Long studentCode;
     private Long projectId;
-    private Date dateAssignment;
+    private LocalDateTime dateAssignment;
 
-    public AssignmentDTO(Long id, Long studentCode, Long projectId, Date dateAssignment){
+    public AssignmentResponseDTO(Long id, Long studentCode, Long projectId, LocalDateTime dateAssignment){
         this.id = id;
         this.studentCode = studentCode;
         this.projectId = projectId;
@@ -39,11 +39,11 @@ public class AssignmentDTO {
         this.projectId = projectId;
     }
 
-    public Date getDateAssignment() {
+    public LocalDateTime getDateAssignment() {
         return dateAssignment;
     }
 
-    public void setDateAssignment(Date dateAssignment) {
+    public void setDateAssignment(LocalDateTime dateAssignment) {
         this.dateAssignment = dateAssignment;
     }
 }

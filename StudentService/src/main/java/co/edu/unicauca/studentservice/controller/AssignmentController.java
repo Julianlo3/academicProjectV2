@@ -1,7 +1,8 @@
 package co.edu.unicauca.studentservice.controller;
 
 import co.edu.unicauca.studentservice.entity.Assignment;
-import co.edu.unicauca.studentservice.infra.dto.AssignmentDTO;
+import co.edu.unicauca.studentservice.infra.dto.AssignmentRequestDTO;
+import co.edu.unicauca.studentservice.infra.dto.AssignmentResponseDTO;
 import co.edu.unicauca.studentservice.service.AssignmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/assignment")
+@RequestMapping("/api/student/assignment")
 public class AssignmentController {
 
     @Autowired
@@ -53,10 +54,10 @@ public class AssignmentController {
 
     @PostMapping
     @PreAuthorize("hasAnyRole('coordinator')")
-    public ResponseEntity<?> createAssignment(@RequestBody AssignmentDTO assignmentDTO) {
+    public ResponseEntity<?> createAssignment(@RequestBody AssignmentRequestDTO assignmentRequestDTO) {
         try {
             try {
-                Assignment savedAssignment = assignmentService.createAssignment(assignmentDTO);
+                Assignment savedAssignment = assignmentService.createAssignment(assignmentRequestDTO);
                 return ResponseEntity.ok(savedAssignment);
             } catch (IllegalAccessException e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -80,5 +81,4 @@ public class AssignmentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al eliminar datos de la asignacion, " + e.getMessage() + "\"}");
         }
     }
-
 }

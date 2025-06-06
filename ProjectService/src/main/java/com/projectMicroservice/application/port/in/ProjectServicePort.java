@@ -14,8 +14,8 @@ public interface ProjectServicePort {
     Project createProject(Project project);
     void approveProject(Long projectId, ProjectComment projectComment) throws Exception;
     void rejectProject(Long projectId, ProjectComment projectComment) throws Exception;
-    void assignProject(Long projectId, ProjectComment projectComment) throws Exception;
-    void completeProject(Long projectId, ProjectComment projectComment) throws Exception;
+    void assignProject(Long projectId) throws Exception;
+    void completeProject(Long projectId) throws Exception;
 
     void editProjectDetails(Long projectId, String name, String summary, String objectives, String description) throws Exception;
     void editProjectTimeline(Long projectId, int maxDurationInMonths, LocalDate startDate) throws Exception;
