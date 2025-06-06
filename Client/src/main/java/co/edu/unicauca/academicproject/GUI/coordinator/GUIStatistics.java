@@ -48,12 +48,20 @@ public class GUIStatistics extends javax.swing.JFrame {
         return jSpinPeriodo;
     }
 
-    public JPanel getjPGraficoBarra() {
-        return jPGraficoBarra;
+    public JRadioButton getjRbtnGraficoPastel() {
+        return jRbtnGraficoPastel;
     }
 
-    public JPanel getjPGraficoPastel() {
-        return jPGraficoPastel;
+    public JRadioButton getjRbtnGraficoBarra() {
+        return jRbtnGraficoBarra;
+    }
+
+    public ButtonGroup getButtonGroupGrafico() {
+        return buttonGroupGrafico;
+    }
+
+    public JPanel getjPGraficos() {
+        return jPGraficos;
     }
 
     /**
@@ -65,15 +73,16 @@ public class GUIStatistics extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupGrafico = new javax.swing.ButtonGroup();
         jPContent = new javax.swing.JPanel();
         jPGraficos = new javax.swing.JPanel();
-        jPGraficoPastel = new javax.swing.JPanel();
-        jPGraficoBarra = new javax.swing.JPanel();
         jLDatos = new javax.swing.JLabel();
         jPDatosGraficos = new javax.swing.JPanel();
         jYear = new com.toedter.calendar.JYearChooser();
         jSpinPeriodo = new com.toedter.components.JSpinField();
         JBtnFiltrar = new javax.swing.JButton();
+        jRbtnGraficoBarra = new javax.swing.JRadioButton();
+        jRbtnGraficoPastel = new javax.swing.JRadioButton();
         jPTitleNewProject = new javax.swing.JPanel();
         jBtnEstadistica = new javax.swing.JButton();
         jPHead = new javax.swing.JPanel();
@@ -90,51 +99,15 @@ public class GUIStatistics extends javax.swing.JFrame {
         jPContent.setBackground(new java.awt.Color(15, 32, 65));
         jPContent.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPGraficoPastel.setBackground(new java.awt.Color(204, 255, 255));
-
-        javax.swing.GroupLayout jPGraficoPastelLayout = new javax.swing.GroupLayout(jPGraficoPastel);
-        jPGraficoPastel.setLayout(jPGraficoPastelLayout);
-        jPGraficoPastelLayout.setHorizontalGroup(
-            jPGraficoPastelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 582, Short.MAX_VALUE)
-        );
-        jPGraficoPastelLayout.setVerticalGroup(
-            jPGraficoPastelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 253, Short.MAX_VALUE)
-        );
-
-        jPGraficoBarra.setBackground(new java.awt.Color(255, 255, 204));
-
-        javax.swing.GroupLayout jPGraficoBarraLayout = new javax.swing.GroupLayout(jPGraficoBarra);
-        jPGraficoBarra.setLayout(jPGraficoBarraLayout);
-        jPGraficoBarraLayout.setHorizontalGroup(
-            jPGraficoBarraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
-        );
-        jPGraficoBarraLayout.setVerticalGroup(
-            jPGraficoBarraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPGraficosLayout = new javax.swing.GroupLayout(jPGraficos);
         jPGraficos.setLayout(jPGraficosLayout);
         jPGraficosLayout.setHorizontalGroup(
             jPGraficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPGraficosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPGraficoPastel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jPGraficoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+            .addGap(0, 1369, Short.MAX_VALUE)
         );
         jPGraficosLayout.setVerticalGroup(
             jPGraficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPGraficosLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPGraficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPGraficoPastel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPGraficoBarra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(17, Short.MAX_VALUE))
+            .addGap(0, 384, Short.MAX_VALUE)
         );
 
         jLDatos.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -151,20 +124,39 @@ public class GUIStatistics extends javax.swing.JFrame {
 
         JBtnFiltrar.setText("Filtrar");
 
+        jRbtnGraficoBarra.setBackground(new java.awt.Color(15, 32, 65));
+        buttonGroupGrafico.add(jRbtnGraficoBarra);
+        jRbtnGraficoBarra.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jRbtnGraficoBarra.setForeground(new java.awt.Color(255, 255, 255));
+        jRbtnGraficoBarra.setText("Gráfico barra");
+
+        jRbtnGraficoPastel.setBackground(new java.awt.Color(15, 32, 65));
+        buttonGroupGrafico.add(jRbtnGraficoPastel);
+        jRbtnGraficoPastel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jRbtnGraficoPastel.setForeground(new java.awt.Color(255, 255, 255));
+        jRbtnGraficoPastel.setText("Gráfico pastel");
+
         javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
         jPContent.setLayout(jPContentLayout);
         jPContentLayout.setHorizontalGroup(
             jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPContentLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPContentLayout.createSequentialGroup()
-                        .addComponent(jLDatos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPDatosGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JBtnFiltrar)))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPContentLayout.createSequentialGroup()
+                                .addComponent(jLDatos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPDatosGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRbtnGraficoPastel)
+                                .addGap(24, 24, 24)
+                                .addComponent(JBtnFiltrar))))
+                    .addGroup(jPContentLayout.createSequentialGroup()
+                        .addGap(363, 363, 363)
+                        .addComponent(jRbtnGraficoBarra)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPContentLayout.setVerticalGroup(
@@ -174,10 +166,21 @@ public class GUIStatistics extends javax.swing.JFrame {
                 .addComponent(jPGraficos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPDatosGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLDatos)
-                    .addComponent(JBtnFiltrar))
-                .addGap(52, 52, 52))
+                    .addGroup(jPContentLayout.createSequentialGroup()
+                        .addComponent(JBtnFiltrar)
+                        .addGap(31, 31, 31))
+                    .addGroup(jPContentLayout.createSequentialGroup()
+                        .addComponent(jRbtnGraficoBarra)
+                        .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPContentLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPDatosGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLDatos)))
+                            .addGroup(jPContentLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRbtnGraficoPastel)))
+                        .addGap(22, 22, 22))))
         );
 
         jPTitleNewProject.setBackground(new java.awt.Color(15, 32, 65));
@@ -230,7 +233,7 @@ public class GUIStatistics extends javax.swing.JFrame {
         );
         jPButtomLayout.setVerticalGroup(
             jPButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 101, Short.MAX_VALUE)
+            .addGap(0, 36, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -251,10 +254,10 @@ public class GUIStatistics extends javax.swing.JFrame {
                 .addComponent(jPTitleNewProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 139, Short.MAX_VALUE))
+                .addGap(0, 40, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(634, 634, 634)
+                    .addGap(699, 699, 699)
                     .addComponent(jPButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -264,18 +267,19 @@ public class GUIStatistics extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBtnFiltrar;
+    private javax.swing.ButtonGroup buttonGroupGrafico;
     private javax.swing.JButton jBtnEstadistica;
     private javax.swing.JButton jBtnLoginU;
     private javax.swing.JLabel jLDatos;
     private javax.swing.JPanel jPButtom;
     private javax.swing.JPanel jPContent;
     private javax.swing.JPanel jPDatosGraficos;
-    private javax.swing.JPanel jPGraficoBarra;
-    private javax.swing.JPanel jPGraficoPastel;
     private javax.swing.JPanel jPGraficos;
     private javax.swing.JPanel jPHead;
     private javax.swing.JPanel jPOpcLogin;
     private javax.swing.JPanel jPTitleNewProject;
+    private javax.swing.JRadioButton jRbtnGraficoBarra;
+    private javax.swing.JRadioButton jRbtnGraficoPastel;
     private com.toedter.components.JSpinField jSpinPeriodo;
     private com.toedter.calendar.JYearChooser jYear;
     private java.awt.Label lbTitleProyect;

@@ -33,11 +33,14 @@ public class controllerStatistics {
     public controllerStatistics(GUIStatistics vista) {
         this.vista = vista;
         this.vista.getJBtnFiltrar().addActionListener(e-> obtenerProyectos());
+        this.vista.getjRbtnGraficoPastel().setSelected(true);
     }
+
+
+
 
     public void obtenerProyectos() {
         System.out.println("Obteniendo proyectos");
-
         int aprobados = projectController.getProjectsFilter("Approved",vista.getjYear().getValue(),vista.getjSpinPeriodo().getValue(),"Bearer "+vista.getToken()).size();
         int asignados = projectController.getProjectsFilter("Assigned",vista.getjYear().getValue(),vista.getjSpinPeriodo().getValue(),"Bearer "+vista.getToken()).size();
         int compledados = projectController.getProjectsFilter("Completed",vista.getjYear().getValue(),vista.getjSpinPeriodo().getValue(),"Bearer "+vista.getToken()).size();
@@ -46,8 +49,14 @@ public class controllerStatistics {
 
         System.out.println("# aprobados: "+aprobados+"  #asignados "+asignados+" #completados "+compledados+" #rechazados "+rechazados+" #recibidos"+recebidos);
 
-        generarGraficoBarra(aprobados,asignados,compledados,rechazados,recebidos);
-        generarGraficoPastel(aprobados,asignados,compledados,rechazados,recebidos);
+        if(vista.getjRbtnGraficoPastel().isSelected()){
+            generarGraficoPastel(aprobados,asignados,compledados,rechazados,recebidos);
+        }
+
+        if(vista.getjRbtnGraficoBarra().isSelected()){
+            generarGraficoBarra(aprobados,asignados,compledados,rechazados,recebidos);
+        }
+
 
     }
 
@@ -89,14 +98,14 @@ public class controllerStatistics {
 
         // 3. Crear el panel del gráfico
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(vista.getjPGraficoBarra().getSize()); // para ocupar todo el JPanel
+        chartPanel.setPreferredSize(vista.getjPGraficos().getSize()); // para ocupar todo el JPanel
 
 
         // 4. Mostrarlo en tu JPanel
-        vista.getjPGraficoBarra().removeAll(); // limpia el panel si ya había algo
-        vista.getjPGraficoBarra().setLayout(new java.awt.BorderLayout()); // usa BorderLayout para que se ajuste bien
-        vista.getjPGraficoBarra().add(chartPanel, BorderLayout.CENTER);
-        vista.getjPGraficoBarra().validate(); // actualiza el contenido
+        vista.getjPGraficos().removeAll(); // limpia el panel si ya había algo
+        vista.getjPGraficos().setLayout(new java.awt.BorderLayout()); // usa BorderLayout para que se ajuste bien
+        vista.getjPGraficos().add(chartPanel, BorderLayout.CENTER);
+        vista.getjPGraficos().validate(); // actualiza el contenido
     }
 
     public void generarGraficoPastel(int aprobados, int asignados, int compleados, int rechazados, int recebidos) {
@@ -128,13 +137,13 @@ public class controllerStatistics {
 
         // 3. Crear el ChartPanel
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(vista.getjPGraficoPastel().getSize());
+        chartPanel.setPreferredSize(vista.getjPGraficos().getSize());
 
         // 4. Mostrarlo en tu JPanel
-        vista.getjPGraficoPastel().removeAll();
-        vista.getjPGraficoPastel().setLayout(new java.awt.BorderLayout());
-        vista.getjPGraficoPastel().add(chartPanel, BorderLayout.CENTER);
-        vista.getjPGraficoPastel().validate();
+        vista.getjPGraficos().removeAll();
+        vista.getjPGraficos().setLayout(new java.awt.BorderLayout());
+        vista.getjPGraficos().add(chartPanel, BorderLayout.CENTER);
+        vista.getjPGraficos().validate();
 
     }
     
