@@ -17,18 +17,31 @@ public class GUIminiRequest extends javax.swing.JPanel {
     /**
      * Creates new form GUIminiRequest
      */
-    private String tituloProyecto,nombreProyecto,estadoProyecto;
+    private String tituloProyecto,nombreEstudiante,nombreProyecto,estadoProyecto;
 
-    public GUIminiRequest(String tituloProyecto,String nombreEmpresa,String estado) {
+    public GUIminiRequest(String tituloProyecto,String nombreEstudiante,String nombreEmpresa,String estado) {
         initComponents();
         this.tituloProyecto=tituloProyecto;
+        this.nombreEstudiante=nombreEstudiante;
         this.nombreProyecto=nombreEmpresa;
         this.estadoProyecto=estado;
         controllerminiRequest controller = new controllerminiRequest(this);
     }
 
+    public JLabel getjLEstadoProyecto() {
+        return jLEstadoProyecto;
+    }
+
+    public JButton getjBtnVerDetalles() {
+        return jBtnVerDetalles;
+    }
+
     public String getTituloProyecto() {
         return tituloProyecto;
+    }
+
+    public String getNombreLEstudiante() {
+        return nombreEstudiante;
     }
 
     public String getNombreProyecto() {
@@ -43,7 +56,9 @@ public class GUIminiRequest extends javax.swing.JPanel {
         this.jLTituloProyecto.setText(jLTituloProyecto);
     }
 
-
+    public void setjLEstudiante(String jLEstudiante) {
+        this.jLEstudiante.setText(jLEstudiante);
+    }
 
     public void setjLNombreEmpresa(String jLNombreEmpresa) {
         this.jLNombreEmpresa.setText(jLNombreEmpresa);
@@ -61,6 +76,7 @@ public class GUIminiRequest extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jLTituloProyecto = new javax.swing.JLabel();
         jLTEstudiante = new javax.swing.JLabel();
@@ -69,22 +85,36 @@ public class GUIminiRequest extends javax.swing.JPanel {
         jLEstudiante = new javax.swing.JLabel();
         jLNombreEmpresa = new javax.swing.JLabel();
         jLEstadoProyecto = new javax.swing.JLabel();
+        jBtnVerDetalles = new javax.swing.JButton();
 
-        jLTituloProyecto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 102, 102), 1, true));
+
+        jLTituloProyecto.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLTituloProyecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLTituloProyecto.setText("TITULO PROYECTO");
 
+        jLTEstudiante.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLTEstudiante.setText("Estudiante:");
 
+        jLTEmpresa.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLTEmpresa.setText("Empresa:");
 
+        jLTEstado.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLTEstado.setText("Estado:");
 
+        jLEstudiante.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLEstudiante.setText("Pepito perez");
+        jLEstudiante.setOpaque(true);
 
+        jLNombreEmpresa.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLNombreEmpresa.setText("Lacteos Cauca");
+        jLNombreEmpresa.setOpaque(true);
 
+        jLEstadoProyecto.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLEstadoProyecto.setText("Receibed");
+        jLEstadoProyecto.setOpaque(true);
+
+        jBtnVerDetalles.setText("Ver detalles");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,21 +123,29 @@ public class GUIminiRequest extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLTituloProyecto, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLTEstudiante)
+                        .addComponent(jLTituloProyecto, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLTEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLTEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(15, 15, 15))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLTEstudiante)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(12, 12, 12))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLTEmpresa)
-                            .addComponent(jLTEstado))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(12, 12, 12))
                             .addComponent(jLNombreEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLEstadoProyecto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                            .addComponent(jLEstadoProyecto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnVerDetalles)
+                .addGap(81, 81, 81))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +156,7 @@ public class GUIminiRequest extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLTEstudiante)
                     .addComponent(jLEstudiante))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLTEmpresa)
                     .addComponent(jLNombreEmpresa))
@@ -126,12 +164,15 @@ public class GUIminiRequest extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLTEstado)
                     .addComponent(jLEstadoProyecto))
-                .addGap(22, 22, 22))
+                .addGap(18, 18, 18)
+                .addComponent(jBtnVerDetalles)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnVerDetalles;
     private javax.swing.JLabel jLEstadoProyecto;
     private javax.swing.JLabel jLEstudiante;
     private javax.swing.JLabel jLNombreEmpresa;

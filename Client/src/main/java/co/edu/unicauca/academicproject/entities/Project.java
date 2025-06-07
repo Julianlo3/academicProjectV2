@@ -25,7 +25,7 @@ public class Project {
      private int academicYear;
      private int academicTerm;
      private String state;
-     private Long projectId;
+     private Long id;
 
     public Project(){}
 
@@ -42,12 +42,12 @@ public class Project {
         this.academicTerm = academicTerm;
     }
 
-    public Long getprojectId() {
-        return projectId;
+    public Long getId() {
+        return id;
     }
 
-    public void setprojectId(Long id) {
-        this.projectId = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getState() {

@@ -14,6 +14,8 @@ import com.toedter.calendar.JYearChooser;
 import com.toedter.components.JSpinField;
 
 import javax.swing.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -32,6 +34,16 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         return jPChat;
     }
 
+    public JLabel getjLEstudianteSolicitante() {
+        return jLEstudianteSolicitante;
+    }
+
+  
+
+    public JLabel getjLEstadoSolicitud() {
+        return jLEstadoSolicitud;
+    }
+    
     
 
     public String getToken(){
@@ -94,8 +106,9 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         return jDateChFechaInicio;
     }
 
-    public void setjDateChFechaInicio(JDateChooser jDateChFechaInicio) {
-        this.jDateChFechaInicio = jDateChFechaInicio;
+    public void setjDateChFechaInicio(String jDateChFechaInicio) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        this.jDateChFechaInicio.setDate(format.parse(jDateChFechaInicio)); ;
     }
 
     public JTextArea getjFieldMotivoRechazo() {
@@ -333,6 +346,7 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         );
 
         jPDetalleSolicitud.setBackground(new java.awt.Color(15, 32, 65));
+        jPDetalleSolicitud.setEnabled(false);
 
         jLTitleProject.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLTitleProject.setForeground(new java.awt.Color(255, 255, 255));
@@ -340,7 +354,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
 
         jFieldTitleProject.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jFieldTitleProject.setText("Mi proyecto");
-        jFieldTitleProject.setEnabled(false);
 
         jLDescriptionProject.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLDescriptionProject.setForeground(new java.awt.Color(255, 255, 255));
@@ -351,7 +364,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         jTextAreaDescripProject.setLineWrap(true);
         jTextAreaDescripProject.setRows(5);
         jTextAreaDescripProject.setText("Proyecto enfocado en los sitemas gestores academicos\n");
-        jTextAreaDescripProject.setEnabled(false);
         jScrollPane1.setViewportView(jTextAreaDescripProject);
 
         jLResumen.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -359,7 +371,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         jLResumen.setText("Resumen:");
 
         jTextAreaResumen.setText("jTextField1");
-        jTextAreaResumen.setEnabled(false);
         jTextAreaResumen.setMaximumSize(new java.awt.Dimension(250, 30));
         jTextAreaResumen.setMinimumSize(new java.awt.Dimension(200, 30));
         jTextAreaResumen.setPreferredSize(new java.awt.Dimension(200, 30));
@@ -369,7 +380,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         jLObjetivos.setText("Objetivos:");
 
         jTextAreaObjetivos.setText("jTextField2");
-        jTextAreaObjetivos.setEnabled(false);
         jTextAreaObjetivos.setMaximumSize(new java.awt.Dimension(250, 30));
         jTextAreaObjetivos.setMinimumSize(new java.awt.Dimension(200, 30));
         jTextAreaObjetivos.setPreferredSize(new java.awt.Dimension(200, 30));
@@ -378,7 +388,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         jLDuracionMeses.setForeground(new java.awt.Color(255, 255, 255));
         jLDuracionMeses.setText("Duracion del proyecto(meses):");
 
-        jSpinDuracionMes.setEnabled(false);
         jSpinDuracionMes.setMaximum(12);
         jSpinDuracionMes.setMinimum(1);
         jSpinDuracionMes.setValue(1);
@@ -387,9 +396,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Periodo academico:");
 
-        jYearProyecto.setEnabled(false);
-
-        jSpinTerm.setEnabled(false);
         jSpinTerm.setMaximum(2);
         jSpinTerm.setMinimum(1);
         jSpinTerm.setValue(1);
@@ -399,10 +405,8 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         jLFechaInicioProyecto.setText("Fecha inicio:");
 
         jDateChFechaInicio.setDateFormatString("y-MM-d");
-        jDateChFechaInicio.setEnabled(false);
 
         jFieldPresupuesto.setText("1");
-        jFieldPresupuesto.setEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));

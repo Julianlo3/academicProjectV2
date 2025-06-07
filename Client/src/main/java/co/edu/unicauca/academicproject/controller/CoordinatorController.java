@@ -3,6 +3,7 @@ package co.edu.unicauca.academicproject.controller;
 
 import co.edu.unicauca.academicproject.Service.Coordinator.CoordinatorServiceClient;
 import co.edu.unicauca.academicproject.entities.Coordinator;
+import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
 import co.edu.unicauca.academicproject.entities.Student;
 
 import javax.swing.*;
@@ -40,5 +41,8 @@ public class CoordinatorController {
         return coordinatorServiceClient.getCoordinatorByCode(code);
     }
 
+    public List<ProjectApplicationRequest> getAllRequests(String token){
+        return coordinatorServiceClient.getAllRequests(token);
+    }
 
 }

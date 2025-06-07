@@ -2,6 +2,7 @@ package co.edu.unicauca.academicproject.Service.Coordinator;
 
 
 import co.edu.unicauca.academicproject.entities.Coordinator;
+import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,10 @@ public class CoordinatorServiceClient {
 
     public void deleteCoordiantor(Long code){
         FeignClient.deleteCoordinator(code);
+    }
+
+    public List<ProjectApplicationRequest> getAllRequests(String token){
+        return  FeignClient.getAllRequests(token);
     }
 
 }

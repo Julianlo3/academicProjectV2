@@ -2,12 +2,8 @@ package co.edu.unicauca.academicproject.GUI.controller.Project;
 
 
 import co.edu.unicauca.academicproject.GUI.company.GUINewProject;
-import co.edu.unicauca.academicproject.Service.Company.CompanyServiceClient;
 import co.edu.unicauca.academicproject.Service.project.ProjectServiceClient;
-import co.edu.unicauca.academicproject.controller.CompanyController;
 import co.edu.unicauca.academicproject.controller.ProjectController;
-import co.edu.unicauca.academicproject.entities.AcademicTerm;
-import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.infra.Messages;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
@@ -15,9 +11,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-
-import javax.swing.*;
-import java.time.LocalDate;
 
 /**
  * @author lopez

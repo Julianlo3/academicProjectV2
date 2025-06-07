@@ -1,6 +1,7 @@
 package co.edu.unicauca.academicproject.Service.Coordinator;
 
 import co.edu.unicauca.academicproject.entities.Coordinator;
+import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,4 +25,6 @@ public interface CoordinatorFeignClient {
     @DeleteMapping("/api/coordinator/{code}")
     void deleteCoordinator(@PathVariable Long code);
 
+    @GetMapping("/api/coordinator/request")
+    List<ProjectApplicationRequest> getAllRequests(@RequestHeader("Authorization") String token);
 }
