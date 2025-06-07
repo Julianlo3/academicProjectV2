@@ -83,6 +83,11 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         return jPOptions;
     }
 
+    public JButton getjBtnSoliEstudiante() {
+        return jBtnSoliEstudiante;
+    }
+
+    
 
     public JTable getjTableProjects() {
         return jTableProjects;

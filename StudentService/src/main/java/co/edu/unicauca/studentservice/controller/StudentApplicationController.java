@@ -15,7 +15,7 @@ public class StudentApplicationController {
         this.studentApplicationService = studentApplicationService;
     }
 
-    @PostMapping("/apply")
+        @PostMapping("/apply")
     @PreAuthorize("hasRole('student')")
     public ResponseEntity<Void> applyToProject(@RequestParam Long studentCode, @RequestParam Long projectId) {
         studentApplicationService.applyToProject(studentCode, projectId);

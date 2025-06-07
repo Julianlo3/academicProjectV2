@@ -25,6 +25,7 @@ public class Project {
      private int academicYear;
      private int academicTerm;
      private String state;
+     private Long projectId;
 
     public Project(){}
 
@@ -39,6 +40,14 @@ public class Project {
         this.budget = budget;
         this.academicYear = academicYear;
         this.academicTerm = academicTerm;
+    }
+
+    public Long getprojectId() {
+        return projectId;
+    }
+
+    public void setprojectId(Long id) {
+        this.projectId = id;
     }
 
     public String getState() {

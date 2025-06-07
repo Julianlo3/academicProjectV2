@@ -31,12 +31,19 @@ public class GUINominationProject extends javax.swing.JFrame {
     private final Project project;
     private String token;
     private String rol;
-    public GUINominationProject(Project project,String token,String rol) {
+    private String codeStudent;
+    public GUINominationProject(Project project,String token,String rol,String codeStudent) {
         initComponents();
         this.project = project;
         this.rol = rol;
         ControllerGuestNomination controller = new ControllerGuestNomination(this);
         this.token = token;
+        this.codeStudent = codeStudent;
+
+    }
+
+    public String getCodeStudent() {
+        return codeStudent;
     }
 
     public String getRol() {

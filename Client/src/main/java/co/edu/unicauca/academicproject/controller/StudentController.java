@@ -44,6 +44,14 @@ public class StudentController {
     public Student getStudentByCode(Long code,String token){
         return studentServiceClient.getStudentByCode(code, token);
     }
+
+    public void applyToProject(long studentCode, long projectCode, String token) {
+        try{
+            studentServiceClient.applyToProject(studentCode,projectCode,token);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 }
 
 

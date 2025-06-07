@@ -7,3 +7,11 @@ The object is already closed [90007-214]
 2025-06-05 11:07:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
 The object is already closed [90007-214]
+2025-06-07 11:52:18 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]PROJECT"; se esperaba "PREPARE"
+Syntax error in SQL statement "[*]PROJECT"; expected "PREPARE"; SQL statement:
+PROJECT [42001-214]
+2025-06-07 11:52:19 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]PROJECT"; se esperaba "PREPARE"
+Syntax error in SQL statement "[*]PROJECT"; expected "PREPARE"; SQL statement:
+PROJECT [42001-214]
