@@ -27,6 +27,7 @@ public class ProjectApplicationRequestService implements IProjectApplicationRequ
         this.projectClient = projectClient;
     }
 
+    @Override
     public void createRequest(ProjectApplicationRequestDTO dto) throws Exception {
         // Validar si ya existe una solicitud para ese estudiante y proyecto
         repository.findByStudentCodeAndProjectId(dto.getStudentCode(), dto.getProjectId())
@@ -44,6 +45,7 @@ public class ProjectApplicationRequestService implements IProjectApplicationRequ
         repository.save(request);
     }
 
+    @Override
     public List<ProjectApplicationResponseDTO> getAllRequests() throws Exception {
         return repository.findAll().stream()
                 .map(req -> new ProjectApplicationResponseDTO(
@@ -55,6 +57,7 @@ public class ProjectApplicationRequestService implements IProjectApplicationRequ
                 )).collect(Collectors.toList());
     }
 
+    @Override
     public void acceptRequest(Long requestId) throws Exception {
         ProjectApplicationRequest request = repository.findById(requestId)
                 .orElseThrow(() -> new IllegalArgumentException("Solicitud no encontrada"));
@@ -72,6 +75,7 @@ public class ProjectApplicationRequestService implements IProjectApplicationRequ
         projectClient.assignProject(request.getProjectId());
     }
 
+    @Override
     public void rejectRequest(Long requestId) throws Exception {
         ProjectApplicationRequest request = repository.findById(requestId)
                 .orElseThrow(() -> new IllegalArgumentException("Solicitud no encontrada"));
@@ -82,5 +86,41 @@ public class ProjectApplicationRequestService implements IProjectApplicationRequ
 
         request.setStatus(ApplicationStatus.REJECTED);
         repository.save(request);
+    }
+
+    @Override
+    public List<ProjectApplicationResponseDTO> getRequestsByProjectId(Long projectId) throws Exception {
+        return repository.findByProjectId(projectId).stream()
+                .map(req -> new ProjectApplicationResponseDTO(
+                        req.getId(),
+                        req.getStudentCode(),
+                        req.getProjectId(),
+                        req.getStatus(),
+                        req.getTimestamp()
+                )).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProjectApplicationResponseDTO> getRequestsByStudentCode(Long studentCode) throws Exception {
+        return repository.findByStudentCode(studentCode).stream()
+                .map(req -> new ProjectApplicationResponseDTO(
+                        req.getId(),
+                        req.getStudentCode(),
+                        req.getProjectId(),
+                        req.getStatus(),
+                        req.getTimestamp()
+                )).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProjectApplicationResponseDTO> getRequestsByStatus(String status) throws Exception {
+        return repository.findByStatus(ApplicationStatus.valueOf(status)).stream()
+                .map(req -> new ProjectApplicationResponseDTO(
+                        req.getId(),
+                        req.getStudentCode(),
+                        req.getProjectId(),
+                        req.getStatus(),
+                        req.getTimestamp()
+                )).collect(Collectors.toList());
     }
 }

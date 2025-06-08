@@ -36,6 +36,51 @@ public class ProjectApplicationRequestController {
         }
     }
 
+    @GetMapping("/project/{projectId}")
+    @PreAuthorize("hasRole('coordinator')")
+    public ResponseEntity<?> getRequestsByProjectId(@PathVariable Long projectId) {
+        try {
+            List<ProjectApplicationResponseDTO> responses = service.getRequestsByProjectId(projectId);
+            if (responses == null) {
+                return ResponseEntity.notFound().build();
+            } else {
+                return ResponseEntity.ok(responses);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error al recuperar datos de las solicitudes, " + e.getMessage() + "\"}");
+        }
+    }
+
+    @GetMapping("/student/{studentCode}")
+    @PreAuthorize("hasRole('coordinator')")
+    public ResponseEntity<?> getRequestsByStudentCode(@PathVariable Long studentCode) {
+        try {
+            List<ProjectApplicationResponseDTO> responses = service.getRequestsByStudentCode(studentCode);
+            if (responses == null) {
+                return ResponseEntity.notFound().build();
+            } else {
+                return ResponseEntity.ok(responses);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error al recuperar datos de las solicitudes, " + e.getMessage() + "\"}");
+        }
+    }
+
+    @GetMapping("/status/{status}")
+    @PreAuthorize("hasRole('coordinator')")
+    public ResponseEntity<?> getRequestsByStatus(@PathVariable String status) {
+        try {
+            List<ProjectApplicationResponseDTO> responses = service.getRequestsByStatus(status);
+            if (responses == null) {
+                return ResponseEntity.notFound().build();
+            } else {
+                return ResponseEntity.ok(responses);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error al recuperar datos de las solicitudes, " + e.getMessage() + "\"}");
+        }
+    }
+
     //POSTs
     @PostMapping
     @PreAuthorize("hasRole('student')")
