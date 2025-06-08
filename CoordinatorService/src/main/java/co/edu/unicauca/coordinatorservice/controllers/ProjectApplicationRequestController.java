@@ -52,7 +52,7 @@ public class ProjectApplicationRequestController {
     }
 
     @GetMapping("/student/{studentCode}")
-    @PreAuthorize("hasRole('coordinator')")
+    @PreAuthorize("hasAnyRole('student', 'coordinator')")
     public ResponseEntity<?> getRequestsByStudentCode(@PathVariable Long studentCode) {
         try {
             List<ProjectApplicationResponseDTO> responses = service.getRequestsByStudentCode(studentCode);
