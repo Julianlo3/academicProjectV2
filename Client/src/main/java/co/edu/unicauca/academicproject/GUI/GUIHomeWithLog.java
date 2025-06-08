@@ -27,6 +27,8 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         ControllerHomeWithLog controller = new ControllerHomeWithLog(this,token);
     }
 
+    
+   
     public String getidUser() {
         return idUser;
     }
@@ -210,7 +212,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jPOptions.setLayout(new java.awt.CardLayout());
 
         jPOpcionCompany.setBackground(new java.awt.Color(251, 219, 147));
-        jPOpcionCompany.setLayout(new java.awt.GridLayout());
+        jPOpcionCompany.setLayout(new java.awt.GridLayout(1, 0));
 
         jBtnNewPubli.setBackground(new java.awt.Color(175, 0, 0));
         jBtnNewPubli.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -234,7 +236,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jPOptions.add(jPOpcionCompany, "Empresa");
 
         jPOpcionCoordi.setBackground(new java.awt.Color(190, 91, 80));
-        jPOpcionCoordi.setLayout(new java.awt.GridLayout());
+        jPOpcionCoordi.setLayout(new java.awt.GridLayout(1, 0));
 
         jBtnSolicitudes.setBackground(new java.awt.Color(172, 0, 0));
         jBtnSolicitudes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -266,18 +268,19 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jPOptions.add(jPOpcionCoordi, "Coordinador");
 
         jPOpcionStudent.setBackground(new java.awt.Color(236, 230, 240));
-        jPOpcionStudent.setLayout(new java.awt.GridLayout());
+        jPOpcionStudent.setLayout(new java.awt.GridLayout(1, 0));
 
         jBtnSoliEstudiante.setBackground(new java.awt.Color(172, 0, 0));
         jBtnSoliEstudiante.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jBtnSoliEstudiante.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnSoliEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/solicitudBig.png"))); // NOI18N
         jBtnSoliEstudiante.setText("Mis solicitudes");
         jPOpcionStudent.add(jBtnSoliEstudiante);
 
         jPOptions.add(jPOpcionStudent, "Estudiante");
 
         jPOpcionAdmin.setBackground(new java.awt.Color(255, 255, 255));
-        jPOpcionAdmin.setLayout(new java.awt.GridLayout());
+        jPOpcionAdmin.setLayout(new java.awt.GridLayout(1, 0));
 
         jBtnUsersSistema.setBackground(new java.awt.Color(172, 0, 0));
         jBtnUsersSistema.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N

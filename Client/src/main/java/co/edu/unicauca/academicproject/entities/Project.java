@@ -17,6 +17,7 @@ import java.time.LocalDate;
  */
 public class Project {
 
+    private long projectId;
      private long companyNit;
      private String name,summary,objectives,description;
      private int maxDurationInMonths;
@@ -42,12 +43,12 @@ public class Project {
         this.academicTerm = academicTerm;
     }
 
-    public Long getId() {
-        return id;
+    public long getProjectId() {
+        return projectId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
     }
 
     public String getState() {

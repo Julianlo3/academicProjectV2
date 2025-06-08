@@ -45,4 +45,11 @@ public class CoordinatorController {
         return coordinatorServiceClient.getAllRequests(token);
     }
 
+    public void acceptRequest(Long id,String token){
+        coordinatorServiceClient.acceptRequest(id,token);
+    }
+
+    public void rejectRequest(Long id,String token){
+        coordinatorServiceClient.rejectRequest(id,token);
+    }
 }

@@ -110,7 +110,7 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('company', 'coordinator')")
+    @PreAuthorize("hasAnyRole('company', 'coordinator','student')")
     public ResponseEntity<ProjectDTO> getProjectById(@PathVariable Long id) {
         try {
             Project project = projectRepository.findById(id).get();

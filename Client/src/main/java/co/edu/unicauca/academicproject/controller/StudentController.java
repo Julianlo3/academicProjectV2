@@ -1,6 +1,8 @@
 package co.edu.unicauca.academicproject.controller;
 
 import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
+import co.edu.unicauca.academicproject.entities.Assignment;
+import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
 import co.edu.unicauca.academicproject.entities.Student;
 
 
@@ -50,6 +52,15 @@ public class StudentController {
             studentServiceClient.applyToProject(studentCode,projectCode,token);
         }catch (Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    public List<Assignment> getAssignmentByStudentCode(Long studentCode, String token){
+        try {
+            return studentServiceClient.getAssignmentByStudentCode(studentCode, token);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }

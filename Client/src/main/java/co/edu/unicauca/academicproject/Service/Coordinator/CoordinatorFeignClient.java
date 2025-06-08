@@ -27,4 +27,10 @@ public interface CoordinatorFeignClient {
 
     @GetMapping("/api/coordinator/request")
     List<ProjectApplicationRequest> getAllRequests(@RequestHeader("Authorization") String token);
+
+    @PutMapping("api/coordinator/request/{id}/accept")
+    void acceptRequest(@PathVariable Long id,@RequestHeader("Authorization") String token);
+
+    @PutMapping("api/coordinator/request/{id}/reject")
+    void rejectRequest(@PathVariable Long id,@RequestHeader("Authorization") String token);
 }

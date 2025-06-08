@@ -18,14 +18,20 @@ public class GUIminiRequest extends javax.swing.JPanel {
      * Creates new form GUIminiRequest
      */
     private String tituloProyecto,nombreEstudiante,nombreProyecto,estadoProyecto;
+    private long idSolicitud;
 
-    public GUIminiRequest(String tituloProyecto,String nombreEstudiante,String nombreEmpresa,String estado) {
+    public GUIminiRequest(String tituloProyecto,String nombreEstudiante,String nombreEmpresa,String estado,long idSolicitud) {
         initComponents();
         this.tituloProyecto=tituloProyecto;
         this.nombreEstudiante=nombreEstudiante;
         this.nombreProyecto=nombreEmpresa;
         this.estadoProyecto=estado;
+        this.idSolicitud=idSolicitud;
         controllerminiRequest controller = new controllerminiRequest(this);
+    }
+
+    public long getIdSolicitud() {
+        return idSolicitud;
     }
 
     public JLabel getjLEstadoProyecto() {

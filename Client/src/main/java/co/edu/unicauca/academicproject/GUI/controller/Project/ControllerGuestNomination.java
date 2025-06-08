@@ -59,7 +59,7 @@ public class ControllerGuestNomination {
         }
         else if (rol.equals("student")){
             try{
-                long idProyecto = vista.getProject().getId();
+                long idProyecto = vista.getProject().getProjectId();
                 studentController.applyToProject(Long.parseLong(vista.getCodeStudent()),idProyecto,"Bearer " + vista.getToken());
                 Messages.showMessageDialog("Solicitud enviadad correctamente","Solicitud enviada");
             }catch (Exception e){

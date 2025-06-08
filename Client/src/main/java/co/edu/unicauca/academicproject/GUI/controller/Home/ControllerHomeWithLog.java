@@ -12,6 +12,7 @@ import co.edu.unicauca.academicproject.GUI.admin.GUIUsers;
 import co.edu.unicauca.academicproject.GUI.coordinator.GUIAssigment;
 import co.edu.unicauca.academicproject.GUI.coordinator.GUIStatistics;
 import co.edu.unicauca.academicproject.GUI.coordinator.GUIStudentRequest;
+import co.edu.unicauca.academicproject.GUI.student.GUIMySolisStudent;
 import co.edu.unicauca.academicproject.GUI.student.GUINominationProject;
 import co.edu.unicauca.academicproject.Service.Company.CompanyServiceClient;
 import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
@@ -68,7 +69,13 @@ public class ControllerHomeWithLog {
         this.vista.getjBtnAsignar().addActionListener(e -> abrirAsignar());
         this.vista.getJBtnEstadisticas().addActionListener(e -> abrirEstadisticas());
         this.vista.getjBtnSolicitudes().addActionListener(e -> cargarSolicitudesEstudiante());
+        this.vista.getjBtnSoliEstudiante().addActionListener(e -> cargarMySolisEstudiante());
         cargarProyectos();
+    }
+
+    private void cargarMySolisEstudiante(){
+        GUIMySolisStudent MySoli = new GUIMySolisStudent(code,token);
+        MySoli.setVisible(true);
     }
 
     private void cargarSolicitudesEstudiante() {
@@ -119,7 +126,14 @@ public class ControllerHomeWithLog {
         System.out.println("token pasado" + token);
         System.out.println("code pasado " + code);
         Student student = studentController.getStudentByCode(Long.valueOf(code), "Bearer " + token);
-        vista.getJPoptions().setVisible(false);
+        Long code1 = Long.valueOf(code);
+        if(studentController.getAssignmentByStudentCode(code1,"Bearer " + token).isEmpty()){
+            vista.getJPoptions().setVisible(false);
+        }
+        else {
+            vista.getJPoptions().setVisible(true);
+        }
+
         vista.getjBtnLoginU().setText(student.getName());
     }
 
@@ -181,7 +195,7 @@ public class ControllerHomeWithLog {
                 if (rol.equals("student")) {
                     System.out.println("Token: " + token);
                     Project project = projectController.getProjectByName(name, "Bearer " + token);
-                    System.out.println("Proyecto encontrado: " + project.getName() + project.getDescription() + project.getStartDate());
+                    System.out.println("Proyecto encontrado: " + project.getName() + project.getDescription() + project.getStartDate() + project.getProjectId());
                     GUINominationProject newNomination = new GUINominationProject(project, token, rol,vista.getidUser());
                     newNomination.setVisible(true);
                 }

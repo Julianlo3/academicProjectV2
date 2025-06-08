@@ -1,13 +1,13 @@
-package co.edu.unicauca.academicproject.GUI.controller.coordinator;
+package co.edu.unicauca.academicproject.GUI.controller.student;
 
-import co.edu.unicauca.academicproject.GUI.coordinator.GUIStudentRequest;
+
 import co.edu.unicauca.academicproject.GUI.coordinator.GUIminiRequest;
-import co.edu.unicauca.academicproject.Service.Coordinator.CoordinatorServiceClient;
+import co.edu.unicauca.academicproject.GUI.student.GUIMySolisStudent;
 import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
 import co.edu.unicauca.academicproject.Service.project.ProjectServiceClient;
-import co.edu.unicauca.academicproject.controller.CoordinatorController;
 import co.edu.unicauca.academicproject.controller.ProjectController;
 import co.edu.unicauca.academicproject.controller.StudentController;
+import co.edu.unicauca.academicproject.entities.Assignment;
 import co.edu.unicauca.academicproject.entities.Project;
 import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
 import co.edu.unicauca.academicproject.entities.Student;
@@ -18,43 +18,45 @@ import java.util.List;
 
 /**
  * @author lopez
- * @date 6/06/2025
+ * @date 8/06/2025
  */
-public class controllerStudentRequest {
-    private final GUIStudentRequest vista;
-    CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
-    ProjectController projectController = new ProjectController(appContextProvider.getBean(ProjectServiceClient.class));
+public class ControllerMySolisStudent {
+    private final GUIMySolisStudent vista;
     StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
-    public controllerStudentRequest(GUIStudentRequest vista){
+    ProjectController projectController = new ProjectController(appContextProvider.getBean(ProjectServiceClient.class));
+    public ControllerMySolisStudent(GUIMySolisStudent vista) {
         this.vista = vista;
-        vista.getjBtnProcesarSoli().addActionListener(e-> procesarSoli());
-        vista.getjPDetalleSolicitud().setVisible(false);
         cargarSolicitudes();
     }
 
-    private void procesarSoli(){
-        Long id = Long.valueOf(vista.getjLIDPubli().getText());
+    private void cargarSolicitudes(){
         try {
-            if(vista.getjRBtnRechazarSoli().isSelected()){
-                coordinatorController.rejectRequest(id,"bearer " +vista.getToken());
+            long studentCode = Long.parseLong(vista.getStudentCode());
+            List<Assignment> solicitudes = studentController.getAssignmentByStudentCode(studentCode,"bearer "+vista.getToken());
+            System.out.println("# de solis:" + solicitudes.size());
+            for (Assignment solicitud : solicitudes) {
+                System.out.println(solicitud.getStudent().getName() + solicitud.getId() + solicitud.getProjectId());
             }
-            if(vista.getjRBtnAceptarSoli().isSelected()) {
-                coordinatorController.acceptRequest(id,"bearer " +vista.getToken());
-            }
-        } catch (Exception e) {
-            System.out.println("Error al procesar el proceso de solicitud" + e.getMessage());
-        }
 
+            for (Assignment solis : solicitudes) {
+
+                Project project = projectController.getProjectById(solis.getProjectId(),"bearer "+vista.getToken());
+                Student student = studentController.getStudentByCode(studentCode,"bearer "+vista.getToken());
+                cargaProyecto(project.getName(), student.getName(), String.valueOf(project.getCompanyNit()),"epa",project,student,solis.getProjectId());
+            }
+
+        } catch (Exception e) {
+            System.out.println("error con las solis " + e.getMessage());
+        }
     }
 
     private void cargaProyecto(String tituloProyecto,String nombreEstudiante, String nombreEmpresa, String estadoProyecto,Project project,Student student,Long idSolicitud){
-        GUIminiRequest  chat = new GUIminiRequest(tituloProyecto, nombreEstudiante, nombreEmpresa,estadoProyecto,idSolicitud);
+        GUIminiRequest chat = new GUIminiRequest(tituloProyecto, nombreEstudiante, nombreEmpresa,estadoProyecto,idSolicitud);
         chat.getjBtnVerDetalles().addActionListener(e-> cargarDetalles(project,student,idSolicitud));
         chat.setPreferredSize(new Dimension(200,220));
         vista.getjPChat().add(chat);
         vista.getjPChat().revalidate();
         vista.getjPChat().repaint();
-
     }
 
     private void cargarDetalles(Project project,Student student,Long idSolicitud){
@@ -79,23 +81,5 @@ public class controllerStudentRequest {
         }catch(Exception e){
             System.out.println("Error en cargar detalles "+e.getMessage());
         }
-    }
-
-    private void cargarSolicitudes(){
-        try {
-            List<ProjectApplicationRequest> solicitudes = coordinatorController.getAllRequests("bearer "+vista.getToken());
-            System.out.println("# de solis:" + solicitudes.size());
-
-            for (ProjectApplicationRequest solis : solicitudes) {
-
-                Project project = projectController.getProjectById(solis.getProjectId(),"bearer "+vista.getToken());
-                Student student = studentController.getStudentByCode(solis.getStudentCode(),"bearer "+vista.getToken());
-                cargaProyecto(project.getName(), student.getName(), String.valueOf(project.getCompanyNit()),solis.getStatus(),project,student,solis.getProjectId());
-            }
-
-        } catch (Exception e) {
-            System.out.println("error con las solis " + e.getMessage());
-        }
-
     }
 }

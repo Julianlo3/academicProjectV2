@@ -43,4 +43,12 @@ public class CoordinatorServiceClient {
         return  FeignClient.getAllRequests(token);
     }
 
+    public void acceptRequest(Long id,String token){
+        FeignClient.acceptRequest(id,token);
+    }
+
+    public void rejectRequest(Long id,String token){
+        FeignClient.rejectRequest(id,token);
+    }
+
 }
