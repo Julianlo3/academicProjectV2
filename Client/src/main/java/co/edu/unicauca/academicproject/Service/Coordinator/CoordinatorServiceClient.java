@@ -27,8 +27,8 @@ public class CoordinatorServiceClient {
     }
 
 
-    public Coordinator getCoordinatorByCode(Long code){
-        return FeignClient.getSCoordinatorByCode(code);
+    public Coordinator getCoordinatorByCode(Long code,String token){
+        return FeignClient.getSCoordinatorByCode(code,token);
     }
 
     public void updateStudent(Long code, Coordinator coordinatorRequest){
@@ -41,6 +41,10 @@ public class CoordinatorServiceClient {
 
     public List<ProjectApplicationRequest> getAllRequests(String token){
         return  FeignClient.getAllRequests(token);
+    }
+
+    public List<ProjectApplicationRequest> getAllRequestsByStudentCode(Long studentCode, String token){
+        return FeignClient.getAllRequestsByStudentCode(studentCode, token);
     }
 
     public void acceptRequest(Long id,String token){

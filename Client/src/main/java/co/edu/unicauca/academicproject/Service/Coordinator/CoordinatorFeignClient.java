@@ -17,7 +17,7 @@ public interface CoordinatorFeignClient {
     List<Coordinator> getAllCoordinators(@RequestHeader("Authorization") String token);
 
     @GetMapping("/api/coordinator/{code}")
-    Coordinator getSCoordinatorByCode(@PathVariable Long code);
+    Coordinator getSCoordinatorByCode(@PathVariable Long code,@RequestHeader("Authorization") String token);
 
     @PutMapping("/api/coordinator/{code}")
     void updateCoordinator(@PathVariable Long code, @RequestBody Coordinator CoordinatorRequest);
@@ -27,6 +27,9 @@ public interface CoordinatorFeignClient {
 
     @GetMapping("/api/coordinator/request")
     List<ProjectApplicationRequest> getAllRequests(@RequestHeader("Authorization") String token);
+
+    @GetMapping("/api/coordinator/request/student/{studentCode}")
+    List<ProjectApplicationRequest> getAllRequestsByStudentCode(@PathVariable Long studentCode, @RequestHeader("Authorization") String token);
 
     @PutMapping("api/coordinator/request/{id}/accept")
     void acceptRequest(@PathVariable Long id,@RequestHeader("Authorization") String token);

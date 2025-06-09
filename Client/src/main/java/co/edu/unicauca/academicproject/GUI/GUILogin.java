@@ -108,7 +108,7 @@ public class GUILogin extends javax.swing.JFrame {
 
         jFieldUserName.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jFieldUserName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jFieldUserName.setText("104621....");
+        jFieldUserName.setText("104621");
         jFieldUserName.setMaximumSize(new java.awt.Dimension(100, 100));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

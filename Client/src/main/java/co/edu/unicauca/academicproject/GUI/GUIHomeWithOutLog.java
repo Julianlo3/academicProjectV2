@@ -18,7 +18,6 @@ public class GUIHomeWithOutLog extends javax.swing.JFrame {
      * Creates new form GUIHomeWithOutLog
      */
     public GUIHomeWithOutLog() {
-
         initComponents();
         ControllerHomeWithOutLog controller = new ControllerHomeWithOutLog(this);
     }
@@ -31,7 +30,18 @@ public class GUIHomeWithOutLog extends javax.swing.JFrame {
         return jBtnNewUser;
     }
 
-    
+    public JButton getjBtnSearch() {
+        return jBtnSearch;
+    }
+
+    public JButton getjButtonQuitF() {
+        return jButtonQuitF;
+    }
+
+    public JTextField getjFieldSearchProyect() {
+        return jFieldSearchProyect;
+    }
+
     public JTable getjTableProjects() {
         return jTableProjects;
     }
@@ -110,15 +120,15 @@ public class GUIHomeWithOutLog extends javax.swing.JFrame {
             .addGroup(jPContentLayout.createSequentialGroup()
                 .addComponent(jLTittleProjects, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
 
         jPSearchBar.setBackground(new java.awt.Color(15, 32, 65));
         jPSearchBar.setLayout(new java.awt.GridBagLayout());
 
         jCBSelecFilter.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jCBSelecFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por Nombre", "Por Compañia", "Por Estudiante" }));
+        jCBSelecFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por Nombre" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPSearchBar.add(jCBSelecFilter, gridBagConstraints);

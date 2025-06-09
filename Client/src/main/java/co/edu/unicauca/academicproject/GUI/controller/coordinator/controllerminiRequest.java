@@ -40,6 +40,8 @@ public class controllerminiRequest {
 
             case "COMPLETED": vista.getjLEstadoProyecto().setBackground(Color.GRAY);break;
 
+            case "REJECTED": vista.getjLEstadoProyecto().setBackground(Color.RED);break;
+
         }
     }
 }

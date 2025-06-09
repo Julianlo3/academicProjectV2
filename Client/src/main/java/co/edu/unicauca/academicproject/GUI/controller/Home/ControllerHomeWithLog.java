@@ -6,6 +6,7 @@ package co.edu.unicauca.academicproject.GUI.controller.Home;
 
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithLog;
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
+import co.edu.unicauca.academicproject.GUI.company.GUIMySolisCompany;
 import co.edu.unicauca.academicproject.GUI.company.GUINewProject;
 import co.edu.unicauca.academicproject.GUI.admin.GUIRequestCoordinator;
 import co.edu.unicauca.academicproject.GUI.admin.GUIUsers;
@@ -15,15 +16,14 @@ import co.edu.unicauca.academicproject.GUI.coordinator.GUIStudentRequest;
 import co.edu.unicauca.academicproject.GUI.student.GUIMySolisStudent;
 import co.edu.unicauca.academicproject.GUI.student.GUINominationProject;
 import co.edu.unicauca.academicproject.Service.Company.CompanyServiceClient;
+import co.edu.unicauca.academicproject.Service.Coordinator.CoordinatorServiceClient;
 import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
 import co.edu.unicauca.academicproject.Service.project.ProjectServiceClient;
 import co.edu.unicauca.academicproject.controller.CompanyController;
+import co.edu.unicauca.academicproject.controller.CoordinatorController;
 import co.edu.unicauca.academicproject.controller.ProjectController;
 import co.edu.unicauca.academicproject.controller.StudentController;
-import co.edu.unicauca.academicproject.entities.Admin;
-import co.edu.unicauca.academicproject.entities.Company;
-import co.edu.unicauca.academicproject.entities.Student;
-import co.edu.unicauca.academicproject.entities.Project;
+import co.edu.unicauca.academicproject.entities.*;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 import co.edu.unicauca.academicproject.security.Users;
 
@@ -44,6 +44,7 @@ public class ControllerHomeWithLog {
     StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
     CompanyController companyController = new CompanyController(appContextProvider.getBean(CompanyServiceClient.class));
     ProjectController projectController = new ProjectController(appContextProvider.getBean(ProjectServiceClient.class));
+    CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
     private final GUIHomeWithLog vista;
     private String rol;
     private String code;
@@ -59,6 +60,8 @@ public class ControllerHomeWithLog {
         this.vista.getjBtnGetOut().addActionListener(e -> cerrarSeccion());
         this.vista.getjBtnCoordiSoli().addActionListener(e -> cargarSolicitudesCoordi());
         this.vista.getjBtnUsersSistema().addActionListener(e -> cargarUsuariosSistema());
+        this.vista.getjBtnSearch().addActionListener(e -> buscarProyectos());
+        this.vista.getjButtonQuitF().addActionListener(e -> quitarFiltro());
         this.vista.getjBtnNewPubli().addActionListener(e -> newProject());
         this.vista.getjTableProjects().addMouseListener(new MouseAdapter() {
             @Override
@@ -70,7 +73,54 @@ public class ControllerHomeWithLog {
         this.vista.getJBtnEstadisticas().addActionListener(e -> abrirEstadisticas());
         this.vista.getjBtnSolicitudes().addActionListener(e -> cargarSolicitudesEstudiante());
         this.vista.getjBtnSoliEstudiante().addActionListener(e -> cargarMySolisEstudiante());
+        this.vista.getJBtnSolisPubli().addActionListener(e-> abrirPublisCompany());
+        this.vista.getjBtnMyPubli().addActionListener(e-> abrirPublisCompany());
         cargarProyectos();
+    }
+
+    private void abrirPublisCompany(){
+        GUIMySolisCompany solisCompany = new GUIMySolisCompany(vista.getIdUser(),token,rol);
+        solisCompany.setVisible(true);
+    }
+
+    private void quitarFiltro(){
+        vista.getjFieldSearchProyect().setText("");
+        vista.getjButtonQuitF().setVisible(false);
+        cargarProyectos();
+    }
+
+    private void buscarProyectos(){
+        vista.getjButtonQuitF().setVisible(true);
+        String token = "";
+        try {
+            token = user.obtenerTokenRegis("guest", "123");
+            System.out.println("Token: " + token);
+        } catch (Exception e) {
+            System.out.println("Error al obtener token de invitado" + e.getMessage());
+            throw new RuntimeException(e);
+        }
+
+        DefaultTableModel modeloProject = new DefaultTableModel(new String[]{"#", "Fecha inicio", "Nombre empresa", "Titulo proyecto", "Resumen"}, 0);
+        try {
+            System.out.println("Proyecto a buscar:" + vista.getjFieldSearchProyect().getText());
+            List<Project> projects = projectController.searchByName(vista.getjFieldSearchProyect().getText(),"Bearer " + token);
+            System.out.println("Proyectos encontrados: " + projects.size());
+            if (projects != null) {
+                modeloProject.setRowCount(0);
+                int numero = 0;
+                for (Project project : projects) {
+                    if (project.getCompanyNit() != 0.0 && project.getName() != null) {
+                        String nombreEmpresa = companyController.getCompanyByNit(project.getCompanyNit(),"Bearer " + token).getName();
+                        modeloProject.addRow(new Object[]{numero++, project.getStartDate(),nombreEmpresa, project.getName(), project.getSummary()});
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Servicio de proyecto no disponible" + e.getMessage());
+        }
+        vista.getjTableProjects().setModel(modeloProject);
+
     }
 
     private void cargarMySolisEstudiante(){
@@ -127,7 +177,7 @@ public class ControllerHomeWithLog {
         System.out.println("code pasado " + code);
         Student student = studentController.getStudentByCode(Long.valueOf(code), "Bearer " + token);
         Long code1 = Long.valueOf(code);
-        if(studentController.getAssignmentByStudentCode(code1,"Bearer " + token).isEmpty()){
+        if(coordinatorController.getAllRequestsByStudentCode(code1,"Bearer " + token).isEmpty()){
             vista.getJPoptions().setVisible(false);
         }
         else {
@@ -150,7 +200,8 @@ public class ControllerHomeWithLog {
         System.out.println("Cargando opciones de coordinador:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(), "Coordinador");
-        vista.getjBtnLoginU().setText(Admin.getInstance().getNombre());
+        Coordinator coordinator = coordinatorController.getCoordinatortByCode(Long.valueOf(code),"Bearer " + token);
+        vista.getjBtnLoginU().setText(coordinator.getName());
     }
 
     private void cargarFormEmpresa() {
@@ -158,7 +209,8 @@ public class ControllerHomeWithLog {
         System.out.println("Cargando opciones de empresa:");
         cardLayout = (CardLayout) vista.getJPoptions().getLayout();
         cardLayout.show(vista.getJPoptions(), "Empresa");
-        vista.getjBtnLoginU().setText(Admin.getInstance().getNombre());
+        Company company = companyController.getCompanyByNit(Long.valueOf(code),"Bearer " + token);
+        vista.getjBtnLoginU().setText(company.getName());
     }
 
     private void cargarSolicitudesCoordi() {
@@ -175,9 +227,8 @@ public class ControllerHomeWithLog {
     private void newProject() {
         System.out.println("Cargando opciones de empresa:" + "con token" + token);
         Company company = companyController.getCompanyByNit(Long.valueOf(code), "Bearer " + token);
-        System.out.println("Empresa encontrada" + company.getNit());
         if (company != null) {
-            System.out.println("Datos de la empresa" + company.getNit() + company.getName());
+            System.out.println("Datos de la empresa nit: " + company.getNit() + " Nombre: "+company.getName());
             GUINewProject newProject = new GUINewProject(company, token);
             newProject.setVisible(true);
         } else {
@@ -218,7 +269,7 @@ public class ControllerHomeWithLog {
 
         DefaultTableModel modeloProject = new DefaultTableModel(new String[]{"#", "Fecha inicio", "Nombre empresa", "Titulo proyecto", "Resumen"}, 0);
         try {
-            List<Project> projects = projectController.getAllProjects("Bearer " + token);
+            List<Project> projects = projectController.getProjectByState("Approved","Bearer " + token);
             System.out.println("Proyectos encontrados: " + projects.size());
             if (projects != null) {
                 modeloProject.setRowCount(0);

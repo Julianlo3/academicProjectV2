@@ -92,9 +92,9 @@ public class ControllerRegisterUser {
                 Messages.showMessageDialog("Estudiante registrado", "Registro exitoso");
                 String id = vista.getjFieldCodeStudent().getText();
                 GUIHomeWithLog homeStudent = new GUIHomeWithLog(id,"student", String.valueOf(users.obtenerTokenRegis(vista.getjFieldCodeStudent().getText(), (vista.getjFieldPassWordStudent().getText()))));
-                vista.dispose();
                 homeStudent.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 homeStudent.setVisible(true);
+                vista.dispose();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -108,9 +108,9 @@ public class ControllerRegisterUser {
                 Messages.showMessageDialog("Coordinador registrado", "Registro exitoso");
                 String id = vista.getjFieldCodeCoordi().getText();
                 GUIHomeWithLog homeCoordi = new GUIHomeWithLog(id,"coordinator",String.valueOf(users.obtenerTokenRegis(vista.getjFieldCodeCoordi().getText(), (vista.getjFieldPassWordCoordi().getText()))));
-                vista.dispose();
                 homeCoordi.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 homeCoordi.setVisible(true);
+                vista.dispose();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -125,6 +125,7 @@ public class ControllerRegisterUser {
                GUIHomeWithLog homeCompany = new GUIHomeWithLog(id,"company",String.valueOf(users.obtenerTokenRegis(vista.getjFieldNitCompany().getText(), (vista.getjFieldPassWordCompany().getText()))));
                homeCompany.setExtendedState(JFrame.MAXIMIZED_BOTH);
                homeCompany.setVisible(true);
+               vista.dispose();
            }
        } catch (Exception e) {
            throw new RuntimeException(e);
@@ -188,7 +189,6 @@ public class ControllerRegisterUser {
             String token = users.obtenerTokenGestionador("creador", "123");
             users.crearUsuarioKeycloak(token, String.valueOf(codigo), pass,"student");
             String token2 = "Bearer " + users.obtenerTokenGestionador("creador", "123");
-
             studentController.registerStudent(codigo, nombre, tel, email,token2);
             return true;
         } catch (Exception ex) {

@@ -11,6 +11,7 @@ import co.edu.unicauca.academicproject.controller.StudentController;
 import co.edu.unicauca.academicproject.entities.Project;
 import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
 import co.edu.unicauca.academicproject.entities.Student;
+import co.edu.unicauca.academicproject.infra.Messages;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
 import java.awt.*;
@@ -34,12 +35,15 @@ public class controllerStudentRequest {
 
     private void procesarSoli(){
         Long id = Long.valueOf(vista.getjLIDPubli().getText());
+        System.out.println("id public" + id);
         try {
             if(vista.getjRBtnRechazarSoli().isSelected()){
                 coordinatorController.rejectRequest(id,"bearer " +vista.getToken());
+                Messages.showMessageDialog("Rechazado correctamente","Rechazado");
             }
             if(vista.getjRBtnAceptarSoli().isSelected()) {
                 coordinatorController.acceptRequest(id,"bearer " +vista.getToken());
+                Messages.showMessageDialog("Aceptado correctamente","Aceptado");
             }
         } catch (Exception e) {
             System.out.println("Error al procesar el proceso de solicitud" + e.getMessage());
@@ -63,8 +67,8 @@ public class controllerStudentRequest {
             vista.getjTextAreaResumen().setText(project.getSummary());
             vista.getjTextAreaDescripProject().setText(project.getDescription());
             vista.getjTextAreaObjetivos().setText(project.getObjectives());
-            vista.getjYear().setValue(project.getAcademicYear());
-            vista.getjSpinPeriodo().setValue(project.getAcademicTerm());
+            vista.getjYearProyecto().setValue(project.getAcademicYear());
+            vista.getjSpinTerm().setValue(project.getAcademicTerm());
             vista.getjSpinDuracionMes().setValue(project.getMaxDurationInMonths());
             vista.getjFieldPresupuesto().setText(String.valueOf(project.getBudget()));
             vista.getjLIDPubli().setText(idSolicitud.toString());
@@ -87,10 +91,10 @@ public class controllerStudentRequest {
             System.out.println("# de solis:" + solicitudes.size());
 
             for (ProjectApplicationRequest solis : solicitudes) {
-
+                System.out.println(solis.getId());
                 Project project = projectController.getProjectById(solis.getProjectId(),"bearer "+vista.getToken());
                 Student student = studentController.getStudentByCode(solis.getStudentCode(),"bearer "+vista.getToken());
-                cargaProyecto(project.getName(), student.getName(), String.valueOf(project.getCompanyNit()),solis.getStatus(),project,student,solis.getProjectId());
+                cargaProyecto(project.getName(), student.getName(), String.valueOf(project.getCompanyNit()),solis.getStatus(),project,student,solis.getId());
             }
 
         } catch (Exception e) {

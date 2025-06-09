@@ -27,7 +27,7 @@ public class CompanyController {
     }
 
     @GetMapping("/{nit}")
-    @PreAuthorize("hasAnyRole('admin', 'coordinator', 'company')")
+    @PreAuthorize("hasAnyRole('admin', 'coordinator', 'company','guest')")
     public ResponseEntity<CompanyDTO> getCompanyByNit(@PathVariable Long nit) {
         CompanyDTO company = companyService.getCompanyByNit(nit);
         return ResponseEntity.ok(company);

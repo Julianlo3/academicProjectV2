@@ -3,13 +3,10 @@ package co.edu.unicauca.academicproject.GUI.controller.Project;
 
 import co.edu.unicauca.academicproject.GUI.student.GUINominationProject;
 import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
-import co.edu.unicauca.academicproject.Service.project.ProjectServiceClient;
-import co.edu.unicauca.academicproject.controller.ProjectController;
 import co.edu.unicauca.academicproject.controller.StudentController;
 import co.edu.unicauca.academicproject.entities.Project;
 import co.edu.unicauca.academicproject.infra.Messages;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
-import co.edu.unicauca.academicproject.security.Users;
 
 import java.awt.*;
 
@@ -20,7 +17,6 @@ import java.awt.*;
 public class ControllerGuestNomination {
     private final GUINominationProject vista;
     StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
-    //ProjectController projectController = new ProjectController(appContextProvider.getBean(ProjectServiceClient.class));
     String rol ="";
     String token;
     public ControllerGuestNomination(GUINominationProject vista){
@@ -60,9 +56,12 @@ public class ControllerGuestNomination {
         else if (rol.equals("student")){
             try{
                 long idProyecto = vista.getProject().getProjectId();
-                studentController.applyToProject(Long.parseLong(vista.getCodeStudent()),idProyecto,"Bearer " + vista.getToken());
+                System.out.println("idProyecto"+idProyecto +"codeStudent"+vista.getCodeStudent());
                 Messages.showMessageDialog("Solicitud enviadad correctamente","Solicitud enviada");
+                studentController.applyToProject(Long.parseLong(vista.getCodeStudent()),idProyecto,"Bearer " + vista.getToken());
+
             }catch (Exception e){
+                Messages.showMessageDialog("Error al enviar solicitud","Error al enviar solicitud");
                 System.out.println("Error al cargar solicitud" + e.getMessage());
             }
             Messages.showMessageDialog("Tu solicitud fue enviada","Enviado.");

@@ -161,7 +161,7 @@ public class ProjectController {
     }
 
     @GetMapping("/state/{state}")
-    @PreAuthorize("hasAnyRole('company', 'coordinator')")
+    @PreAuthorize("hasAnyRole('company', 'coordinator','guest','student')")
     public ResponseEntity<List<ProjectDTO>> getProjectsByState(@PathVariable String state) {
         List<Project> projects = projectRepository.findByCurrentState(state);
         List<ProjectDTO> projectDTOs = projects.stream()

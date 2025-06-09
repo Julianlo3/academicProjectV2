@@ -18,6 +18,7 @@ import co.edu.unicauca.academicproject.entities.Admin;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Coordinator;
 import co.edu.unicauca.academicproject.entities.Student;
+import co.edu.unicauca.academicproject.infra.Messages;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 import co.edu.unicauca.academicproject.security.Users;
 
@@ -76,11 +77,13 @@ public class ControllerLogin {
             if(user.validarTokenRegis(userName, pass)){
                 String token = user.obtenerTokenRegis(userName, pass);
                 System.out.println("Usuario registrado");
-                vista.dispose();
                 GUIHomeWithLog home = new GUIHomeWithLog(userName,cargarRol(token),user.obtenerTokenRegis(userName, pass));
+                home.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 home.setVisible(true);
+                vista.dispose();
             }
         } catch (Exception e) {
+            Messages.showErrorDialog("Error, revise su usuario y/o clave","Datos incorrectos");
             System.out.println("Error al obtener token de usuario registrado" + e.getMessage());
             throw new RuntimeException(e);
         }

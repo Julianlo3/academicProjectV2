@@ -46,12 +46,24 @@ public class ProjectController {
         return projectServiceClient.getProjectByName(name, token);
     }
 
+    public List<Project> searchByName(String name, String token){
+        return projectServiceClient.searchByName(name, token);
+    }
+
     public Project getProjectById(Long id, String token){
         return projectServiceClient.getProjectById(id, token);
+    }
+
+    public List<Project> getProjectByState(String state, String token){
+        return projectServiceClient.getProjectByState(state, token);
     }
 
     public List<Project> getProjectsFilter(String state,int year,int term,String token){
         System.out.println("Obteniendo datos del proyecto por estado: " + state + year + term);
         return projectServiceClient.getProjectsFilter(state, year, term, token);
+    }
+
+    public List<Project> getProjectsByCompany(Long nitCompany, String token){
+        return projectServiceClient.getProjectsByCompany(nitCompany, token);
     }
 }
