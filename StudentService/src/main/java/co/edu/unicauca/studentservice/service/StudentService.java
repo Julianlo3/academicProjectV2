@@ -6,21 +6,23 @@ import co.edu.unicauca.studentservice.infra.mapper.StudentMapper;
 import co.edu.unicauca.studentservice.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService implements IStudentService{
-    @Autowired
-    private StudentRepository studentRepository;
 
-    @Autowired
-    private StudentMapper studentMapper;
+    private final StudentRepository studentRepository;
+    private final StudentMapper studentMapper;
+
+    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper) {
+        this.studentRepository = studentRepository;
+        this.studentMapper = studentMapper;
+    }
 
     @Override
-    @Transactional
     public Student createStudent(StudentDTO studentDTO) throws Exception {
         try {
             // 1. Verificar si el codigo fue pasado y si ya existe
@@ -43,7 +45,6 @@ public class StudentService implements IStudentService{
     }
 
     @Override
-    @Transactional
     public Student updateStudent(Long code, StudentDTO studentDTO) throws Exception {
         try {
             // 1. Verificar si el codigo fue pasado y si existe
@@ -70,13 +71,11 @@ public class StudentService implements IStudentService{
     }
 
     @Override
-    @Transactional
     public Optional<Student> findByCode(Long code) {
         return studentRepository.findByCode(code);
     }
 
     @Override
-    @Transactional
     public List<Student> findAllStudents() throws Exception{
         try {
             return studentRepository.findAll();
@@ -108,5 +107,13 @@ public class StudentService implements IStudentService{
         }
     }
 
+    @Override
+    public List<Student> getStudentsWithoutAssignment() throws Exception {
+        try {
+            return studentRepository.findStudentsWithoutAssignment();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 
 }

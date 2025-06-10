@@ -15,11 +15,14 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/student")
 public class StudentController {
-    @Autowired
-    private StudentService studentService;
 
-    //CRUDs para estudiante
+    private final StudentService studentService;
 
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    // GETs
     @GetMapping
     @PreAuthorize("hasAnyRole('admin', 'coordinator')")
     public ResponseEntity<?> getAllStudents() {
@@ -50,6 +53,22 @@ public class StudentController {
         }
     }
 
+    @GetMapping("/unassigned")
+    @PreAuthorize("hasAnyRole('admin', 'coordinator')")
+    public ResponseEntity<?> getUnassignedStudents() {
+        try {
+            List<Student> students = studentService.getStudentsWithoutAssignment();
+            if (students == null) {
+                return ResponseEntity.notFound().build();
+            } else {
+                return ResponseEntity.ok(students);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error al recuperar datos de los estudiantes sin asignar, " + e.getMessage() + "\"}");
+        }
+    }
+
+    // POSTs
     @PostMapping
     @PreAuthorize("hasRole('gestionador')")
     public ResponseEntity<?> createStudent(@RequestBody StudentDTO studentDTO) {
@@ -65,6 +84,7 @@ public class StudentController {
         }
     }
 
+    // PUTs
     @PutMapping("/{code}")
     @PreAuthorize("hasAnyRole('admin', 'student')")
     public ResponseEntity<?> updateStudent(@PathVariable Long code, @RequestBody StudentDTO studentDTO) {
@@ -80,6 +100,7 @@ public class StudentController {
         }
     }
 
+    // DELETEs
     @DeleteMapping("/{code}")
     @PreAuthorize("hasAnyRole('admin', 'student')")
     public ResponseEntity<?> deleteStudent(@PathVariable Long code){

@@ -22,4 +22,7 @@ public interface IStudentService {
 
     @Transactional
     public Student deleteStudent(Long code) throws Exception;
+
+    @Transactional
+    List<Student> getStudentsWithoutAssignment() throws Exception;
 }
