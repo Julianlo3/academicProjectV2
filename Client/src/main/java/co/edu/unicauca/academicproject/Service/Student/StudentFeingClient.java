@@ -27,4 +27,7 @@ public interface StudentFeingClient {
     @PostMapping("/api/student/application/apply")
      void applyToProject(@RequestParam Long studentCode, @RequestParam Long projectId,@RequestHeader("Authorization") String token);
 
+    @GetMapping("/api/student/unassigned")
+    List<Student> getUnassignedStudents(@RequestHeader("Authorization") String token);
+
 }

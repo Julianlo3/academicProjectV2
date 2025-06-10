@@ -145,17 +145,20 @@ public class ControllerHomeWithLog implements Observer {
     }
 
     private void cargarSolicitudesEstudiante() {
-        GUIStudentRequest studentRequest = new GUIStudentRequest(token);
+        Sujeto sujeto = new Sujeto();
+        GUIStudentRequest studentRequest = new GUIStudentRequest(token,sujeto);
         studentRequest.setVisible(true);
     }
 
     private void abrirEstadisticas(){
-        GUIStatistics estadisticas = new GUIStatistics(token);
+        Sujeto sujeto = new Sujeto();
+        GUIStatistics estadisticas = new GUIStatistics(token,sujeto);
         estadisticas.setVisible(true);
     }
 
     private void abrirAsignar() {
-        GUIAssigment asignar = new GUIAssigment(token);
+        Sujeto sujeto = new Sujeto();
+        GUIAssigment asignar = new GUIAssigment(token,sujeto);
         asignar.setVisible(true);
     }
 
@@ -265,7 +268,8 @@ public class ControllerHomeWithLog implements Observer {
                     System.out.println("Token: " + token);
                     Project project = projectController.getProjectByName(name, "Bearer " + token);
                     System.out.println("Proyecto encontrado: " + project.getName() + project.getDescription() + project.getStartDate() + project.getProjectId());
-                    GUINominationProject newNomination = new GUINominationProject(project, token, rol,vista.getidUser());
+                    Sujeto sujeto = new Sujeto();
+                    GUINominationProject newNomination = new GUINominationProject(project, token, rol,vista.getidUser(),sujeto);
                     newNomination.setVisible(true);
                 }
 
@@ -293,9 +297,9 @@ public class ControllerHomeWithLog implements Observer {
                 modeloProject.setRowCount(0);
                 int numero = 0;
                 for (Project project : projects) {
-
                     if (project.getCompanyNit() != 0.0 && project.getName() != null) {
-                        modeloProject.addRow(new Object[]{numero++, project.getStartDate(), project.getCompanyNit(), project.getName(), project.getSummary()});
+                        String nombreEmpresa = companyController.getCompanyByNit(project.getCompanyNit(),"Bearer " + token).getName();
+                        modeloProject.addRow(new Object[]{numero++, project.getStartDate(),nombreEmpresa, project.getName(), project.getSummary()});
                     }
                 }
             }

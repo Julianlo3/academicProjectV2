@@ -2,10 +2,7 @@ package co.edu.unicauca.academicproject.controller;
 
 
 import co.edu.unicauca.academicproject.Service.Coordinator.CoordinatorServiceClient;
-import co.edu.unicauca.academicproject.entities.Coordinator;
-import co.edu.unicauca.academicproject.entities.CreateProjectComment;
-import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
-import co.edu.unicauca.academicproject.entities.Student;
+import co.edu.unicauca.academicproject.entities.*;
 
 import javax.swing.*;
 import java.util.List;
@@ -88,6 +85,14 @@ public class CoordinatorController {
             coordinatorServiceClient.completeProject(id,token);
         }catch (Exception e){
             System.out.println("error epa" + e.getMessage());
+        }
+    }
+
+    public void assignProject(AssignmentRequest assignmentRequest, String token){
+        try {
+            coordinatorServiceClient.assignProject(assignmentRequest,token);
+        }catch (Exception e){
+            System.out.println("error en asignar" + e.getMessage());
         }
     }
 }

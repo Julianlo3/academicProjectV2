@@ -34,9 +34,11 @@ public class controllerMySoliCompany implements Observer {
     CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
     private final GUIMySolisCompany vista;
     private String rol;
+    Sujeto sujeto;
     public controllerMySoliCompany(GUIMySolisCompany vista,String rol,Sujeto sujeto) {
         this.vista = vista;
         this.rol = rol;
+        this.sujeto = sujeto;
         sujeto.agregarObservador(this);
         vista.getjPDetalleSolicitud().setVisible(false);
         cargarOpciones();
@@ -58,9 +60,8 @@ public class controllerMySoliCompany implements Observer {
         if(vista.getjRbtnAceptarPro().isSelected()){
             try {
                 coordinatorController.approveProject(idProyecto,projectComment,"Bearer " + vista.getToken());
+                sujeto.notificar("Se aceptó un proyecto");
                 Messages.showMessageDialog("Proyecto aprobado","Aprobado");
-
-                actualizar("Actualizando vista chats");
             }catch (Exception e){
                 System.out.println("error epa" + e.getMessage());
             }
@@ -68,8 +69,8 @@ public class controllerMySoliCompany implements Observer {
         if(vista.getjRbtnRechazarProye().isSelected()){
             try {
                 coordinatorController.rejectProject(idProyecto,projectComment,"Bearer " + vista.getToken());
+                sujeto.notificar("Se rechazó un proyecto");
                 Messages.showMessageDialog("Proyecto rechazado","Rechazado");
-                actualizar("Actualizando vista chats");
             }catch (Exception e){
                 System.out.println("error epa" + e.getMessage());
             }
@@ -77,14 +78,23 @@ public class controllerMySoliCompany implements Observer {
         if (vista.getjRbtnCompletarProye().isSelected()) {
             try {
                 coordinatorController.completeProject(idProyecto,"Bearer " + vista.getToken());
+                sujeto.notificar("Se completó un proyecto");
                 Messages.showConfirmDialog("Proyecto aprobado","Aprobado");
-                actualizar("Actualizando vista chats");
             }catch (Exception e){
                 System.out.println("error epa" + e.getMessage());
             }
         }
+        actualizarDatos();
         vista.getjPDetalleSolicitud().setVisible(false);
-        actualizar("Actualizando vista chats");
+    }
+
+    private void actualizarDatos(){
+        if(vista.getjBtnQuitarFiltro().isVisible()){
+            filtrar();
+        }
+        else{
+            cargarPublis();
+        }
     }
 
     private void quitarFiltro(){
@@ -232,11 +242,6 @@ public class controllerMySoliCompany implements Observer {
     @Override
     public void actualizar(String mensaje) {
         System.out.println("Actualizando en proyectos coordinador o empresa" + mensaje);
-        if(vista.getjBtnQuitarFiltro().isVisible()){
-            filtrar();
-        }
-        else{
-            cargarPublis();
-        }
+        actualizarDatos();
     }
 }

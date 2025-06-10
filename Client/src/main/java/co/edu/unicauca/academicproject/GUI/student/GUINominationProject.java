@@ -9,6 +9,8 @@ import co.edu.unicauca.academicproject.GUI.controller.Project.ControllerGuestNom
 import co.edu.unicauca.academicproject.GUI.controller.Project.ControllerNewProject;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Project;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JYearChooser;
 import com.toedter.components.JSpinField;
@@ -22,7 +24,7 @@ import javax.swing.*;
  *
  * @author lopez
  */
-public class GUINominationProject extends javax.swing.JFrame {
+public class GUINominationProject extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form GUINewProject
@@ -32,11 +34,12 @@ public class GUINominationProject extends javax.swing.JFrame {
     private String token;
     private String rol;
     private String codeStudent;
-    public GUINominationProject(Project project,String token,String rol,String codeStudent) {
+    public GUINominationProject(Project project, String token, String rol, String codeStudent, Sujeto sujeto) {
         initComponents();
+        sujeto.agregarObservador(this);
         this.project = project;
         this.rol = rol;
-        ControllerGuestNomination controller = new ControllerGuestNomination(this);
+        ControllerGuestNomination controller = new ControllerGuestNomination(this,sujeto);
         this.token = token;
         this.codeStudent = codeStudent;
 
@@ -466,5 +469,10 @@ public class GUINominationProject extends javax.swing.JFrame {
     private javax.swing.JTextField jTextAreaResumen;
     private com.toedter.calendar.JYearChooser jYearProyecto;
     private java.awt.Label lbTitleProyect;
+
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.print("Actualizando desde nominacion proyecto " +mensaje);
+    }
     // End of variables declaration//GEN-END:variables
 }

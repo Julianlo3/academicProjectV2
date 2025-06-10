@@ -36,4 +36,7 @@ public class StudentServiceClient {
         FeignClient.applyToProject(studentCode, projectId, token);
     }
 
+    public List<Student> getUnassignedStudents(String token){
+        return FeignClient.getUnassignedStudents(token);
+    }
 }

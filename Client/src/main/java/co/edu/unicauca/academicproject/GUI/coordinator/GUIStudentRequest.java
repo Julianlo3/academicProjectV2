@@ -9,6 +9,8 @@ import co.edu.unicauca.academicproject.GUI.controller.Project.ControllerNewProje
 import co.edu.unicauca.academicproject.GUI.controller.coordinator.controllerStudentRequest;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Project;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JYearChooser;
 import com.toedter.components.JSpinField;
@@ -21,14 +23,15 @@ import java.text.SimpleDateFormat;
  *
  * @author lopez
  */
-public class GUIStudentRequest extends javax.swing.JFrame {
+public class GUIStudentRequest extends javax.swing.JFrame implements Observer {
 
     private String token;
 
-    public GUIStudentRequest(String token) {
+    public GUIStudentRequest(String token, Sujeto sujeto) {
         initComponents();
+        sujeto.agregarObservador(this);
         this.token = token;
-        controllerStudentRequest controllerStudentRequest = new controllerStudentRequest(this);
+        controllerStudentRequest controllerStudentRequest = new controllerStudentRequest(this,sujeto);
     }
 
     public JPanel getjPChat() {
@@ -677,5 +680,10 @@ public class GUIStudentRequest extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaResumen;
     private com.toedter.calendar.JYearChooser jYearProyecto;
     private java.awt.Label lbTitleProyect;
+
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("actualizando desde GUI studentRequest "+mensaje);
+    }
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
 package co.edu.unicauca.academicproject.GUI.coordinator;
 
 import co.edu.unicauca.academicproject.GUI.controller.coordinator.controllerAssigment;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 
 import javax.swing.*;
 
@@ -12,16 +14,17 @@ import javax.swing.*;
  *
  * @author lopez
  */
-public class GUIAssigment extends javax.swing.JFrame {
+public class GUIAssigment extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form GUIAssigment
      */
     private String token;
-    public GUIAssigment(String token) {
+    public GUIAssigment(String token, Sujeto sujeto) {
         initComponents();
+        sujeto.agregarObservador(this);
         this.token = token;
-        controllerAssigment vista = new controllerAssigment(this);
+        controllerAssigment vista = new controllerAssigment(this,sujeto);
     }
 
     public String getToken(){
@@ -32,9 +35,6 @@ public class GUIAssigment extends javax.swing.JFrame {
         return jBtnAtras;
     }
 
-    public JButton getjBtnQuitar() {
-        return jBtnQuitar;
-    }
 
     public JButton getjBtnSaveProject() {
         return jBtnSaveProject;
@@ -81,7 +81,6 @@ public class GUIAssigment extends javax.swing.JFrame {
         jBtnSaveProject = new javax.swing.JButton();
         jLabelNameProject = new javax.swing.JLabel();
         jLStudent = new javax.swing.JLabel();
-        jBtnQuitar = new javax.swing.JButton();
         jBtnAtras = new javax.swing.JButton();
         jPTittleNewUser = new javax.swing.JPanel();
         jLTittleNewUser = new javax.swing.JLabel();
@@ -226,13 +225,6 @@ public class GUIAssigment extends javax.swing.JFrame {
         jLStudent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLStudent.setText("Seleccione un estudiante");
 
-        jBtnQuitar.setBackground(new java.awt.Color(172, 0, 0));
-        jBtnQuitar.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jBtnQuitar.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/cancelar.png"))); // NOI18N
-        jBtnQuitar.setText("QUITAR DE PROYECTO");
-        jBtnQuitar.setBorderPainted(false);
-
         jBtnAtras.setBackground(new java.awt.Color(15, 32, 65));
         jBtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/anterior (1).png"))); // NOI18N
         jBtnAtras.setBorderPainted(false);
@@ -249,24 +241,19 @@ public class GUIAssigment extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPContentLayout.createSequentialGroup()
-                        .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPContentLayout.createSequentialGroup()
-                                .addGap(129, 129, 129)
-                                .addComponent(jBtnSaveProject, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPContentLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabelNameProject, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabelNameProject, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
-                                .addComponent(jBtnQuitar)
-                                .addGap(89, 89, 89))
-                            .addComponent(jLStudent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
                         .addComponent(jPProjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(37, 37, 37))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnSaveProject, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(419, 419, 419))
         );
         jPContentLayout.setVerticalGroup(
             jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,11 +266,9 @@ public class GUIAssigment extends javax.swing.JFrame {
                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNameProject)
                     .addComponent(jLStudent))
-                .addGap(58, 58, 58)
-                .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnSaveProject, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnQuitar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(55, 55, 55)
+                .addComponent(jBtnSaveProject, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
                 .addComponent(jBtnAtras)
                 .addGap(22, 22, 22))
         );
@@ -338,7 +323,6 @@ public class GUIAssigment extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAtras;
-    private javax.swing.JButton jBtnQuitar;
     private javax.swing.JButton jBtnSaveProject;
     private javax.swing.JLabel jLStudent;
     private javax.swing.JLabel jLTittleNewUser;
@@ -358,4 +342,9 @@ public class GUIAssigment extends javax.swing.JFrame {
     private javax.swing.JTable jTableStudent;
     private java.awt.Label lbTitleProyect;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("Actualizando desde GUI assigment" + mensaje);
+    }
 }
