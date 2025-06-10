@@ -7,6 +7,7 @@ import co.edu.unicauca.academicproject.controller.ProjectController;
 import co.edu.unicauca.academicproject.infra.Messages;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
+import javax.swing.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -21,7 +22,13 @@ public class ControllerNewProject {
     ProjectController projectController = new ProjectController(appContextProvider.getBean(ProjectServiceClient.class));
     public ControllerNewProject(GUINewProject vista) {
         this.vista = vista;
+        cargarDatosEmpresa();
         this.vista.getjBtnPubliProject().addActionListener(e -> publicar());
+    }
+
+    private void cargarDatosEmpresa() {
+        vista.getjBtnLoginU().setText(vista.getCompany().getName());
+        vista.getjBtnLoginU().setIcon(new ImageIcon(getClass().getResource("/icon2.0/companyBig.png")));
     }
 
     private void publicar(){

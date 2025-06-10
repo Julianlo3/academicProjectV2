@@ -25,10 +25,19 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         this.rol = rol;
         this.idUser = idUser;
         ControllerHomeWithLog controller = new ControllerHomeWithLog(this,token);
+
+    }
+
+    public JButton getJBtnSolisPubli() {
+        return JBtnSolisPubli;
+    }
+
+    public JTextField getjFieldSearchProyect() {
+        return jFieldSearchProyect;
     }
 
     
-   
+ 
     public String getidUser() {
         return idUser;
     }
@@ -131,6 +140,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jBtnMyPubli = new javax.swing.JButton();
         jPOpcionCoordi = new javax.swing.JPanel();
         jBtnSolicitudes = new javax.swing.JButton();
+        JBtnSolisPubli = new javax.swing.JButton();
         jBtnAsignar = new javax.swing.JButton();
         JBtnEstadisticas = new javax.swing.JButton();
         jPOpcionStudent = new javax.swing.JPanel();
@@ -183,7 +193,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jPSearchBar.setLayout(new java.awt.GridBagLayout());
 
         jCBSelecFilter.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jCBSelecFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por Nombre", "Por Compañia", "Por Estudiante" }));
+        jCBSelecFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por Nombre" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPSearchBar.add(jCBSelecFilter, gridBagConstraints);
@@ -242,10 +252,19 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
         jBtnSolicitudes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jBtnSolicitudes.setForeground(new java.awt.Color(255, 255, 255));
         jBtnSolicitudes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/notificacion.png"))); // NOI18N
-        jBtnSolicitudes.setText("Solicitudes");
+        jBtnSolicitudes.setText("Solicitudes estudiante");
         jBtnSolicitudes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnSolicitudes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPOpcionCoordi.add(jBtnSolicitudes);
+
+        JBtnSolisPubli.setBackground(new java.awt.Color(172, 0, 0));
+        JBtnSolisPubli.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        JBtnSolisPubli.setForeground(new java.awt.Color(255, 255, 255));
+        JBtnSolisPubli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/publi.png"))); // NOI18N
+        JBtnSolisPubli.setText("Solicitudes publicaciones");
+        JBtnSolisPubli.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        JBtnSolisPubli.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPOpcionCoordi.add(JBtnSolisPubli);
 
         jBtnAsignar.setBackground(new java.awt.Color(172, 0, 0));
         jBtnAsignar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -343,8 +362,8 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLTitleProjects)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
@@ -416,6 +435,7 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBtnEstadisticas;
+    private javax.swing.JButton JBtnSolisPubli;
     private javax.swing.JButton jBtnAsignar;
     private javax.swing.JButton jBtnCoordiSoli;
     private javax.swing.JButton jBtnGetOut;

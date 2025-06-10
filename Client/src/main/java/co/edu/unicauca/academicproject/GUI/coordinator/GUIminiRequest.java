@@ -30,6 +30,26 @@ public class GUIminiRequest extends javax.swing.JPanel {
         controllerminiRequest controller = new controllerminiRequest(this);
     }
 
+    public JLabel getjLTEmpresa() {
+        return jLTEmpresa;
+    }
+
+ 
+    
+    public JLabel getjLEstudiante() {
+        return jLEstudiante;
+    }
+
+    public JLabel getjLNombreEmpresa() {
+        return jLNombreEmpresa;
+    }
+
+    public JLabel getjLTEstudiante() {
+        return jLTEstudiante;
+    }
+
+    
+    
     public long getIdSolicitud() {
         return idSolicitud;
     }
@@ -82,7 +102,6 @@ public class GUIminiRequest extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jLTituloProyecto = new javax.swing.JLabel();
         jLTEstudiante = new javax.swing.JLabel();
@@ -106,7 +125,7 @@ public class GUIminiRequest extends javax.swing.JPanel {
         jLTEmpresa.setText("Empresa:");
 
         jLTEstado.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLTEstado.setText("Estado:");
+        jLTEstado.setText("Estado de la solicitud:");
 
         jLEstudiante.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLEstudiante.setText("Pepito perez");

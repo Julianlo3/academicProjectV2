@@ -26,10 +26,16 @@ public class GUINewProject extends javax.swing.JFrame {
     private String token;
     public GUINewProject(Company company,String token) {
         initComponents();
-        ControllerNewProject controller = new ControllerNewProject(this);
-        this.company = company;
         this.token = token;
+        this.company = company;
+        ControllerNewProject controller = new ControllerNewProject(this);
     }
+
+    public JButton getjBtnLoginU() {
+        return jBtnLoginU;
+    }
+    
+    
 
     public String getTitleProject() {
         return jFieldTitleProject.getText();

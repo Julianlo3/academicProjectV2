@@ -240,6 +240,7 @@ public class GUINominationProject extends javax.swing.JFrame {
         jBtnSolicitar.setForeground(new java.awt.Color(255, 255, 255));
         jBtnSolicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/solicitar.png"))); // NOI18N
         jBtnSolicitar.setText("Enviar solicitud");
+        jBtnSolicitar.setBorderPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -315,7 +316,6 @@ public class GUINominationProject extends javax.swing.JFrame {
         jPContent.add(jLFechaInicioProyecto, gridBagConstraints);
 
         jDateChFechaInicio.setDateFormatString("y-MM-d");
-        jDateChFechaInicio.setEnabled(false);
         jDateChFechaInicio.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -331,7 +331,6 @@ public class GUINominationProject extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         jPContent.add(jLabel2, gridBagConstraints);
 
-        jYearProyecto.setEnabled(false);
         jYearProyecto.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -339,7 +338,6 @@ public class GUINominationProject extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
         jPContent.add(jYearProyecto, gridBagConstraints);
 
-        jSpinTerm.setEnabled(false);
         jSpinTerm.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jSpinTerm.setMaximum(2);
         jSpinTerm.setMinimum(1);
@@ -350,7 +348,6 @@ public class GUINominationProject extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(30, 100, 0, 0);
         jPContent.add(jSpinTerm, gridBagConstraints);
 
-        jSpinDuracionMes.setEnabled(false);
         jSpinDuracionMes.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jSpinDuracionMes.setMaximum(12);
         jSpinDuracionMes.setMinimum(1);

@@ -9,12 +9,14 @@ import java.time.LocalDateTime;
  */
 public class ProjectApplicationRequest {
 
+    private Long id;
     private Long studentCode;
     private Long projectId;
     private String status;
     private LocalDateTime timestamp;
 
-    public ProjectApplicationRequest(Long studentCode, Long projectId, String status, LocalDateTime timestamp) {
+    public ProjectApplicationRequest(Long id,Long studentCode, Long projectId, String status, LocalDateTime timestamp) {
+        this.id = id;
         this.studentCode = studentCode;
         this.projectId = projectId;
         this.status = status;
@@ -22,7 +24,14 @@ public class ProjectApplicationRequest {
     }
 
     public ProjectApplicationRequest(){
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getStudentCode() {

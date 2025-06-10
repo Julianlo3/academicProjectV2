@@ -37,19 +37,32 @@ public class CoordinatorController {
         return coordinatorServiceClient.GetAllCoordinators(token);
     }
 
-    public Coordinator getCoordinatortByCode(Long code){
-        return coordinatorServiceClient.getCoordinatorByCode(code);
+    public Coordinator getCoordinatortByCode(Long code,String token){
+        return coordinatorServiceClient.getCoordinatorByCode(code,token);
     }
 
     public List<ProjectApplicationRequest> getAllRequests(String token){
         return coordinatorServiceClient.getAllRequests(token);
     }
 
+    public List<ProjectApplicationRequest> getAllRequestsByStudentCode(Long studentCode, String token){
+        return coordinatorServiceClient.getAllRequestsByStudentCode(studentCode, token);
+    }
+
     public void acceptRequest(Long id,String token){
-        coordinatorServiceClient.acceptRequest(id,token);
+        try {
+            coordinatorServiceClient.acceptRequest(id,token);
+        }catch (Exception e){
+            System.out.println("error epa" + e.getMessage());
+        }
+
     }
 
     public void rejectRequest(Long id,String token){
-        coordinatorServiceClient.rejectRequest(id,token);
+        try {
+            coordinatorServiceClient.rejectRequest(id,token);
+        }catch (Exception e){
+            System.out.println("error epa" + e.getMessage());
+        }
     }
 }

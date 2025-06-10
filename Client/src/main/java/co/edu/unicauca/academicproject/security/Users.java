@@ -256,6 +256,7 @@ public class Users {
             System.out.println("Login exitoso. Código: " + response.statusCode());
             return true;
         } else {
+            Messages.showErrorDialog("Datos incorrectos: revise usuario y/o clave","Datos incorrectos.");
             System.out.println("Login fallido. Código: " + response.statusCode());
             return false;
         }
@@ -281,7 +282,7 @@ public class Users {
             return json.getString("access_token");
         } else {
             System.out.println("Login fallido. Código: " + response.statusCode());
-            return null;
+            return String.valueOf(response.statusCode());
         }
     }
 

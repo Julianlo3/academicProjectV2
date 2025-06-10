@@ -1,11 +1,7 @@
 package co.edu.unicauca.academicproject.Service.Student;
 
-import co.edu.unicauca.academicproject.entities.Assignment;
-import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
 import co.edu.unicauca.academicproject.entities.Student;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.cloud.openfeign.FeignClientProperties;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,9 +24,7 @@ public interface StudentFeingClient {
     @DeleteMapping("/api/student/{code}")
     void deleteStudent(@PathVariable Long code);
 
-    @PostMapping("api/student/apply")
+    @PostMapping("/api/student/application/apply")
      void applyToProject(@RequestParam Long studentCode, @RequestParam Long projectId,@RequestHeader("Authorization") String token);
 
-    @GetMapping("/api/student/assignment/{code}")
-    List<Assignment> getAssignmentByStudentCode(@PathVariable Long code, @RequestHeader("Authorization") String token);
 }

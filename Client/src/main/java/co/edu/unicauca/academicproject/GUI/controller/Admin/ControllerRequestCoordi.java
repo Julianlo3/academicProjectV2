@@ -91,7 +91,7 @@ public class ControllerRequestCoordi {
 
     public void procesarSoli(){
         if(this.vista.getRBtnAceptar().isSelected()){
-            Coordinator coordinator = coordinatorController.getCoordinatortByCode(id);
+            Coordinator coordinator = coordinatorController.getCoordinatortByCode(id,"bearer " + vista.getToken());
             System.out.println(coordinator.getName() + coordinator.getCode() + coordinator.getEmail() + coordinator.getPhone() + coordinator.getStatus() + coordinator.getDegreeProgram());
             adminController.aceptarCoordi(coordinator);
             JOptionPane.showMessageDialog(null, "Coordinador aceptado con éxito.");

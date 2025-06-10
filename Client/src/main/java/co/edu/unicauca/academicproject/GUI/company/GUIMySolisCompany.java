@@ -2,10 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package co.edu.unicauca.academicproject.GUI.coordinator;
+package co.edu.unicauca.academicproject.GUI.company;
 
+import co.edu.unicauca.academicproject.GUI.student.*;
+import co.edu.unicauca.academicproject.GUI.controller.student.ControllerMySolisStudent;
+import co.edu.unicauca.academicproject.GUI.coordinator.*;
 import co.edu.unicauca.academicproject.GUI.company.*;
 import co.edu.unicauca.academicproject.GUI.controller.Project.ControllerNewProject;
+import co.edu.unicauca.academicproject.GUI.controller.company.controllerMySoliCompany;
 import co.edu.unicauca.academicproject.GUI.controller.coordinator.controllerStudentRequest;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Project;
@@ -21,28 +25,81 @@ import java.text.SimpleDateFormat;
  *
  * @author lopez
  */
-public class GUIStudentRequest extends javax.swing.JFrame {
+public class GUIMySolisCompany extends javax.swing.JFrame {
 
     private String token;
-
-    public GUIStudentRequest(String token) {
+    private String nitCompany;
+    private String rol;
+    public GUIMySolisCompany(String nitCompany, String token,String rol) {
         initComponents();
+        this.rol = rol;
         this.token = token;
-        controllerStudentRequest controllerStudentRequest = new controllerStudentRequest(this);
+        this.nitCompany = nitCompany;
+        controllerMySoliCompany controller = new controllerMySoliCompany(this,rol);
+    }
+
+    public JPanel getjPEstadoPubli() {
+        return jPEstadoPubli;
+    }
+
+    public JPanel getjPFiltrar() {
+        return jPFiltrar;
+    }
+    
+    
+
+    public JButton getjBtnCerrarPubli() {
+        return jBtnCerrarPubli;
+    }
+
+    public JButton getjBtnCambiarEstado() {
+        return jBtnCambiarEstado;
+    }
+
+    public JButton getjBtnFiltrar() {
+        return jBtnFiltrar;
+    }
+
+    public JButton getjBtnQuitarFiltro() {
+        return jBtnQuitarFiltro;
+    }
+
+    public JComboBox<String> getjCBEstadoProyecto() {
+        return jCBEstadoProyecto;
+    }
+
+    public JRadioButton getjRbtnAceptarPro() {
+        return jRbtnAceptarPro;
+    }
+
+    public JRadioButton getjRbtnCompletarProye() {
+        return jRbtnCompletarProye;
+    }
+
+    public JRadioButton getjRbtnRechazarProye() {
+        return jRbtnRechazarProye;
+    }
+
+    public JSpinField getjSpinPeriodo() {
+        return jSpinPeriodo;
+    }
+
+    public JTextArea getjTextAreaComentarioProye() {
+        return jTextAreaComentarioProye;
+    }
+
+    public JYearChooser getjYear() {
+        return jYear;
+    }
+    
+    
+
+    public String getnitCompany() {
+        return nitCompany;
     }
 
     public JPanel getjPChat() {
         return jPChat;
-    }
-
-    public JLabel getjLIDPubli() {
-        return jLIDPubli;
-    }
-    
-    
-
-    public JLabel getjLEstudianteSolicitante() {
-        return jLEstudianteSolicitante;
     }
 
     public JLabel getjLEstadoSolicitud() {
@@ -66,19 +123,11 @@ public class GUIStudentRequest extends javax.swing.JFrame {
     }
 
     public JButton getjBtnNewPubli() {
-        return jBtnNewPubli;
+        return jBtnMyPubli;
     }
 
     public void setjBtnNewPubli(JButton jBtnNewPubli) {
-        this.jBtnNewPubli = jBtnNewPubli;
-    }
-
-    public JButton getjBtnProcesarSoli() {
-        return jBtnProcesarSoli;
-    }
-
-    public void setjBtnProcesarSoli(JButton jBtnProcesarSoli) {
-        this.jBtnProcesarSoli = jBtnProcesarSoli;
+        this.jBtnMyPubli = jBtnNewPubli;
     }
 
     public JDateChooser getjDateChFechaInicio() {
@@ -89,7 +138,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         this.jDateChFechaInicio.setDate(format.parse(jDateChFechaInicio));;
     }
-
 
     public JTextField getjFieldPresupuesto() {
         return jFieldPresupuesto;
@@ -121,22 +169,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
 
     public void setjPSolicitudes(JPanel jPSolicitudes) {
         this.jPSolicitudes = jPSolicitudes;
-    }
-
-    public JRadioButton getjRBtnAceptarSoli() {
-        return jRBtnAceptarSoli;
-    }
-
-    public void setjRBtnAceptarSoli(JRadioButton jRBtnAceptarSoli) {
-        this.jRBtnAceptarSoli = jRBtnAceptarSoli;
-    }
-
-    public JRadioButton getjRBtnRechazarSoli() {
-        return jRBtnRechazarSoli;
-    }
-
-    public void setjRBtnRechazarSoli(JRadioButton jRBtnRechazarSoli) {
-        this.jRBtnRechazarSoli = jRBtnRechazarSoli;
     }
 
     public JSpinField getjSpinDuracionMes() {
@@ -197,9 +229,16 @@ public class GUIStudentRequest extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        buttonGroupSolis = new javax.swing.ButtonGroup();
+        buttonGroupEstadoPro = new javax.swing.ButtonGroup();
         jPContent = new javax.swing.JPanel();
         jPSolicitudes = new javax.swing.JPanel();
+        jPFiltrar = new javax.swing.JPanel();
+        jPDatosGraficos1 = new javax.swing.JPanel();
+        jYear = new com.toedter.calendar.JYearChooser();
+        jSpinPeriodo = new com.toedter.components.JSpinField();
+        jCBEstadoProyecto = new javax.swing.JComboBox<>();
+        jBtnFiltrar = new javax.swing.JButton();
+        jBtnQuitarFiltro = new javax.swing.JButton();
         jScrollPaneChat = new javax.swing.JScrollPane();
         jPChat = new javax.swing.JPanel();
         jPDetalleSolicitud = new javax.swing.JPanel();
@@ -221,33 +260,57 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         jLPresupuesto = new javax.swing.JLabel();
         jLTEstado = new javax.swing.JLabel();
         jLEstadoSolicitud = new javax.swing.JLabel();
-        jLTEstudiante = new javax.swing.JLabel();
-        jLEstudianteSolicitante = new javax.swing.JLabel();
-        jRBtnAceptarSoli = new javax.swing.JRadioButton();
-        jRBtnRechazarSoli = new javax.swing.JRadioButton();
-        jBtnProcesarSoli = new javax.swing.JButton();
-        jLRazon = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaResumen = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaObjetivos = new javax.swing.JTextArea();
-        jLIDPubli = new javax.swing.JLabel();
+        jPEstadoPubli = new javax.swing.JPanel();
+        jLEstado = new javax.swing.JLabel();
+        jRbtnAceptarPro = new javax.swing.JRadioButton();
+        jRbtnRechazarProye = new javax.swing.JRadioButton();
+        jRbtnCompletarProye = new javax.swing.JRadioButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaComentarioProye = new javax.swing.JTextArea();
+        jBtnCambiarEstado = new javax.swing.JButton();
         jPTitleNewProject = new javax.swing.JPanel();
-        jBtnNewPubli = new javax.swing.JButton();
+        jBtnMyPubli = new javax.swing.JButton();
         jPHead = new javax.swing.JPanel();
         lbTitleProyect = new java.awt.Label();
         jPOpcLogin = new javax.swing.JPanel();
         jBtnLoginU = new javax.swing.JButton();
         jPButtom = new javax.swing.JPanel();
+        jBtnCerrarPubli = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Solicitudes");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(15, 32, 65));
-        setMinimumSize(new java.awt.Dimension(700, 550));
+        setMinimumSize(new java.awt.Dimension(1400, 1050));
 
         jPContent.setBackground(new java.awt.Color(15, 32, 65));
         jPContent.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPFiltrar.setBackground(new java.awt.Color(204, 204, 204));
+        jPFiltrar.setLayout(new javax.swing.BoxLayout(jPFiltrar, javax.swing.BoxLayout.LINE_AXIS));
+
+        jPDatosGraficos1.setLayout(new java.awt.GridLayout(1, 0, 10, 40));
+        jPDatosGraficos1.add(jYear);
+
+        jSpinPeriodo.setMaximum(2);
+        jSpinPeriodo.setMinimum(1);
+        jSpinPeriodo.setValue(1);
+        jPDatosGraficos1.add(jSpinPeriodo);
+
+        jPFiltrar.add(jPDatosGraficos1);
+
+        jCBEstadoProyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Approved", "Assigned", "Completed", "Received", "Reject" }));
+        jPFiltrar.add(jCBEstadoProyecto);
+
+        jBtnFiltrar.setText("Filtrar");
+        jPFiltrar.add(jBtnFiltrar);
+
+        jBtnQuitarFiltro.setText("Quitar filtro");
+        jPFiltrar.add(jBtnQuitarFiltro);
 
         jScrollPaneChat.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
@@ -260,15 +323,19 @@ public class GUIStudentRequest extends javax.swing.JFrame {
             jPSolicitudesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPSolicitudesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPaneChat, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                .addGroup(jPSolicitudesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneChat, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                    .addComponent(jPFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPSolicitudesLayout.setVerticalGroup(
             jPSolicitudesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPSolicitudesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPaneChat, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(jPFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(jScrollPaneChat, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jPDetalleSolicitud.setBackground(new java.awt.Color(15, 32, 65));
@@ -419,7 +486,7 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         jLTEstado.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLTEstado.setForeground(new java.awt.Color(255, 255, 255));
         jLTEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLTEstado.setText("Estado:");
+        jLTEstado.setText("Estado de la publicación:");
         jLTEstado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -436,68 +503,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
         jPDetalleSolicitud.add(jLEstadoSolicitud, gridBagConstraints);
-
-        jLTEstudiante.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLTEstudiante.setForeground(new java.awt.Color(255, 255, 255));
-        jLTEstudiante.setText("Estudiante solicitante:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
-        jPDetalleSolicitud.add(jLTEstudiante, gridBagConstraints);
-
-        jLEstudianteSolicitante.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLEstudianteSolicitante.setForeground(new java.awt.Color(255, 255, 255));
-        jLEstudianteSolicitante.setText("Pepito perez");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
-        jPDetalleSolicitud.add(jLEstudianteSolicitante, gridBagConstraints);
-
-        jRBtnAceptarSoli.setBackground(new java.awt.Color(15, 32, 65));
-        buttonGroupSolis.add(jRBtnAceptarSoli);
-        jRBtnAceptarSoli.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jRBtnAceptarSoli.setForeground(new java.awt.Color(255, 255, 255));
-        jRBtnAceptarSoli.setText("ACETPAR SOLICITUD");
-        jRBtnAceptarSoli.setOpaque(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
-        jPDetalleSolicitud.add(jRBtnAceptarSoli, gridBagConstraints);
-
-        jRBtnRechazarSoli.setBackground(new java.awt.Color(15, 32, 65));
-        buttonGroupSolis.add(jRBtnRechazarSoli);
-        jRBtnRechazarSoli.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jRBtnRechazarSoli.setForeground(new java.awt.Color(255, 255, 255));
-        jRBtnRechazarSoli.setText("RECHAZAR SOLICITUD");
-        jRBtnRechazarSoli.setOpaque(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
-        jPDetalleSolicitud.add(jRBtnRechazarSoli, gridBagConstraints);
-
-        jBtnProcesarSoli.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jBtnProcesarSoli.setText("CONFIRMAR");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        jPDetalleSolicitud.add(jBtnProcesarSoli, gridBagConstraints);
-
-        jLRazon.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLRazon.setForeground(new java.awt.Color(255, 255, 255));
-        jLRazon.setText("Razón:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        jPDetalleSolicitud.add(jLRazon, gridBagConstraints);
 
         jTextAreaResumen.setColumns(20);
         jTextAreaResumen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -527,10 +532,72 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPDetalleSolicitud.add(jScrollPane4, gridBagConstraints);
 
-        jLIDPubli.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLIDPubli.setForeground(new java.awt.Color(255, 255, 255));
-        jLIDPubli.setText("IDPUBLI");
-        jPDetalleSolicitud.add(jLIDPubli, new java.awt.GridBagConstraints());
+        jLEstado.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLEstado.setText("Cambie el estado del proyecto:");
+
+        buttonGroupEstadoPro.add(jRbtnAceptarPro);
+        jRbtnAceptarPro.setText("Aceptar proyecto");
+
+        buttonGroupEstadoPro.add(jRbtnRechazarProye);
+        jRbtnRechazarProye.setText("Rechazar proyecto");
+
+        buttonGroupEstadoPro.add(jRbtnCompletarProye);
+        jRbtnCompletarProye.setText("Completar proyecto");
+
+        jTextAreaComentarioProye.setColumns(20);
+        jTextAreaComentarioProye.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaComentarioProye);
+
+        jBtnCambiarEstado.setBackground(new java.awt.Color(172, 0, 0));
+        jBtnCambiarEstado.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jBtnCambiarEstado.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnCambiarEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/solicitar.png"))); // NOI18N
+        jBtnCambiarEstado.setText("CAMBIAR ESTADO");
+
+        javax.swing.GroupLayout jPEstadoPubliLayout = new javax.swing.GroupLayout(jPEstadoPubli);
+        jPEstadoPubli.setLayout(jPEstadoPubliLayout);
+        jPEstadoPubliLayout.setHorizontalGroup(
+            jPEstadoPubliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPEstadoPubliLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLEstado)
+                .addGap(30, 30, 30)
+                .addGroup(jPEstadoPubliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRbtnCompletarProye)
+                    .addComponent(jRbtnRechazarProye)
+                    .addComponent(jRbtnAceptarPro))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addComponent(jBtnCambiarEstado)
+                .addContainerGap(160, Short.MAX_VALUE))
+        );
+        jPEstadoPubliLayout.setVerticalGroup(
+            jPEstadoPubliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPEstadoPubliLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(jPEstadoPubliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnCambiarEstado)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPEstadoPubliLayout.createSequentialGroup()
+                        .addComponent(jRbtnAceptarPro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPEstadoPubliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLEstado)
+                            .addComponent(jRbtnRechazarProye))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRbtnCompletarProye)))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
+        jPDetalleSolicitud.add(jPEstadoPubli, gridBagConstraints);
 
         javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
         jPContent.setLayout(jPContentLayout);
@@ -539,32 +606,35 @@ public class GUIStudentRequest extends javax.swing.JFrame {
             .addGroup(jPContentLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPSolicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(jPDetalleSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPContentLayout.setVerticalGroup(
             jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPContentLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPDetalleSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPDetalleSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPSolicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 59, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPTitleNewProject.setBackground(new java.awt.Color(15, 32, 65));
         jPTitleNewProject.setForeground(new java.awt.Color(255, 255, 255));
+        jPTitleNewProject.setLayout(new java.awt.GridBagLayout());
 
-        jBtnNewPubli.setBackground(new java.awt.Color(172, 0, 0));
-        jBtnNewPubli.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jBtnNewPubli.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnNewPubli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/notificacion.png"))); // NOI18N
-        jBtnNewPubli.setText("Solicitudes");
-        jBtnNewPubli.setBorderPainted(false);
-        jBtnNewPubli.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBtnNewPubli.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPTitleNewProject.add(jBtnNewPubli);
+        jBtnMyPubli.setBackground(new java.awt.Color(172, 0, 0));
+        jBtnMyPubli.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jBtnMyPubli.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnMyPubli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MyPubli.png"))); // NOI18N
+        jBtnMyPubli.setText("Mis publicaciones");
+        jBtnMyPubli.setBorderPainted(false);
+        jBtnMyPubli.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnMyPubli.setMinimumSize(new java.awt.Dimension(300, 62));
+        jBtnMyPubli.setPreferredSize(new java.awt.Dimension(300, 62));
+        jBtnMyPubli.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPTitleNewProject.add(jBtnMyPubli, new java.awt.GridBagConstraints());
 
         jPHead.setBackground(new java.awt.Color(15, 32, 65));
         jPHead.setLayout(new javax.swing.BoxLayout(jPHead, javax.swing.BoxLayout.LINE_AXIS));
@@ -595,15 +665,25 @@ public class GUIStudentRequest extends javax.swing.JFrame {
 
         jPButtom.setBackground(new java.awt.Color(15, 32, 65));
 
+        jBtnCerrarPubli.setBackground(new java.awt.Color(12, 15, 65));
+        jBtnCerrarPubli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/anterior (1).png"))); // NOI18N
+        jBtnCerrarPubli.setBorderPainted(false);
+
         javax.swing.GroupLayout jPButtomLayout = new javax.swing.GroupLayout(jPButtom);
         jPButtom.setLayout(jPButtomLayout);
         jPButtomLayout.setHorizontalGroup(
             jPButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1739, Short.MAX_VALUE)
+            .addGroup(jPButtomLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jBtnCerrarPubli)
+                .addContainerGap(1580, Short.MAX_VALUE))
         );
         jPButtomLayout.setVerticalGroup(
             jPButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPButtomLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnCerrarPubli)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -611,8 +691,8 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPHead, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPTitleNewProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -623,12 +703,12 @@ public class GUIStudentRequest extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPTitleNewProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(806, Short.MAX_VALUE)
-                    .addComponent(jPButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(915, 915, 915)
+                    .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -636,46 +716,55 @@ public class GUIStudentRequest extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroupSolis;
+    private javax.swing.ButtonGroup buttonGroupEstadoPro;
+    private javax.swing.JButton jBtnCambiarEstado;
+    private javax.swing.JButton jBtnCerrarPubli;
+    private javax.swing.JButton jBtnFiltrar;
     private javax.swing.JButton jBtnLoginU;
-    private javax.swing.JButton jBtnNewPubli;
-    private javax.swing.JButton jBtnProcesarSoli;
+    private javax.swing.JButton jBtnMyPubli;
+    private javax.swing.JButton jBtnQuitarFiltro;
+    private javax.swing.JComboBox<String> jCBEstadoProyecto;
     private com.toedter.calendar.JDateChooser jDateChFechaInicio;
     private javax.swing.JTextField jFieldPresupuesto;
     private javax.swing.JTextField jFieldTitleProject;
     private javax.swing.JLabel jLDescriptionProject;
     private javax.swing.JLabel jLDuracionMeses;
+    private javax.swing.JLabel jLEstado;
     private javax.swing.JLabel jLEstadoSolicitud;
-    private javax.swing.JLabel jLEstudianteSolicitante;
     private javax.swing.JLabel jLFechaInicioProyecto;
-    private javax.swing.JLabel jLIDPubli;
     private javax.swing.JLabel jLObjetivos;
     private javax.swing.JLabel jLPeriodoAca;
     private javax.swing.JLabel jLPresupuesto;
-    private javax.swing.JLabel jLRazon;
     private javax.swing.JLabel jLResumen;
     private javax.swing.JLabel jLTEstado;
-    private javax.swing.JLabel jLTEstudiante;
     private javax.swing.JLabel jLTitleProject;
     private javax.swing.JPanel jPButtom;
     private javax.swing.JPanel jPChat;
     private javax.swing.JPanel jPContent;
+    private javax.swing.JPanel jPDatosGraficos1;
     private javax.swing.JPanel jPDetalleSolicitud;
+    private javax.swing.JPanel jPEstadoPubli;
+    private javax.swing.JPanel jPFiltrar;
     private javax.swing.JPanel jPHead;
     private javax.swing.JPanel jPOpcLogin;
     private javax.swing.JPanel jPSolicitudes;
     private javax.swing.JPanel jPTitleNewProject;
-    private javax.swing.JRadioButton jRBtnAceptarSoli;
-    private javax.swing.JRadioButton jRBtnRechazarSoli;
+    private javax.swing.JRadioButton jRbtnAceptarPro;
+    private javax.swing.JRadioButton jRbtnCompletarProye;
+    private javax.swing.JRadioButton jRbtnRechazarProye;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPaneChat;
     private com.toedter.components.JSpinField jSpinDuracionMes;
+    private com.toedter.components.JSpinField jSpinPeriodo;
     private com.toedter.components.JSpinField jSpinTerm;
+    private javax.swing.JTextArea jTextAreaComentarioProye;
     private javax.swing.JTextArea jTextAreaDescripProject;
     private javax.swing.JTextArea jTextAreaObjetivos;
     private javax.swing.JTextArea jTextAreaResumen;
+    private com.toedter.calendar.JYearChooser jYear;
     private com.toedter.calendar.JYearChooser jYearProyecto;
     private java.awt.Label lbTitleProyect;
     // End of variables declaration//GEN-END:variables

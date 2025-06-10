@@ -27,12 +27,19 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
 
     private String token;
     private String studentCode;
-    public GUIMySolisStudent(String studentCode,String token) {
+
+    public GUIMySolisStudent(String studentCode, String token) {
         initComponents();
         this.token = token;
         this.studentCode = studentCode;
         ControllerMySolisStudent controlller = new ControllerMySolisStudent(this);
     }
+
+    public JButton getjBtnCerrarPubli() {
+        return jBtnCerrarPubli;
+    }
+    
+    
 
     public String getStudentCode() {
         return studentCode;
@@ -40,16 +47,6 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
 
     public JPanel getjPChat() {
         return jPChat;
-    }
-
-    public JLabel getjLIDPubli() {
-        return jLIDPubli;
-    }
-    
-    
-
-    public JLabel getjLEstudianteSolicitante() {
-        return jLEstudianteSolicitante;
     }
 
     public JLabel getjLEstadoSolicitud() {
@@ -62,14 +59,6 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    public JButton getjBtnFiltrar() {
-        return jBtnFiltrar;
-    }
-
-    public void setjBtnFiltrar(JButton jBtnFiltrar) {
-        this.jBtnFiltrar = jBtnFiltrar;
     }
 
     public JButton getjBtnLoginU() {
@@ -86,23 +75,6 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
 
     public void setjBtnNewPubli(JButton jBtnNewPubli) {
         this.jBtnNewPubli = jBtnNewPubli;
-    }
-
-
-    public JButton getjBtnQuitarFiltro() {
-        return jBtnQuitarFiltro;
-    }
-
-    public void setjBtnQuitarFiltro(JButton jBtnQuitarFiltro) {
-        this.jBtnQuitarFiltro = jBtnQuitarFiltro;
-    }
-
-    public JComboBox<String> getjCBEstadoProyecto() {
-        return jCBEstadoProyecto;
-    }
-
-    public void setjCBEstadoProyecto(JComboBox<String> jCBEstadoProyecto) {
-        this.jCBEstadoProyecto = jCBEstadoProyecto;
     }
 
     public JDateChooser getjDateChFechaInicio() {
@@ -146,21 +118,12 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
         this.jPSolicitudes = jPSolicitudes;
     }
 
-
     public JSpinField getjSpinDuracionMes() {
         return jSpinDuracionMes;
     }
 
     public void setjSpinDuracionMes(JSpinField jSpinDuracionMes) {
         this.jSpinDuracionMes = jSpinDuracionMes;
-    }
-
-    public JSpinField getjSpinPeriodo() {
-        return jSpinPeriodo;
-    }
-
-    public void setjSpinPeriodo(JSpinField jSpinPeriodo) {
-        this.jSpinPeriodo = jSpinPeriodo;
     }
 
     public JSpinField getjSpinTerm() {
@@ -195,14 +158,6 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
         this.jTextAreaResumen = jTextAreaResumen;
     }
 
-    public JYearChooser getjYear() {
-        return jYear;
-    }
-
-    public void setjYear(JYearChooser jYear) {
-        this.jYear = jYear;
-    }
-
     public JYearChooser getjYearProyecto() {
         return jYearProyecto;
     }
@@ -224,13 +179,6 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
         buttonGroupSolis = new javax.swing.ButtonGroup();
         jPContent = new javax.swing.JPanel();
         jPSolicitudes = new javax.swing.JPanel();
-        jPFiltrar = new javax.swing.JPanel();
-        jPDatosGraficos = new javax.swing.JPanel();
-        jYear = new com.toedter.calendar.JYearChooser();
-        jSpinPeriodo = new com.toedter.components.JSpinField();
-        jCBEstadoProyecto = new javax.swing.JComboBox<>();
-        jBtnFiltrar = new javax.swing.JButton();
-        jBtnQuitarFiltro = new javax.swing.JButton();
         jScrollPaneChat = new javax.swing.JScrollPane();
         jPChat = new javax.swing.JPanel();
         jPDetalleSolicitud = new javax.swing.JPanel();
@@ -252,13 +200,10 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
         jLPresupuesto = new javax.swing.JLabel();
         jLTEstado = new javax.swing.JLabel();
         jLEstadoSolicitud = new javax.swing.JLabel();
-        jLTEstudiante = new javax.swing.JLabel();
-        jLEstudianteSolicitante = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaResumen = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaObjetivos = new javax.swing.JTextArea();
-        jLIDPubli = new javax.swing.JLabel();
         jPTitleNewProject = new javax.swing.JPanel();
         jBtnNewPubli = new javax.swing.JButton();
         jPHead = new javax.swing.JPanel();
@@ -266,37 +211,16 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
         jPOpcLogin = new javax.swing.JPanel();
         jBtnLoginU = new javax.swing.JButton();
         jPButtom = new javax.swing.JPanel();
+        jBtnCerrarPubli = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Solicitudes");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(15, 32, 65));
-        setMinimumSize(new java.awt.Dimension(700, 550));
+        setMinimumSize(new java.awt.Dimension(1400, 1050));
 
         jPContent.setBackground(new java.awt.Color(15, 32, 65));
         jPContent.setForeground(new java.awt.Color(255, 255, 255));
-
-        jPFiltrar.setBackground(new java.awt.Color(204, 204, 204));
-        jPFiltrar.setLayout(new javax.swing.BoxLayout(jPFiltrar, javax.swing.BoxLayout.LINE_AXIS));
-
-        jPDatosGraficos.setLayout(new java.awt.GridLayout(1, 0, 10, 40));
-        jPDatosGraficos.add(jYear);
-
-        jSpinPeriodo.setMaximum(2);
-        jSpinPeriodo.setMinimum(1);
-        jSpinPeriodo.setValue(1);
-        jPDatosGraficos.add(jSpinPeriodo);
-
-        jPFiltrar.add(jPDatosGraficos);
-
-        jCBEstadoProyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Approved", "Assigned", "Completed", "Received", "Reject" }));
-        jPFiltrar.add(jCBEstadoProyecto);
-
-        jBtnFiltrar.setText("Filtrar");
-        jPFiltrar.add(jBtnFiltrar);
-
-        jBtnQuitarFiltro.setText("Quitar filtro");
-        jPFiltrar.add(jBtnQuitarFiltro);
 
         jScrollPaneChat.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
@@ -309,18 +233,14 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
             jPSolicitudesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPSolicitudesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPSolicitudesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
-                    .addComponent(jScrollPaneChat))
+                .addComponent(jScrollPaneChat, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPSolicitudesLayout.setVerticalGroup(
             jPSolicitudesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPSolicitudesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPaneChat, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneChat, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -426,8 +346,10 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
         jSpinTerm.setMinimum(1);
         jSpinTerm.setValue(1);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, -50, 0, 0);
         jPDetalleSolicitud.add(jSpinTerm, gridBagConstraints);
 
         jLFechaInicioProyecto.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -470,7 +392,7 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
         jLTEstado.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLTEstado.setForeground(new java.awt.Color(255, 255, 255));
         jLTEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLTEstado.setText("Estado:");
+        jLTEstado.setText("Estado de la publicación:");
         jLTEstado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -487,25 +409,6 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
         jPDetalleSolicitud.add(jLEstadoSolicitud, gridBagConstraints);
-
-        jLTEstudiante.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLTEstudiante.setForeground(new java.awt.Color(255, 255, 255));
-        jLTEstudiante.setText("Estudiante solicitante:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
-        jPDetalleSolicitud.add(jLTEstudiante, gridBagConstraints);
-
-        jLEstudianteSolicitante.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLEstudianteSolicitante.setForeground(new java.awt.Color(255, 255, 255));
-        jLEstudianteSolicitante.setText("Pepito perez");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
-        jPDetalleSolicitud.add(jLEstudianteSolicitante, gridBagConstraints);
 
         jTextAreaResumen.setColumns(20);
         jTextAreaResumen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -535,11 +438,6 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPDetalleSolicitud.add(jScrollPane4, gridBagConstraints);
 
-        jLIDPubli.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLIDPubli.setForeground(new java.awt.Color(255, 255, 255));
-        jLIDPubli.setText("IDPUBLI");
-        jPDetalleSolicitud.add(jLIDPubli, new java.awt.GridBagConstraints());
-
         javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
         jPContent.setLayout(jPContentLayout);
         jPContentLayout.setHorizontalGroup(
@@ -563,6 +461,7 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
 
         jPTitleNewProject.setBackground(new java.awt.Color(15, 32, 65));
         jPTitleNewProject.setForeground(new java.awt.Color(255, 255, 255));
+        jPTitleNewProject.setLayout(new java.awt.GridBagLayout());
 
         jBtnNewPubli.setBackground(new java.awt.Color(172, 0, 0));
         jBtnNewPubli.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -571,8 +470,10 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
         jBtnNewPubli.setText("Solicitudes");
         jBtnNewPubli.setBorderPainted(false);
         jBtnNewPubli.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnNewPubli.setMinimumSize(new java.awt.Dimension(300, 62));
+        jBtnNewPubli.setPreferredSize(new java.awt.Dimension(300, 62));
         jBtnNewPubli.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPTitleNewProject.add(jBtnNewPubli);
+        jPTitleNewProject.add(jBtnNewPubli, new java.awt.GridBagConstraints());
 
         jPHead.setBackground(new java.awt.Color(15, 32, 65));
         jPHead.setLayout(new javax.swing.BoxLayout(jPHead, javax.swing.BoxLayout.LINE_AXIS));
@@ -603,22 +504,32 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
 
         jPButtom.setBackground(new java.awt.Color(15, 32, 65));
 
+        jBtnCerrarPubli.setBackground(new java.awt.Color(12, 15, 65));
+        jBtnCerrarPubli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/anterior (1).png"))); // NOI18N
+        jBtnCerrarPubli.setBorderPainted(false);
+
         javax.swing.GroupLayout jPButtomLayout = new javax.swing.GroupLayout(jPButtom);
         jPButtom.setLayout(jPButtomLayout);
         jPButtomLayout.setHorizontalGroup(
             jPButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1342, Short.MAX_VALUE)
+            .addGroup(jPButtomLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jBtnCerrarPubli)
+                .addContainerGap(1323, Short.MAX_VALUE))
         );
         jPButtomLayout.setVerticalGroup(
             jPButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 42, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPButtomLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnCerrarPubli)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPHead, javax.swing.GroupLayout.DEFAULT_SIZE, 1342, Short.MAX_VALUE)
+            .addComponent(jPHead, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPTitleNewProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -645,33 +556,26 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupSolis;
-    private javax.swing.JButton jBtnFiltrar;
+    private javax.swing.JButton jBtnCerrarPubli;
     private javax.swing.JButton jBtnLoginU;
     private javax.swing.JButton jBtnNewPubli;
-    private javax.swing.JButton jBtnQuitarFiltro;
-    private javax.swing.JComboBox<String> jCBEstadoProyecto;
     private com.toedter.calendar.JDateChooser jDateChFechaInicio;
     private javax.swing.JTextField jFieldPresupuesto;
     private javax.swing.JTextField jFieldTitleProject;
     private javax.swing.JLabel jLDescriptionProject;
     private javax.swing.JLabel jLDuracionMeses;
     private javax.swing.JLabel jLEstadoSolicitud;
-    private javax.swing.JLabel jLEstudianteSolicitante;
     private javax.swing.JLabel jLFechaInicioProyecto;
-    private javax.swing.JLabel jLIDPubli;
     private javax.swing.JLabel jLObjetivos;
     private javax.swing.JLabel jLPeriodoAca;
     private javax.swing.JLabel jLPresupuesto;
     private javax.swing.JLabel jLResumen;
     private javax.swing.JLabel jLTEstado;
-    private javax.swing.JLabel jLTEstudiante;
     private javax.swing.JLabel jLTitleProject;
     private javax.swing.JPanel jPButtom;
     private javax.swing.JPanel jPChat;
     private javax.swing.JPanel jPContent;
-    private javax.swing.JPanel jPDatosGraficos;
     private javax.swing.JPanel jPDetalleSolicitud;
-    private javax.swing.JPanel jPFiltrar;
     private javax.swing.JPanel jPHead;
     private javax.swing.JPanel jPOpcLogin;
     private javax.swing.JPanel jPSolicitudes;
@@ -681,12 +585,10 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPaneChat;
     private com.toedter.components.JSpinField jSpinDuracionMes;
-    private com.toedter.components.JSpinField jSpinPeriodo;
     private com.toedter.components.JSpinField jSpinTerm;
     private javax.swing.JTextArea jTextAreaDescripProject;
     private javax.swing.JTextArea jTextAreaObjetivos;
     private javax.swing.JTextArea jTextAreaResumen;
-    private com.toedter.calendar.JYearChooser jYear;
     private com.toedter.calendar.JYearChooser jYearProyecto;
     private java.awt.Label lbTitleProyect;
     // End of variables declaration//GEN-END:variables
