@@ -29,19 +29,23 @@ public class AssignmentService implements IAssignmentService {
     @Transactional
     public Assignment createAssignment(AssignmentRequestDTO assignmentRequestDTO) throws Exception {
         try {
-            // 1. Verificar si el codigo de estudiante fue pasado y si el estudiante existe
+            // 1. Ya existe una asignacion de este estudiante al ese proyecto
+            if(assignmentRepository.findAssignmentByStudentCodeAndProjectId(assignmentRequestDTO.getStudentCode(), assignmentRequestDTO.getProjectId()).isPresent()) {
+                throw new Exception("Assignment already exists");
+            }
+
+            // 2. Verificar si el codigo de estudiante fue pasado y si el estudiante existe
             if (assignmentRequestDTO.getStudentCode() != null) {
                 if (studentRepository.findByCode(assignmentRequestDTO.getStudentCode()).isEmpty()) {
-                    throw new IllegalAccessException("El estudiante con CODIGO " + assignmentRequestDTO.getStudentCode() + " no existe");
+                    throw new IllegalAccessException("The student with code: " + assignmentRequestDTO.getStudentCode() + " doesn't exists");
                 }
             }
 
-            // 2. Crear y mapear la signacion desde el DTO
+            // 3. Crear y mapear la signacion desde el DTO
             Student student = studentRepository.findByCode(assignmentRequestDTO.getStudentCode()).get();
             Assignment assignment = assignmentMapper.toEntity(assignmentRequestDTO, student);
 
-            // 3. Guardar y retornar la asignacion
-
+            // 4. Guardar y retornar la asignacion
             return assignmentRepository.save(assignment);
 
         } catch (Exception e) {
@@ -51,7 +55,7 @@ public class AssignmentService implements IAssignmentService {
 
     @Override
     @Transactional
-    public Optional<List<Assignment>> findAssignmentByStudentCode(Long studentCode) throws Exception {
+    public List<Assignment> findAssignmentByStudentCode(Long studentCode) throws Exception {
         try{
             // 1. Verificar si el codigo de estudiante fue pasado y si el estudiante existe
             if (studentCode != null) {
@@ -100,4 +104,21 @@ public class AssignmentService implements IAssignmentService {
             throw new Exception(e.getMessage());
         }
     }
+
+    @Override
+    public List<Assignment> deleteAllAssignmentsByProjectId(Long ProjectId) throws Exception {
+        try{
+
+            List<Assignment> assignments = assignmentRepository.findByProjectId(ProjectId);
+
+            assignmentRepository.deleteAll(assignments);
+
+            return assignments;
+
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+
 }

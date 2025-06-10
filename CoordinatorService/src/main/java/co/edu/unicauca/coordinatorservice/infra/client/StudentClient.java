@@ -3,6 +3,8 @@ package co.edu.unicauca.coordinatorservice.infra.client;
 import co.edu.unicauca.coordinatorservice.infra.config.FeignAuthForwardInterceptor;
 import co.edu.unicauca.coordinatorservice.infra.dto.AssignmentRequestDTO;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @FeignClient(
@@ -14,4 +16,7 @@ public interface StudentClient {
 
     @PostMapping("/api/student/assignment")
     void assignStudent(AssignmentRequestDTO request);
+
+    @DeleteMapping("/api/student/assignment/all/{id}")
+    void unassignAllStudentsToProject(@PathVariable("id") Long id);
 }

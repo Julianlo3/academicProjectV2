@@ -9,14 +9,17 @@ import java.util.Optional;
 
 public interface IAssignmentService {
     @Transactional
-    public Assignment createAssignment(AssignmentRequestDTO assignmentRequestDTO) throws Exception;
+    Assignment createAssignment(AssignmentRequestDTO assignmentRequestDTO) throws Exception;
 
     @Transactional
-    public Optional<List<Assignment>> findAssignmentByStudentCode(Long studentCode) throws Exception;
+    List<Assignment> findAssignmentByStudentCode(Long studentCode) throws Exception;
 
     @Transactional
-    public List<Assignment> findAllAssignment() throws Exception;
+    List<Assignment> findAllAssignment() throws Exception;
 
     @Transactional
-    public Assignment deleteAssignment(Long id) throws Exception;
+    Assignment deleteAssignment(Long id) throws Exception;
+
+    @Transactional
+    List<Assignment> deleteAllAssignmentsByProjectId(Long ProjectId) throws Exception;
 }

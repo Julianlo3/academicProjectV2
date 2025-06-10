@@ -17,8 +17,11 @@ import java.util.Optional;
 @RequestMapping("/api/student/assignment")
 public class AssignmentController {
 
-    @Autowired
-    private AssignmentService assignmentService;
+    private final AssignmentService assignmentService;
+
+    public AssignmentController(AssignmentService assignmentService) {
+        this.assignmentService = assignmentService;
+    }
 
     //CRUDs para asignacion
 
@@ -41,7 +44,7 @@ public class AssignmentController {
     @PreAuthorize("hasAnyRole('coordinator','student')")
     public ResponseEntity<?> getAssignmentByStudentCode(@PathVariable Long code) {
         try {
-            Optional<List<Assignment>> assignments = assignmentService.findAssignmentByStudentCode(code);
+            List<Assignment> assignments = assignmentService.findAssignmentByStudentCode(code);
             if (assignments.isEmpty()) {
                 return ResponseEntity.notFound().build();
             } else {
@@ -79,6 +82,21 @@ public class AssignmentController {
             }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al eliminar datos de la asignacion, " + e.getMessage() + "\"}");
+        }
+    }
+
+    @DeleteMapping("/all/{id}")
+    @PreAuthorize("hasAnyRole('coordinator')")
+    public ResponseEntity<?> deleteAllAssignmentsByProjectId(@PathVariable Long id) {
+        try {
+            try {
+                List<Assignment> deletedAssignments = assignmentService.deleteAllAssignmentsByProjectId(id);
+                return ResponseEntity.ok(deletedAssignments);
+            } catch (IllegalAccessException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error al eliminar datos de las asignaciones, " + e.getMessage() + "\"}");
         }
     }
 }

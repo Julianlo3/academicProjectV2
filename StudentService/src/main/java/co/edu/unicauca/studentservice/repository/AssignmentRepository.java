@@ -8,5 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AssignmentRepository extends JpaRepository<Assignment, Long> {
-    Optional<List<Assignment>> findByStudentCode(Long studentCode);
+    List<Assignment> findByStudentCode(Long studentCode);
+    List<Assignment> findByProjectId(Long ProjectId);
+    Optional<Assignment> findAssignmentByStudentCodeAndProjectId(Long studentCode, Long projectId);
+    Optional<Assignment> deleteByStudentCodeAndProjectId(Long studentCode, Long projectId);
 }
