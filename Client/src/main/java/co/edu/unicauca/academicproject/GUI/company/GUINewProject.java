@@ -7,6 +7,8 @@ package co.edu.unicauca.academicproject.GUI.company;
 import co.edu.unicauca.academicproject.GUI.controller.Project.ControllerNewProject;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Project;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.components.JSpinField;
 
@@ -16,7 +18,7 @@ import javax.swing.*;
  *
  * @author lopez
  */
-public class GUINewProject extends javax.swing.JFrame {
+public class GUINewProject extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form GUINewProject
@@ -24,11 +26,12 @@ public class GUINewProject extends javax.swing.JFrame {
 
     private final Company company;
     private String token;
-    public GUINewProject(Company company,String token) {
+    public GUINewProject(Company company, String token, Sujeto sujeto) {
         initComponents();
         this.token = token;
+        sujeto.agregarObservador(this);
         this.company = company;
-        ControllerNewProject controller = new ControllerNewProject(this);
+        ControllerNewProject controller = new ControllerNewProject(this,sujeto);
     }
 
     public JButton getjBtnLoginU() {
@@ -394,5 +397,10 @@ public class GUINewProject extends javax.swing.JFrame {
     private javax.swing.JTextField jTextAreaResumen;
     private com.toedter.calendar.JYearChooser jYearProyecto;
     private java.awt.Label lbTitleProyect;
+
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("Actulizando GUI new proyect "+mensaje);
+    }
     // End of variables declaration//GEN-END:variables
 }

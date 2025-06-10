@@ -18,6 +18,7 @@ import co.edu.unicauca.academicproject.entities.Admin;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Coordinator;
 import co.edu.unicauca.academicproject.entities.Student;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import co.edu.unicauca.academicproject.infra.Messages;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 import co.edu.unicauca.academicproject.security.Users;
@@ -42,7 +43,8 @@ public class ControllerLogin {
     
     private void volverHome(){
         vista.dispose();
-        GUIHomeWithOutLog home = new GUIHomeWithOutLog();
+        Sujeto sujeto = new Sujeto();
+        GUIHomeWithOutLog home = new GUIHomeWithOutLog(sujeto);
         home.setExtendedState(JFrame.MAXIMIZED_BOTH);
         home.setVisible(true);
     }
@@ -77,7 +79,8 @@ public class ControllerLogin {
             if(user.validarTokenRegis(userName, pass)){
                 String token = user.obtenerTokenRegis(userName, pass);
                 System.out.println("Usuario registrado");
-                GUIHomeWithLog home = new GUIHomeWithLog(userName,cargarRol(token),user.obtenerTokenRegis(userName, pass));
+                Sujeto sujeto = new Sujeto();
+                GUIHomeWithLog home = new GUIHomeWithLog(userName,cargarRol(token),user.obtenerTokenRegis(userName, pass),sujeto);
                 home.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 home.setVisible(true);
                 vista.dispose();

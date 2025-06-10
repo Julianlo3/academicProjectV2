@@ -14,6 +14,7 @@ import co.edu.unicauca.academicproject.controller.CompanyController;
 import co.edu.unicauca.academicproject.controller.CoordinatorController;
 import co.edu.unicauca.academicproject.controller.StudentController;
 import co.edu.unicauca.academicproject.entities.SectorCompany;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import co.edu.unicauca.academicproject.entities.sectorCoordi;
 import co.edu.unicauca.academicproject.infra.Messages;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
@@ -35,7 +36,7 @@ public class ControllerRegisterUser {
     StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
     CompanyController companyController = new CompanyController(appContextProvider.getBean(CompanyServiceClient.class));
     CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
-
+    Sujeto sujeto = new Sujeto();
 
     CardLayout cardLayout;
     Users users = new Users();
@@ -57,10 +58,11 @@ public class ControllerRegisterUser {
     }
 
     private void volverHomeWithOuLog() {
-        vista.dispose();
-        GUIHomeWithOutLog homeOutLog = new GUIHomeWithOutLog();
+       Sujeto sujeto = new Sujeto();
+        GUIHomeWithOutLog homeOutLog = new GUIHomeWithOutLog(sujeto);
         homeOutLog.setExtendedState(JFrame.MAXIMIZED_BOTH);
         homeOutLog.setVisible(true);
+         vista.dispose();
     }
 
     private void verClaveCompany(){
@@ -91,7 +93,7 @@ public class ControllerRegisterUser {
             if (saveStudent()) {
                 Messages.showMessageDialog("Estudiante registrado", "Registro exitoso");
                 String id = vista.getjFieldCodeStudent().getText();
-                GUIHomeWithLog homeStudent = new GUIHomeWithLog(id,"student", String.valueOf(users.obtenerTokenRegis(vista.getjFieldCodeStudent().getText(), (vista.getjFieldPassWordStudent().getText()))));
+                GUIHomeWithLog homeStudent = new GUIHomeWithLog(id,"student", String.valueOf(users.obtenerTokenRegis(vista.getjFieldCodeStudent().getText(), (vista.getjFieldPassWordStudent().getText()))),sujeto);
                 homeStudent.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 homeStudent.setVisible(true);
                 vista.dispose();
@@ -107,7 +109,7 @@ public class ControllerRegisterUser {
             if (saveCoordi()) {
                 Messages.showMessageDialog("Coordinador registrado", "Registro exitoso");
                 String id = vista.getjFieldCodeCoordi().getText();
-                GUIHomeWithLog homeCoordi = new GUIHomeWithLog(id,"coordinator",String.valueOf(users.obtenerTokenRegis(vista.getjFieldCodeCoordi().getText(), (vista.getjFieldPassWordCoordi().getText()))));
+                GUIHomeWithLog homeCoordi = new GUIHomeWithLog(id,"coordinator",String.valueOf(users.obtenerTokenRegis(vista.getjFieldCodeCoordi().getText(), (vista.getjFieldPassWordCoordi().getText()))),sujeto);
                 homeCoordi.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 homeCoordi.setVisible(true);
                 vista.dispose();
@@ -122,7 +124,7 @@ public class ControllerRegisterUser {
            if (saveCompany()) {
                Messages.showMessageDialog("Empresa registrada", "Registro exitoso");
                String id = vista.getjFieldNitCompany().getText();
-               GUIHomeWithLog homeCompany = new GUIHomeWithLog(id,"company",String.valueOf(users.obtenerTokenRegis(vista.getjFieldNitCompany().getText(), (vista.getjFieldPassWordCompany().getText()))));
+               GUIHomeWithLog homeCompany = new GUIHomeWithLog(id,"company",String.valueOf(users.obtenerTokenRegis(vista.getjFieldNitCompany().getText(), (vista.getjFieldPassWordCompany().getText()))),sujeto);
                homeCompany.setExtendedState(JFrame.MAXIMIZED_BOTH);
                homeCompany.setVisible(true);
                vista.dispose();

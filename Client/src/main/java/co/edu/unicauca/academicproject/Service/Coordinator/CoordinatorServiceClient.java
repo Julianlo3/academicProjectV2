@@ -2,6 +2,7 @@ package co.edu.unicauca.academicproject.Service.Coordinator;
 
 
 import co.edu.unicauca.academicproject.entities.Coordinator;
+import co.edu.unicauca.academicproject.entities.CreateProjectComment;
 import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,18 @@ public class CoordinatorServiceClient {
 
     public void rejectRequest(Long id,String token){
         FeignClient.rejectRequest(id,token);
+    }
+
+    public void approveProject(Long id, CreateProjectComment projectComment, String token){
+        FeignClient.approveProject(id,projectComment,token);
+    }
+
+    public void rejectProject(Long id, CreateProjectComment projectComment, String token){
+        FeignClient.rejectProject(id,projectComment,token);
+    }
+
+    public void completeProject(Long id, String token){
+        FeignClient.completeProject(id,token);
     }
 
 }

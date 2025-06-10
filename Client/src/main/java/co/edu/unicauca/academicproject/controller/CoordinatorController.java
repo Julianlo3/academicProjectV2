@@ -3,6 +3,7 @@ package co.edu.unicauca.academicproject.controller;
 
 import co.edu.unicauca.academicproject.Service.Coordinator.CoordinatorServiceClient;
 import co.edu.unicauca.academicproject.entities.Coordinator;
+import co.edu.unicauca.academicproject.entities.CreateProjectComment;
 import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
 import co.edu.unicauca.academicproject.entities.Student;
 
@@ -61,6 +62,30 @@ public class CoordinatorController {
     public void rejectRequest(Long id,String token){
         try {
             coordinatorServiceClient.rejectRequest(id,token);
+        }catch (Exception e){
+            System.out.println("error epa" + e.getMessage());
+        }
+    }
+
+    public void approveProject(Long id, CreateProjectComment projectComment, String token){
+        try {
+            coordinatorServiceClient.approveProject(id,projectComment,token);
+        }catch (Exception e){
+            System.out.println("error epa" + e.getMessage());
+        }
+    }
+
+    public void rejectProject(Long id, CreateProjectComment projectComment, String token){
+        try {
+            coordinatorServiceClient.rejectProject(id,projectComment,token);
+        }catch (Exception e){
+            System.out.println("error epa" + e.getMessage());
+        }
+    }
+
+    public void completeProject(Long id, String token){
+        try {
+            coordinatorServiceClient.completeProject(id,token);
         }catch (Exception e){
             System.out.println("error epa" + e.getMessage());
         }

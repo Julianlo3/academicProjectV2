@@ -92,7 +92,7 @@ public class GUIStatistics extends javax.swing.JFrame {
         jPButtom = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Nueva publicacion");
+        setTitle("Estadisticas");
         setBackground(new java.awt.Color(15, 32, 65));
         setMinimumSize(new java.awt.Dimension(700, 550));
 

@@ -2,6 +2,7 @@ package co.edu.unicauca.academicproject;
 
 import co.edu.unicauca.academicproject.GUI.GUIHomeWithOutLog;
 import co.edu.unicauca.academicproject.entities.Admin;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -23,7 +24,8 @@ public class AcademicProjectApplication {
     public void iniciarInterfaz(){
         System.setProperty("java.awt.headless", "false");
         SwingUtilities.invokeLater(()-> {
-            GUIHomeWithOutLog ventaPrincipal = new GUIHomeWithOutLog();
+            Sujeto sujeto = new Sujeto();
+            GUIHomeWithOutLog ventaPrincipal = new GUIHomeWithOutLog(sujeto);
             ventaPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
             ventaPrincipal.setVisible(true);
             

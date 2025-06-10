@@ -5,6 +5,8 @@
 package co.edu.unicauca.academicproject.GUI;
 
 import co.edu.unicauca.academicproject.GUI.controller.Home.ControllerHomeWithOutLog;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 
 import javax.swing.*;
 
@@ -12,14 +14,15 @@ import javax.swing.*;
  *
  * @author lopez
  */
-public class GUIHomeWithOutLog extends javax.swing.JFrame {
+public class GUIHomeWithOutLog extends javax.swing.JFrame implements Observer{
 
     /**
      * Creates new form GUIHomeWithOutLog
      */
-    public GUIHomeWithOutLog() {
+    public GUIHomeWithOutLog(Sujeto sujeto) {
         initComponents();
-        ControllerHomeWithOutLog controller = new ControllerHomeWithOutLog(this);
+        sujeto.agregarObservador(this);
+        ControllerHomeWithOutLog controller = new ControllerHomeWithOutLog(this,sujeto);
     }
 
     public JButton getjBtnLoginU() {
@@ -238,4 +241,9 @@ public class GUIHomeWithOutLog extends javax.swing.JFrame {
     private javax.swing.JTable jTableProjects;
     private java.awt.Label lbTitleProyect1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("Actualizando en GUI sin login");
+    }
 }

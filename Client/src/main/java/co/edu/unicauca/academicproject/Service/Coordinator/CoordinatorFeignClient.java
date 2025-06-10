@@ -1,6 +1,7 @@
 package co.edu.unicauca.academicproject.Service.Coordinator;
 
 import co.edu.unicauca.academicproject.entities.Coordinator;
+import co.edu.unicauca.academicproject.entities.CreateProjectComment;
 import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -36,4 +37,13 @@ public interface CoordinatorFeignClient {
 
     @PutMapping("api/coordinator/request/{id}/reject")
     void rejectRequest(@PathVariable Long id,@RequestHeader("Authorization") String token);
+
+    @PutMapping("api/project/{id}/approve")
+    void approveProject(@PathVariable Long id, @RequestBody CreateProjectComment projectComment, @RequestHeader("Authorization") String token);
+
+    @PutMapping("api/project/{id}/reject")
+    void rejectProject(@PathVariable Long id, @RequestBody CreateProjectComment projectComment, @RequestHeader("Authorization") String token);
+
+    @PutMapping("api/project/{id}/complete")
+    void completeProject(@PathVariable Long id, @RequestHeader("Authorization") String token);
 }

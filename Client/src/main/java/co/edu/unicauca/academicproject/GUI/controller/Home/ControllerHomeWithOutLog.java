@@ -10,6 +10,8 @@ import co.edu.unicauca.academicproject.Service.project.ProjectServiceClient;
 import co.edu.unicauca.academicproject.controller.CompanyController;
 import co.edu.unicauca.academicproject.controller.ProjectController;
 import co.edu.unicauca.academicproject.entities.Project;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 import co.edu.unicauca.academicproject.security.Users;
 
@@ -23,15 +25,17 @@ import javax.swing.table.DefaultTableModel;
  * @author lopez
  * @date 12/04/2025
  */
-public class ControllerHomeWithOutLog {
+public class ControllerHomeWithOutLog implements Observer{
 
+    
     private final GUIHomeWithOutLog vista;
     ProjectController projectController = new ProjectController(appContextProvider.getBean(ProjectServiceClient.class));
     CompanyController companyController = new CompanyController(appContextProvider.getBean(CompanyServiceClient.class));
     Users user = new Users();
 
-    public ControllerHomeWithOutLog(GUIHomeWithOutLog vista) {
+    public ControllerHomeWithOutLog(GUIHomeWithOutLog vista,Sujeto sujeto) {
         this.vista = vista;
+        sujeto.agregarObservador(this);
         cargarProyectos();
         this.vista.getjButtonQuitF().setVisible(false);
         this.vista.getjBtnLoginU().addActionListener(e -> abrirLogin());
@@ -148,5 +152,11 @@ public class ControllerHomeWithOutLog {
             System.out.println("Servicio de proyecto no disponible" + e.getMessage());
         }
         vista.getjTableProjects().setModel(modeloProject);
+    }
+
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("Actualizando en home sin login: " + mensaje);
+        cargarProyectos();
     }
 }

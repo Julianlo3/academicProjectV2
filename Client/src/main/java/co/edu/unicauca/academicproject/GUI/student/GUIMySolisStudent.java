@@ -215,7 +215,6 @@ public class GUIMySolisStudent extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Solicitudes");
-        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(15, 32, 65));
         setMinimumSize(new java.awt.Dimension(1400, 1050));
 

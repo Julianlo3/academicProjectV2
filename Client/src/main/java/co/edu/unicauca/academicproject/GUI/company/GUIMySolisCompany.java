@@ -13,6 +13,8 @@ import co.edu.unicauca.academicproject.GUI.controller.company.controllerMySoliCo
 import co.edu.unicauca.academicproject.GUI.controller.coordinator.controllerStudentRequest;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Project;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JYearChooser;
 import com.toedter.components.JSpinField;
@@ -25,19 +27,30 @@ import java.text.SimpleDateFormat;
  *
  * @author lopez
  */
-public class GUIMySolisCompany extends javax.swing.JFrame {
+public class GUIMySolisCompany extends javax.swing.JFrame implements Observer {
 
     private String token;
     private String nitCompany;
     private String rol;
-    public GUIMySolisCompany(String nitCompany, String token,String rol) {
+    public GUIMySolisCompany(String nitCompany, String token, String rol, Sujeto sujeto) {
         initComponents();
         this.rol = rol;
         this.token = token;
         this.nitCompany = nitCompany;
-        controllerMySoliCompany controller = new controllerMySoliCompany(this,rol);
+        sujeto.agregarObservador(this);
+        controllerMySoliCompany controller = new controllerMySoliCompany(this,rol,sujeto);
     }
 
+    public JLabel getjLIDProyecto() {
+        return jLIDProyecto;
+    }
+
+    public JScrollPane getjScrollPanelComen() {
+        return jScrollPanelComen;
+    }
+
+    
+    
     public JPanel getjPEstadoPubli() {
         return jPEstadoPubli;
     }
@@ -269,9 +282,10 @@ public class GUIMySolisCompany extends javax.swing.JFrame {
         jRbtnAceptarPro = new javax.swing.JRadioButton();
         jRbtnRechazarProye = new javax.swing.JRadioButton();
         jRbtnCompletarProye = new javax.swing.JRadioButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPanelComen = new javax.swing.JScrollPane();
         jTextAreaComentarioProye = new javax.swing.JTextArea();
         jBtnCambiarEstado = new javax.swing.JButton();
+        jLIDProyecto = new javax.swing.JLabel();
         jPTitleNewProject = new javax.swing.JPanel();
         jBtnMyPubli = new javax.swing.JButton();
         jPHead = new javax.swing.JPanel();
@@ -283,7 +297,6 @@ public class GUIMySolisCompany extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Solicitudes");
-        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(15, 32, 65));
         setMinimumSize(new java.awt.Dimension(1400, 1050));
 
@@ -303,7 +316,7 @@ public class GUIMySolisCompany extends javax.swing.JFrame {
 
         jPFiltrar.add(jPDatosGraficos1);
 
-        jCBEstadoProyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Approved", "Assigned", "Completed", "Received", "Reject" }));
+        jCBEstadoProyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Approved", "Assigned", "Completed", "Received", "Rejected" }));
         jPFiltrar.add(jCBEstadoProyecto);
 
         jBtnFiltrar.setText("Filtrar");
@@ -545,8 +558,9 @@ public class GUIMySolisCompany extends javax.swing.JFrame {
         jRbtnCompletarProye.setText("Completar proyecto");
 
         jTextAreaComentarioProye.setColumns(20);
+        jTextAreaComentarioProye.setLineWrap(true);
         jTextAreaComentarioProye.setRows(5);
-        jScrollPane2.setViewportView(jTextAreaComentarioProye);
+        jScrollPanelComen.setViewportView(jTextAreaComentarioProye);
 
         jBtnCambiarEstado.setBackground(new java.awt.Color(172, 0, 0));
         jBtnCambiarEstado.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -567,7 +581,7 @@ public class GUIMySolisCompany extends javax.swing.JFrame {
                     .addComponent(jRbtnRechazarProye)
                     .addComponent(jRbtnAceptarPro))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPanelComen, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69)
                 .addComponent(jBtnCambiarEstado)
                 .addContainerGap(160, Short.MAX_VALUE))
@@ -578,7 +592,7 @@ public class GUIMySolisCompany extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(jPEstadoPubliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jBtnCambiarEstado)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPanelComen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPEstadoPubliLayout.createSequentialGroup()
                         .addComponent(jRbtnAceptarPro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -598,6 +612,11 @@ public class GUIMySolisCompany extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPDetalleSolicitud.add(jPEstadoPubli, gridBagConstraints);
+
+        jLIDProyecto.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLIDProyecto.setForeground(new java.awt.Color(255, 255, 255));
+        jLIDProyecto.setText("IDPubli");
+        jPDetalleSolicitud.add(jLIDProyecto, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
         jPContent.setLayout(jPContentLayout);
@@ -665,7 +684,7 @@ public class GUIMySolisCompany extends javax.swing.JFrame {
 
         jPButtom.setBackground(new java.awt.Color(15, 32, 65));
 
-        jBtnCerrarPubli.setBackground(new java.awt.Color(12, 15, 65));
+        jBtnCerrarPubli.setBackground(new java.awt.Color(12, 32, 65));
         jBtnCerrarPubli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/anterior (1).png"))); // NOI18N
         jBtnCerrarPubli.setBorderPainted(false);
 
@@ -732,6 +751,7 @@ public class GUIMySolisCompany extends javax.swing.JFrame {
     private javax.swing.JLabel jLEstado;
     private javax.swing.JLabel jLEstadoSolicitud;
     private javax.swing.JLabel jLFechaInicioProyecto;
+    private javax.swing.JLabel jLIDProyecto;
     private javax.swing.JLabel jLObjetivos;
     private javax.swing.JLabel jLPeriodoAca;
     private javax.swing.JLabel jLPresupuesto;
@@ -753,10 +773,10 @@ public class GUIMySolisCompany extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRbtnCompletarProye;
     private javax.swing.JRadioButton jRbtnRechazarProye;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPaneChat;
+    private javax.swing.JScrollPane jScrollPanelComen;
     private com.toedter.components.JSpinField jSpinDuracionMes;
     private com.toedter.components.JSpinField jSpinPeriodo;
     private com.toedter.components.JSpinField jSpinTerm;
@@ -768,4 +788,9 @@ public class GUIMySolisCompany extends javax.swing.JFrame {
     private com.toedter.calendar.JYearChooser jYearProyecto;
     private java.awt.Label lbTitleProyect;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("Actualizando desde GUI MYSOLI "+mensaje);
+    }
 }
