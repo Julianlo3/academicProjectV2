@@ -15,3 +15,32 @@ PROJECT [42001-214]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]PROJECT"; se esperaba "PREPARE"
 Syntax error in SQL statement "[*]PROJECT"; expected "PREPARE"; SQL statement:
 PROJECT [42001-214]
+2025-06-09 18:10:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]
+2025-06-09 18:14:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]
+2025-06-09 18:21:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]
+2025-06-09 18:30:34 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]
+2025-06-09 18:31:03 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]
+2025-06-09 18:34:02 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "DESCRIPTION CHARACTER VARYING(255)": "U&'La plataforma recopilar\\00e1 datos de partidas cooperativas en juegos como Le... (275)"
+Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'La plataforma recopilar\\00e1 datos de partidas cooperativas en juegos como Le... (275)"; SQL statement:
+insert into project (academic_term,academic_year,budget,company_nit,state,description,name,objectives,summary,max_duration_in_months,start_date,project_id) values (?,?,?,?,?,?,?,?,?,?,?,default) [22001-214]
+2025-06-09 18:34:23 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "DESCRIPTION CHARACTER VARYING(255)": "U&'La plataforma recopilar\\00e1 datos de partidas cooperativas en juegos como Le... (275)"
+Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'La plataforma recopilar\\00e1 datos de partidas cooperativas en juegos como Le... (275)"; SQL statement:
+insert into project (academic_term,academic_year,budget,company_nit,state,description,name,objectives,summary,max_duration_in_months,start_date,project_id) values (?,?,?,?,?,?,?,?,?,?,?,default) [22001-214]
+2025-06-09 18:35:17 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]
+2025-06-09 18:36:59 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-214]
