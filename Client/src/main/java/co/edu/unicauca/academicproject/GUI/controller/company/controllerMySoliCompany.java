@@ -79,7 +79,7 @@ public class controllerMySoliCompany implements Observer {
             try {
                 coordinatorController.completeProject(idProyecto,"Bearer " + vista.getToken());
                 sujeto.notificar("Se completó un proyecto");
-                Messages.showConfirmDialog("Proyecto aprobado","Aprobado");
+                Messages.showMessageDialog("Proyecto aprobado","Aprobado");
             }catch (Exception e){
                 System.out.println("error epa" + e.getMessage());
             }

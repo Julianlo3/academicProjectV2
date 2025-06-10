@@ -31,7 +31,7 @@ public class controllerAssigment implements Observer {
     private final GUIAssigment vista;
     private String token;
     private Long studentCode;
-    private Long projectCode;
+    private Long projectid;
 
     StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
     CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
@@ -52,10 +52,10 @@ public class controllerAssigment implements Observer {
             public void mouseClicked(MouseEvent e) {
                 int fila = vista.getjTableProjects().getSelectedRow();
                 if (fila >= 0) {
-                     projectCode = Long.parseLong( vista.getjTableProjects().getValueAt(fila, 0).toString()); // columna 0 es code
                     String nombre = ((String) vista.getjTableProjects().getValueAt(fila, 1));
+                    projectid= projectController.getProjectByName(nombre,"bearer "+vista.getToken()).getProjectId();
                     vista.getjLabelNameProject().setText(nombre);
-                    System.out.println("Nombre del proyecto seleccionado: " + nombre + " con code: " + projectCode);
+                    System.out.println("Nombre del proyecto seleccionado: " + nombre + " con code: " + projectid);
                 }
             }
         });
@@ -74,8 +74,8 @@ public class controllerAssigment implements Observer {
     }
 
     private void asignarProyecto() {
-        AssignmentRequest assignmentRequest = new AssignmentRequest(studentCode,projectCode);
-        System.out.println("asignando proyecto con student code: " + studentCode + " con project code: " + projectCode);
+        AssignmentRequest assignmentRequest = new AssignmentRequest(studentCode,projectid);
+        System.out.println("asignando proyecto con student code: " + studentCode + " con project code: " + projectid);
         try {
             coordinatorController.assignProject(assignmentRequest,"bearer "+vista.getToken());
             Messages.showMessageDialog("Estudiante asignado correctamente","Estudiante asignado");
