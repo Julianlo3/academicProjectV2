@@ -21,7 +21,7 @@ public class CoordinatorController {
         this.coordinatorServiceClient = coordinatorServiceClient;
     }
 
-    public void registerCoordinator(long code, String name, String phone, String email, String programaAcademico,String token) {
+    public void registerCoordinator(long code, String name, String phone, String email, String programaAcademico, String token) {
         try{
             Coordinator coordinator = new Coordinator(code,name,phone,email,programaAcademico);
             coordinatorServiceClient.createCoordinator(coordinator,token);

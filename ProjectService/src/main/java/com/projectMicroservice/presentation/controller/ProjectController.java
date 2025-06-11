@@ -12,7 +12,6 @@ import com.projectMicroservice.presentation.DTO.ProjectCommentDTO;
 import com.projectMicroservice.presentation.DTO.ProjectDTO;
 import com.projectMicroservice.presentation.mapper.ProjectCommentDTOMapper;
 import com.projectMicroservice.presentation.mapper.ProjectDTOMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -26,15 +25,13 @@ import java.util.stream.Collectors;
 public class ProjectController {
 
     private final ProjectServicePort projectService;
-    private final ProjectCommentServicePort projectCommentService;
     private final ProjectRepositoryPort projectRepository;
     private final ProjectCommentRepositoryPort projectCommentRepository;
     private final ProjectDTOMapper projectDTOMapper;
     private final ProjectCommentDTOMapper projectCommentDTOMapper;
 
-    public ProjectController(ProjectServicePort projectService, ProjectCommentServicePort projectCommentService, ProjectRepositoryPort projectRepository, ProjectCommentRepositoryPort projectCommentRepository, ProjectDTOMapper projectDTOMapper, ProjectCommentDTOMapper projectCommentDTOMapper) {
+    public ProjectController(ProjectServicePort projectService, ProjectRepositoryPort projectRepository, ProjectCommentRepositoryPort projectCommentRepository, ProjectDTOMapper projectDTOMapper, ProjectCommentDTOMapper projectCommentDTOMapper) {
         this.projectService = projectService;
-        this.projectCommentService = projectCommentService;
         this.projectRepository = projectRepository;
         this.projectCommentRepository = projectCommentRepository;
         this.projectDTOMapper = projectDTOMapper;
