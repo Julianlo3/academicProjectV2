@@ -9,6 +9,8 @@ import co.edu.unicauca.academicproject.GUI.controller.Project.ControllerNewProje
 import co.edu.unicauca.academicproject.GUI.controller.coordinator.controllerStudentRequest;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Project;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JYearChooser;
 import com.toedter.components.JSpinField;
@@ -21,14 +23,15 @@ import java.text.SimpleDateFormat;
  *
  * @author lopez
  */
-public class GUIStudentRequest extends javax.swing.JFrame {
+public class GUIStudentRequest extends javax.swing.JFrame implements Observer {
 
     private String token;
 
-    public GUIStudentRequest(String token) {
+    public GUIStudentRequest(String token, Sujeto sujeto) {
         initComponents();
+        sujeto.agregarObservador(this);
         this.token = token;
-        controllerStudentRequest controllerStudentRequest = new controllerStudentRequest(this);
+        controllerStudentRequest controllerStudentRequest = new controllerStudentRequest(this,sujeto);
     }
 
     public JPanel getjPChat() {
@@ -226,7 +229,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         jRBtnAceptarSoli = new javax.swing.JRadioButton();
         jRBtnRechazarSoli = new javax.swing.JRadioButton();
         jBtnProcesarSoli = new javax.swing.JButton();
-        jLRazon = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaResumen = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -242,7 +244,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Solicitudes");
-        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(15, 32, 65));
         setMinimumSize(new java.awt.Dimension(700, 550));
 
@@ -490,15 +491,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         jPDetalleSolicitud.add(jBtnProcesarSoli, gridBagConstraints);
 
-        jLRazon.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLRazon.setForeground(new java.awt.Color(255, 255, 255));
-        jLRazon.setText("Razón:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        jPDetalleSolicitud.add(jLRazon, gridBagConstraints);
-
         jTextAreaResumen.setColumns(20);
         jTextAreaResumen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextAreaResumen.setLineWrap(true);
@@ -652,7 +644,6 @@ public class GUIStudentRequest extends javax.swing.JFrame {
     private javax.swing.JLabel jLObjetivos;
     private javax.swing.JLabel jLPeriodoAca;
     private javax.swing.JLabel jLPresupuesto;
-    private javax.swing.JLabel jLRazon;
     private javax.swing.JLabel jLResumen;
     private javax.swing.JLabel jLTEstado;
     private javax.swing.JLabel jLTEstudiante;
@@ -679,4 +670,9 @@ public class GUIStudentRequest extends javax.swing.JFrame {
     private com.toedter.calendar.JYearChooser jYearProyecto;
     private java.awt.Label lbTitleProyect;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizar(String mensaje) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

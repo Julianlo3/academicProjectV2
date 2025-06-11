@@ -8,6 +8,8 @@ import co.edu.unicauca.academicproject.GUI.controller.Project.ControllerNewProje
 import co.edu.unicauca.academicproject.GUI.controller.coordinator.controllerStatistics;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Project;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JYearChooser;
 import com.toedter.components.JSpinField;
@@ -18,16 +20,17 @@ import javax.swing.*;
  *
  * @author lopez
  */
-public class GUIStatistics extends javax.swing.JFrame {
+public class GUIStatistics extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form GUINewProject
      */
 
     private String token;
-    public GUIStatistics(String token) {
+    public GUIStatistics(String token, Sujeto sujeto) {
         initComponents();
-        controllerStatistics controller = new controllerStatistics(this);
+        sujeto.agregarObservador(this);
+        controllerStatistics controller = new controllerStatistics(this,sujeto);
         this.token = token;
     }
 
@@ -81,6 +84,7 @@ public class GUIStatistics extends javax.swing.JFrame {
         jYear = new com.toedter.calendar.JYearChooser();
         jSpinPeriodo = new com.toedter.components.JSpinField();
         JBtnFiltrar = new javax.swing.JButton();
+        jPOpcionGrafi = new javax.swing.JPanel();
         jRbtnGraficoBarra = new javax.swing.JRadioButton();
         jRbtnGraficoPastel = new javax.swing.JRadioButton();
         jPTitleNewProject = new javax.swing.JPanel();
@@ -89,10 +93,9 @@ public class GUIStatistics extends javax.swing.JFrame {
         lbTitleProyect = new java.awt.Label();
         jPOpcLogin = new javax.swing.JPanel();
         jBtnLoginU = new javax.swing.JButton();
-        jPButtom = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Nueva publicacion");
+        setTitle("Estadisticas");
         setBackground(new java.awt.Color(15, 32, 65));
         setMinimumSize(new java.awt.Dimension(700, 550));
 
@@ -103,11 +106,11 @@ public class GUIStatistics extends javax.swing.JFrame {
         jPGraficos.setLayout(jPGraficosLayout);
         jPGraficosLayout.setHorizontalGroup(
             jPGraficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1369, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPGraficosLayout.setVerticalGroup(
             jPGraficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 384, Short.MAX_VALUE)
+            .addGap(0, 413, Short.MAX_VALUE)
         );
 
         jLDatos.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -115,26 +118,40 @@ public class GUIStatistics extends javax.swing.JFrame {
         jLDatos.setText("Datos para estadísticas:");
 
         jPDatosGraficos.setLayout(new java.awt.GridLayout(1, 0, 10, 40));
+
+        jYear.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPDatosGraficos.add(jYear);
 
+        jSpinPeriodo.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jSpinPeriodo.setMaximum(2);
         jSpinPeriodo.setMinimum(1);
         jSpinPeriodo.setValue(1);
         jPDatosGraficos.add(jSpinPeriodo);
 
+        JBtnFiltrar.setBackground(new java.awt.Color(172, 0, 0));
+        JBtnFiltrar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        JBtnFiltrar.setForeground(new java.awt.Color(255, 255, 255));
+        JBtnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon2.0/filtrar.png"))); // NOI18N
         JBtnFiltrar.setText("Filtrar");
+        JBtnFiltrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        JBtnFiltrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jPOpcionGrafi.setBackground(new java.awt.Color(12, 32, 65));
+        jPOpcionGrafi.setLayout(new java.awt.GridLayout(2, 1, 0, 20));
 
         jRbtnGraficoBarra.setBackground(new java.awt.Color(15, 32, 65));
         buttonGroupGrafico.add(jRbtnGraficoBarra);
-        jRbtnGraficoBarra.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jRbtnGraficoBarra.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jRbtnGraficoBarra.setForeground(new java.awt.Color(255, 255, 255));
         jRbtnGraficoBarra.setText("Gráfico barra");
+        jPOpcionGrafi.add(jRbtnGraficoBarra);
 
         jRbtnGraficoPastel.setBackground(new java.awt.Color(15, 32, 65));
         buttonGroupGrafico.add(jRbtnGraficoPastel);
-        jRbtnGraficoPastel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jRbtnGraficoPastel.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jRbtnGraficoPastel.setForeground(new java.awt.Color(255, 255, 255));
         jRbtnGraficoPastel.setText("Gráfico pastel");
+        jPOpcionGrafi.add(jRbtnGraficoPastel);
 
         javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
         jPContent.setLayout(jPContentLayout);
@@ -144,43 +161,40 @@ public class GUIStatistics extends javax.swing.JFrame {
                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPContentLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPContentLayout.createSequentialGroup()
-                                .addComponent(jLDatos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPDatosGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRbtnGraficoPastel)
-                                .addGap(24, 24, 24)
-                                .addComponent(JBtnFiltrar))))
+                        .addComponent(jLDatos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPDatosGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPOpcionGrafi, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JBtnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 598, Short.MAX_VALUE))
                     .addGroup(jPContentLayout.createSequentialGroup()
-                        .addGap(363, 363, 363)
-                        .addComponent(jRbtnGraficoBarra)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(41, 41, 41)
+                        .addComponent(jPGraficos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(64, 64, 64))
         );
         jPContentLayout.setVerticalGroup(
             jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPContentLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(jPGraficos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPContentLayout.createSequentialGroup()
+                .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPContentLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addComponent(JBtnFiltrar)
-                        .addGap(31, 31, 31))
+                        .addGap(8, 8, 8))
                     .addGroup(jPContentLayout.createSequentialGroup()
-                        .addComponent(jRbtnGraficoBarra)
                         .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPContentLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
+                                .addGap(46, 46, 46)
                                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPDatosGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLDatos)))
                             .addGroup(jPContentLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRbtnGraficoPastel)))
-                        .addGap(22, 22, 22))))
+                                .addGap(18, 18, 18)
+                                .addComponent(jPOpcionGrafi, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20))))
         );
 
         jPTitleNewProject.setBackground(new java.awt.Color(15, 32, 65));
@@ -223,19 +237,6 @@ public class GUIStatistics extends javax.swing.JFrame {
 
         jPHead.add(jPOpcLogin);
 
-        jPButtom.setBackground(new java.awt.Color(15, 32, 65));
-
-        javax.swing.GroupLayout jPButtomLayout = new javax.swing.GroupLayout(jPButtom);
-        jPButtom.setLayout(jPButtomLayout);
-        jPButtomLayout.setHorizontalGroup(
-            jPButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1395, Short.MAX_VALUE)
-        );
-        jPButtomLayout.setVerticalGroup(
-            jPButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -243,8 +244,6 @@ public class GUIStatistics extends javax.swing.JFrame {
             .addComponent(jPHead, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPTitleNewProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,14 +251,9 @@ public class GUIStatistics extends javax.swing.JFrame {
                 .addComponent(jPHead, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPTitleNewProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 40, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(699, 699, 699)
-                    .addComponent(jPButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, 0)
+                .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -271,12 +265,12 @@ public class GUIStatistics extends javax.swing.JFrame {
     private javax.swing.JButton jBtnEstadistica;
     private javax.swing.JButton jBtnLoginU;
     private javax.swing.JLabel jLDatos;
-    private javax.swing.JPanel jPButtom;
     private javax.swing.JPanel jPContent;
     private javax.swing.JPanel jPDatosGraficos;
     private javax.swing.JPanel jPGraficos;
     private javax.swing.JPanel jPHead;
     private javax.swing.JPanel jPOpcLogin;
+    private javax.swing.JPanel jPOpcionGrafi;
     private javax.swing.JPanel jPTitleNewProject;
     private javax.swing.JRadioButton jRbtnGraficoBarra;
     private javax.swing.JRadioButton jRbtnGraficoPastel;
@@ -284,4 +278,9 @@ public class GUIStatistics extends javax.swing.JFrame {
     private com.toedter.calendar.JYearChooser jYear;
     private java.awt.Label lbTitleProyect;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("Actualizando desde GUI statics");
+    }
 }

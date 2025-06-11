@@ -53,6 +53,15 @@ public class StudentController {
         }
     }
 
+    public List<Student> getUnassignedStudents(String token){
+        try {
+            return studentServiceClient.getUnassignedStudents(token);
+        }catch (Exception e){
+            System.out.println("error en estudiantes sin asignar"+e.getMessage());
+            return null;
+        }
+    }
+
 }
 
 

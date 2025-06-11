@@ -2,9 +2,7 @@ package co.edu.unicauca.academicproject.controller;
 
 
 import co.edu.unicauca.academicproject.Service.Coordinator.CoordinatorServiceClient;
-import co.edu.unicauca.academicproject.entities.Coordinator;
-import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
-import co.edu.unicauca.academicproject.entities.Student;
+import co.edu.unicauca.academicproject.entities.*;
 
 import javax.swing.*;
 import java.util.List;
@@ -63,6 +61,38 @@ public class CoordinatorController {
             coordinatorServiceClient.rejectRequest(id,token);
         }catch (Exception e){
             System.out.println("error epa" + e.getMessage());
+        }
+    }
+
+    public void approveProject(Long id, CreateProjectComment projectComment, String token){
+        try {
+            coordinatorServiceClient.approveProject(id,projectComment,token);
+        }catch (Exception e){
+            System.out.println("error epa" + e.getMessage());
+        }
+    }
+
+    public void rejectProject(Long id, CreateProjectComment projectComment, String token){
+        try {
+            coordinatorServiceClient.rejectProject(id,projectComment,token);
+        }catch (Exception e){
+            System.out.println("error epa" + e.getMessage());
+        }
+    }
+
+    public void completeProject(Long id, String token){
+        try {
+            coordinatorServiceClient.completeProject(id,token);
+        }catch (Exception e){
+            System.out.println("error epa" + e.getMessage());
+        }
+    }
+
+    public void assignProject(AssignmentRequest assignmentRequest, String token){
+        try {
+            coordinatorServiceClient.assignProject(assignmentRequest,token);
+        }catch (Exception e){
+            System.out.println("error en asignar" + e.getMessage());
         }
     }
 }

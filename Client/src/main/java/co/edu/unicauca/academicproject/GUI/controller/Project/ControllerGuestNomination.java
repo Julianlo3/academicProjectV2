@@ -5,6 +5,8 @@ import co.edu.unicauca.academicproject.GUI.student.GUINominationProject;
 import co.edu.unicauca.academicproject.Service.Student.StudentServiceClient;
 import co.edu.unicauca.academicproject.controller.StudentController;
 import co.edu.unicauca.academicproject.entities.Project;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import co.edu.unicauca.academicproject.infra.Messages;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
@@ -14,13 +16,16 @@ import java.awt.*;
  * @author lopez
  * @date 30/05/2025
  */
-public class ControllerGuestNomination {
+public class ControllerGuestNomination implements Observer {
     private final GUINominationProject vista;
     StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
     String rol ="";
     String token;
-    public ControllerGuestNomination(GUINominationProject vista){
+    Sujeto sujeto;
+    public ControllerGuestNomination(GUINominationProject vista, Sujeto sujeto){
         this.vista = vista;
+        sujeto.agregarObservador(this);
+        this.sujeto = sujeto;
         rol = vista.getRol();
         this.token = vista.getToken();
         System.out.println("Rol en nominacion: " + rol);
@@ -30,6 +35,9 @@ public class ControllerGuestNomination {
     }
 
     private void cargarInfoProject(){
+        if(!rol.equals("student") && !rol.equals("guest")){
+            vista.getjBtnSolicitar().setEnabled(false);
+        }
         System.out.println("Cargando información del proyecto");
         Project project = vista.getProject();
         vista.setjFieldTitleProject(project.getName());
@@ -57,9 +65,9 @@ public class ControllerGuestNomination {
             try{
                 long idProyecto = vista.getProject().getProjectId();
                 System.out.println("idProyecto"+idProyecto +"codeStudent"+vista.getCodeStudent());
-                Messages.showMessageDialog("Solicitud enviadad correctamente","Solicitud enviada");
+                sujeto.notificar("Se envió nueva solicitud estudiante");
+                Messages.showMessageDialog("Solicitud enviada correctamente","Solicitud enviada");
                 studentController.applyToProject(Long.parseLong(vista.getCodeStudent()),idProyecto,"Bearer " + vista.getToken());
-
             }catch (Exception e){
                 Messages.showMessageDialog("Error al enviar solicitud","Error al enviar solicitud");
                 System.out.println("Error al cargar solicitud" + e.getMessage());
@@ -79,4 +87,9 @@ public class ControllerGuestNomination {
 
         }
 
+    @Override
+    public void actualizar(String mensaje) {
+        cargarInfoProject();
+        System.out.println("Actualizando proyecto desde publicacion" +  mensaje);
+    }
 }

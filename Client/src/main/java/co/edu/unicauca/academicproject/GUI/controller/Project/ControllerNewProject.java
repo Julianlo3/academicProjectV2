@@ -4,6 +4,8 @@ package co.edu.unicauca.academicproject.GUI.controller.Project;
 import co.edu.unicauca.academicproject.GUI.company.GUINewProject;
 import co.edu.unicauca.academicproject.Service.project.ProjectServiceClient;
 import co.edu.unicauca.academicproject.controller.ProjectController;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import co.edu.unicauca.academicproject.infra.Messages;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
@@ -17,11 +19,18 @@ import java.util.Date;
  * @author lopez
  * @date 5/05/2025
  */
-public class ControllerNewProject {
+public class ControllerNewProject implements Observer {
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("Actualizando desde new project");
+    }
+
     private final GUINewProject vista;
     ProjectController projectController = new ProjectController(appContextProvider.getBean(ProjectServiceClient.class));
-    public ControllerNewProject(GUINewProject vista) {
+    Sujeto sujeto;
+    public ControllerNewProject(GUINewProject vista, Sujeto sujeto) {
         this.vista = vista;
+        this.sujeto = sujeto;
         cargarDatosEmpresa();
         this.vista.getjBtnPubliProject().addActionListener(e -> publicar());
     }
@@ -48,7 +57,9 @@ public class ControllerNewProject {
         int academicTerm = vista.getTerm().getValue();
         Long companyNit = Long.valueOf(vista.getCompany().getNit());
         projectController.crearProyecto(companyNit,name,summary,objectives,descripcion,duracionMes,localStartDate,buget,academicYear,academicTerm,"Bearer " + vista.getToken());
+        sujeto.notificar("Nuevo proyecto");
         Messages.showMessageDialog("Proyecto publicado con éxito", "Proyecto publicado con éxito.");
+
     }catch (Exception e){
         System.out.println("Error al publicar proyecto" + e.getMessage());
     }

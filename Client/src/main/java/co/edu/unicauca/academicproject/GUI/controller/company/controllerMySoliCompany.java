@@ -11,7 +11,11 @@ import co.edu.unicauca.academicproject.controller.CoordinatorController;
 import co.edu.unicauca.academicproject.controller.ProjectController;
 import co.edu.unicauca.academicproject.entities.Company;
 import co.edu.unicauca.academicproject.entities.Coordinator;
+import co.edu.unicauca.academicproject.entities.CreateProjectComment;
 import co.edu.unicauca.academicproject.entities.Project;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
+import co.edu.unicauca.academicproject.infra.Messages;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
 import javax.swing.*;
@@ -23,24 +27,74 @@ import java.util.List;
  * @author lopez
  * @date 9/06/2025
  */
-public class controllerMySoliCompany {
+public class controllerMySoliCompany implements Observer {
 
     CompanyController companyController = new CompanyController(appContextProvider.getBean(CompanyServiceClient.class));
     ProjectController projectController = new ProjectController(appContextProvider.getBean(ProjectServiceClient.class));
     CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
     private final GUIMySolisCompany vista;
     private String rol;
-    public controllerMySoliCompany(GUIMySolisCompany vista,String rol){
+    Sujeto sujeto;
+    public controllerMySoliCompany(GUIMySolisCompany vista,String rol,Sujeto sujeto) {
         this.vista = vista;
         this.rol = rol;
+        this.sujeto = sujeto;
+        sujeto.agregarObservador(this);
         vista.getjPDetalleSolicitud().setVisible(false);
         cargarOpciones();
         cargarDatos();
         this.vista.getjBtnCerrarPubli().addActionListener(e-> cerrarPubli());
         this.vista.getjBtnFiltrar().addActionListener(e-> filtrar());
         this.vista.getjBtnQuitarFiltro().addActionListener(e-> quitarFiltro());
+        this.vista.getjBtnCambiarEstado().addActionListener(e-> cambiarEstado());
         vista.getjBtnQuitarFiltro().setVisible(false);
         cargarPublis();
+    }
+    Project projectActualizado = new Project();
+
+    private void cambiarEstado(){
+        Long idProyecto = Long.valueOf(vista.getjLIDProyecto().getText());
+        Long coordinatorCode = coordinatorController.getCoordinatortByCode(Long.valueOf(vista.getnitCompany()),"Bearer " + vista.getToken()).getCode();
+        CreateProjectComment projectComment = new CreateProjectComment(coordinatorCode,vista.getjTextAreaComentarioProye().getText());
+
+        if(vista.getjRbtnAceptarPro().isSelected()){
+            try {
+                coordinatorController.approveProject(idProyecto,projectComment,"Bearer " + vista.getToken());
+                sujeto.notificar("Se aceptó un proyecto");
+                Messages.showMessageDialog("Proyecto aprobado","Aprobado");
+            }catch (Exception e){
+                System.out.println("error epa" + e.getMessage());
+            }
+        }
+        if(vista.getjRbtnRechazarProye().isSelected()){
+            try {
+                coordinatorController.rejectProject(idProyecto,projectComment,"Bearer " + vista.getToken());
+                sujeto.notificar("Se rechazó un proyecto");
+                Messages.showMessageDialog("Proyecto rechazado","Rechazado");
+            }catch (Exception e){
+                System.out.println("error epa" + e.getMessage());
+            }
+        }
+        if (vista.getjRbtnCompletarProye().isSelected()) {
+            try {
+                coordinatorController.completeProject(idProyecto,"Bearer " + vista.getToken());
+                sujeto.notificar("Se completó un proyecto");
+                Messages.showMessageDialog("Proyecto aprobado","Aprobado");
+            }catch (Exception e){
+                System.out.println("error epa" + e.getMessage());
+            }
+        }
+        actualizarDatos();
+        vista.getjPDetalleSolicitud().setVisible(false);
+    }
+
+    private void actualizarDatos(){
+        if(vista.getjBtnQuitarFiltro().isVisible()){
+            filtrar();
+        }
+        else{
+            cargarPublis();
+        }
     }
 
     private void quitarFiltro(){
@@ -143,6 +197,7 @@ public class controllerMySoliCompany {
 
     private void cargarDetalles(Project project) {
         try {
+            projectActualizado = project;
             vista.getjFieldTitleProject().setText(project.getName());
             vista.getjTextAreaResumen().setText(project.getSummary());
             vista.getjTextAreaDescripProject().setText(project.getDescription());
@@ -157,9 +212,36 @@ public class controllerMySoliCompany {
                 System.out.println("Error al cargar fecha de inicio del proyecto" + e.getMessage());
             }
             vista.getjLEstadoSolicitud().setText(project.getState());
+            vista.getjLIDProyecto().setText(String.valueOf(project.getProjectId()));
+
+            vista.getjRbtnAceptarPro().setVisible(false);
+            vista.getjRbtnRechazarProye().setVisible(false);
+            vista.getjRbtnCompletarProye().setVisible(false);
+            vista.getjScrollPanelComen().setVisible(false);
+            vista.getjBtnCambiarEstado().setVisible(false);
+
+            System.out.println("EL estado cargado es: " + project.getState());
+
+            if(project.getState().equals("Assigned")){
+                vista.getjRbtnCompletarProye().setVisible(true);
+                vista.getjBtnCambiarEstado().setVisible(true);
+            }
+            if(project.getState().equals("Received")){
+                vista.getjRbtnRechazarProye().setVisible(true);
+                vista.getjRbtnAceptarPro().setVisible(true);
+                vista.getjScrollPanelComen().setVisible(true);
+                vista.getjBtnCambiarEstado().setVisible(true);
+            }
+
             vista.getjPDetalleSolicitud().setVisible(true);
         } catch (Exception e) {
             System.out.println("Error en cargar detalles " + e.getMessage());
         }
+    }
+
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("Actualizando en proyectos coordinador o empresa" + mensaje);
+        actualizarDatos();
     }
 }

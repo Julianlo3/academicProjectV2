@@ -24,6 +24,8 @@ import co.edu.unicauca.academicproject.controller.CoordinatorController;
 import co.edu.unicauca.academicproject.controller.ProjectController;
 import co.edu.unicauca.academicproject.controller.StudentController;
 import co.edu.unicauca.academicproject.entities.*;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 import co.edu.unicauca.academicproject.security.Users;
 
@@ -39,7 +41,18 @@ import javax.swing.table.DefaultTableModel;
  * @author lopez
  */
 
-public class ControllerHomeWithLog {
+public class ControllerHomeWithLog implements Observer {
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("Actualizando tabla en home con login " + mensaje);
+        if(vista.getjButtonQuitF().isVisible()){
+            buscarProyectos();
+        }
+        else {
+            cargarProyectos();
+        }
+    }
+
     CardLayout cardLayout;
     StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
     CompanyController companyController = new CompanyController(appContextProvider.getBean(CompanyServiceClient.class));
@@ -51,8 +64,10 @@ public class ControllerHomeWithLog {
     private String token;
     Users user = new Users();
 
-    public ControllerHomeWithLog(GUIHomeWithLog vista, String token) {
+    public ControllerHomeWithLog(GUIHomeWithLog vista, String token,Sujeto sujeto) {
         this.vista = vista;
+        this.vista.getjButtonQuitF().setVisible(false);
+        sujeto.agregarObservador(this);
         this.token = token;
         this.rol = vista.getRol();
         this.code = vista.getidUser();
@@ -79,7 +94,8 @@ public class ControllerHomeWithLog {
     }
 
     private void abrirPublisCompany(){
-        GUIMySolisCompany solisCompany = new GUIMySolisCompany(vista.getIdUser(),token,rol);
+        Sujeto sujeto = new Sujeto();
+        GUIMySolisCompany solisCompany = new GUIMySolisCompany(vista.getIdUser(),token,rol,sujeto);
         solisCompany.setVisible(true);
     }
 
@@ -129,23 +145,27 @@ public class ControllerHomeWithLog {
     }
 
     private void cargarSolicitudesEstudiante() {
-        GUIStudentRequest studentRequest = new GUIStudentRequest(token);
+        Sujeto sujeto = new Sujeto();
+        GUIStudentRequest studentRequest = new GUIStudentRequest(token,sujeto);
         studentRequest.setVisible(true);
     }
 
     private void abrirEstadisticas(){
-        GUIStatistics estadisticas = new GUIStatistics(token);
+        Sujeto sujeto = new Sujeto();
+        GUIStatistics estadisticas = new GUIStatistics(token,sujeto);
         estadisticas.setVisible(true);
     }
 
     private void abrirAsignar() {
-        GUIAssigment asignar = new GUIAssigment(token);
+        Sujeto sujeto = new Sujeto();
+        GUIAssigment asignar = new GUIAssigment(token,sujeto);
         asignar.setVisible(true);
     }
 
     private void cerrarSeccion() {
         vista.dispose();
-        GUIHomeWithOutLog homeWithLog = new GUIHomeWithOutLog();
+        Sujeto  sujeto = new Sujeto();
+        GUIHomeWithOutLog homeWithLog = new GUIHomeWithOutLog(sujeto);
         homeWithLog.setExtendedState(JFrame.MAXIMIZED_BOTH);
         homeWithLog.setVisible(true);
     }
@@ -229,7 +249,8 @@ public class ControllerHomeWithLog {
         Company company = companyController.getCompanyByNit(Long.valueOf(code), "Bearer " + token);
         if (company != null) {
             System.out.println("Datos de la empresa nit: " + company.getNit() + " Nombre: "+company.getName());
-            GUINewProject newProject = new GUINewProject(company, token);
+            Sujeto sujeto = new Sujeto();
+            GUINewProject newProject = new GUINewProject(company, token,sujeto);
             newProject.setVisible(true);
         } else {
             System.out.println("Error al encontrar empresa");
@@ -243,15 +264,15 @@ public class ControllerHomeWithLog {
             String name = vista.getjTableProjects().getValueAt(fila, 3).toString(); // columna 0 es
             System.out.println("Proyecto seleccionado: " + name);
             try {
-                if (rol.equals("student")) {
-                    System.out.println("Token: " + token);
-                    Project project = projectController.getProjectByName(name, "Bearer " + token);
-                    System.out.println("Proyecto encontrado: " + project.getName() + project.getDescription() + project.getStartDate() + project.getProjectId());
-                    GUINominationProject newNomination = new GUINominationProject(project, token, rol,vista.getidUser());
-                    newNomination.setVisible(true);
-                }
+                System.out.println("Token: " + token);
+                Project project = projectController.getProjectByName(name, "Bearer " + token);
+                System.out.println("Proyecto encontrado: " + project.getName() + project.getDescription() + project.getStartDate() + project.getProjectId());
+                Sujeto sujeto = new Sujeto();
+                GUINominationProject newNomination = new GUINominationProject(project, token, rol, vista.getidUser(), sujeto);
+                newNomination.setVisible(true);
 
-            } catch (Exception e) {
+
+            }catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -275,9 +296,9 @@ public class ControllerHomeWithLog {
                 modeloProject.setRowCount(0);
                 int numero = 0;
                 for (Project project : projects) {
-
                     if (project.getCompanyNit() != 0.0 && project.getName() != null) {
-                        modeloProject.addRow(new Object[]{numero++, project.getStartDate(), project.getCompanyNit(), project.getName(), project.getSummary()});
+                        String nombreEmpresa = companyController.getCompanyByNit(project.getCompanyNit(),"Bearer " + token).getName();
+                        modeloProject.addRow(new Object[]{numero++, project.getStartDate(),nombreEmpresa, project.getName(), project.getSummary()});
                     }
                 }
             }

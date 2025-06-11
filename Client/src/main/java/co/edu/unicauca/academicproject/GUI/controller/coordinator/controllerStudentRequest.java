@@ -11,6 +11,8 @@ import co.edu.unicauca.academicproject.controller.StudentController;
 import co.edu.unicauca.academicproject.entities.Project;
 import co.edu.unicauca.academicproject.entities.ProjectApplicationRequest;
 import co.edu.unicauca.academicproject.entities.Student;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 import co.edu.unicauca.academicproject.infra.Messages;
 import co.edu.unicauca.academicproject.provider.appContextProvider;
 
@@ -21,13 +23,16 @@ import java.util.List;
  * @author lopez
  * @date 6/06/2025
  */
-public class controllerStudentRequest {
+public class controllerStudentRequest implements Observer {
     private final GUIStudentRequest vista;
     CoordinatorController coordinatorController = new CoordinatorController(appContextProvider.getBean(CoordinatorServiceClient.class));
     ProjectController projectController = new ProjectController(appContextProvider.getBean(ProjectServiceClient.class));
     StudentController studentController = new StudentController(appContextProvider.getBean(StudentServiceClient.class));
-    public controllerStudentRequest(GUIStudentRequest vista){
+    Sujeto sujeto;
+    public controllerStudentRequest(GUIStudentRequest vista, Sujeto sujeto){
         this.vista = vista;
+        this.sujeto = sujeto;
+        sujeto.agregarObservador(this);
         vista.getjBtnProcesarSoli().addActionListener(e-> procesarSoli());
         vista.getjPDetalleSolicitud().setVisible(false);
         cargarSolicitudes();
@@ -39,21 +44,24 @@ public class controllerStudentRequest {
         try {
             if(vista.getjRBtnRechazarSoli().isSelected()){
                 coordinatorController.rejectRequest(id,"bearer " +vista.getToken());
+                cargarSolicitudes();
+                sujeto.notificar("Se rechaza solicitud estudiante");
                 Messages.showMessageDialog("Rechazado correctamente","Rechazado");
             }
             if(vista.getjRBtnAceptarSoli().isSelected()) {
                 coordinatorController.acceptRequest(id,"bearer " +vista.getToken());
+                cargarSolicitudes();
+                sujeto.notificar("Se acepta solicitud estudiante");
                 Messages.showMessageDialog("Aceptado correctamente","Aceptado");
             }
         } catch (Exception e) {
             System.out.println("Error al procesar el proceso de solicitud" + e.getMessage());
         }
-
     }
 
-    private void cargaProyecto(String tituloProyecto,String nombreEstudiante, String nombreEmpresa, String estadoProyecto,Project project,Student student,Long idSolicitud){
+    private void cargaProyecto(String tituloProyecto,String nombreEstudiante, String nombreEmpresa, String estadoProyecto,Project project,Student student,Long idSolicitud,String estadoSolicitud){
         GUIminiRequest  chat = new GUIminiRequest(tituloProyecto, nombreEstudiante, nombreEmpresa,estadoProyecto,idSolicitud);
-        chat.getjBtnVerDetalles().addActionListener(e-> cargarDetalles(project,student,idSolicitud));
+        chat.getjBtnVerDetalles().addActionListener(e-> cargarDetalles(project,student,idSolicitud,estadoSolicitud));
         chat.setPreferredSize(new Dimension(200,220));
         vista.getjPChat().add(chat);
         vista.getjPChat().revalidate();
@@ -61,7 +69,7 @@ public class controllerStudentRequest {
 
     }
 
-    private void cargarDetalles(Project project,Student student,Long idSolicitud){
+    private void cargarDetalles(Project project,Student student,Long idSolicitud,String estadoSoli){
         try{
             vista.getjFieldTitleProject().setText(project.getName());
             vista.getjTextAreaResumen().setText(project.getSummary());
@@ -79,6 +87,14 @@ public class controllerStudentRequest {
             }
             vista.getjLEstudianteSolicitante().setText(student.getName());
             vista.getjLEstadoSolicitud().setText(project.getState());
+            vista.getjBtnProcesarSoli().setVisible(false);
+            vista.getjRBtnAceptarSoli().setVisible(false);
+            vista.getjRBtnRechazarSoli().setVisible(false);
+            if (estadoSoli.equals("PENDING")){
+                vista.getjBtnProcesarSoli().setVisible(true);
+                vista.getjRBtnAceptarSoli().setVisible(true);
+                vista.getjRBtnRechazarSoli().setVisible(true);
+            }
             vista.getjPDetalleSolicitud().setVisible(true);
         }catch(Exception e){
             System.out.println("Error en cargar detalles "+e.getMessage());
@@ -94,12 +110,19 @@ public class controllerStudentRequest {
                 System.out.println(solis.getId());
                 Project project = projectController.getProjectById(solis.getProjectId(),"bearer "+vista.getToken());
                 Student student = studentController.getStudentByCode(solis.getStudentCode(),"bearer "+vista.getToken());
-                cargaProyecto(project.getName(), student.getName(), String.valueOf(project.getCompanyNit()),solis.getStatus(),project,student,solis.getId());
+                cargaProyecto(project.getName(), student.getName(), String.valueOf(project.getCompanyNit()),solis.getStatus(),project,student,solis.getId(),solis.getStatus());
             }
 
         } catch (Exception e) {
             System.out.println("error con las solis " + e.getMessage());
         }
 
+    }
+
+    @Override
+    public void actualizar(String mensaje) {
+        vista.getjPSolicitudes().revalidate();
+    System.out.println("Actualizando desde studentRequest");
+    cargarSolicitudes();
     }
 }

@@ -5,14 +5,17 @@
 package co.edu.unicauca.academicproject.GUI;
 
 import co.edu.unicauca.academicproject.GUI.controller.Home.ControllerHomeWithLog;
+import co.edu.unicauca.academicproject.entities.observer.Observer;
+import co.edu.unicauca.academicproject.entities.observer.Sujeto;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author lopez
  */
-public class GUIHomeWithLog extends javax.swing.JFrame {
+public class GUIHomeWithLog extends javax.swing.JFrame implements Observer{
 
     /**
      * Creates new form GUIHineWithLog
@@ -20,11 +23,12 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
 
     private String rol;
     private String idUser;
-    public GUIHomeWithLog(String idUser,String rol,String token) {
+    public GUIHomeWithLog(String idUser, String rol, String token, Sujeto sujeto) {
         initComponents();
+        sujeto.agregarObservador(this);
         this.rol = rol;
         this.idUser = idUser;
-        ControllerHomeWithLog controller = new ControllerHomeWithLog(this,token);
+        ControllerHomeWithLog controller = new ControllerHomeWithLog(this,token,sujeto);
 
     }
 
@@ -465,5 +469,11 @@ public class GUIHomeWithLog extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableProjects;
     private java.awt.Label lbTitleProyect;
+
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("Actualizando en GUI home con login: " + mensaje);
+
+    }
     // End of variables declaration//GEN-END:variables
 }
