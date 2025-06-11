@@ -1,0 +1,154 @@
+services:
+  postgres-project:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    container_name: postgres-project
+    environment:
+      POSTGRES_DB: projectdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./dbfiles:/docker-entrypoint-initdb.sql
+      - ./project_db_data:/var/lib/postgresql/data
+
+  postgres-company:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5433:5432
+    container_name: postgres-company
+    environment:
+      POSTGRES_DB: companydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./dbfiles:/docker-entrypoint-initdb.sql
+      - ./company_db_data:/var/lib/postgresql/data
+
+  postgres-student:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5434:5432
+    container_name: postgres-student
+    environment:
+      POSTGRES_DB: studentdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./dbfiles:/docker-entrypoint-initdb.sql
+      - ./student_db_data:/var/lib/postgresql/data
+
+  postgres-coordinator:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5435:5432
+    container_name: postgres-coordinator
+    environment:
+      POSTGRES_DB: coordinatordb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./dbfiles:/docker-entrypoint-initdb.sql
+      - ./coordinator_db_data:/var/lib/postgresql/data
+
+  keycloak-db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5436:5432
+    container_name: postgres-keycloak
+    environment:
+      POSTGRES_DB: keycloakdb
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: keycloakpass
+    volumes:
+      - ./dbfiles:/docker-entrypoint-initdb.sql
+      - ./keycloak_db_data:/var/lib/postgresql/data
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.2.4
+    container_name: keycloak
+    command: start-dev --import-realm
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres-keycloak:5432/keycloakdb
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: keycloakpass
+    volumes:
+      - ./keycloak/import:/opt/keycloak/data/import
+    ports:
+      - "8080:8080"
+    depends_on:
+      - keycloak-db
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - project-service
+      - company-service
+      - student-service
+      - coordinator-service
+      - keycloak
+
+  project-service:
+    build: ./project-service
+    container_name: project-service
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-project:5432/projectdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    depends_on:
+      - postgres-project
+
+  company-service:
+    build: ./company-service
+    container_name: company-service
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-company:5432/companydb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    depends_on:
+      - postgres-company
+
+  student-service:
+    build: ./student-service
+    container_name: student-service
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-student:5432/studentdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    depends_on:
+      - postgres-student
+
+  coordinator-service:
+    build: ./coordinator-service
+    container_name: coordinator-service
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-coordinator:5432/coordinatordb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    depends_on:
+      - postgres-coordinator
+
+volumes:
+  project_db_data:
+  company_db_data:
+  student_db_data:
+  coordinator_db_data:
+  keycloak_db_data:
+

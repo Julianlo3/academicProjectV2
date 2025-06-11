@@ -25,7 +25,7 @@ public class CompanyController {
         try{
             Company company = new Company(nit,  name,  website,  email,  contactPhone,  contactName,  contactLastName,  contactPost,  industrialSector);
             companyServiceClient.createCompany(company,token);
-            JOptionPane.showMessageDialog(null, "Empresa creada con éxito.");
+            JOptionPane.showMessageDialog(null, "Empresa creada con exito.");
             System.out.println("Empresa creada" + company.getNit() + company.getName() + company.getEmail() + company.getContactPhone() + company.getContactName() + company.getContactLastName() + company.getContactPost() + company.getIndustrialSector() + company.getWebsite());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al crear empresa.");

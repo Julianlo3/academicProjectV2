@@ -23,7 +23,7 @@ public class CoordinatorController {
         try{
             Coordinator coordinator = new Coordinator(code,name,phone,email,programaAcademico);
             coordinatorServiceClient.createCoordinator(coordinator,token);
-            JOptionPane.showMessageDialog(null, "Coordinador creado con éxito.");
+            JOptionPane.showMessageDialog(null, "Coordinador creado con exito.");
             System.out.println("Coordinador creado: " + coordinator.getName() + coordinator.getCode() + coordinator.getEmail());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al crear coordinador." + e.getMessage());

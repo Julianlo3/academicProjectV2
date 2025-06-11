@@ -29,7 +29,7 @@ public class StudentController {
             // Llama al servicio para guardar el estudiante
             studentServiceClient.CreateStudent(student,token);
             // Muestra un mensaje de éxito
-            JOptionPane.showMessageDialog(null, "Estudiante creado con éxito.");
+            JOptionPane.showMessageDialog(null, "Estudiante creado con exito.");
             System.out.println("Estudiante creado: " + student.getName() + student.getCode() + student.getEmail());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al crear estudiante." + e.getMessage());

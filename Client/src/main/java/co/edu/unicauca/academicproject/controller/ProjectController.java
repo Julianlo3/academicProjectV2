@@ -30,7 +30,7 @@ public class ProjectController {
             System.out.println("Tipo de localDate" + project.getStartDate().getClass().getName());
             System.out.println("Tipo de bigDecimal" + project.getBudget().getClass().getName());
             projectServiceClient.createProject(project,token);
-            JOptionPane.showMessageDialog(null, "Proyecto creado con éxito.");
+            JOptionPane.showMessageDialog(null, "Proyecto creado con exito.");
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Error al crear proyecto" + e.getMessage());
