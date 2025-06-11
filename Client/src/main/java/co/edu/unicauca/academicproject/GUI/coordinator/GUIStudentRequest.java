@@ -229,7 +229,6 @@ public class GUIStudentRequest extends javax.swing.JFrame implements Observer {
         jRBtnAceptarSoli = new javax.swing.JRadioButton();
         jRBtnRechazarSoli = new javax.swing.JRadioButton();
         jBtnProcesarSoli = new javax.swing.JButton();
-        jLRazon = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaResumen = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -492,15 +491,6 @@ public class GUIStudentRequest extends javax.swing.JFrame implements Observer {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         jPDetalleSolicitud.add(jBtnProcesarSoli, gridBagConstraints);
 
-        jLRazon.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLRazon.setForeground(new java.awt.Color(255, 255, 255));
-        jLRazon.setText("Razón:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        jPDetalleSolicitud.add(jLRazon, gridBagConstraints);
-
         jTextAreaResumen.setColumns(20);
         jTextAreaResumen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextAreaResumen.setLineWrap(true);
@@ -654,7 +644,6 @@ public class GUIStudentRequest extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLObjetivos;
     private javax.swing.JLabel jLPeriodoAca;
     private javax.swing.JLabel jLPresupuesto;
-    private javax.swing.JLabel jLRazon;
     private javax.swing.JLabel jLResumen;
     private javax.swing.JLabel jLTEstado;
     private javax.swing.JLabel jLTEstudiante;
@@ -680,10 +669,10 @@ public class GUIStudentRequest extends javax.swing.JFrame implements Observer {
     private javax.swing.JTextArea jTextAreaResumen;
     private com.toedter.calendar.JYearChooser jYearProyecto;
     private java.awt.Label lbTitleProyect;
+    // End of variables declaration//GEN-END:variables
 
     @Override
     public void actualizar(String mensaje) {
-        System.out.println("actualizando desde GUI studentRequest "+mensaje);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    // End of variables declaration//GEN-END:variables
 }

@@ -264,16 +264,15 @@ public class ControllerHomeWithLog implements Observer {
             String name = vista.getjTableProjects().getValueAt(fila, 3).toString(); // columna 0 es
             System.out.println("Proyecto seleccionado: " + name);
             try {
-                if (rol.equals("student")) {
-                    System.out.println("Token: " + token);
-                    Project project = projectController.getProjectByName(name, "Bearer " + token);
-                    System.out.println("Proyecto encontrado: " + project.getName() + project.getDescription() + project.getStartDate() + project.getProjectId());
-                    Sujeto sujeto = new Sujeto();
-                    GUINominationProject newNomination = new GUINominationProject(project, token, rol,vista.getidUser(),sujeto);
-                    newNomination.setVisible(true);
-                }
+                System.out.println("Token: " + token);
+                Project project = projectController.getProjectByName(name, "Bearer " + token);
+                System.out.println("Proyecto encontrado: " + project.getName() + project.getDescription() + project.getStartDate() + project.getProjectId());
+                Sujeto sujeto = new Sujeto();
+                GUINominationProject newNomination = new GUINominationProject(project, token, rol, vista.getidUser(), sujeto);
+                newNomination.setVisible(true);
 
-            } catch (Exception e) {
+
+            }catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }

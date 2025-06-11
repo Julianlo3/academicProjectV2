@@ -35,6 +35,9 @@ public class ControllerGuestNomination implements Observer {
     }
 
     private void cargarInfoProject(){
+        if(!rol.equals("student") && !rol.equals("guest")){
+            vista.getjBtnSolicitar().setEnabled(false);
+        }
         System.out.println("Cargando información del proyecto");
         Project project = vista.getProject();
         vista.setjFieldTitleProject(project.getName());

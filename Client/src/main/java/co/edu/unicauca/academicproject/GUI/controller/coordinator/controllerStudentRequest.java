@@ -59,9 +59,9 @@ public class controllerStudentRequest implements Observer {
         }
     }
 
-    private void cargaProyecto(String tituloProyecto,String nombreEstudiante, String nombreEmpresa, String estadoProyecto,Project project,Student student,Long idSolicitud){
+    private void cargaProyecto(String tituloProyecto,String nombreEstudiante, String nombreEmpresa, String estadoProyecto,Project project,Student student,Long idSolicitud,String estadoSolicitud){
         GUIminiRequest  chat = new GUIminiRequest(tituloProyecto, nombreEstudiante, nombreEmpresa,estadoProyecto,idSolicitud);
-        chat.getjBtnVerDetalles().addActionListener(e-> cargarDetalles(project,student,idSolicitud));
+        chat.getjBtnVerDetalles().addActionListener(e-> cargarDetalles(project,student,idSolicitud,estadoSolicitud));
         chat.setPreferredSize(new Dimension(200,220));
         vista.getjPChat().add(chat);
         vista.getjPChat().revalidate();
@@ -69,7 +69,7 @@ public class controllerStudentRequest implements Observer {
 
     }
 
-    private void cargarDetalles(Project project,Student student,Long idSolicitud){
+    private void cargarDetalles(Project project,Student student,Long idSolicitud,String estadoSoli){
         try{
             vista.getjFieldTitleProject().setText(project.getName());
             vista.getjTextAreaResumen().setText(project.getSummary());
@@ -90,7 +90,7 @@ public class controllerStudentRequest implements Observer {
             vista.getjBtnProcesarSoli().setVisible(false);
             vista.getjRBtnAceptarSoli().setVisible(false);
             vista.getjRBtnRechazarSoli().setVisible(false);
-            if (project.getState().equals("Received")){
+            if (estadoSoli.equals("PENDING")){
                 vista.getjBtnProcesarSoli().setVisible(true);
                 vista.getjRBtnAceptarSoli().setVisible(true);
                 vista.getjRBtnRechazarSoli().setVisible(true);
@@ -110,7 +110,7 @@ public class controllerStudentRequest implements Observer {
                 System.out.println(solis.getId());
                 Project project = projectController.getProjectById(solis.getProjectId(),"bearer "+vista.getToken());
                 Student student = studentController.getStudentByCode(solis.getStudentCode(),"bearer "+vista.getToken());
-                cargaProyecto(project.getName(), student.getName(), String.valueOf(project.getCompanyNit()),solis.getStatus(),project,student,solis.getId());
+                cargaProyecto(project.getName(), student.getName(), String.valueOf(project.getCompanyNit()),solis.getStatus(),project,student,solis.getId(),solis.getStatus());
             }
 
         } catch (Exception e) {
@@ -121,6 +121,7 @@ public class controllerStudentRequest implements Observer {
 
     @Override
     public void actualizar(String mensaje) {
+        vista.getjPSolicitudes().revalidate();
     System.out.println("Actualizando desde studentRequest");
     cargarSolicitudes();
     }
